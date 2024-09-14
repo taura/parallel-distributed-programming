@@ -1,0 +1,139 @@
+%% Creator: Inkscape 1.2.2 (b0a8486541, 2022-12-01), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'warp_block_sm.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{533.2499827bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.535865)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{warp_block_sm.pdf}}%
+    \put(0.27055634,0.42999595){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.14651699,0.36533916){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a warp (32 CUDA threads)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{warp_block_sm.pdf}}%
+    \put(0.27055634,0.42999596){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.146517,0.36533916){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a warp (32 CUDA threads)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{warp_block_sm.pdf}}%
+    \put(0.52372091,0.451093){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{warp_block_sm.pdf}}%
+    \put(0.77688548,0.40186656){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.47890535,0.31440172){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{warp_block_sm.pdf}}%
+    \put(0.33092891,0.01652407){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}streaming multiprocessor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{warp_block_sm.pdf}}%
+    \put(0.27055634,0.42999596){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.146517,0.36533916){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a warp (32 CUDA threads)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{warp_block_sm.pdf}}%
+    \put(0.52372091,0.451093){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{warp_block_sm.pdf}}%
+    \put(0.77688548,0.40186656){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.47890535,0.31440172){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{warp_block_sm.pdf}}%
+    \put(0.15803876,0.34560777){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.03399942,0.28095098){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a warp (32 CUDA threads)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{warp_block_sm.pdf}}%
+    \put(0.41120333,0.36670482){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{warp_block_sm.pdf}}%
+    \put(0.66436789,0.31747837){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.36638777,0.23001354){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{warp_block_sm.pdf}}%
+    \put(0.34087984,0.272883){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.21684049,0.20822621){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a warp (32 CUDA threads)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{warp_block_sm.pdf}}%
+    \put(0.5940444,0.29398005){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{warp_block_sm.pdf}}%
+    \put(0.84720897,0.2447536){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.54922884,0.15728877){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{warp_block_sm.pdf}}%
+    \put(0.25649165,0.2166242){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.1324523,0.15196741){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a warp (32 CUDA threads)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{warp_block_sm.pdf}}%
+    \put(0.50965621,0.23772125){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{warp_block_sm.pdf}}%
+    \put(0.76282078,0.18849481){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.46484065,0.10102997){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{warp_block_sm.pdf}}%
+    \put(0.33092891,0.01652407){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}streaming multiprocessor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{warp_block_sm.pdf}}%
+    \put(0.27055634,0.42999596){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.146517,0.36533916){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a warp (32 CUDA threads)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=20]{warp_block_sm.pdf}}%
+    \put(0.52372091,0.451093){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=21]{warp_block_sm.pdf}}%
+    \put(0.77688548,0.40186656){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.47890535,0.31440172){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=22]{warp_block_sm.pdf}}%
+    \put(0.15803876,0.34560777){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.03399942,0.28095098){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a warp (32 CUDA threads)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=23]{warp_block_sm.pdf}}%
+    \put(0.41120333,0.36670482){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=24]{warp_block_sm.pdf}}%
+    \put(0.66436789,0.31747837){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.36638777,0.23001354){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=25]{warp_block_sm.pdf}}%
+    \put(0.34087984,0.272883){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.21684049,0.20822621){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a warp (32 CUDA threads)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=26]{warp_block_sm.pdf}}%
+    \put(0.5940444,0.29398005){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=27]{warp_block_sm.pdf}}%
+    \put(0.84720897,0.2447536){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.54922884,0.15728877){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=28]{warp_block_sm.pdf}}%
+    \put(0.25649165,0.2166242){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.1324523,0.15196741){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a warp (32 CUDA threads)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=29]{warp_block_sm.pdf}}%
+    \put(0.50965621,0.23772125){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=30]{warp_block_sm.pdf}}%
+    \put(0.76282078,0.18849481){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.46484065,0.10102997){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block (\textit{W}\textit{b} warps)\end{tabular}}}}%
+    \put(0.00793753,0.17409493){\color[rgb]{1,0.4,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textit{registers (R}\textit{b}\textit{)}\end{tabular}}}}%
+    \put(0.43696918,0.15528338){\color[rgb]{1,0.4,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textit{shared memory (S}\textit{b}\textit{)}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=31]{warp_block_sm.pdf}}%
+  \end{picture}%
+\endgroup%

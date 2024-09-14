@@ -1,0 +1,672 @@
+<!--- md label=prob,ans --->
+
+# CUDA Programming Tutorial and Hands-on
+
+<!--- end md --->
+
+<!--- md w --->
+
+Enter your name and student ID.
+
+ * Name:
+ * Student ID:
+
+<!--- end md --->
+
+<!--- md --->
+
+# CUDA
+
+* [CUDA](https://docs.nvidia.com/cuda/index.html) is an extension to C++ specific to NVIDIA GPUs
+* It is the most basic, native programming model for NVIDIA GPUs
+
+# Compilers
+
+* We use [NVIDIA HPC SDK](https://docs.nvidia.com/hpc-sdk/index.html) (`nvcc`) for CUDA compilers
+* [LLVM ver. 15.0](https://llvm.org/) (`clang` and `clang++`) and NVIDA's C/C++ compilers (`nvc` and `nvc++`) we used for OpenMP also support CUDA, but they fail to compile some of our code, so we stick to more traditional `nvcc`
+* Note: the new version of NVIDIA HPC SDK, ver. 22.9, just appeared and is installed in our Jupyter environment
+<!--- end md --->
+
+<!--- md --->
+## NVIDIA HPC SDK
+
+* Execute this before you use NVIDIA HPC SDK
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+#export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/compilers/bin:$PATH
+export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.9/compilers/bin:$PATH
+<!--- end code --->
+
+<!--- md --->
+* Check if it works (check if full paths of nvcc are shown)
+* We do not recommend nvc/nvc++ for this exercise, but you might give them a try if you like
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which nvcc
+which nvc
+which nvc++
+<!--- end code --->
+
+<!--- md --->
+## LLVM
+
+* We do not recommend it for this exercise, but you might give them a try if you like
+* Execute this before you use LLVM
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+export PATH=/home/share/llvm/bin:$PATH
+<!--- end code --->
+
+<!--- md --->
+* Check if it works (check if full paths of clang/clang++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which clang
+which clang++
+<!--- end code --->
+
+<!--- md --->
+# Check host and GPU
+
+* First check if you are using the right host, tauleg000, <font color="red">not taulec</font>
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+hostname
+hostname | grep tauleg || echo "Oh, you are not on the right host, access https://tauleg000.zapto.org/ instead"
+<!--- end code --->
+
+<!--- md --->
+* Check if GPU is alive by nvidia-smi
+* Do `nvidia-smi --help` or see manual (`man nvidia-smi` on terminal) for more info
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+nvidia-smi
+<!--- end code --->
+
+
+<!--- md --->
+
+# Compiling and running CUDA programs
+
+## With nvcc (NVIDIA HPC SDK CUDA compiler)
+
+* Give a source file `.cu` extension or give `--x cu` option to indicate it is a CUDA source file
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile cuda_hello.cu
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd02_cuda/include/cuda_hello.cu --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+nvcc -o cuda_hello cuda_hello.cu
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_hello
+<!--- end code --->
+
+<!--- md --->
+* You should see 100 lines of "hello I am CUDA thread ??? out of 128"
+<!--- end md --->
+
+<!--- md --->
+* Alternatively, you can have a source file with an ordinary C++ extension `.cc` (or `.cpp`) and give `-x cu`.
+* It is useful when you want to have a single source file for OpenMP and CUDA programs
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+ln -sf cuda_hello.cu cuda_hello.cc
+nvcc -o cuda_hello -x cu cuda_hello.cc
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+./cuda_hello
+<!--- end code --->
+
+<!--- md --->
+## With nvc++ (NVIDIA HPC SDK C++ compiler)
+
+* Just to demonstrate `nvc++` supports CUDA, too
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+nvc++ -Wall -o cuda_hello cuda_hello.cu
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -Wall -o cuda_hello -x cu cuda_hello.cc
+<!--- end code --->
+
+<!--- md --->
+## With clang++ (LLVM)
+
+* Just to demonstrate `clang++` supports CUDA, too
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+clang++ -Wall -Wno-unknown-cuda-version -o cuda_hello cuda_hello.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+ln -sf cuda_hello.cu cuda_hello.cc
+clang++ -Wall -Wno-unknown-cuda-version -o cuda_hello -x cu cuda_hello.cc -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- md --->
+# CUDA kernel
+
+* The most basic concept of CUDA programming is a _CUDA kernel_
+* Syntactically, a CUDA kernel is a `void` function with `__global__` keyword attached to it
+```
+__global__ void cuda_thread_fun(int n) { ... }
+```
+* A CUDA kernel describes what a _single_ CUDA thread does
+* You launch a number of CUDA threads all executing the same kernel by 
+```
+kernel_func<<<num_of_blocks,num_of_threads_per_block>>>(...);
+```
+* We have already seen this in the above code
+* See [2. Programming model](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model) section for reference
+
+## <font color="red">You'd better always check errors</font>
+
+* It's not only CUDA programming in which you are strongly advised to check errors after each operation that could potentially go wrong
+* Just like many C programming APIs (unlike Python scripting, for example), calling CUDA APIs and launching CUDA kernels silently return if something went wrong
+* You could save a huge amount of time by checking errors 
+  * every time you launch a CUDA kernel and
+  * every time you call a CUDA API
+
+* Here is the same piece of code with checking errors
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile cuda_hello_chk.cu
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd02_cuda/include/cuda_hello_chk.cu --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+nvcc -o cuda_hello_chk cuda_hello_chk.cu
+# nvc++ -Wall -o cuda_hello_chk cuda_hello_chk.cu
+# clang++ -Wall -Wno-unknown-cuda-version -o cuda_hello_chk cuda_hello_chk.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_hello_chk
+<!--- end code --->
+
+<!--- md --->
+* I factored out the error-checking code into a header file `"cuda_util.h"` and included it in the directory (check it from the left menu)
+* The following code is a more concise version using the header file
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile cuda_hello_hdr_chk.cu
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd02_cuda/include/cuda_hello_chk.cu --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+nvcc -o cuda_hello_hdr_chk cuda_hello_hdr_chk.cu
+# nvc++ -Wall -o cuda_hello_hdr_chk cuda_hello_hdr_chk.cu
+# clang++ -Wall -Wno-unknown-cuda-version -o cuda_hello_hdr_chk cuda_hello_hdr_chk.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_hello_hdr_chk
+<!--- end code --->
+
+<!--- md --->
+# The number of CUDA threads launched
+
+* You specify the number of threads launched by the two parameters in <<<...,...>>>, like
+```
+kernel_func<<<num_of_blocks,num_of_threads_per_block>>>(...);
+```
+
+* It will create (num_of_blocks * num_of_threads_per_block) threads in total.
+* More precisely, it creates num_of_blocks _thread blocks_, each of which has num_of_threads_per_block threads.
+* It is natural to wonder why you need to specify two parameters instead of just one parameter (the total number of threads) and how to choose num_of_threads_per_block.
+* For now, just know that a thread block is the unit of scheduling
+  * A GPU device fetches a single block at a time and dispatches it to a particular streaming multiprocessor (SM)
+  * Remember that a single SM is like a CPU core; a single GPU device has a number of SMs just like a single CPU has a number of cores.
+<!--- end md --->
+
+<!--- md label=prob,ans --->
+#*P Change the number of threads per block
+
+Change the arguments of the following command line in various ways and see what happens
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_hello_hdr_chk 10 3
+<!--- end code --->
+
+<!--- md label=ans --->
+_<font color="green">Answer for trivial work omitted</font>_
+<!--- end md --->
+
+<!--- md --->
+# Thread ID
+
+## One-dimensional ID
+
+* Just like OpenMP, CUDA provides a means for a thread to know its ID as well as the total number of threads launched together
+* They are obtained from builtin variables
+* Let's say you invoked a kernel with
+```
+f<<<12,34>>>(...);
+```
+you create 12 thread blocks having 34 threads each (408 threads in total).
+ * `gridDim.x` gives the number of thread blocks ($= 12$)
+ * `blockDim.x` gives the number of threads in a thread block ($= 34$)
+
+* note: "grid" is the CUDA terminology to mean all the launched thread blocks (a CUDA thread $\in$ thread block $\in$ the entire grid)
+
+ * `blockIdx.x` gives the block ID within the grid ($\in [0,12)$) 
+ * `threadIdx.x` gives the thread ID within a thread block ($\in [0,34)$)
+* If you want to get a single thread ID between 0 to 407 and the total number of threads, you get them by
+```
+int idx      = blockIdx.x * blockDim.x + threadIdx.x;
+int nthreads = gridDim.x * blockDim.x;
+```
+* You have seen them in the above example.
+
+* See [2.1 Kernels](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#kernels) for reference
+
+## Two- or three-dimensional ID
+
+* Each of the above four variables can actually have up to three elements, allowing you to view blocks and threads within a block arranged in an one-, two- or three-dimensional space.  
+* You specify them accordingly when you call a kernel, for which you use a variable of type `dim3` instead of an integer, to specify up to three numbers
+
+* See [2.2 Thread Hierarchy](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#thread-hierarchy) for reference
+
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile cuda_hello_2d.cu
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd02_cuda/include/cuda_hello_2d.cu --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+nvcc -o cuda_hello_2d cuda_hello_2d.cu
+# nvc++ -Wall -o cuda_hello_2d cuda_hello_2d.cu
+# clang++ -Wall -Wno-unknown-cuda-version -o cuda_hello_2d cuda_hello_2d.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_hello_2d
+<!--- end code --->
+
+<!--- md label=prob,ans --->
+#*P Specify 2D thread blocks and grids
+
+* Change the arguments of the following command line in various ways and see what happens
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_hello_2d 40 2 3
+<!--- end code --->
+
+<!--- md label=ans --->
+_<font color="green">Answer for trivial work omitted</font>_
+<!--- end md --->
+
+<!--- md --->
+# Passing data between host (CPU) and device (GPU)
+
+* GPU is a device separate from a host CPU
+* As such, CPU and GPU do not share memory; you need to explicitly pass data by calling APIs (this is changing but practically remains true for a while)
+* One simplest way to pass data from a host to device is arguments to a kernel function, but
+  * it cannot be used for device -&gt; host (recall that kernel functions are always void)
+  * it is limited to values passed by "call-by-value"; you cannot pass pointers along with values pointed to by them
+* For anything other than passing arguments by call-by-values, you should use `cudaMalloc` and `cudaMemcpy`
+
+* See [3.2.2. Device Memory](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory) for reference
+
+## cudaMalloc
+
+```
+void * p;
+check_api_error(cudaMalloc(&p, size));
+```
+
+* allocates `size` bytes of memory on device and
+* returns an address valid on the device (not valid on the host) to variable `p`
+
+* remember that this function should be called on host; no functions are provided in CUDA API for CUDA threads to dynamically allocate memory along the way
+
+## cudaMemcpy
+
+* host -&gt; device
+```
+check_api_error(cudaMemcpy(p_dev, p_host, size, cudaMemcpyHostToDevice));
+```
+
+* device -&gt; host
+```
+check_api_error(cudaMemcpy(p_host, p_dev, size, cudaMemcpyDeviceToHost));
+```
+
+* the first argument is always the destination
+* p_dev should be an address on device (i.e., that has been allocated by `cudaMalloc`)
+
+## cudaFree
+
+```
+check_api_error(cudaFree(dev_p));
+```
+
+* frees memory allocated by cudaMalloc
+
+* The following code demonstrates how to get some results back to host using `cudaMalloc` and `cudaMemcpy`
+* Results show when each CUDA thread started executing
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile cuda_memcpy.cu
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd02_cuda/include/cuda_memcpy.cu --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+nvcc -o cuda_memcpy cuda_memcpy.cu
+# nvc++ -Wall -o cuda_memcpy cuda_memcpy.cu
+# clang++ -Wall -Wno-unknown-cuda-version -o cuda_memcpy cuda_memcpy.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_memcpy
+<!--- end code --->
+
+<!--- md label=prob,ans --->
+#*P Get data back from GPU to CPU
+
+* Change the arguments of the following command line in various ways and observe clock values printed
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_memcpy 10 3
+<!--- end code --->
+
+<!--- md label=ans --->
+_<font color="green">Answer for trivial work omitted</font>_
+<!--- end md --->
+
+<!--- md label=prob,ans --->
+* You observe some threads record exactly the same clock value
+* What do you deduce from that?
+<!--- end md --->
+
+<!--- md w points=1 --->
+
+<!--- end md --->
+
+<!--- md label=ans --->
+_<font color="green">Example answer</font>_
+
+* Threads having 32 consecuive thread IDs report exactly the same clock value
+* It stems from the fact that those threads share an instruction pointer (execute the same instruction)
+<!--- end md --->
+
+<!--- md --->
+# Unified Memory
+
+* with unified memory you do not have to call `cudaMemcpy` to move data between host and GPU
+* all you need to master is `cudaMallocManaged`, which you call in place of `cudaMalloc`
+* you get a pointer that is valid both on CPU and GPU
+<!--- end md --->
+
+<!--- md label=prob,ans --->
+#*P Use Unified Memory
+
+* Change the following program so that it uses `cudaMallocManaged` instead of `cudaMalloc`.  Make appropriate changes to other parts (e.g., remove unnecessary `cudaMemcpy`) so that it behaves similar to the original one
+<!--- end md --->
+ 
+<!--- code w kernel=python points=1 --->
+%%writefile cuda_malloc_managed.cu
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd02_cuda/include/cuda_malloc_managed.cu --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+nvcc -o cuda_malloc_managed cuda_malloc_managed.cu
+# nvc++ -Wall -o cuda_malloc_managed cuda_malloc_managed.cu
+# clang++ -Wall -Wno-unknown-cuda-version -o cuda_malloc_managed cuda_malloc_managed.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_malloc_managed 10 3
+<!--- end code --->
+
+<!--- code w kernel=python label=ans --->
+%%writefile cuda_malloc_managed.cu
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd02_cuda/include/cuda_malloc_managed.cu --->
+<!--- end code --->
+
+<!--- md --->
+# CUDA device memory model
+
+* memory blocks allocated by `cudaMalloc` are visiable to (shared by) all threads and called _global memory_
+* they persist on device until you release them by cudaFree (or the process finishes), so they can be used not only to pass values between device and host, but also to pass values between different kernel calls (without moving values back and forth between host and device each time you call a kernel)
+
+* See [Memory Hierarchy](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#memory-hierarchy) for reference
+
+# Race condition and atomic operation 
+
+* As threads launched in a single kernel call run concurrently, they are subject to the same race condition as OpenMP threads
+* That is, if two threads access the same variable (or the same array element) and at least one of them is a write, there is a race and the program almost certainly has a bug
+
+* In the following program, each thread increments a variable by one; it nevertheles does not print the number of threads launched and prints unpredictable results each time executed.
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile cuda_race.cu
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd02_cuda/include/cuda_race.cu --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+nvcc -o cuda_race cuda_race.cu
+# nvc++ -Wall -o cuda_race cuda_race.cu
+# clang++ -Wall -Wno-unknown-cuda-version -o cuda_race cuda_race.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_race
+<!--- end code --->
+
+<!--- md label=prob,ans --->
+#*P Observe race condition
+
+Execute the above program many times and observe the results; try changing parameters.
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_race 1000 64
+<!--- end code --->
+
+<!--- md label=ans --->
+_<font color="green">Answer for trivial work omitted</font>_
+<!--- end md --->
+
+<!--- md --->
+* OpenMP had three basic tools --- critical, atomic and reduction --- to resolve race conditions depending on the situation.
+* Roughly, CUDA only has an analogue to atomic and does not have critical or reduction.
+
+## Atomic add
+
+* CUDA has
+```
+AtomicAdd(T* p, T x);
+```
+function for various types of T.  
+It performs `*p = *p + x` _atomically_, meaning that it is guaranteed that `*p` is not updated between the point `*p` is read and the point `*p` is written.
+
+* See [atomicAdd](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#atomicadd) for reference
+<!--- end md --->
+
+<!--- md label=prob,ans --->
+#*P Use `atomicAdd`
+
+* Change the following program to resolve the race condition using `atomicAdd` and make sure the result always matches the number of threads launched.
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile cuda_race_atomic_add.cu
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd02_cuda/include/cuda_race.cu --->
+<!--- end code --->
+
+<!--- md --->
+* To compile programs using `atomicAdd`, you need to give `--generate-code arch=compute_80,code=sm_80` to `nvcc`
+* `--generate-code` specifies which GPU architectures/instruction set `nvcc` generates code for, so it might affect generated code in other ways including performance
+
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+nvcc --generate-code arch=compute_80,code=sm_80 -o cuda_race_atomic_add cuda_race_atomic_add.cu
+# nvc++ -Wall -gpu=cc80 -o cuda_race_atomic_add cuda_race_atomic_add.cu
+# clang++ -Wall -Wno-unknown-cuda-version --cuda-gpu-arch=sm_80 -o cuda_race_atomic_add cuda_race_atomic_add.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_race_atomic_add 10000 64
+./cuda_race_atomic_add 100000 64
+<!--- end code --->
+
+<!--- code w kernel=python label=ans --->
+%%writefile cuda_race_atomic_add_ans.cu
+<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd02_cuda/include/cuda_race.cu --->
+<!--- end code --->
+
+<!--- code w kernel=bash label=ans --->
+nvcc --generate-code arch=compute_80,code=sm_80 -o cuda_race_atomic_add_ans cuda_race_atomic_add_ans.cu
+# nvc++ -Wall -gpu=cc80 -o cuda_race_atomic_add_ans cuda_race_atomic_add_ans.cu
+# clang++ -Wall -Wno-unknown-cuda-version --cuda-gpu-arch=sm_80 -o cuda_race_atomic_add_ans cuda_race_atomic_add_ans.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- code w kernel=bash label=ans --->
+./cuda_race_atomic_add_ans 10000 64
+./cuda_race_atomic_add_ans 100000 64
+<!--- end code --->
+
+<!--- md --->
+# Barrier synchronization of threads
+
+* Recent CUDA has the notion of cooperative groups, with which you can build a barrier synchronization between threads
+* setup
+```
+#include <cooperative_groups.h>
+namespace cg = cooperative_groups; // save typing
+```
+* create data representing a grouup
+```
+cg::grid_group g = cg::this_grid(); // all threads
+```
+
+* perform barrier synchronization when necessary (ensure no threads execute `<after>` until all threads finish `<before>`) 
+```
+  <before>
+  g.sync();
+  <after>
+```
+
+* You need to launch such kernels by
+```
+void * args[] = { a0, a1, ... };
+cudaLaunchCooperativeKernel((void *)f, nb, bs, args);
+```
+instead of
+```
+f<<<nb,bs>>>(a0, a1, ...);
+```
+
+* See [Cooperative Groups](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#cooperative-groups) for reference
+<!--- end md --->
+
+<!--- md label=prob,ans --->
+#*P Use barrier synchronization
+
+Change the following program `sum_array()` so that it correctly outputs the sum of the array by implementing reduction on barrier synchronization.
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile cuda_sum.cu
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd02_cuda/include/cuda_sum.cu --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+nvcc -o cuda_sum cuda_sum.cu
+# nvc++ -Wall -o cuda_sum cuda_sum.cu
+# clang++ -Wall -Wno-unknown-cuda-version -o cuda_sum cuda_sum.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_sum
+<!--- end code --->
+
+<!--- code w kernel=python label=ans --->
+%%writefile cuda_sum_ans.cu
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd02_cuda/include/cuda_sum.cu --->
+<!--- end code --->
+
+<!--- code w kernel=bash label=ans --->
+nvcc -o cuda_sum_ans cuda_sum_ans.cu
+# nvc++ -Wall -o cuda_sum_ans cuda_sum_ans.cu
+# clang++ -Wall -Wno-unknown-cuda-version -o cuda_sum_ans cuda_sum_ans.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- code w kernel=bash label=ans --->
+./cuda_sum_ans
+<!--- end code --->
+
+<!--- md label=prob,ans --->
+#*P Putting them together: calculating an integral
+
+Write a CUDA program that calculates
+
+$$ \int_0^1 \int_0^1 \sqrt{1 - x^2 - y^2}\,dx\,dy $$
+
+* mathematical note: consider the integrand to be zero outside $1 - x^2 - y^2 \geq 0$
+
+* Write a CUDA kernel that computes the integrand on a single point
+* And launch it with as many threads as the number of points you compute the integrand at
+* The result should be close to $\pi/6$ (1/8 of the volume of the unit ball)
+* Play with the number of infinitesimal intervals for integration and the number of threads so that you can observe a speedup
+* Measure the time not just for the entire computation, but the time of each step including cudaMalloc, cudaMemcpy to initialize variables on the device, kernel and cudaMemcpy to get the result back
+* Try atomicAdd as well as reduction 
+* Play with unified memory also
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile cuda_integral.cu
+
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+nvcc -o cuda_integral cuda_integral.cu
+# nvc++ -Wall -o cuda_integral cuda_integral.cu
+# clang++ -Wall -Wno-unknown-cuda-version -o cuda_integral cuda_integral.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_integral
+<!--- end code --->
+
+<!--- code w kernel=python label=ans --->
+%%writefile cuda_integral_ans.cu
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd02_cuda/include/cuda_integral.cu --->
+<!--- end code --->
+
+<!--- code w kernel=bash label=ans --->
+nvcc -o cuda_integral_ans cuda_integral_ans.cu
+# nvc++ -Wall -o cuda_integral_ans cuda_integral_ans.cu
+# clang++ -Wall -Wno-unknown-cuda-version -o cuda_integral_ans cuda_integral_ans.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- code w kernel=bash label=ans --->
+./cuda_integral_ans
+<!--- end code --->
+

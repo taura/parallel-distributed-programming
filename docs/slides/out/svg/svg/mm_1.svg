@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   id="svg2605"
+   viewBox="0 0 1062.2535 357.84151"
+   version="1.0"
+   width="1062.2535"
+   height="357.84152"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs24">
+    <marker
+       style="overflow:visible"
+       id="marker6666"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path6668" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker6632"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path6634" />
+    </marker>
+  </defs>
+  <g
+     style="display:inline"
+     transform="translate(-1127.8284,-422.06602)"
+     id="g6468">
+    <rect
+       y="521.21002"
+       x="1184.77"
+       height="201.45349"
+       width="261.45349"
+       id="rect6472"
+       style="opacity:1;fill:#f6d5ff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#e5ffd5;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6474"
+       width="315.2421"
+       height="201.45349"
+       x="1524.77"
+       y="521.21002" />
+    <rect
+       style="opacity:1;fill:#ffd5d5;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6480"
+       width="261.45349"
+       height="315.53262"
+       x="1884.77"
+       y="463.87491" />
+    <text
+       id="text6484"
+       y="626.21002"
+       x="1487.9614"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="626.21002"
+         x="1487.9614"
+         id="tspan6486"
+         style="font-size:16px;line-height:1.25;font-family:sans-serif">+=</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1854.77"
+       y="638.21002"
+       id="text6488"><tspan
+         id="tspan6490"
+         x="1854.77"
+         y="638.21002"
+         style="font-size:16px;line-height:1.25;font-family:sans-serif">*</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1126.8364"
+       y="622.21002"
+       id="text6518"><tspan
+         id="tspan6520"
+         x="1126.8364"
+         y="622.21002"
+         style="font-size:16px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start">$M$</tspan></text>
+    <text
+       id="text6522"
+       y="494.21002"
+       x="1302.77"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="494.21002"
+         x="1302.77"
+         id="tspan6524"
+         style="font-size:16px;line-height:1.25;font-family:sans-serif">$N$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1662.77"
+       y="494.21002"
+       id="text6526"><tspan
+         id="tspan6528"
+         x="1662.77"
+         y="494.21002"
+         style="font-size:16px;line-height:1.25;font-family:sans-serif">$K$</tspan></text>
+    <text
+       id="text6530"
+       y="634.21002"
+       x="2162.77"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="634.21002"
+         x="2162.77"
+         id="tspan6532"
+         style="font-size:16px;line-height:1.25;font-family:sans-serif">$K$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="2002.77"
+       y="434.21002"
+       id="text6534"><tspan
+         id="tspan6536"
+         x="2002.77"
+         y="434.21002"
+         style="font-size:16px;line-height:1.25;font-family:sans-serif">$N$</tspan></text>
+    <text
+       id="text6706"
+       y="622.21002"
+       x="1286.8364"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-size:16px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+         y="622.21002"
+         x="1286.8364"
+         id="tspan6708">$C$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1666.8364"
+       y="622.21002"
+       id="text6710"><tspan
+         id="tspan6712"
+         x="1666.8364"
+         y="622.21002"
+         style="font-size:16px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start">$A$</tspan></text>
+    <text
+       id="text6714"
+       y="622.21002"
+       x="2006.8364"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-size:16px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+         y="622.21002"
+         x="2006.8364"
+         id="tspan6716">$B$</tspan></text>
+  </g>
+  <metadata
+     id="metadata22">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Élève posant une question / Student asking a question</dc:title>
+        <dc:date>2010-04-23T01:32:24</dc:date>
+        <dc:description />
+        <dc:source>https://openclipart.org/detail/50287/Élève-posant-une-question-/-student-asking-a-question-by-lmproulx</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>lmproulx</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>black and white</rdf:li>
+            <rdf:li>colouring book</rdf:li>
+            <rdf:li>girl</rdf:li>
+            <rdf:li>outline</rdf:li>
+            <rdf:li>people</rdf:li>
+            <rdf:li>question</rdf:li>
+            <rdf:li>school</rdf:li>
+            <rdf:li>student</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

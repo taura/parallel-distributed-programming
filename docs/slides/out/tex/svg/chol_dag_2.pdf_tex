@@ -1,0 +1,224 @@
+%% Creator: Inkscape 1.2.2 (b0a8486541, 2022-12-01), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'chol_dag_2.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1189bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.76366695)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{chol_dag_2.pdf}}%
+    \put(0.48023549,0.74205213){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T3\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{chol_dag_2.pdf}}%
+    \put(0.35912532,0.68149705){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T9\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{chol_dag_2.pdf}}%
+    \put(0.60134567,0.68149705){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T73\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{chol_dag_2.pdf}}%
+    \put(0.17746005,0.62094196){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T17\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{chol_dag_2.pdf}}%
+    \put(0.35912532,0.62094196){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T45\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{chol_dag_2.pdf}}%
+    \put(0.60134567,0.62094196){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T81\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{chol_dag_2.pdf}}%
+    \put(0.78637511,0.62094196){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T109\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{chol_dag_2.pdf}}%
+    \put(0.62068966,0.07594616){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T5\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{chol_dag_2.pdf}}%
+    \put(0.49621531,0.01539107){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T2\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{chol_dag_2.pdf}}%
+    \put(0.37174096,0.07594616){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T8\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{chol_dag_2.pdf}}%
+    \put(0.08662742,0.56038687){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T23\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{chol_dag_2.pdf}}%
+    \put(0.17746005,0.56038687){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T27\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{chol_dag_2.pdf}}%
+    \put(0.32884777,0.56038687){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T51\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{chol_dag_2.pdf}}%
+    \put(0.38940286,0.56038687){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T55\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{chol_dag_2.pdf}}%
+    \put(0.37174096,0.13650125){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T12\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{chol_dag_2.pdf}}%
+    \put(0.19007569,0.13650126){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T16\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{chol_dag_2.pdf}}%
+    \put(0.02607233,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T24\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{chol_dag_2.pdf}}%
+    \put(0.08662742,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T26\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{chol_dag_2.pdf}}%
+    \put(0.14718251,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T28\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=20]{chol_dag_2.pdf}}%
+    \put(0.20773759,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T30\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=21]{chol_dag_2.pdf}}%
+    \put(0.14718251,0.43927669){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T19\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=22]{chol_dag_2.pdf}}%
+    \put(0.11690496,0.3787216){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T31\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=23]{chol_dag_2.pdf}}%
+    \put(0.09924306,0.31816652){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T37\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=24]{chol_dag_2.pdf}}%
+    \put(0.15979815,0.31816652){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T41\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=25]{chol_dag_2.pdf}}%
+    \put(0.08662742,0.43927669){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T22\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=26]{chol_dag_2.pdf}}%
+    \put(0.03868797,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T38\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=27]{chol_dag_2.pdf}}%
+    \put(0.09924306,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T40\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=28]{chol_dag_2.pdf}}%
+    \put(0.15979815,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T42\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=29]{chol_dag_2.pdf}}%
+    \put(0.22035324,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T44\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=30]{chol_dag_2.pdf}}%
+    \put(0.19007569,0.19705635){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T33\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=31]{chol_dag_2.pdf}}%
+    \put(0.09924306,0.19705635){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T36\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=32]{chol_dag_2.pdf}}%
+    \put(0.26829268,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T52\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=33]{chol_dag_2.pdf}}%
+    \put(0.32884777,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T54\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=34]{chol_dag_2.pdf}}%
+    \put(0.38940286,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T56\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=35]{chol_dag_2.pdf}}%
+    \put(0.44995795,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T58\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=36]{chol_dag_2.pdf}}%
+    \put(0.38940286,0.43927669){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T47\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=37]{chol_dag_2.pdf}}%
+    \put(0.36585366,0.3787216){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T59\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=38]{chol_dag_2.pdf}}%
+    \put(0.34146341,0.31816652){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T65\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=39]{chol_dag_2.pdf}}%
+    \put(0.4020185,0.31816652){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T69\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=40]{chol_dag_2.pdf}}%
+    \put(0.32884777,0.43927669){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T50\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=41]{chol_dag_2.pdf}}%
+    \put(0.28090833,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T66\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=42]{chol_dag_2.pdf}}%
+    \put(0.34146341,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T68\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=43]{chol_dag_2.pdf}}%
+    \put(0.4020185,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T70\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=44]{chol_dag_2.pdf}}%
+    \put(0.46257359,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T72\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=45]{chol_dag_2.pdf}}%
+    \put(0.4020185,0.19705634){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T61\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=46]{chol_dag_2.pdf}}%
+    \put(0.34146341,0.19705634){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T64\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=47]{chol_dag_2.pdf}}%
+    \put(0.57106812,0.56038687){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T87\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=48]{chol_dag_2.pdf}}%
+    \put(0.63162321,0.56038687){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T91\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=49]{chol_dag_2.pdf}}%
+    \put(0.78637511,0.56038687){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T115\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=50]{chol_dag_2.pdf}}%
+    \put(0.88225399,0.56038687){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T119\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=51]{chol_dag_2.pdf}}%
+    \put(0.81244743,0.13650125){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T76\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=52]{chol_dag_2.pdf}}%
+    \put(0.62068966,0.13650125){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T80\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=53]{chol_dag_2.pdf}}%
+    \put(0.51051304,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T88\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=54]{chol_dag_2.pdf}}%
+    \put(0.57106812,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T90\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=55]{chol_dag_2.pdf}}%
+    \put(0.63162321,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T92\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=56]{chol_dag_2.pdf}}%
+    \put(0.6921783,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T94\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=57]{chol_dag_2.pdf}}%
+    \put(0.63162321,0.43927669){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T83\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=58]{chol_dag_2.pdf}}%
+    \put(0.6038688,0.3787216){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T95\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=59]{chol_dag_2.pdf}}%
+    \put(0.58873003,0.31816652){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T101\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=60]{chol_dag_2.pdf}}%
+    \put(0.65264929,0.31816652){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T105\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=61]{chol_dag_2.pdf}}%
+    \put(0.57106812,0.43927669){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T86\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=62]{chol_dag_2.pdf}}%
+    \put(0.52481077,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T102\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=63]{chol_dag_2.pdf}}%
+    \put(0.58873003,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T104\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=64]{chol_dag_2.pdf}}%
+    \put(0.65264929,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T106\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=65]{chol_dag_2.pdf}}%
+    \put(0.71656854,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T108\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=66]{chol_dag_2.pdf}}%
+    \put(0.65264929,0.19705634){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T97\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=67]{chol_dag_2.pdf}}%
+    \put(0.58873003,0.19705634){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T100\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=68]{chol_dag_2.pdf}}%
+    \put(0.75441548,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T116\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=69]{chol_dag_2.pdf}}%
+    \put(0.81833474,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T118\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=70]{chol_dag_2.pdf}}%
+    \put(0.88225399,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T120\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=71]{chol_dag_2.pdf}}%
+    \put(0.94617325,0.49983178){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T122\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=72]{chol_dag_2.pdf}}%
+    \put(0.88225399,0.43927669){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T111\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=73]{chol_dag_2.pdf}}%
+    \put(0.86963835,0.3787216){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T123\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=74]{chol_dag_2.pdf}}%
+    \put(0.84440706,0.31816652){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T129\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=75]{chol_dag_2.pdf}}%
+    \put(0.90832632,0.31816652){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T133\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=76]{chol_dag_2.pdf}}%
+    \put(0.81833474,0.43927669){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T114\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=77]{chol_dag_2.pdf}}%
+    \put(0.7804878,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T130\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=78]{chol_dag_2.pdf}}%
+    \put(0.84440706,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T132\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=79]{chol_dag_2.pdf}}%
+    \put(0.90832632,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T134\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=80]{chol_dag_2.pdf}}%
+    \put(0.97224558,0.25761143){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T136\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=81]{chol_dag_2.pdf}}%
+    \put(0.90832632,0.19705634){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T125\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=82]{chol_dag_2.pdf}}%
+    \put(0.81244743,0.19705634){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T128\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=83]{chol_dag_2.pdf}}%
+    \put(0.42476379,0.59779257){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=84]{chol_dag_2.pdf}}%
+  \end{picture}%
+\endgroup%

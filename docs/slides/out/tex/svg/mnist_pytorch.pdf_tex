@@ -1,0 +1,110 @@
+%% Creator: Inkscape 1.2.2 (b0a8486541, 2022-12-01), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'mnist_pytorch.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{109.15603638bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,3.37718843)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{mnist_pytorch.pdf}}%
+    \put(0.24234233,0.44079587){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\ast$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{mnist_pytorch.pdf}}%
+    \put(0.18253705,0.19161147){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{mnist_pytorch.pdf}}%
+    \put(0.12573752,0.96848118){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}ReLU\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{mnist_pytorch.pdf}}%
+    \put(0.13856314,0.70463881){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{mnist_pytorch.pdf}}%
+    \put(0.13856314,1.73069292){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_3$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{mnist_pytorch.pdf}}%
+    \put(0.12390489,1.21766586){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{mnist_pytorch.pdf}}%
+    \put(0.12390517,2.24371998){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_4$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{mnist_pytorch.pdf}}%
+    \put(0.62227439,0.10366364){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$W_0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{mnist_pytorch.pdf}}%
+    \put(0.62227439,1.65190601){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$W_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{mnist_pytorch.pdf}}%
+    \put(0.1687954,2.77506904){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$y$\end{tabular}}}}%
+    \put(0.02954495,1.46318584){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}maxpool\end{tabular}}}}%
+    \put(0.02954495,2.49382055){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}softmax\end{tabular}}}}%
+    \put(0.15322027,1.9936194){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\times$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{mnist_pytorch.pdf}}%
+    \put(0.24234233,0.44079587){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\ast$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{mnist_pytorch.pdf}}%
+    \put(0.18253705,0.19161147){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{mnist_pytorch.pdf}}%
+    \put(0.12573752,0.96848118){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}ReLU\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{mnist_pytorch.pdf}}%
+    \put(0.13856314,0.70463881){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{mnist_pytorch.pdf}}%
+    \put(0.13856314,1.73069292){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_3$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{mnist_pytorch.pdf}}%
+    \put(0.12390489,1.21766586){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{mnist_pytorch.pdf}}%
+    \put(0.12390517,2.24371998){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_4$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{mnist_pytorch.pdf}}%
+    \put(0.62227439,0.10366364){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$W_0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{mnist_pytorch.pdf}}%
+    \put(0.62227439,1.65190601){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$W_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=20]{mnist_pytorch.pdf}}%
+    \put(0.1687954,2.77506904){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$y$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=21]{mnist_pytorch.pdf}}%
+    \put(0.68182385,2.77506904){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=22]{mnist_pytorch.pdf}}%
+    \put(0.13947848,3.02425411){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}NLL\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=23]{mnist_pytorch.pdf}}%
+    \put(0.18253719,3.27435399){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\ell$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=24]{mnist_pytorch.pdf}}%
+    \put(0.02954495,1.46318584){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}maxpool\end{tabular}}}}%
+    \put(0.02954495,2.49382055){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}softmax\end{tabular}}}}%
+    \put(0.15322027,1.9936194){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\times$\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

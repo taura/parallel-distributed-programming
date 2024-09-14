@@ -1,0 +1,90 @@
+<!--- md --->
+
+#* Parallel and Distributed Programming Hands-on Environment
+
+<!--- end md --->
+
+<!--- md w --->
+
+Enter your name and student ID.
+
+ * Name:
+ * Student ID:
+
+<!--- end md --->
+
+<!--- md --->
+
+# How this notebook works
+<!--- end md --->
+
+<!--- md --->
+
+## Python program cells
+
+* Execute by SHIFT + Enter
+
+<!--- end md --->
+
+<!--- code w kernel=python --->
+# a Python cell
+def f(x):
+    return x + 1
+
+f(10)
+<!--- end code --->
+
+<!--- md --->
+## Cells starting with `%%writefile`
+
+* Pressing SHIFT + Enter on cells that begin with `%%writefile filename` save the contents of the cell into the specified file
+* They look like Python cells, but they typically contain C programs which are then compiled and executed by bash cells
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile hello.c
+/* a C cell */
+#include <stdio.h>
+int main() {
+    printf("hello\n");
+    return 0;
+}
+<!--- end code --->
+
+<!--- md --->
+## bash cells
+
+* Bash cells can run any Linux command
+* Jupyter seems to have a bug that unpredictably drops the output (when in doubt, execute it again)
+* In my experience, the bug is likely to appear when you execute the cell for the first time
+
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+pwd
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+ls
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+gcc hello.c -o hello
+./hello
+<!--- end code --->
+
+<!--- md --->
+
+# Jupyter Terminals
+
+* A typical Jupyter environment executes programs of a programming language.  There is, however, an environment to execute arbitrary commands (terminal)
+
+* click the "+" icon right below the menu to show the launcher page
+* select "Terminal" to open the command line terminal
+* some circumstances in which you want to use it
+  * you browse a man page
+  * use kill command to terminate a program that does not stop with the reset button
+* to do them, however, you probably want to master SSH login described below instead
+* see [How to access Jupyter environment](https://taura.github.io/programming-languages/html/jupyter.html?lang=en) for how to set up SSH
+
+<!--- end md --->

@@ -1,0 +1,10 @@
+size            : 392216768
+stride          : 64
+distinct_blocks : 6128387
+accesses        : 10000000
+last element   : 30972904
+instructions : 40000198
+cycles : 281434543
+L1-dcache-load-misses : 10020277
+cache-misses : 6961680
+OK

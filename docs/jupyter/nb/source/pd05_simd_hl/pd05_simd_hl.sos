@@ -1,0 +1,765 @@
+<!--- md --->
+# SIMD programming (I) --- high level SIMD programming with auto vectorization and OpenMP SIMD directives
+
+* In this notebook you learn how to use SIMD instructions of CPUs without explicitly manipulating vectors of values (i.e., let the compiler vectorize ordinary loops only using scalar values)
+
+# Basics
+
+* <font color="blue">SIMD</font> stands for _Single Instruction Multiple Data_
+* CPU offers <font color="blue">SIMD registers</font> that can hold a number of operands (say 16 float numbers) as well as <font color="blue">SIMD instructions</font> that operate on all values on SIMD registers
+* In the context of SIMD programming, we use "SIMD" and <font color="blue">"vector"</font> almost interchangeably.  We say "vector registers" or "vector operands" in place of "SIMD registers" or "SIMD operands"
+* We say "<font color="blue">vectorize</font> this program" to mean "utilize vector/SIMD instructions".  We casually say "<font color="blue">simdize</font> this program" as well.
+* We call an ordinary single value (e.g., a float) a <font color="blue">"scalar"</font>.  Scalar is an antonym of vector in SIMD programming context.
+* There are various ways to vectorize programs, roughly in the order of high-level approaches to low-level ones
+  * use libraries that are already using SIMD (we don't discuss this further)
+  * write ordinary loops and hope the compiler does the job
+  * use simd directives of OpenMP or other language constructs that are designed to be compiled to SIMD instructions but never make SIMD operands explicit in the program; all expressions of your program are still of ordinary scalar types
+  * use explicit vector types and variables/expressions of vector types, effectively making "SIMD registers" visible entities in programs
+  * plus use vector intrinsics, functions that almost directly correspond to SIMD instructions
+  * use assembly
+
+# High-level SIMD programming and vectorization report
+
+* in so-called "high level" SIMD programming, you do not explicitly deal with SIMD values nor instructions
+* you typically write an ordinary loop and hope the compiler is able to vectorize it
+* in this approach, the basic issue is how to know if the compiler is successfully able to vectorize your code
+* there are options to ask the compiler to report about successful/missed vectorizations
+
+<!--- end md --->
+
+<!--- md --->
+# Compilers
+
+* Modern compilers including GCC, LLVM, NVIDIA HPC SDK support SIMD.
+* We continue to use [NVIDIA HPC SDK ver. 22.9](https://docs.nvidia.com/hpc-sdk/index.html) (`nvc` and `nvc++`) and [LLVM ver. 15.0](https://llvm.org/) (`clang` and `clang++`)
+* We also try GCC to see if which compilers are able to vectorize which code
+
+## Set up NVIDIA HPC SDK
+
+Execute this before you use NVIDIA HPC SDK
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.9/compilers/bin:$PATH
+#export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/compilers/bin:$PATH
+<!--- end code --->
+
+<!--- md --->
+Check if it works (check if full paths of nvc/nvc++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which nvc
+which nvc++
+<!--- end code --->
+
+<!--- md --->
+## Set up LLVM
+
+Execute this before you use LLVM
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+export PATH=/home/share/llvm/bin:$PATH
+<!--- end code --->
+
+<!--- md --->
+Check if it works (check if full paths of nvc/nvc++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which clang
+which clang++
+<!--- end code --->
+
+<!--- md --->
+## GCC
+
+* It's installed at a usual location /usr/bin/gcc
+<!--- end md --->
+
+<!--- md --->
+Check if it works (check if full paths of nvc/nvc++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which gcc
+which g++
+<!--- end code --->
+
+<!--- md --->
+# A first encounter to a vectorized code
+
+* let's take a look at a code easiest to vectorize
+* serious compilers generally support options to let the programmer know how they vectorized (or didn't vectorize) the code
+  * clang(++): `-Rpass=loop-vectorize` and `-Rpass-missed=loop-vectorize`
+  * nvc(++): `-Minfo=vect` and `-Mneginfo=vect`
+  * gcc (g++): `-fopt-info-vec-optimized` and `-fopt-info-vec-missed`
+
+* you'll see the following code is successfully vectorized with sufficiently high optimization flags (e.g., `-O`, `-O3`, or `-O4`)
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile axpb.c
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+# will produce axpb.s
+clang -S -Wall -O3 -mavx512f -mfma -Rpass=loop-vectorize -Rpass-missed=loop-vectorize axpb.c
+#nvc -S -Wall -O3 -mavx512f -mfma -Minfo=vect -Mneginfo=vect axpb.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopt-info-vec-optimized -fopt-info-vec-missed axpb.c
+<!--- end code --->
+
+<!--- md --->
+* roughly, vectorization is about converting a loop like
+```
+for (i = 0; i < n; i++) {
+  statement(i);
+}
+```
+into
+```
+for (i = 0; i < n; i += L) {
+  statement(i:i+L);
+}
+```
+where L is the SIMD width (we assume L divides n) and statement(i:i+L) is an informal notation that executes statement(i) ... statement(i+L-1).
+
+The above loop will be executed like
+```
+for (i = 0; i < n; i += L) {
+  x[i:i+L] = a * x[i:i+L] + b;
+}
+```
+where `x[i:i+L]` represents a vector of L values `x[i], x[i+1], ..., x[i+L-1]`.
+
+# Instructions and compiler flags
+
+* SIMD instructions are used when an optimization level is beyond a certain threshold or a specific flag is given
+  * clang : `-fvectorize`
+  * nvc : `-Mvect`
+  * gcc : `-ftree-vectorize`
+* which SIMD instructions are used depends on compiler flags and the host CPU
+  * `-mavx` uses AVX (256 bits)
+  * `-mavx2` uses AVX2 (256 bits)
+  * `-mavx512f` uses AVX512F (512 bits)
+  * `-mfma` uses fused multiply-add
+  * `-march=native` should use instructions supported on the compilation host, but do not count on this (see below)
+* by giving a suitable flag, it is possible to generate instructions regardless of the instructions supported on the compilation host. e.g., `-mavx512f` will generate AVX512F instructions even on hosts not supporting them
+* you can check which ISAs are supported by looking at `/proc/cpuinfo`
+* taulec and tauleg000 support AVX512F (and its ancestors AVX2, AVX, and SSE)
+* giving `-march=native` on taulec should use AVX512F, but it doesn't, for reasons I don't know. let's stick with `-mavx512f -mfma` (you can change it to other flags when necessary)
+<!--- end md --->
+
+
+<!--- code w kernel=bash --->
+grep flags /proc/cpuinfo | uniq
+<!--- end code --->
+
+<!--- md --->
+* if you run an executable that uses unsupported instructions, you will get an illegal instruction
+* the following should run OK on our environment (taulec, tauleg000, or some other hosts that come out later)
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile test_isa_avx512f.c
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd05_simd_hl/include/simd_test_isa.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -O3 -Wall -mavx512f -mfma -o test_isa_avx512f test_isa_avx512f.c
+#nvc -O3 -Wall -mavx512f -mfma -o test_isa_avx512f test_isa_avx512f.c
+#gcc -O3 -Wall -mavx512f -mfma -o test_isa_avx512f test_isa_avx512f.c
+<!--- end code --->
+
+
+<!--- code w kernel=bash points=1 --->
+./test_isa_avx512f
+<!--- end code --->
+
+<!--- md --->
+# `-S` option is your friend
+
+* let's compare the generated machine code (assembly) of vectorized and unvectorized versions
+* here are things you want to know
+  1. `-S` option (of clang, nvc and gcc) generates assembly code (_xxx_.c becomes _xxx_.s)
+  1. `asm volatile ("...")` is an inline assembly, which simply puts ... into the generated assembly code
+  1. its true purpose is to write assembly instruction in C code, but here we use it to put a landmark in the beginning and the end of a loop we are interested in.  note that we put `asm volatile ("# ...")`, which is a comment of assembly having no effect. without it it quickly becomes difficult to locate the assembly code corresponding to the loop
+
+## inhibiting vectorization
+
+* compilers generally support options to disable vectorization
+  * clang : `-fno-vectorize`
+  * nvc : ??? (`-Mnovect` should be it, but it does not seem to have the desired effect)
+  * gcc : `-fno-tree-vectorize`
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile axpb_scalar.c
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- md --->
+* with `-S` option you can see the generated instructions (machine code or assembly code to be more precise)
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+# will produce axpb_scalar.s
+clang -S -Wall -O3 -mavx512f -mfma -fno-vectorize -Rpass=loop-vectorize -Rpass-missed=loop-vectorize axpb_scalar.c
+#nvc -S -Wall -O3 -mavx512f -mfma -Mnovect -Minfo=vect -Mneginfo=vect axpb_scalar.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fno-tree-vectorize -fopt-info-vec-optimized -fopt-info-vec-missed axpb_scalar.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n axpb_scalar.s
+<!--- end code --->
+
+<!--- md --->
+* details may be different, but you'll find something like this for clang (gcc generates a simpler code)
+```
+    27	.LBB0_8:                                # =>This Inner Loop Header: Depth=1
+    28		vmovss	(%rdi,%rcx,4), %xmm2            # xmm2 = mem[0],zero,zero,zero
+    29		vfmadd213ss	%xmm1, %xmm0, %xmm2     # xmm2 = (xmm0 * xmm2) + xmm1
+    30		vmovss	%xmm2, (%rdi,%rcx,4)
+    31		vmovss	4(%rdi,%rcx,4), %xmm2           # xmm2 = mem[0],zero,zero,zero
+    32		vfmadd213ss	%xmm1, %xmm0, %xmm2     # xmm2 = (xmm0 * xmm2) + xmm1
+    33		vmovss	%xmm2, 4(%rdi,%rcx,4)
+    34		vmovss	8(%rdi,%rcx,4), %xmm2           # xmm2 = mem[0],zero,zero,zero
+    35		vfmadd213ss	%xmm1, %xmm0, %xmm2     # xmm2 = (xmm0 * xmm2) + xmm1
+    36		vmovss	%xmm2, 8(%rdi,%rcx,4)
+    37		vmovss	12(%rdi,%rcx,4), %xmm2          # xmm2 = mem[0],zero,zero,zero
+    38		vfmadd213ss	%xmm1, %xmm0, %xmm2     # xmm2 = (xmm0 * xmm2) + xmm1
+    39		vmovss	%xmm2, 12(%rdi,%rcx,4)
+    40		addq	$4, %rcx
+    41		cmpq	%rcx, %rsi
+    42		jne	.LBB0_8
+```
+
+* observe the label `.LBB0_8` and `jne .LBB0_8` (jump if not equal) form a loop
+* `vfmadd132ss` does `a * x + b`, and importantly, `ss` is a hallmark of scalar instruction and single precision instruction
+* the loop body contains four vfmadd213ss. it is the result of compiler optimization (loop unrolling) that reduces the number of compare / jump instructions to iterate
+* with `vfmadd132ss`, we are pretty confident that the code is NOT vectorized
+
+## vectorized version
+
+* now let's look at a vectorized version
+<!--- end md --->
+
+
+<!--- code w kernel=python points=1 --->
+%%writefile axpb_simd.c
+<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+# will produce axpb_simd.s
+clang -S -Wall -O3 -mavx512f -mfma -Rpass=loop-vectorize -Rpass-missed=loop-vectorize axpb_simd.c
+#nvc -S -Wall -O3 -mavx512f -mfma -Minfo=vect -Mneginfo=vect axpb_simd.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopt-info-vec-optimized -fopt-info-vec-missed axpb_simd.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n axpb_simd.s
+<!--- end code --->
+
+<!--- md --->
+* you will find it difficult to locate where is the loop you are looking for
+* look for labels (`.Lx`) and jump instructions (`jxx .Lx`) that forms a small loop, which will be something like
+```
+    33	.LBB0_6:                                # =>This Inner Loop Header: Depth=1
+    34		vmovups	(%rdi,%rcx,4), %zmm4
+    35		vfmadd213ps	%zmm3, %zmm2, %zmm4     # zmm4 = (zmm2 * zmm4) + zmm3
+    36		vmovups	64(%rdi,%rcx,4), %zmm5
+    37		vfmadd213ps	%zmm3, %zmm2, %zmm5     # zmm5 = (zmm2 * zmm5) + zmm3
+    38		vmovups	128(%rdi,%rcx,4), %zmm6
+    39		vfmadd213ps	%zmm3, %zmm2, %zmm6     # zmm6 = (zmm2 * zmm6) + zmm3
+    40		vmovups	192(%rdi,%rcx,4), %zmm7
+    41		vfmadd213ps	%zmm3, %zmm2, %zmm7     # zmm7 = (zmm2 * zmm7) + zmm3
+    42		vmovups	%zmm4, (%rdi,%rcx,4)
+    43		vmovups	%zmm5, 64(%rdi,%rcx,4)
+    44		vmovups	%zmm6, 128(%rdi,%rcx,4)
+    45		vmovups	%zmm7, 192(%rdi,%rcx,4)
+    46		addq	$64, %rcx
+    47		cmpq	%rcx, %rax
+    48		jne	.LBB0_6
+```
+* it looks very similar to the previous example, but notice `vfmadd132ps` instruction, which is _p_acked (vectorized) _s_ingle-precision instruction.  this _p_ is the hallmark of vectorized code
+* the generated instructions include many other instructions and look complex. this is because the loop count may not be a multiple of SIMD width, in which case there must be remainder scalar iterations before or after the vectorized iterations.  that is,
+```
+for (i = 0; i < n; i++) {
+  S(i);
+}
+```
+becomes something like
+```
+for (i = 0; i + L <= n; i += L) {
+  S(i:i+L);
+}
+for (; i < n; i++) {
+  S(i);
+}
+```
+
+* just to make our investigations easier, let's eliminate the remainder iterations by forcibly making n a multiple of the largest possible SIMD width (16).  to be sure, this does not preserve the behavior of the original scalar loop.  we nevertheless do so just for the purpose of making the generated code simpler and easier to look into.
+* `n = (n / 16) * 16` in the code below does the trick
+<!--- end md --->
+
+
+<!--- code w kernel=python points=1 --->
+%%writefile axpy_simd_no_remainder.c
+<!--- exec-include ./mk_version.py -D VER=4 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -Rpass=loop-vectorize -Rpass-missed=loop-vectorize axpy_simd_no_remainder.c
+#nvc -S -Wall -O3 -mavx512f -mfma -Minfo=vect -Mneginfo=vect axpy_simd_no_remainder.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopt-info-vec-optimized -fopt-info-vec-missed axpy_simd_no_remainder.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n axpy_simd_no_remainder.s
+<!--- end code --->
+
+<!--- md --->
+# When vectorization succeeds or fails
+
+* as simple as it may sound, there are so many ways vectorization fails
+* in this section, you will test many code examples we could hope compilers to vectorize and see if they actually do
+* <font color="red">share what you witnessed and collaborate in a shared Excel workbook.</font>    Go [this page](https://univtokyo-my.sharepoint.com/:x:/g/personal/2615215597_utac_u-tokyo_ac_jp/EamIiDy6df5CodLocg_7Zu8BpyBJ6ki37Ngc_S9jZ2DYSA?e=kbmG5k) for detailed instructions.
+
+## Dependencies
+
+* the most typical is a loop that has _dependencies_ between iterations, so executing them simultaneously changes the behavior of the loop
+* a compiler fails to vectorize this code
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile dependency.c
+<!--- exec-include ./mk_version.py -D VER=5 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- md --->
+* see the compiler message to see if the code is vectorized
+* note: GCC generates an informative message that explain why it failed to vectorize it
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -Rpass=loop-vectorize -Rpass-missed=loop-vectorize dependency.c
+#nvc -S -Wall -O3 -mavx512f -mfma -Minfo=vect -Mneginfo=vect dependency.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopt-info-vec-optimized -fopt-info-vec-missed dependency.c
+<!--- end code --->
+
+<!--- md --->
+* the reason is that the vectorization of the loop 
+```
+for (long i = 0; i < n - 1; i += L) {
+  x[i+1:i+1+L] = a * x[i:i+L] + b;
+}
+```
+would change the behavior of the original loop.
+* to illustrate, let's say the SIMD width L is 4. the first iteration of the vectorized loop does
+```
+x[1:5] = a * x[0:4] + b;
+```
+whereas the corresponding first four iterations of the original code performs
+```
+i=0 : x[1] = a * x[0] + b;
+i=1 : x[2] = a * x[1] + b;
+i=2 : x[3] = a * x[2] + b;
+i=3 : x[4] = a * x[3] + b;
+```
+* observe that the second iteration (i=1) reads x[1], which is _updated_ in the first iteration (i=0). it does not happen in the vectorized version
+
+* therefore _the two versions are not equivalent_
+* generally speaking, conditions in which a loop can be vectorized is similar to the conditions in which a loop can be parallelized. after all, both execute multiple iterations simultaneously
+* looking at the original code again,
+```
+for (long i = 0; i < n - 1; i++) {
+  x[i+1] = a * x[i] + b;
+}
+```
+the compiler did not vectorize it because different iterations (say i=0 and i=1) read the same element (x[1]) and at least one of them is a write (i=0 writes to x[1])
+
+## Potential (uncertain) dependencies
+
+* a similar but less obvious example is this
+* it looks like adding two arrays x and y and putting the result into a third array z, so is safe to vectorize, but what if z is overlapping with x (say &z[0] = &x[1])
+* then it would be equivalent to
+```
+x[i+1] = x[i] + y[i]
+```
+creating exactly the same problem as the previous one.
+* try and observe how the compiler responds
+<!--- end md --->
+
+
+<!--- code w kernel=python points=1 --->
+%%writefile uncertain_dependency.c
+<!--- exec-include ./mk_version.py -D VER=6 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -Rpass=loop-vectorize -Rpass-missed=loop-vectorize uncertain_dependency.c
+#nvc -S -Wall -O3 -mavx512f -mfma -Minfo=vect -Mneginfo=vect uncertain_dependency.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopt-info-vec-optimized -fopt-info-vec-missed uncertain_dependency.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n uncertain_dependency.s
+<!--- end code --->
+
+<!--- md --->
+## `#pragma omp simd` directive
+
+* `#pragma omp simd` directive tells the compiler to vectorize it without worrying about these dependency issues
+* https://www.openmp.org/spec-html/5.0/openmpsu42.html#x65-1390002.9.3
+* you need to pass compiler options to let the compiler recognize the directive
+ * clang(++) : `-fopenmp` (enable OpenMP) or `-fopenmp-simd`
+ * nvc(++) : `-mp` (enable OpenMP)
+ * clang(++) : `-fopenmp` (enable OpenMP) or `-fopenmp-simd`
+
+<!--- end md --->
+
+
+<!--- code w kernel=python points=1 --->
+%%writefile axpy_omp_simd.c
+<!--- exec-include ./mk_version.py -D VER=7 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -Rpass=loop-vectorize -Rpass-missed=loop-vectorize axpy_omp_simd.c
+#nvc -S -Wall -O3 -mavx512f -mfma -mp -Minfo=vect -Mneginfo=vect axpy_omp_simd.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed axpy_omp_simd.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n axpy_omp_simd.s
+<!--- end code --->
+
+<!--- md --->
+* in the interest in maximizing the possibility of vectorization, we have `#pragma omp simd` in all the examples below
+* it's not that then the compiler is able to vectorize any kind of code, as you will see shortly
+
+## reduction
+
+* just like parallelization, reduction is a common pattern that superficially introduces dependencies but can actually be vectorized by a suitable execution strategy
+* for example,
+```
+s = 0.0;
+for (i = 0; i < n; i++) {
+  s += x[i];
+}
+```
+can be executed like
+```
+sv = {0.0, 0.0, ..., 0.0};
+for (i = 0; i < n; i++) {
+  sv += x[i:i+L];
+}
+s = sv[0] + ... + sv[L-1];
+```
+<!--- end md --->
+
+
+<!--- code w kernel=python points=1 --->
+%%writefile sum.c
+<!--- exec-include ./mk_version.py -D VER=8 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -Rpass=loop-vectorize -Rpass-missed=loop-vectorize sum.c
+#nvc -S -Wall -O3 -mavx512f -mfma -mp -Minfo=vect -Mneginfo=vect sum.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed sum.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n sum.s
+<!--- end code --->
+
+
+<!--- md --->
+## if expression within a loop
+
+* we are going to see a number of typical construct that hampers vectorization
+* bear in mind that there are no universal rules, however
+* whether a particular code is vectorized or not depends on the compiler and the available instructions
+
+* does an if statement within a loop hamper vectorization?
+<!--- end md --->
+
+
+<!--- code w kernel=python points=1 --->
+%%writefile branch.c
+<!--- exec-include ./mk_version.py -D VER=9 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -Rpass=loop-vectorize -Rpass-missed=loop-vectorize branch.c
+#nvc -S -Wall -O3 -mavx512f -mfma -mp -Minfo=vect -Mneginfo=vect branch.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed branch.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n branch.s
+<!--- end code --->
+
+
+<!--- md --->
+* recent Intel CPUs have predicated (masked) SIMD instructions so it should actually be possible to vectorize this code
+
+## a loop in a loop (a constant trip count)
+
+* an inner loop inside an outer loop which we want to vectorize
+* the trip count of the inner loop is a compile-time constant 
+<!--- end md --->
+
+
+<!--- code w kernel=python points=1 --->
+%%writefile loop_c.c
+<!--- exec-include ./mk_version.py -D VER=10 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -Rpass=loop-vectorize -Rpass-missed=loop-vectorize loop_c.c
+#nvc -S -Wall -O3 -mavx512f -mfma -mp -Minfo=vect -Mneginfo=vect loop_c.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed loop_c.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n loop_c.s
+<!--- end code --->
+
+<!--- md --->
+## a loop in a loop (a variable but loop-invariant trip count)
+
+* the same as above, but with the trip count of the inner loop is a variable
+* it is constant across all iterations of the outer loop, so the entire iteration space is a rectangle and it should be easily recognized as such
+<!--- end md --->
+
+
+<!--- code w kernel=python points=1 --->
+%%writefile loop_i.c
+<!--- exec-include ./mk_version.py -D VER=11 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -Rpass=loop-vectorize -Rpass-missed=loop-vectorize loop_i.c
+#nvc -S -Wall -O3 -mavx512f -mfma -mp -Minfo=vect -Mneginfo=vect loop_i.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed loop_i.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n loop_i.s
+<!--- end code --->
+
+<!--- md --->
+## a loop within a loop (variable trip counts)
+
+* the same as above, but with the trip count of the inner loop being different from one iteration to another
+* therefore the entire iteration space is not a rectangle
+<!--- end md --->
+
+
+<!--- code w kernel=python points=1 --->
+%%writefile loop_v.c
+<!--- exec-include ./mk_version.py -D VER=12 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -Rpass=loop-vectorize -Rpass-missed=loop-vectorize loop_v.c
+#nvc -S -Wall -O3 -mavx512f -mfma -mp -Minfo=vect -Mneginfo=vect loop_v.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed loop_v.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n loop_v.s
+<!--- end code --->
+
+<!--- md --->
+## a function call within a loop
+
+* a function call within a loop
+* without the body of the function visible to the compiler compiling the loop (i.e., not in the same compilation unit as the loop), we cannot have a vectorized version of the function
+* therefore it is highly unlikely that this code gets meaningfully vectorized
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile funcall.c
+<!--- exec-include ./mk_version.py -D VER=13 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -Rpass=loop-vectorize -Rpass-missed=loop-vectorize funcall.c
+#nvc -S -Wall -O3 -mavx512f -mfma -mp -Minfo=vect -Mneginfo=vect funcall.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed funcall.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n funcall.s
+<!--- end code --->
+
+<!--- md --->
+## a function call within a loop with `#pragma omp declare simd`
+
+* OpenMP has a directive `#pragma omp declare simd`, which says there is a vectorized version of a function
+* https://www.openmp.org/spec-html/5.0/openmpsu42.html#x65-1390002.9.3
+* calling such a function within a loop does not hamper vectorization, even if the body of the function is not in the same compilation unit as the loop
+<!--- end md --->
+
+
+<!--- code w kernel=python points=1 --->
+%%writefile funcall_decl_simd.c
+<!--- exec-include ./mk_version.py -D VER=14 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -Rpass=loop-vectorize -Rpass-missed=loop-vectorize funcall_decl_simd.c
+#nvc -S -Wall -O3 -mavx512f -mfma -mp -Minfo=vect -Mneginfo=vect funcall_decl_simd.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed funcall_decl_simd.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n funcall_decl_simd.s
+<!--- end code --->
+
+<!--- md --->
+## a function defined with `#pragma omp declare simd`
+
+* what happens on the function defined with `#pragma omp declare simd` ?
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile fundef_decl_simd.c
+<!--- exec-include ./mk_version.py -D VER=15 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -Rpass=loop-vectorize -Rpass-missed=loop-vectorize fundef_decl_simd.c
+#nvc -S -Wall -O3 -mavx512f -mfma -mp -Minfo=vect -Mneginfo=vect fundef_decl_simd.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed fundef_decl_simd.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n fundef_decl_simd.s
+<!--- end code --->
+
+<!--- md --->
+## a strided array access (load)
+
+* an ordinary vectorized load/store instruction (vmovups or vmovaps) takes a pointer (address) and reads or writes a consecutive set of addresses
+* for example, the following load instruction
+```
+vmovups (%rax),%zmm0
+```
+reads the consecutive 64 bytes starting from the address in the `rax` register and gets the result into `zmm0` register
+* only with this instruction it is difficult to vectorize a loop whose consecutive iterations does not read the consecutive address
+* the simplest of which is a strided access like this
+
+* two possible strategies
+  * access arrays using ordinary vector load instructions and shuffle data around on registers
+  * access arrays using `gather` instructions
+<!--- end md --->
+
+
+<!--- code w kernel=python points=1 --->
+%%writefile stride_load.c
+<!--- exec-include ./mk_version.py -D VER=16 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -Rpass=loop-vectorize -Rpass-missed=loop-vectorize stride_load.c
+#nvc -S -Wall -O3 -mavx512f -mfma -mp -Minfo=vect -Mneginfo=vect stride_load.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed stride_load.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n stride_load.s
+<!--- end code --->
+
+<!--- md --->
+## a strided array access (store)
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile stride_store.c
+<!--- exec-include ./mk_version.py -D VER=17 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -Rpass=loop-vectorize -Rpass-missed=loop-vectorize stride_store.c
+#nvc -S -Wall -O3 -mavx512f -mfma -mp -Minfo=vect -Mneginfo=vect stride_store.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed stride_store.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n stride_store.s
+<!--- end code --->
+
+<!--- md --->
+## an array of structures
+
+* a less obvious and commonly occurring pattern is to access an array of structures
+* even if the array indices of consecutive iterations are consecutive, actual addresses are not
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile struct_load.c
+<!--- exec-include ./mk_version.py -D VER=18 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -Rpass=loop-vectorize -Rpass-missed=loop-vectorize struct_load.c
+#nvc -S -Wall -O3 -mavx512f -mfma -mp -Minfo=vect -Mneginfo=vect struct_load.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed struct_load.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n struct_load.s
+<!--- end code --->
+
+<!--- md --->
+## an irregular array access
+
+* irregular array accesses, in which consecutive iterations access elements with non-constant strides
+<!--- end md --->
+
+
+<!--- code w kernel=python points=1 --->
+%%writefile non_affine_idx.c
+<!--- exec-include ./mk_version.py -D VER=19 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -Rpass=loop-vectorize -Rpass-missed=loop-vectorize non_affine_idx.c
+#nvc -S -Wall -O3 -mavx512f -mfma -mp -Minfo=vect -Mneginfo=vect non_affine_idx.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed non_affine_idx.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n non_affine_idx.s
+<!--- end code --->
+
+
+<!--- md --->
+## an indirect array access
+
+* the same as above, but with indices determined by another index array, a frequently occurring pattern in sparse matrix and graph applications
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile indirect_idx.c
+<!--- exec-include ./mk_version.py -D VER=20 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -Rpass=loop-vectorize -Rpass-missed=loop-vectorize indirect_idx.c
+#nvc -S -Wall -O3 -mavx512f -mfma -mp -Minfo=vect -Mneginfo=vect indirect_idx.c
+#gcc -S -Wall -O3 -mavx512f -mfma -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed indirect_idx.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n indirect_idx.s
+<!--- end code --->
+
+

@@ -1,0 +1,273 @@
+<!--- md label=prob,ans --->
+
+#* Divide-and-conquer algorithm
+
+<!--- end md --->
+
+<!--- md w --->
+
+Enter your name and student ID.
+
+ * Name:
+ * Student ID:
+
+<!--- end md --->
+
+<!--- md --->
+# Compilers
+<!--- end md --->
+
+<!--- md --->
+## Set up NVIDIA HPC SDK
+
+Execute this before you use NVIDIA HPC SDK
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.11/compilers/bin:$PATH
+#export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.9/compilers/bin:$PATH
+#export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/compilers/bin:$PATH
+<!--- end code --->
+
+<!--- md --->
+Check if it works (check if full paths of nvc/nvc++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which nvc
+which nvc++
+<!--- end code --->
+
+<!--- md --->
+## Set up LLVM
+
+Execute this before you use LLVM
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+export PATH=/home/share/llvm/bin:$PATH
+<!--- end code --->
+
+<!--- md --->
+Check if it works (check if full paths of nvc/nvc++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which clang
+which clang++
+<!--- end code --->
+
+<!--- md --->
+
+# Merge sort
+
+* merge sort is a divide-and-conquer algorithm that sorts an array as follows
+1. split the array into two halves
+1. recursively apply merge sort to each half
+1. merge the two (sorted) arrays
+
+* the merge step needs another array, so it takes two arrays (one is used for the input/output and the other used for workspace)
+
+* here is a sequential merge sort algorithm
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile msort.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd11_msort/include/msort.cc --->
+<!--- end code --->
+
+<!--- md --->
+* and a merge procedure
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile merge.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd11_msort/include/merge.cc --->
+<!--- end code --->
+
+<!--- md --->
+* here is the main program and the header file
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile msort_main.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd11_msort/include/msort_main.cc --->
+<!--- end code --->
+
+<!--- code w kernel=python --->
+%%writefile msort.h
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd11_msort/include/msort.h --->
+<!--- end code --->
+
+<!--- md --->
+* compile them together
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+clang++ -O3 -Wall msort.cc merge.cc msort_main.cc -o msort_serial -lpfm
+# nvc++ -O3 -Wall msort.cc merge.cc msort_main.cc -o msort_serial -lpfm
+<!--- end code --->
+
+<!--- md --->
+* run:
+```
+./msort_serial N
+```
+* will generate a random array of N elements and sort it
+* default value for N is 100,000,000 (100M)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+./msort_serial $((100 * 1000 * 1000))
+<!--- end code --->
+
+<!--- md --->
+#*P Parallelize merge sort
+
+* parallelize the merge sort algorithm by modifying the following cell
+* it should be easy with task parallelism
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile msort_parallel.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd11_msort/include/msort.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+clang++ -O3 -Wall -fopenmp msort_parallel.cc merge.cc msort_main.cc -o msort_parallel -lpfm
+# nvc++ -O3 -Wall      -mp msort_parallel.cc merge.cc msort_main.cc -o msort_parallel -lpfm
+<!--- end code --->
+
+<!--- md --->
+* run the following cell with various values for `OMP_NUM_THREADS` and the number of elements and see how it scales
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+OMP_NUM_THREADS=1 ./msort_parallel $((100 * 1000 * 1000))
+<!--- end code --->
+
+<!--- md --->
+* you can check how many processors does the host have by 
+<!--- end md --->
+<!--- code w kernel=bash --->
+lscpu | grep CPU
+<!--- end code --->
+
+<!--- md --->
+* here is a script to run it with various number of threads
+<!--- end md --->
+
+<!--- code w kernel=python --->
+<!--- include nb/source/pd11_msort/include/run.py --->
+<!--- end code --->
+
+<!--- code w kernel=python --->
+run(["msort_parallel"],
+    [ 10 * 1000 * 1000 ],
+    [ 1, 2, 3, 4, 6, 8, 12, 16, 20, 24, 32 ])
+<!--- end code --->
+
+<!--- md --->
+* visualize it
+<!--- end md --->
+
+<!--- code w kernel=python --->
+<!--- include nb/source/pd11_msort/include/read_data.py --->
+<!--- end code --->
+
+<!--- code w kernel=python --->
+<!--- include nb/source/pd11_msort/include/speedup.py --->
+<!--- end code --->
+
+<!--- code w kernel=python --->
+speedup(glob.glob("out/out_*.txt"), exes=["./msort_parallel"])
+<!--- end code --->
+
+<!--- md --->
+# Parallelize merge 
+
+* serial merge sort has $\Theta(n\log n)$ time-complexity
+* executing two recursive calls in parallel does not attain enough speedup as the algorithm still has a critical path of $\Theta(n)$
+* the reason for this is the serial merge step
+* to make the critical path sublinear $o(n)$, it is important to parallelize the merge step itself
+* let's first make a program that only merges two sorted arrays
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile merge_main.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd11_msort/include/merge_main.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+clang++ -O3 -Wall -fopenmp merge.cc merge_main.cc -o merge_serial -lpfm
+# nvc++ -O3 -Wall      -mp merge.cc merge_main.cc -o merge_serial -lpfm
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+./merge_serial $((100 * 1000 * 1000))
+<!--- end code --->
+
+<!--- md --->
+#*P Parallelize merge
+
+* parallelize the merge algorithm by modifying the following cell
+* hint: here again, divide-and-conquer is useful
+* let's say we merge two arrays $a$ and $b$ into another array $c$
+1. split $a$ or $b$ (the larger one) into two halves
+1. assume wolg $a$ is the larger and call the first and second half $a_0$ and $a_1$, respectively
+1. let $p$ be the smallest value of $a_1$
+1. split $b$ into two parts, $b_0$, which are elements $\leq p$ and $b_1$, elements $\geq p$ (use binary search to find the boundary between them)
+1. merge $a_0$ and $b_0$; merge $a_1$ and $b_1$ (two merges can be done in parallel)
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile merge_parallel.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd11_msort/include/merge.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+clang++ -O3 -Wall -fopenmp merge_parallel.cc merge_main.cc -o merge_parallel -lpfm
+# nvc++ -O3 -Wall      -mp merge_parallel.cc merge_main.cc -o merge_parallel -lpfm
+<!--- end code --->
+
+<!--- md --->
+* run the following cell with various values for `OMP_NUM_THREADS` and the number of elements and see how it scales
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+OMP_NUM_THREADS=1 ./merge_parallel $((100 * 1000 * 1000))
+<!--- end code --->
+
+<!--- md --->
+#*P Parallel merge sort with parallel merge
+
+* use the parallel merge in the parallel merge sort and see the scalability
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+clang++ -O3 -Wall -fopenmp msort_parallel.cc merge_parallel.cc msort_main.cc -o msort_parallel2 -lpfm
+# nvc++ -O3 -Wall      -mp msort_parallel.cc merge_parallel.cc msort_main.cc -o msort_parallel2 -lpfm
+<!--- end code --->
+
+<!--- md --->
+* run the following cell with various values for `OMP_NUM_THREADS` and the number of elements and see how it scales
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+OMP_NUM_THREADS=1 ./msort_parallel2 $((100 * 1000 * 1000))
+<!--- end code --->
+
+<!--- md --->
+* run it with various number of threads
+<!--- end md --->
+
+<!--- code w kernel=python --->
+run(["msort_parallel2"],
+    [ 10 * 1000 * 1000 ],
+    [ 1, 2, 3, 4, 6, 8, 12, 16, 20, 24, 32 ])
+<!--- end code --->
+
+<!--- code w kernel=python --->
+speedup(glob.glob("out/out_*.txt"), exes=["./msort_parallel", "./msort_parallel2"])
+<!--- end code --->
+

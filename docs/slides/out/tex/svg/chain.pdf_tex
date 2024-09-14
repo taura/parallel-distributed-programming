@@ -1,0 +1,84 @@
+%% Creator: Inkscape 1.2.2 (b0a8486541, 2022-12-01), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'chain.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{57.03160477bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,2.16176296)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{chain.pdf}}%
+    \put(0.48191515,0.49711491){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$f$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{chain.pdf}}%
+    \put(0.4919975,0.02018669){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$x$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{chain.pdf}}%
+    \put(0.49944956,1.50708188){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$g$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{chain.pdf}}%
+    \put(0.49243574,1.00209893){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$y$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{chain.pdf}}%
+    \put(0.49024236,1.98401063){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$z$\end{tabular}}}}%
+    \put(1.02763334,0.99183893){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}${\displaystyle\pp{z}{y}} = \ao{g'(y)}$\end{tabular}}}}%
+    \put(0.99957754,0.0379825){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}${\displaystyle\pp{z}{x}}={\displaystyle\pp{z}{y} \pp{y}{x}}$\end{tabular}}}}%
+    \put(1.30532799,-0.53197597){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$={\ao{g'(y) f'(x)}}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{chain.pdf}}%
+    \put(0.48191516,0.49711491){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\times$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{chain.pdf}}%
+    \put(0.4919975,0.02018669){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$x$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{chain.pdf}}%
+    \put(0.49944955,1.50708188){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$f$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{chain.pdf}}%
+    \put(0.49243574,1.00209893){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$y$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{chain.pdf}}%
+    \put(0.49024236,1.98401063){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$z$\end{tabular}}}}%
+    \put(1.76768331,-0.14955647){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}${\displaystyle\pp{z}{w} = ??}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{chain.pdf}}%
+    \put(1.44585528,-0.17619532){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$W$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{chain.pdf}}%
+  \end{picture}%
+\endgroup%

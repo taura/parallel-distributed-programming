@@ -1,0 +1,424 @@
+<!--- md --->
+#* A real exercise --- a fast matrix multiply
+
+# Introduction
+
+* Matrix-matrix multiplication is an important building block for many applications, most notably for deep neural networks
+* It is also a good exercise for exploiting SIMD and ILP, as doing so brings much benefits
+<!--- end md --->
+
+<!--- md --->
+# Compilers
+
+## Set up NVIDIA HPC SDK
+
+Execute this before you use NVIDIA HPC SDK
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.11/compilers/bin:$PATH
+#export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.9/compilers/bin:$PATH
+#export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/compilers/bin:$PATH
+<!--- end code --->
+
+<!--- md --->
+Check if it works (check if full paths of nvc/nvc++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which nvc
+which nvc++
+<!--- end code --->
+
+<!--- md --->
+## Set up LLVM
+
+Execute this before you use LLVM
+
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+export PATH=/home/share/llvm/bin:$PATH
+<!--- end code --->
+
+<!--- md --->
+Check if it works (check if full paths of gcc/g++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which clang
+which clang++
+<!--- end code --->
+
+<!--- md --->
+## GCC
+
+<!--- end md --->
+
+<!--- md --->
+Check if it works (check if full paths of nvc/nvc++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which gcc
+which g++
+<!--- end code --->
+
+<!--- md --->
+# A very basic matrix multiply without SIMD or ILP
+
+* this is a very basic matrix multiply without SIMD or ILP
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile mm_basic.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd08_mm/include/mm.cc --->
+<!--- end code --->
+
+<!--- md --->
+* definition of matrix and auxiliary functions
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile mm_cpu.h
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd08_mm/include/mm.h --->
+<!--- end code --->
+
+<!--- md --->
+* main function
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile mm_main_cpu.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd08_mm/include/mm_main.cc --->
+<!--- end code --->
+
+<!--- md --->
+* compile it into an executable
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+clang++ -Wall -O3 -mavx512f -mfma mm_main_cpu.cc mm_basic.cc -o mm_basic -lpfm
+#nvc++   -Wall -O3 -mavx512f -mfma mm_main_cpu.cc mm_basic.cc -o mm_basic -lpfm
+#g++     -Wall -O3 -mavx512f -mfma mm_main_cpu.cc mm_basic.cc -o mm_basic -lpfm
+<!--- end code --->
+
+<!--- md --->
+* and execute it
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+./mm_basic
+<!--- end code --->
+
+<!--- md --->
+* it performs $C = C + A * B$ for
+ * $C$ : $M \times N$ matrix 
+ * $A$ : $M \times K$ matrix 
+ * $B$ : $K \times N$ matrix 
+so many times that it performs FMAs at least a billion ($10^9$) times
+* by default $M = 8$, $N = 32$ and $K = 192$, which are small
+* the reason of this choice becomes clear later
+<!--- end md --->
+
+<!--- md --->
+* you can change $M$, $N$ and $K$, as well as the number of FMAs by giving the first four parameters
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+./mm_basic 100 200 300 $((2 * 1000 * 1000 * 1000))
+<!--- end code --->
+
+<!--- md --->
+* it measures
+  * the core cycles,
+  * the reference cycles, and
+  * the number of instructions
+using performance counter and shows
+  * the number of fused multiply-adds (fmas) per core cycle (`fmas/core-cycle`)
+  * the number of fused multiply-adds (FMAs) per reference cycle (`fmas/ref-cycle`)
+  * the number of fused multiply-adds (FMAs) per instruction
+* lines below "=== checking results of randomly picked 5 elements ===" compares the result with what they should be
+  * make sure they are all nearly zero
+* observe the performance, shown as the number of fused multiply-adds (FMAs) per core cycle (`fmas/core-cycle`)
+* compare it with the maximum performance, which is 32 fmas/core-cycle (for single precision floating point numbers)
+<!--- end md --->
+
+<!--- md --->
+#*P Reason about performance of the basic code
+
+* look at the assembly code generated and look for the loop corresponding to the innermost loop (between the `asm volatile("# loop begins")` and `asm volatile("# loop ends")`)
+  * did the compiler vectorize it?
+* try to predict from the assembly code how many core cycles it will take per iteration and the resulting performance (fmas/cycle)
+  * hint: the latency of a scalar fmadd instruction is four
+* check if the experimental result matches the prediction 
+* further notes:
+  * there are a number of reasons why the actual performance does not exactly match the expectation (some are compiler-related and others are processor-related)
+  * `nvc++` performs better than the other two compilers (do you see why?)
+  * to get a result that is easy to understand, use either `clang++` or `g++` and set $M = N = 1$ and $K = $ large (e.g., 2000), so that the code almost nothing other than executing the innermost loop just once, with a large trip count
+
+* compile it into assembly code (open the output `mm_basic.s` with editor)
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+clang++ -Wall -O3 -mavx512f -mfma mm_basic.cc -S
+#nvc++   -Wall -O3 -mavx512f -mfma mm_basic.cc -S -Mkeepasm
+#g++     -Wall -O3 -mavx512f -mfma mm_basic.cc -S
+<!--- end code --->
+
+<!--- md --->
+* write your findings and thoughts below
+<!--- end md --->
+
+<!--- md w points=1 --->
+* did the compiler vectorize it :
+* you prediction from the assembly code on the number of cycles/iteration :
+* you prediction of fmas/core-cycle based on it :
+* does it match the experimental result :
+* other finding and/or thoughts
+<!--- end md --->
+
+<!--- md --->
+# A vectorized matrix multiply
+
+#*P Apply SIMD
+
+* apply SIMD to the `gemm` function
+* you should achieve roughly $L$ times speedup with $L$-way SIMD instructions ($L = 512/32 = 16$ when using 512 bit SIMD instructions for single precision)
+* think about _which_ loop should vectorized, among the three possible possible choices, and explain your choice
+* you can assume matrix sizes are _convenient_; that is, for your convenience, you can assume one (or some) of $M$, $N$ and $K$ is a multiple of a certain number (typically, $L$), so that you don't have to worry about the remainder iterations of the loop you vectorized
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile mm_simd.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd08_mm/include/mm.cc --->
+<!--- end code --->
+
+<!--- md --->
+* compile it into an executable
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+clang++ -Wall -O3 -mavx512f -mfma mm_main_cpu.cc mm_simd.cc -o mm_simd -lpfm
+#nvc++   -Wall -O3 -mavx512f -mfma mm_main_cpu.cc mm_simd.cc -o mm_simd -lpfm
+#g++     -Wall -O3 -mavx512f -mfma mm_main_cpu.cc mm_simd.cc -o mm_simd -lpfm
+<!--- end code --->
+
+<!--- md --->
+* and run it
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+./mm_simd
+<!--- end code --->
+
+<!--- md --->
+* make sure errors reported below `=== checking results of randomly picked 5 elements ===` are all exactly or nearly zero
+<!--- end md --->
+
+<!--- md --->
+#*P Reason about performance of the vectorized code
+
+* do the same for the vectorized version
+* look at the assembly code generated and look for the loop corresponding to the innermost loop (between the `asm volatile("# loop begins")` and `asm volatile("# loop ends")`)
+* try to predict how many core cycles it will take per iteration and the resulting performance (fmas/cycle); check if the result matches the expectation (hint: the latency of a SIMD (packed) fmadd instruction is four)
+<!--- end md --->
+
+<!--- md --->
+* compile it into assembly code
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+clang++ -Wall -O3 -mavx512f -mfma mm_simd.cc -S
+#nvc++   -Wall -O3 -mavx512f -mfma mm_simd.cc -S -Mkeepasm
+#g++     -Wall -O3 -mavx512f -mfma mm_simd.cc -S
+<!--- end code --->
+
+<!--- md w points=1 --->
+* you prediction from the assembly code on the number of cycles/iteration :
+* you prediction of fmas/core-cycle based on it :
+* does it match the experimental result :
+* other finding and/or thoughts
+<!--- end md --->
+
+
+<!--- md --->
+# A vectorized + ILP-rich matrix multiply
+
+* SIMD significantly boosts performance of matrix multiply
+* but remember that the maximum performance is _two SIMD fmadd instructions per cycle_, far beyond what you achieved just by using SIMD
+* the fundamental reason is that the innermost loop has little ILP, as all fma instructions update the same variable c
+* in other words, there is no way the processor runs the innermost loop faster than whatever is the latency of fma instruction per iteration
+* to overcome this, we take advantage of the fact that there are plenty of elements (i.e., elements of matrix _C_) we apply this innermost loop to and update several of them in parallel (by a single core, taking advantage of ILP)
+* to illustrate, the strategy looks like this
+
+```
+  for (idx_t i = 0; i < M; i++) {
+    for (idx_t j = 0; j < N; j += L) {
+      fetch many elements of C; (*)
+      for (idx_t k = 0; k < K; k++) {
+        for elements of C fetched at (*) {
+          ... += A(i,k) * B.V(k,j);
+        }
+      }
+      store back the elements of C fetched at (*);
+    }
+  }
+```
+<!--- end md --->
+
+<!--- md --->
+#*P Apply SIMD + ILP
+
+* apply ILP to the SIMD code you obtained in the previous problem
+* calculate how many elements need to be updated to possibly reach nearly peak performance (two SIMD fmadd instructions per cycle $=$ 32 single-precision fmas/cycle) based on the performance you obtained in the previous problem
+* again, you can assume for convenience that some of $M$, $N$ and $K$ are multiple of certain numbers
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile mm_simd_ilp.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd08_mm/include/mm.cc --->
+<!--- end code --->
+
+<!--- md --->
+* compile it into an executable
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+clang++ -Wall -O3 -mavx512f -mfma mm_main_cpu.cc mm_simd_ilp.cc -o mm_simd_ilp -lpfm
+#nvc++   -Wall -O3 -mavx512f -mfma mm_main_cpu.cc mm_simd_ilp.cc -o mm_simd_ilp -lpfm
+#g++     -Wall -O3 -mavx512f -mfma mm_main_cpu.cc mm_simd_ilp.cc -o mm_simd_ilp -lpfm
+<!--- end code --->
+
+<!--- md --->
+* and run it
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+./mm_simd_ilp
+<!--- end code --->
+
+<!--- md --->
+#* Remarks
+
+* by updating enough variables concurrently inside the innermost ($K$) loop, you can obtain $\sim$26 fmas/cycle, or roughly 80% of the peak performance, which you should set as the goal
+* closing the gap is harder but the principle and the tool (`llvm-mca`) are covered in the lecture
+<!--- end md --->
+
+<!--- md --->
+# Analyze the loop with llvm-mca
+
+* [llvm-mca (LLVM machine code analyzer)](https://llvm.org/docs/CommandGuide/llvm-mca.html) is a great tool to understand how many cycles a loop will take
+* how to use
+  * generate assembly with `-S`
+  * open the output `.s` file with an editor and find the innermost loop you want to analyze
+  * put assembly comment `# LLVM-MCA-BEGIN` at the head of the loop (right before or after the loop header label) and
+  * put assembly comment `# LLVM-MCA-END` at the head of the loop (right after the conditional jump instruction that jumps to the loop header label), like this
+
+```
+        ...
+        ...
+        # LLVM-MCA-BEGIN
+.LBB1_13:                               #   Parent Loop BB1_9 Depth=1
+                                        #     Parent Loop BB1_10 Depth=2
+                                        # =>    This Inner Loop Header: Depth=3
+        vbroadcastss    -4(%r10,%r8,4), %zmm1
+        vfmadd132ps     (%r12,%rbx), %zmm0, %zmm1 # zmm1 = (zmm1 * mem) + zmm0
+        vbroadcastss    (%r10,%r8,4), %zmm0
+        vfmadd132ps     (%r12,%r9,4), %zmm1, %zmm0 # zmm0 = (zmm0 * mem) + zmm1
+        addq    $2, %r8
+        addq    %r11, %r12
+        cmpq    %r8, %rcx
+        jne     .LBB1_13
+        # LLVM-MCA-END
+```
+  * run `llvm-mca filename.s`
+  * run `llvm-mca --help` for other useful options
+  * run `llvm-mca --timeline filename.s` is particularly instructive
+  * see [llvm-mca - LLVM machine code analyzer](https://llvm.org/docs/CommandGuide/llvm-mca.html) for how to read the result
+<!--- end md --->
+
+<!--- md --->
+## Limitations
+
+* it is a static analyzer that analyzes the code based on instruction latencies and dispatch port of each instruction in the loop
+* while very useful, a major limitation is that, being a _static_ tool, it cannot simulate aspects that affect execution time depending on the values inside memory or registers
+* most notably it cannot accurately simulate memory access latencies that significantly depend on whether the accessed data is on the cache (cache hit) or not; it assumes all memory accesses have the same latency that seems that of L1 cache hit
+
+<!--- end md --->
+
+<!--- md --->
+#*P Analyze the loop with llvm-mca
+
+* analyze `mm_simd_ilp.s` as described above
+* open it using editor and put the `# LLVM-MCA-BEGIN` and `# LLVM-MCA-END` markers appropriately
+* and run the command below to understand the number of cycles an iteration takes
+<!--- end md --->
+
+<!--- md --->
+* compile it into assembly code
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+clang++ -Wall -O3 -mavx512f -mfma mm_simd_ilp.cc -S
+#nvc++   -Wall -O3 -mavx512f -mfma mm_simd_ilp.cc -S -Mkeepasm
+#g++     -Wall -O3 -mavx512f -mfma mm_simd_ilp.cc -S
+<!--- end code --->
+
+<!--- md --->
+* open `mm_simd_ilp.s` using an editor and put the `# LLVM-MCA-BEGIN` and `# LLVM-MCA-END` markers appropriately
+<!--- end md --->
+
+<!--- md --->
+* run the following command
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+llvm-mca mm_simd_ilp.s
+<!--- end code --->
+
+<!--- md --->
+* or
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+llvm-mca --timeline mm_simd_ilp.s
+<!--- end code --->
+
+<!--- md --->
+#*P Closer to peak (optional)
+
+* try to reduce the gap to the peak performance, using llvm-mca
+* describe what you do and show the performance
+
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile mm_fast.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd08_mm/include/mm.cc --->
+<!--- end code --->
+
+<!--- md --->
+* compile it into an executable
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+clang++ -Wall -O3 -mavx512f -mfma mm_main_cpu.cc mm_fast.cc -o mm_fast -lpfm
+#nvc++   -Wall -O3 -mavx512f -mfma mm_main_cpu.cc mm_fast.cc -o mm_fast -lpfm
+#g++     -Wall -O3 -mavx512f -mfma mm_main_cpu.cc mm_fast.cc -o mm_fast -lpfm
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+./mm_fast
+<!--- end code --->
+
+<!--- md --->
+# Notes on large matrices
+
+* run your code for larger matrices and see how performance changes
+* you will see that performance deteriorates when you make $K$ and $N$ larger (e.g., $K = N = 512$)
+* the reason for that has something to do with memory subsystem (caches) and will be covered in later weeks
+* this is a part of the reason why we have been working on small matrices
+
+<!--- end md --->
+

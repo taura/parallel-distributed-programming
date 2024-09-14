@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="191.0966mm"
+   height="61.110569mm"
+   id="svg2"
+   version="1.1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs4" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(20.754904,-15.014427)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="236.61935"
+       y="155.2554"
+       id="text3789"><tspan
+         id="tspan3791"
+         x="236.61935"
+         y="155.2554"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">=</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#0000ff;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3021"
+       width="200"
+       height="200"
+       x="20"
+       y="42.362183" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="98.005096"
+       y="150.19443"
+       id="text3023"><tspan
+         id="tspan3025"
+         x="98.005096"
+         y="150.19443"
+         style="font-size:20px;line-height:1.25;font-family:sans-serif">$A$</tspan></text>
+    <rect
+       y="42.362183"
+       x="280"
+       height="200"
+       width="200"
+       id="rect3027"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3036"
+       width="200"
+       height="200"
+       x="500"
+       y="42.362183" />
+    <path
+       id="path3038"
+       d="M 700,242.36218 V 42.362183 H 500 Z"
+       style="fill:#ff9955;stroke:#ff0000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="604.00513"
+       y="110.19443"
+       id="text3040"><tspan
+         id="tspan3042"
+         x="604.00513"
+         y="110.19443"
+         style="font-size:20px;line-height:1.25;font-family:sans-serif">${}^tL$</tspan></text>
+    <text
+       id="text3044"
+       y="30.194427"
+       x="98.005096"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="font-size:20px;line-height:1.25;font-family:sans-serif"
+         y="30.194427"
+         x="98.005096"
+         id="tspan3046">$n$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="-21.994904"
+       y="150.19443"
+       id="text3048"><tspan
+         id="tspan3050"
+         x="-21.994904"
+         y="150.19443"
+         style="font-size:20px;line-height:1.25;font-family:sans-serif">$n$</tspan></text>
+    <path
+       style="fill:#ffccaa;stroke:#ff0000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 280,42.362183 V 242.36218 h 200 z"
+       id="path3034" />
+    <text
+       id="text3030"
+       y="180.19443"
+       x="320.0051"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         y="180.19443"
+         x="320.0051"
+         id="tspan3032"
+         style="font-size:20px;line-height:1.25;font-family:sans-serif">$L$</tspan></text>
+  </g>
+</svg>

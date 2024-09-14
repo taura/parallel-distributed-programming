@@ -1,0 +1,162 @@
+<!--- md --->
+
+#* OpenMP Visualizing Scheduling
+
+<!--- end md --->
+
+<!--- md w --->
+
+Enter your name and student ID.
+
+ * Name:
+ * Student ID:
+
+<!--- end md --->
+
+<!--- md --->
+
+# Scheduling
+
+* There are several strategies for partitioning (load-balancing) a loop among cores (OpenMP threads, to be more precise)
+* This notebook visualizes how it is affected by how you execute a loop in general
+
+<!--- end md --->
+
+<!--- md --->
+# Compilers
+
+* We use [LLVM ver. 15.0](https://llvm.org/) (`clang` and `clang++`) in this exercise, as [NVIDIA HPC SDK](https://docs.nvidia.com/hpc-sdk/index.html) (`nvc` and `nvc++`) does not support some of the OpenMP features we use below (taskloop)
+<!--- end md --->
+
+<!--- md --->
+## Set up LLVM
+
+Execute this before you use LLVM
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+export PATH=/home/share/llvm/bin:$PATH
+<!--- end code --->
+
+<!--- md --->
+Check if it works (check if full paths of nvc/nvc++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which clang
+which clang++
+<!--- end code --->
+
+<!--- md --->
+# The OpenMP program that records scheduling
+
+* omp_sched_rec.c in this directory is an OpenMP program that executes a doubely-nested loop in several ways
+* inspect it by opening it in Jupyterlab or any other program you like
+
+## Compile
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+clang -Wall -O3 -fopenmp -std=gnu99 omp_sched_rec.c -o omp_sched_rec
+<!--- end code --->
+
+<!--- md --->
+## Run
+
+* How it executes the double loop can be controlled by a few environment variables
+  * LB --- select the execution stragety among #pragma omp for, #pragma omp task and #pragma omp taskloop
+  * OMP_SCHEDULE --- specify the scheduling method of #pragma omp for
+
+* Some examples given below
+
+<!--- end md --->
+
+
+<!--- md --->
+* use 4 cores and #pragma omp for, default scheduling strategy (presumably static)
+<!--- end md --->
+<!--- code w kernel=bash --->
+OMP_NUM_THREADS=4 ./omp_sched_rec 
+<!--- end code --->
+
+<!--- md --->
+* the effect will be same as above
+<!--- end md --->
+<!--- code w kernel=bash --->
+OMP_NUM_THREADS=4 OMP_SCHEDULE=static ./omp_sched_rec 
+<!--- end code --->
+
+<!--- md --->
+* use 4 cores and #pragma omp for, by the dynamic scheduling policy
+<!--- end md --->
+<!--- code w kernel=bash --->
+OMP_NUM_THREADS=4 OMP_SCHEDULE=dynamic ./omp_sched_rec 
+<!--- end code --->
+
+<!--- md --->
+* use 4 cores and #pragma omp for, by dynamic scheduling policy with the grainsize = 100 (i.e., 100 iteratins are fetched at a time)
+<!--- end md --->
+<!--- code w kernel=bash --->
+OMP_NUM_THREADS=4 OMP_SCHEDULE=dynamic,100 ./omp_sched_rec 
+<!--- end code --->
+
+<!--- md --->
+* use 4 cores and #pragma omp for, by the guided self scheduling
+<!--- end md --->
+<!--- code w kernel=bash --->
+OMP_NUM_THREADS=4 OMP_SCHEDULE=guided ./omp_sched_rec 
+<!--- end code --->
+
+<!--- md --->
+* use 4 cores and #pragma omp task using recursive 2D decomposition
+<!--- end md --->
+<!--- code w kernel=bash --->
+OMP_NUM_THREADS=4 LB=task ./omp_sched_rec
+<!--- end code --->
+
+<!--- md --->
+* use 4 cores and #pragma omp task using recursive 2D decomposition, with grainsize=100 (i.e., stop generating tasks for <100 iterations)
+<!--- end md --->
+<!--- code w kernel=bash --->
+OMP_NUM_THREADS=4 LB=task,100 ./omp_sched_rec 
+<!--- end code --->
+
+<!--- md --->
+* use 4 cores and #pragma omp task using taskloop, with grainsize=100
+<!--- end md --->
+<!--- code w kernel=bash --->
+OMP_NUM_THREADS=4 LB=taskloop,100 ./omp_sched_rec 
+<!--- end code --->
+
+
+<!--- md --->
+# Visualization
+
+* Running `omp_sched_rec` leaves a record file with the name `"log.txt"`
+* Below is a Python program that visualizes `"log.txt"`
+
+<!--- end md --->
+
+<!--- code w kernel=python --->
+<!--- include nb/source/pd03_omp_sched_vis/include/omp_sched_vis.py --->
+<!--- end code --->
+
+<!--- md --->
+* Execute one of the above and execute the cell below
+* It takes some time (> 30 seconds) and shows a playback tool you can play with after finished
+<!--- end md --->
+
+<!--- code w kernel=python --->
+# be patient (> 30 seconds) until it finishes
+sched_vis("log.txt")
+<!--- end code --->
+
+<!--- md --->
+* Change the parameters as you like and visualize it
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+OMP_NUM_THREADS= LB= OMP_SCHEDULE= ./omp_sched_rec 
+<!--- end code --->
+
+

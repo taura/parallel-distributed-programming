@@ -1,0 +1,11 @@
+exe: ./msort_2_1.exe
+threads: 8
+elements: 10000000
+threshold from merge to insertion: 50
+threshold from parallel merge to serial merge: 10000
+ref-cycles : 590723952
+cycles : 832565667
+instructions : 1048226783
+L1-dcache-load-misses : 4560983
+cache-misses : 1119941
+OK

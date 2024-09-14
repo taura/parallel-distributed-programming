@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   id="svg2605"
+   viewBox="0 0 1284 255.47223"
+   version="1.0"
+   width="1284"
+   height="255.47223"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs24">
+    <marker
+       style="overflow:visible"
+       id="marker3239"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#5555ff;fill-opacity:1;fill-rule:evenodd;stroke:#5555ff;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path3237" />
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3181"
+       style="overflow:visible">
+      <path
+         id="path3179"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#5555ff;fill-opacity:1;fill-rule:evenodd;stroke:#5555ff;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker2473"
+       style="overflow:visible">
+      <path
+         id="path2471"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker6666"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path6668" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker6632"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path6634" />
+    </marker>
+  </defs>
+  <metadata
+     id="metadata22">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Élève posant une question / Student asking a question</dc:title>
+        <dc:date>2010-04-23T01:32:24</dc:date>
+        <dc:description />
+        <dc:source>https://openclipart.org/detail/50287/Élève-posant-une-question-/-student-asking-a-question-by-lmproulx</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>lmproulx</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>black and white</rdf:li>
+            <rdf:li>colouring book</rdf:li>
+            <rdf:li>girl</rdf:li>
+            <rdf:li>outline</rdf:li>
+            <rdf:li>people</rdf:li>
+            <rdf:li>question</rdf:li>
+            <rdf:li>school</rdf:li>
+            <rdf:li>student</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(-698,67.91343)">
+    <rect
+       ry="1.38677e-05"
+       y="-0.86999512"
+       x="1900"
+       height="80"
+       width="79.999939"
+       id="rect1221"
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect916"
+       width="79.999939"
+       height="80"
+       x="1820"
+       y="-0.86999512"
+       ry="1.38677e-05" />
+    <rect
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect918"
+       width="79.999939"
+       height="80"
+       x="1740"
+       y="-0.86999512"
+       ry="1.38677e-05" />
+    <rect
+       ry="1.38677e-05"
+       y="-0.86999512"
+       x="1660"
+       height="80"
+       width="79.999939"
+       id="rect920"
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect964"
+       width="79.999939"
+       height="80"
+       x="1580"
+       y="-0.86999512"
+       ry="1.38677e-05" />
+    <rect
+       ry="1.38677e-05"
+       y="-0.86999512"
+       x="1500"
+       height="80"
+       width="79.999939"
+       id="rect966"
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       ry="1.38677e-05"
+       y="-0.86999512"
+       x="1420"
+       height="80"
+       width="79.999939"
+       id="rect968"
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect970"
+       width="79.999939"
+       height="80"
+       x="1340"
+       y="-0.86999512"
+       ry="1.38677e-05" />
+    <rect
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect972"
+       width="79.999939"
+       height="80"
+       x="1260"
+       y="-0.86999512"
+       ry="1.38677e-05" />
+    <rect
+       ry="1.38677e-05"
+       y="-0.86999512"
+       x="1180"
+       height="80"
+       width="79.999939"
+       id="rect974"
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       ry="1.38677e-05"
+       y="-0.86999512"
+       x="1100"
+       height="80"
+       width="79.999939"
+       id="rect976"
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect978"
+       width="79.999939"
+       height="80"
+       x="1020"
+       y="-0.86999512"
+       ry="1.38677e-05" />
+    <rect
+       ry="1.38677e-05"
+       y="-0.86999512"
+       x="940"
+       height="80"
+       width="79.999939"
+       id="rect980"
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect982"
+       width="79.999939"
+       height="80"
+       x="860"
+       y="-0.86999512"
+       ry="1.38677e-05" />
+    <rect
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect984"
+       width="79.999939"
+       height="80"
+       x="780"
+       y="-0.86999512"
+       ry="1.38677e-05" />
+    <rect
+       ry="1.38677e-05"
+       y="-0.86999512"
+       x="700"
+       height="80"
+       width="79.999939"
+       id="rect986"
+       style="opacity:1;fill:#dbdbe3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:16px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="704.01648"
+       y="-44.32943"
+       id="text990"><tspan
+         id="tspan988"
+         x="704.01648"
+         y="-44.32943"
+         style="font-size:32px">A SIMD register</tspan></text>
+    <path
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 740,39.129982 360,99.999998"
+       id="path996" />
+    <path
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 820,39.129982 300,99.999998"
+       id="path998" />
+    <path
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 900,39.129982 240,99.999998"
+       id="path1000" />
+    <path
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 1940,39.129982 1240,139.12998"
+       id="path1002" />
+    <path
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 1859.9999,39.129982 1200,139.12998"
+       id="path1004" />
+    <text
+       id="text1008"
+       y="187.2388"
+       x="1139.0029"
+       style="font-style:normal;font-weight:normal;font-size:16px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-size:32px"
+         y="187.2388"
+         x="1139.0029"
+         id="tspan1006">lane</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:16px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1181.0029"
+       y="115.2388"
+       id="text1012"><tspan
+         id="tspan1010"
+         x="1181.0029"
+         y="115.2388"
+         style="font-size:32px">...</tspan></text>
+  </g>
+</svg>

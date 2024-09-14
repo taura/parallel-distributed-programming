@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="109.09026mm"
+   height="69.374565mm"
+   id="svg2"
+   version="1.1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs4" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(-229,-11.260656)">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2.51682;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3435"
+       width="409.79285"
+       height="259.68625"
+       x="230.25841"
+       y="12.519066" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3781"
+       width="100"
+       height="100"
+       x="260"
+       y="42.362183" />
+    <rect
+       y="42.362183"
+       x="360"
+       height="100"
+       width="100"
+       id="rect3783"
+       style="fill:#ff9955;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="142.36218"
+       x="260"
+       height="100"
+       width="100"
+       id="rect3785"
+       style="fill:#ffe6d5;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="fill:#e3dbdb;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3787"
+       width="100"
+       height="100"
+       x="360"
+       y="142.36218" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="270"
+       y="202.36218"
+       id="text3423"><tspan
+         id="tspan3425"
+         x="270"
+         y="202.36218"
+         style="font-size:20px;line-height:1.25;font-family:sans-serif">$L_{21}$</tspan></text>
+    <text
+       id="text3427"
+       y="202.36218"
+       x="370"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="font-size:20px;line-height:1.25;font-family:sans-serif"
+         y="202.36218"
+         x="370"
+         id="tspan83351">$A_{22} - L_{21}{}^tL_{21}$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="370"
+       y="102.36218"
+       id="text3431"><tspan
+         id="tspan3433"
+         x="370"
+         y="102.36218"
+         style="font-size:20px;line-height:1.25;font-family:sans-serif">${}^tL_{21}$</tspan></text>
+    <path
+       style="fill:#ffe6d5;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 260,42.362183 V 142.36218 H 360 Z"
+       id="path3456" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="244"
+       y="38.362183"
+       id="text3458"><tspan
+         id="tspan3460"
+         x="244"
+         y="38.362183"
+         style="font-size:20px;line-height:1.25;font-family:sans-serif">recursion</tspan></text>
+    <path
+       id="path3481"
+       d="M 360,142.36218 V 42.362181 H 260 Z"
+       style="fill:#ff9955;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <text
+       id="text3419"
+       y="122.36218"
+       x="270"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="font-size:20px;line-height:1.25;font-family:sans-serif"
+         y="122.36218"
+         x="270"
+         id="tspan3421">$L_{11}$</tspan></text>
+    <text
+       id="text3483"
+       y="38.362183"
+       x="364"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="font-size:20px;line-height:1.25;font-family:sans-serif"
+         y="38.362183"
+         x="364"
+         id="tspan3485">triangular solve</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="244"
+       y="258.36218"
+       id="text3506"><tspan
+         id="tspan3508"
+         x="244"
+         y="258.36218"
+         style="font-size:20px;line-height:1.25;font-family:sans-serif">transpose</tspan></text>
+    <text
+       id="text3583"
+       y="178.36218"
+       x="364"
+       style="font-style:normal;font-weight:normal;font-size:16px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="font-size:16px;line-height:1.25;font-family:sans-serif"
+         y="178.36218"
+         x="364"
+         id="tspan3585">matrix multiply</tspan></text>
+  </g>
+</svg>

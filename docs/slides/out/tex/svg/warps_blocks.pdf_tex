@@ -1,0 +1,1204 @@
+%% Creator: Inkscape 1.2.2 (b0a8486541, 2022-12-01), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'warps_blocks.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{6557.62472318bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.74844174)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{warps_blocks.pdf}}%
+    \put(0.00872752,0.69534573){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a CUDA thread\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{warps_blocks.pdf}}%
+    \put(0.06820028,0.69534573){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a warp (32 threads)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{warps_blocks.pdf}}%
+    \put(0.02899297,0.69493625){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{warps_blocks.pdf}}%
+    \put(0.02899297,0.6869303){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{warps_blocks.pdf}}%
+    \put(0.02899297,0.65490651){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{warps_blocks.pdf}}%
+    \put(0.02899297,0.64690057){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{warps_blocks.pdf}}%
+    \put(0.00934355,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15116319,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.01391838,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14658836,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0184932,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.02306803,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14201354,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.13743871,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{warps_blocks.pdf}}%
+    \put(0.02899297,0.69493625){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{warps_blocks.pdf}}%
+    \put(0.02899297,0.6869303){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{warps_blocks.pdf}}%
+    \put(0.02899297,0.65490651){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{warps_blocks.pdf}}%
+    \put(0.02899297,0.64690057){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{warps_blocks.pdf}}%
+    \put(0.00934355,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15116319,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.01391838,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14658836,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0184932,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.02306803,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14201354,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.13743871,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.06820028,0.66332194){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{warps_blocks.pdf}}%
+    \put(0.06330417,0.72924746){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{warps_blocks.pdf}}%
+    \put(0.06330417,0.72124151){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{warps_blocks.pdf}}%
+    \put(0.06330417,0.68921772){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{warps_blocks.pdf}}%
+    \put(0.06330417,0.68121177){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{warps_blocks.pdf}}%
+    \put(0.04365475,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.1854744,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04822958,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.18089957,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.05280441,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.05737923,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17632474,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17174991,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{warps_blocks.pdf}}%
+    \put(0.1854744,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{warps_blocks.pdf}}%
+    \put(0.05644193,0.72238522){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=20]{warps_blocks.pdf}}%
+    \put(0.05644193,0.71437927){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=21]{warps_blocks.pdf}}%
+    \put(0.05644193,0.68235548){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=22]{warps_blocks.pdf}}%
+    \put(0.05644193,0.67434953){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=23]{warps_blocks.pdf}}%
+    \put(0.03679251,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17861216,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04136734,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17403733,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04594217,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.05051699,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.1694625,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16488767,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=24]{warps_blocks.pdf}}%
+    \put(0.17861216,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=25]{warps_blocks.pdf}}%
+    \put(0.04957969,0.71552297){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=26]{warps_blocks.pdf}}%
+    \put(0.04957969,0.70751703){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=27]{warps_blocks.pdf}}%
+    \put(0.04957969,0.67549324){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=28]{warps_blocks.pdf}}%
+    \put(0.04957969,0.66748729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=29]{warps_blocks.pdf}}%
+    \put(0.02993027,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17174991,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0345051,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16717509,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.03907993,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04365475,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16260026,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15802543,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=30]{warps_blocks.pdf}}%
+    \put(0.04957969,0.71552297){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=31]{warps_blocks.pdf}}%
+    \put(0.04957969,0.70751703){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=32]{warps_blocks.pdf}}%
+    \put(0.04957969,0.67549324){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=33]{warps_blocks.pdf}}%
+    \put(0.04957969,0.66748729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=34]{warps_blocks.pdf}}%
+    \put(0.02993027,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17174991,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0345051,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16717509,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.03907993,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04365475,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16260026,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15802543,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.088787,0.68390867){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=35]{warps_blocks.pdf}}%
+    \put(0.02899297,0.69493625){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=36]{warps_blocks.pdf}}%
+    \put(0.02899297,0.6869303){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=37]{warps_blocks.pdf}}%
+    \put(0.02899297,0.65490651){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=38]{warps_blocks.pdf}}%
+    \put(0.02899297,0.64690057){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=39]{warps_blocks.pdf}}%
+    \put(0.00934355,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15116319,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.01391838,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14658836,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0184932,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.02306803,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14201354,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.13743871,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=40]{warps_blocks.pdf}}%
+    \put(0.02899297,0.69493625){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=41]{warps_blocks.pdf}}%
+    \put(0.02899297,0.6869303){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=42]{warps_blocks.pdf}}%
+    \put(0.02899297,0.65490651){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=43]{warps_blocks.pdf}}%
+    \put(0.02899297,0.64690057){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=44]{warps_blocks.pdf}}%
+    \put(0.00934355,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15116319,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.01391838,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14658836,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0184932,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.02306803,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14201354,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.13743871,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.06820028,0.66332194){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=45]{warps_blocks.pdf}}%
+    \put(0.05055184,0.61096818){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a streaming multiprocessor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=46]{warps_blocks.pdf}}%
+    \put(0.06330417,0.72924746){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=47]{warps_blocks.pdf}}%
+    \put(0.06330417,0.72124151){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=48]{warps_blocks.pdf}}%
+    \put(0.06330417,0.68921772){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=49]{warps_blocks.pdf}}%
+    \put(0.06330417,0.68121177){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=50]{warps_blocks.pdf}}%
+    \put(0.04365475,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.1854744,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04822958,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.18089957,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.05280441,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.05737923,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17632474,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17174991,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=51]{warps_blocks.pdf}}%
+    \put(0.1854744,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=52]{warps_blocks.pdf}}%
+    \put(0.05644193,0.72238522){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=53]{warps_blocks.pdf}}%
+    \put(0.05644193,0.71437927){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=54]{warps_blocks.pdf}}%
+    \put(0.05644193,0.68235548){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=55]{warps_blocks.pdf}}%
+    \put(0.05644193,0.67434953){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=56]{warps_blocks.pdf}}%
+    \put(0.03679251,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17861216,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04136734,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17403733,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04594217,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.05051699,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.1694625,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16488767,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=57]{warps_blocks.pdf}}%
+    \put(0.17861216,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=58]{warps_blocks.pdf}}%
+    \put(0.04957969,0.71552297){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=59]{warps_blocks.pdf}}%
+    \put(0.04957969,0.70751703){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=60]{warps_blocks.pdf}}%
+    \put(0.04957969,0.67549324){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=61]{warps_blocks.pdf}}%
+    \put(0.04957969,0.66748729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=62]{warps_blocks.pdf}}%
+    \put(0.02993027,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17174991,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0345051,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16717509,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.03907993,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04365475,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16260026,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15802543,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=63]{warps_blocks.pdf}}%
+    \put(0.04957969,0.71552297){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=64]{warps_blocks.pdf}}%
+    \put(0.04957969,0.70751703){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=65]{warps_blocks.pdf}}%
+    \put(0.04957969,0.67549324){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=66]{warps_blocks.pdf}}%
+    \put(0.04957969,0.66748729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=67]{warps_blocks.pdf}}%
+    \put(0.02993027,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17174991,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0345051,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16717509,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.03907993,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04365475,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16260026,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15802543,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.088787,0.68390867){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=68]{warps_blocks.pdf}}%
+    \put(0.02899297,0.69493625){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=69]{warps_blocks.pdf}}%
+    \put(0.02899297,0.6869303){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=70]{warps_blocks.pdf}}%
+    \put(0.02899297,0.65490651){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=71]{warps_blocks.pdf}}%
+    \put(0.02899297,0.64690057){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=72]{warps_blocks.pdf}}%
+    \put(0.00934355,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15116319,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.01391838,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14658836,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0184932,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.02306803,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14201354,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.13743871,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=73]{warps_blocks.pdf}}%
+    \put(0.02899297,0.69493625){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=74]{warps_blocks.pdf}}%
+    \put(0.02899297,0.6869303){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=75]{warps_blocks.pdf}}%
+    \put(0.02899297,0.65490651){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=76]{warps_blocks.pdf}}%
+    \put(0.02899297,0.64690057){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=77]{warps_blocks.pdf}}%
+    \put(0.00934355,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15116319,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.01391838,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14658836,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0184932,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.02306803,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14201354,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.13743871,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.06820028,0.66332194){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=78]{warps_blocks.pdf}}%
+    \put(0.13747356,0.60868077){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a streaming multiprocessor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=79]{warps_blocks.pdf}}%
+    \put(0.26459657,0.72924746){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=80]{warps_blocks.pdf}}%
+    \put(0.26459657,0.72124151){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=81]{warps_blocks.pdf}}%
+    \put(0.26459657,0.68921772){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=82]{warps_blocks.pdf}}%
+    \put(0.26459657,0.68121177){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=83]{warps_blocks.pdf}}%
+    \put(0.24494715,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.38676679,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24952198,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.38219197,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.2540968,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.25867163,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37761714,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37304231,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=84]{warps_blocks.pdf}}%
+    \put(0.38676679,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=85]{warps_blocks.pdf}}%
+    \put(0.25773433,0.72238522){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=86]{warps_blocks.pdf}}%
+    \put(0.25773433,0.71437927){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=87]{warps_blocks.pdf}}%
+    \put(0.25773433,0.68235548){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=88]{warps_blocks.pdf}}%
+    \put(0.25773433,0.67434953){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=89]{warps_blocks.pdf}}%
+    \put(0.23808491,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37990455,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24265974,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37532973,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24723456,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.25180939,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.3707549,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.36618007,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=90]{warps_blocks.pdf}}%
+    \put(0.37990455,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=91]{warps_blocks.pdf}}%
+    \put(0.25087209,0.71552297){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=92]{warps_blocks.pdf}}%
+    \put(0.25087209,0.70751703){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=93]{warps_blocks.pdf}}%
+    \put(0.25087209,0.67549324){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=94]{warps_blocks.pdf}}%
+    \put(0.25087209,0.66748729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=95]{warps_blocks.pdf}}%
+    \put(0.23122267,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37304231,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.2357975,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.36846748,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24037232,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24494715,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.36389266,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.35931783,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=96]{warps_blocks.pdf}}%
+    \put(0.25087209,0.71552297){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=97]{warps_blocks.pdf}}%
+    \put(0.25087209,0.70751703){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=98]{warps_blocks.pdf}}%
+    \put(0.25087209,0.67549324){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=99]{warps_blocks.pdf}}%
+    \put(0.25087209,0.66748729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=100]{warps_blocks.pdf}}%
+    \put(0.23122267,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37304231,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.2357975,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.36846748,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24037232,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24494715,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.36389266,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.35931783,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.29007939,0.68390867){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=101]{warps_blocks.pdf}}%
+    \put(0.23028536,0.69493625){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=102]{warps_blocks.pdf}}%
+    \put(0.23028536,0.6869303){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=103]{warps_blocks.pdf}}%
+    \put(0.23028536,0.65490651){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=104]{warps_blocks.pdf}}%
+    \put(0.23028536,0.64690057){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=105]{warps_blocks.pdf}}%
+    \put(0.21063595,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.35245559,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.21521077,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.34788076,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.2197856,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.22436043,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.34330593,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.33873111,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=106]{warps_blocks.pdf}}%
+    \put(0.23028536,0.69493625){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=107]{warps_blocks.pdf}}%
+    \put(0.23028536,0.6869303){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=108]{warps_blocks.pdf}}%
+    \put(0.23028536,0.65490651){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=109]{warps_blocks.pdf}}%
+    \put(0.23028536,0.64690057){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=110]{warps_blocks.pdf}}%
+    \put(0.21063595,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.35245559,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.21521077,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.34788076,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.2197856,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.22436043,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.34330593,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.33873111,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.26949267,0.66332194){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=111]{warps_blocks.pdf}}%
+    \put(0.33876595,0.60868077){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a streaming multiprocessor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=112]{warps_blocks.pdf}}%
+    \put(0.86847376,0.72924746){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=113]{warps_blocks.pdf}}%
+    \put(0.86847376,0.72124151){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=114]{warps_blocks.pdf}}%
+    \put(0.86847376,0.68921772){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=115]{warps_blocks.pdf}}%
+    \put(0.86847376,0.68121177){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=116]{warps_blocks.pdf}}%
+    \put(0.84882434,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.99064398,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.85339917,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.98606916,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.857974,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.86254882,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.98149433,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.9769195,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=117]{warps_blocks.pdf}}%
+    \put(0.99064398,0.71577048){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=118]{warps_blocks.pdf}}%
+    \put(0.86161152,0.72238522){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=119]{warps_blocks.pdf}}%
+    \put(0.86161152,0.71437927){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=120]{warps_blocks.pdf}}%
+    \put(0.86161152,0.68235548){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=121]{warps_blocks.pdf}}%
+    \put(0.86161152,0.67434953){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=122]{warps_blocks.pdf}}%
+    \put(0.8419621,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.98378174,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.84653693,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.97920692,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.85111175,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.85568658,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.97463209,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.97005726,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=123]{warps_blocks.pdf}}%
+    \put(0.98378174,0.70890824){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=124]{warps_blocks.pdf}}%
+    \put(0.85474928,0.71552297){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=125]{warps_blocks.pdf}}%
+    \put(0.85474928,0.70751703){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=126]{warps_blocks.pdf}}%
+    \put(0.85474928,0.67549324){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=127]{warps_blocks.pdf}}%
+    \put(0.85474928,0.66748729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=128]{warps_blocks.pdf}}%
+    \put(0.83509986,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.9769195,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.83967469,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.97234468,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.84424951,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.84882434,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.96776985,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.96319502,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=129]{warps_blocks.pdf}}%
+    \put(0.85474928,0.71552297){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=130]{warps_blocks.pdf}}%
+    \put(0.85474928,0.70751703){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=131]{warps_blocks.pdf}}%
+    \put(0.85474928,0.67549324){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=132]{warps_blocks.pdf}}%
+    \put(0.85474928,0.66748729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=133]{warps_blocks.pdf}}%
+    \put(0.83509986,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.9769195,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.83967469,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.97234468,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.84424951,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.84882434,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.96776985,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.96319502,0.702046){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.89395659,0.68390867){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=134]{warps_blocks.pdf}}%
+    \put(0.83416256,0.69493625){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=135]{warps_blocks.pdf}}%
+    \put(0.83416256,0.6869303){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=136]{warps_blocks.pdf}}%
+    \put(0.83416256,0.65490651){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=137]{warps_blocks.pdf}}%
+    \put(0.83416256,0.64690057){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=138]{warps_blocks.pdf}}%
+    \put(0.81451314,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.95633278,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.81908796,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.95175795,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.82366279,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.82823762,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.94718313,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.9426083,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=139]{warps_blocks.pdf}}%
+    \put(0.83416256,0.69493625){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=140]{warps_blocks.pdf}}%
+    \put(0.83416256,0.6869303){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=141]{warps_blocks.pdf}}%
+    \put(0.83416256,0.65490651){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=142]{warps_blocks.pdf}}%
+    \put(0.83416256,0.64690057){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=143]{warps_blocks.pdf}}%
+    \put(0.81451314,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.95633278,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.81908796,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.95175795,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.82366279,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.82823762,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.94718313,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.9426083,0.68145928){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.87336986,0.66332194){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=144]{warps_blocks.pdf}}%
+    \put(0.94264315,0.60868077){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a streaming multiprocessor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=145]{warps_blocks.pdf}}%
+    \put(0.06330417,0.57827816){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=146]{warps_blocks.pdf}}%
+    \put(0.06330417,0.57027221){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=147]{warps_blocks.pdf}}%
+    \put(0.06330417,0.53824842){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=148]{warps_blocks.pdf}}%
+    \put(0.06330417,0.53024247){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=149]{warps_blocks.pdf}}%
+    \put(0.04365475,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.1854744,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04822958,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.18089957,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.05280441,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.05737923,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17632474,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17174991,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=150]{warps_blocks.pdf}}%
+    \put(0.1854744,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=151]{warps_blocks.pdf}}%
+    \put(0.05644193,0.57141592){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=152]{warps_blocks.pdf}}%
+    \put(0.05644193,0.56340997){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=153]{warps_blocks.pdf}}%
+    \put(0.05644193,0.53138618){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=154]{warps_blocks.pdf}}%
+    \put(0.05644193,0.52338023){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=155]{warps_blocks.pdf}}%
+    \put(0.03679251,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17861216,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04136734,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17403733,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04594217,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.05051699,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.1694625,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16488767,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=156]{warps_blocks.pdf}}%
+    \put(0.17861216,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=157]{warps_blocks.pdf}}%
+    \put(0.04957969,0.56455368){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=158]{warps_blocks.pdf}}%
+    \put(0.04957969,0.55654773){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=159]{warps_blocks.pdf}}%
+    \put(0.04957969,0.52452394){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=160]{warps_blocks.pdf}}%
+    \put(0.04957969,0.51651799){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=161]{warps_blocks.pdf}}%
+    \put(0.02993027,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17174991,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0345051,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16717509,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.03907993,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04365475,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16260026,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15802543,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=162]{warps_blocks.pdf}}%
+    \put(0.04957969,0.56455368){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=163]{warps_blocks.pdf}}%
+    \put(0.04957969,0.55654773){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=164]{warps_blocks.pdf}}%
+    \put(0.04957969,0.52452394){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=165]{warps_blocks.pdf}}%
+    \put(0.04957969,0.51651799){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=166]{warps_blocks.pdf}}%
+    \put(0.02993027,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17174991,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0345051,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16717509,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.03907993,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04365475,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16260026,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15802543,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.088787,0.53293937){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=167]{warps_blocks.pdf}}%
+    \put(0.02899297,0.54396695){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=168]{warps_blocks.pdf}}%
+    \put(0.02899297,0.53596101){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=169]{warps_blocks.pdf}}%
+    \put(0.02899297,0.50393722){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=170]{warps_blocks.pdf}}%
+    \put(0.02899297,0.49593127){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=171]{warps_blocks.pdf}}%
+    \put(0.00934355,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15116319,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.01391838,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14658836,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0184932,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.02306803,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14201354,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.13743871,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=172]{warps_blocks.pdf}}%
+    \put(0.02899297,0.54396695){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=173]{warps_blocks.pdf}}%
+    \put(0.02899297,0.53596101){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=174]{warps_blocks.pdf}}%
+    \put(0.02899297,0.50393722){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=175]{warps_blocks.pdf}}%
+    \put(0.02899297,0.49593127){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=176]{warps_blocks.pdf}}%
+    \put(0.00934355,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15116319,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.01391838,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14658836,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0184932,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.02306803,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14201354,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.13743871,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.06820028,0.51235265){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=177]{warps_blocks.pdf}}%
+    \put(0.13747356,0.45771147){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a streaming multiprocessor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=178]{warps_blocks.pdf}}%
+    \put(0.06330417,0.12537026){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=179]{warps_blocks.pdf}}%
+    \put(0.06330417,0.11736432){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=180]{warps_blocks.pdf}}%
+    \put(0.06330417,0.08534053){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=181]{warps_blocks.pdf}}%
+    \put(0.06330417,0.07733458){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=182]{warps_blocks.pdf}}%
+    \put(0.04365475,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.1854744,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04822958,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.18089957,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.05280441,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.05737923,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17632474,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17174991,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=183]{warps_blocks.pdf}}%
+    \put(0.1854744,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=184]{warps_blocks.pdf}}%
+    \put(0.05644193,0.11850802){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=185]{warps_blocks.pdf}}%
+    \put(0.05644193,0.11050208){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=186]{warps_blocks.pdf}}%
+    \put(0.05644193,0.07847829){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=187]{warps_blocks.pdf}}%
+    \put(0.05644193,0.07047234){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=188]{warps_blocks.pdf}}%
+    \put(0.03679251,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17861216,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04136734,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17403733,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04594217,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.05051699,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.1694625,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16488767,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=189]{warps_blocks.pdf}}%
+    \put(0.17861216,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=190]{warps_blocks.pdf}}%
+    \put(0.04957969,0.11164578){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=191]{warps_blocks.pdf}}%
+    \put(0.04957969,0.10363984){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=192]{warps_blocks.pdf}}%
+    \put(0.04957969,0.07161604){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=193]{warps_blocks.pdf}}%
+    \put(0.04957969,0.0636101){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=194]{warps_blocks.pdf}}%
+    \put(0.02993027,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17174991,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0345051,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16717509,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.03907993,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04365475,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16260026,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15802543,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=195]{warps_blocks.pdf}}%
+    \put(0.04957969,0.11164578){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=196]{warps_blocks.pdf}}%
+    \put(0.04957969,0.10363984){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=197]{warps_blocks.pdf}}%
+    \put(0.04957969,0.07161604){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=198]{warps_blocks.pdf}}%
+    \put(0.04957969,0.0636101){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=199]{warps_blocks.pdf}}%
+    \put(0.02993027,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.17174991,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0345051,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16717509,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.03907993,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.04365475,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.16260026,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15802543,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.088787,0.08003148){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=200]{warps_blocks.pdf}}%
+    \put(0.02899297,0.09105906){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=201]{warps_blocks.pdf}}%
+    \put(0.02899297,0.08305311){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=202]{warps_blocks.pdf}}%
+    \put(0.02899297,0.05102932){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=203]{warps_blocks.pdf}}%
+    \put(0.02899297,0.04302337){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=204]{warps_blocks.pdf}}%
+    \put(0.00934355,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15116319,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.01391838,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14658836,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0184932,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.02306803,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14201354,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.13743871,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=205]{warps_blocks.pdf}}%
+    \put(0.02899297,0.09105906){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=206]{warps_blocks.pdf}}%
+    \put(0.02899297,0.08305311){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=207]{warps_blocks.pdf}}%
+    \put(0.02899297,0.05102932){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=208]{warps_blocks.pdf}}%
+    \put(0.02899297,0.04302337){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=209]{warps_blocks.pdf}}%
+    \put(0.00934355,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.15116319,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.01391838,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14658836,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.0184932,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.02306803,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.14201354,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.13743871,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.06820028,0.05944475){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=210]{warps_blocks.pdf}}%
+    \put(0.13747356,0.00480357){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a streaming multiprocessor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=211]{warps_blocks.pdf}}%
+    \put(0.86847376,0.57827816){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=212]{warps_blocks.pdf}}%
+    \put(0.86847376,0.57027221){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=213]{warps_blocks.pdf}}%
+    \put(0.86847376,0.53824842){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=214]{warps_blocks.pdf}}%
+    \put(0.86847376,0.53024247){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=215]{warps_blocks.pdf}}%
+    \put(0.84882434,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.99064398,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.85339917,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.98606916,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.857974,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.86254882,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.98149433,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.9769195,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=216]{warps_blocks.pdf}}%
+    \put(0.99064398,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=217]{warps_blocks.pdf}}%
+    \put(0.86161152,0.57141592){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=218]{warps_blocks.pdf}}%
+    \put(0.86161152,0.56340997){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=219]{warps_blocks.pdf}}%
+    \put(0.86161152,0.53138618){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=220]{warps_blocks.pdf}}%
+    \put(0.86161152,0.52338023){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=221]{warps_blocks.pdf}}%
+    \put(0.8419621,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.98378174,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.84653693,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.97920692,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.85111175,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.85568658,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.97463209,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.97005726,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=222]{warps_blocks.pdf}}%
+    \put(0.98378174,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=223]{warps_blocks.pdf}}%
+    \put(0.85474928,0.56455368){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=224]{warps_blocks.pdf}}%
+    \put(0.85474928,0.55654773){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=225]{warps_blocks.pdf}}%
+    \put(0.85474928,0.52452394){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=226]{warps_blocks.pdf}}%
+    \put(0.85474928,0.51651799){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=227]{warps_blocks.pdf}}%
+    \put(0.83509986,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.9769195,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.83967469,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.97234468,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.84424951,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.84882434,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.96776985,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.96319502,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=228]{warps_blocks.pdf}}%
+    \put(0.85474928,0.56455368){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=229]{warps_blocks.pdf}}%
+    \put(0.85474928,0.55654773){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=230]{warps_blocks.pdf}}%
+    \put(0.85474928,0.52452394){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=231]{warps_blocks.pdf}}%
+    \put(0.85474928,0.51651799){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=232]{warps_blocks.pdf}}%
+    \put(0.83509986,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.9769195,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.83967469,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.97234468,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.84424951,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.84882434,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.96776985,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.96319502,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.89395659,0.53293937){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=233]{warps_blocks.pdf}}%
+    \put(0.83416256,0.54396695){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=234]{warps_blocks.pdf}}%
+    \put(0.83416256,0.53596101){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=235]{warps_blocks.pdf}}%
+    \put(0.83416256,0.50393722){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=236]{warps_blocks.pdf}}%
+    \put(0.83416256,0.49593127){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=237]{warps_blocks.pdf}}%
+    \put(0.81451314,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.95633278,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.81908796,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.95175795,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.82366279,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.82823762,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.94718313,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.9426083,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=238]{warps_blocks.pdf}}%
+    \put(0.83416256,0.54396695){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=239]{warps_blocks.pdf}}%
+    \put(0.83416256,0.53596101){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=240]{warps_blocks.pdf}}%
+    \put(0.83416256,0.50393722){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=241]{warps_blocks.pdf}}%
+    \put(0.83416256,0.49593127){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=242]{warps_blocks.pdf}}%
+    \put(0.81451314,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.95633278,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.81908796,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.95175795,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.82366279,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.82823762,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.94718313,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.9426083,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.87336986,0.51235265){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=243]{warps_blocks.pdf}}%
+    \put(0.94264315,0.45771147){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a streaming multiprocessor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=244]{warps_blocks.pdf}}%
+    \put(0.86847376,0.12537026){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=245]{warps_blocks.pdf}}%
+    \put(0.86847376,0.11736432){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=246]{warps_blocks.pdf}}%
+    \put(0.86847376,0.08534053){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=247]{warps_blocks.pdf}}%
+    \put(0.86847376,0.07733458){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=248]{warps_blocks.pdf}}%
+    \put(0.84882434,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.99064398,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.85339917,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.98606916,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.857974,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.86254882,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.98149433,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.9769195,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=249]{warps_blocks.pdf}}%
+    \put(0.99064398,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=250]{warps_blocks.pdf}}%
+    \put(0.86161152,0.11850802){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=251]{warps_blocks.pdf}}%
+    \put(0.86161152,0.11050208){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=252]{warps_blocks.pdf}}%
+    \put(0.86161152,0.07847829){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=253]{warps_blocks.pdf}}%
+    \put(0.86161152,0.07047234){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=254]{warps_blocks.pdf}}%
+    \put(0.8419621,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.98378174,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.84653693,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.97920692,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.85111175,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.85568658,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.97463209,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.97005726,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=255]{warps_blocks.pdf}}%
+    \put(0.98378174,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=256]{warps_blocks.pdf}}%
+    \put(0.85474928,0.11164578){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=257]{warps_blocks.pdf}}%
+    \put(0.85474928,0.10363984){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=258]{warps_blocks.pdf}}%
+    \put(0.85474928,0.07161604){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=259]{warps_blocks.pdf}}%
+    \put(0.85474928,0.0636101){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=260]{warps_blocks.pdf}}%
+    \put(0.83509986,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.9769195,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.83967469,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.97234468,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.84424951,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.84882434,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.96776985,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.96319502,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=261]{warps_blocks.pdf}}%
+    \put(0.85474928,0.11164578){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=262]{warps_blocks.pdf}}%
+    \put(0.85474928,0.10363984){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=263]{warps_blocks.pdf}}%
+    \put(0.85474928,0.07161604){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=264]{warps_blocks.pdf}}%
+    \put(0.85474928,0.0636101){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=265]{warps_blocks.pdf}}%
+    \put(0.83509986,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.9769195,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.83967469,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.97234468,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.84424951,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.84882434,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.96776985,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.96319502,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.89395659,0.08003148){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=266]{warps_blocks.pdf}}%
+    \put(0.83416256,0.09105906){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=267]{warps_blocks.pdf}}%
+    \put(0.83416256,0.08305311){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=268]{warps_blocks.pdf}}%
+    \put(0.83416256,0.05102932){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=269]{warps_blocks.pdf}}%
+    \put(0.83416256,0.04302337){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=270]{warps_blocks.pdf}}%
+    \put(0.81451314,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.95633278,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.81908796,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.95175795,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.82366279,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.82823762,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.94718313,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.9426083,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=271]{warps_blocks.pdf}}%
+    \put(0.83416256,0.09105906){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=272]{warps_blocks.pdf}}%
+    \put(0.83416256,0.08305311){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=273]{warps_blocks.pdf}}%
+    \put(0.83416256,0.05102932){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=274]{warps_blocks.pdf}}%
+    \put(0.83416256,0.04302337){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=275]{warps_blocks.pdf}}%
+    \put(0.81451314,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.95633278,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.81908796,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.95175795,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.82366279,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.82823762,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.94718313,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.9426083,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.87336986,0.05944475){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=276]{warps_blocks.pdf}}%
+    \put(0.94264315,0.00480357){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a streaming multiprocessor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=277]{warps_blocks.pdf}}%
+    \put(0.26459657,0.12537026){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=278]{warps_blocks.pdf}}%
+    \put(0.26459657,0.11736432){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=279]{warps_blocks.pdf}}%
+    \put(0.26459657,0.08534053){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=280]{warps_blocks.pdf}}%
+    \put(0.26459657,0.07733458){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=281]{warps_blocks.pdf}}%
+    \put(0.24494715,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.38676679,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24952198,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.38219197,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.2540968,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.25867163,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37761714,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37304231,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=282]{warps_blocks.pdf}}%
+    \put(0.38676679,0.11189329){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=283]{warps_blocks.pdf}}%
+    \put(0.25773433,0.11850802){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=284]{warps_blocks.pdf}}%
+    \put(0.25773433,0.11050208){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=285]{warps_blocks.pdf}}%
+    \put(0.25773433,0.07847829){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=286]{warps_blocks.pdf}}%
+    \put(0.25773433,0.07047234){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=287]{warps_blocks.pdf}}%
+    \put(0.23808491,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37990455,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24265974,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37532973,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24723456,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.25180939,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.3707549,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.36618007,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=288]{warps_blocks.pdf}}%
+    \put(0.37990455,0.10503105){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=289]{warps_blocks.pdf}}%
+    \put(0.25087209,0.11164578){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=290]{warps_blocks.pdf}}%
+    \put(0.25087209,0.10363984){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=291]{warps_blocks.pdf}}%
+    \put(0.25087209,0.07161604){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=292]{warps_blocks.pdf}}%
+    \put(0.25087209,0.0636101){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=293]{warps_blocks.pdf}}%
+    \put(0.23122267,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37304231,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.2357975,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.36846748,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24037232,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24494715,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.36389266,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.35931783,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=294]{warps_blocks.pdf}}%
+    \put(0.25087209,0.11164578){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=295]{warps_blocks.pdf}}%
+    \put(0.25087209,0.10363984){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=296]{warps_blocks.pdf}}%
+    \put(0.25087209,0.07161604){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=297]{warps_blocks.pdf}}%
+    \put(0.25087209,0.0636101){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=298]{warps_blocks.pdf}}%
+    \put(0.23122267,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37304231,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.2357975,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.36846748,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24037232,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24494715,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.36389266,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.35931783,0.09816881){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.29007939,0.08003148){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=299]{warps_blocks.pdf}}%
+    \put(0.23028536,0.09105906){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=300]{warps_blocks.pdf}}%
+    \put(0.23028536,0.08305311){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=301]{warps_blocks.pdf}}%
+    \put(0.23028536,0.05102932){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=302]{warps_blocks.pdf}}%
+    \put(0.23028536,0.04302337){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=303]{warps_blocks.pdf}}%
+    \put(0.21063595,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.35245559,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.21521077,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.34788076,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.2197856,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.22436043,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.34330593,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.33873111,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=304]{warps_blocks.pdf}}%
+    \put(0.23028536,0.09105906){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=305]{warps_blocks.pdf}}%
+    \put(0.23028536,0.08305311){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=306]{warps_blocks.pdf}}%
+    \put(0.23028536,0.05102932){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=307]{warps_blocks.pdf}}%
+    \put(0.23028536,0.04302337){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=308]{warps_blocks.pdf}}%
+    \put(0.21063595,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.35245559,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.21521077,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.34788076,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.2197856,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.22436043,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.34330593,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.33873111,0.07758208){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.26949267,0.05944475){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=309]{warps_blocks.pdf}}%
+    \put(0.33876595,0.00480357){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a streaming multiprocessor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=310]{warps_blocks.pdf}}%
+    \put(0.26459657,0.57827816){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=311]{warps_blocks.pdf}}%
+    \put(0.26459657,0.57027221){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=312]{warps_blocks.pdf}}%
+    \put(0.26459657,0.53824842){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=313]{warps_blocks.pdf}}%
+    \put(0.26459657,0.53024247){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=314]{warps_blocks.pdf}}%
+    \put(0.24494715,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.38676679,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24952198,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.38219197,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.2540968,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.25867163,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37761714,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37304231,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=315]{warps_blocks.pdf}}%
+    \put(0.38676679,0.56480118){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=316]{warps_blocks.pdf}}%
+    \put(0.25773433,0.57141592){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=317]{warps_blocks.pdf}}%
+    \put(0.25773433,0.56340997){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=318]{warps_blocks.pdf}}%
+    \put(0.25773433,0.53138618){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=319]{warps_blocks.pdf}}%
+    \put(0.25773433,0.52338023){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=320]{warps_blocks.pdf}}%
+    \put(0.23808491,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37990455,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24265974,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37532973,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24723456,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.25180939,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.3707549,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.36618007,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=321]{warps_blocks.pdf}}%
+    \put(0.37990455,0.55793894){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=322]{warps_blocks.pdf}}%
+    \put(0.25087209,0.56455368){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=323]{warps_blocks.pdf}}%
+    \put(0.25087209,0.55654773){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=324]{warps_blocks.pdf}}%
+    \put(0.25087209,0.52452394){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=325]{warps_blocks.pdf}}%
+    \put(0.25087209,0.51651799){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=326]{warps_blocks.pdf}}%
+    \put(0.23122267,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37304231,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.2357975,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.36846748,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24037232,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24494715,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.36389266,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.35931783,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=327]{warps_blocks.pdf}}%
+    \put(0.25087209,0.56455368){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=328]{warps_blocks.pdf}}%
+    \put(0.25087209,0.55654773){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=329]{warps_blocks.pdf}}%
+    \put(0.25087209,0.52452394){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=330]{warps_blocks.pdf}}%
+    \put(0.25087209,0.51651799){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=331]{warps_blocks.pdf}}%
+    \put(0.23122267,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.37304231,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.2357975,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.36846748,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24037232,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.24494715,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.36389266,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.35931783,0.5510767){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.29007939,0.53293937){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=332]{warps_blocks.pdf}}%
+    \put(0.23028536,0.54396695){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=333]{warps_blocks.pdf}}%
+    \put(0.23028536,0.53596101){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=334]{warps_blocks.pdf}}%
+    \put(0.23028536,0.50393722){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=335]{warps_blocks.pdf}}%
+    \put(0.23028536,0.49593127){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=336]{warps_blocks.pdf}}%
+    \put(0.21063595,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.35245559,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.21521077,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.34788076,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.2197856,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.22436043,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.34330593,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.33873111,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=337]{warps_blocks.pdf}}%
+    \put(0.23028536,0.54396695){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=338]{warps_blocks.pdf}}%
+    \put(0.23028536,0.53596101){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=339]{warps_blocks.pdf}}%
+    \put(0.23028536,0.50393722){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=340]{warps_blocks.pdf}}%
+    \put(0.23028536,0.49593127){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=341]{warps_blocks.pdf}}%
+    \put(0.21063595,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.35245559,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.21521077,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.34788076,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.2197856,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.22436043,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.34330593,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.33873111,0.53048998){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . \end{tabular}}}}}%
+    \put(0.26949267,0.51235265){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a thread block\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=342]{warps_blocks.pdf}}%
+    \put(0.33876595,0.45771147){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a streaming multiprocessor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=343]{warps_blocks.pdf}}%
+    \put(0.43712474,0.68416541){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0.43712474,0.52633388){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0.43712474,0.06885115){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}%
+    \put(0.09033465,0.43955164){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}}%
+    \put(0.30077686,0.43955164){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}}%
+    \put(0.91380413,0.43955164){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}. . . . . . . . . . . . . . . . . . . . . . . . .\end{tabular}}}}}%
+    \put(0.44856181,0.31817924){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a GPU device\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

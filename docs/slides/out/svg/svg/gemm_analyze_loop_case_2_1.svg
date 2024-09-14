@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="490.8468mm"
+   height="228.22386mm"
+   id="svg2"
+   version="1.1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs4">
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         id="path14579"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(588.67775,8.7137396)">
+    <rect
+       style="opacity:0.5;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:12.3458;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect21572"
+       width="1515.715"
+       height="850.23254"
+       x="-409.25845"
+       y="-2.540817" />
+    <rect
+       style="opacity:0.5;fill:#ffffff;fill-opacity:1;stroke:#ff00ff;stroke-width:9.77012;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect21566"
+       width="1163.6614"
+       height="300.22989"
+       x="-320.11493"
+       y="52.247242"
+       ry="0" />
+    <rect
+       style="opacity:0.5;fill:#00ff00;fill-opacity:1;stroke:#008000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect20909"
+       width="260"
+       height="260"
+       x="560"
+       y="72.362183" />
+    <rect
+       y="172.36218"
+       x="240"
+       height="20"
+       width="260"
+       id="rect20911"
+       style="opacity:0.5;fill:#00ffff;fill-opacity:1;stroke:#0000ff;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:0.5;fill:#ffd5d5;fill-opacity:1;stroke:#ff0000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect20913"
+       width="260"
+       height="20"
+       x="-260"
+       y="172.36218" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       x="104.40709"
+       y="239.50504"
+       id="text20935"><tspan
+         id="tspan20937"
+         x="104.40709"
+         y="239.50504"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">+=</tspan></text>
+    <text
+       id="text21179"
+       y="235.21933"
+       x="-123.91882"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         y="235.21933"
+         x="-123.91882"
+         id="tspan21181"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">$n$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="948.57141"
+       y="215.21936"
+       id="text21214"><tspan
+         id="tspan21216"
+         x="948.57141"
+         y="215.21936"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">$\leq C$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       x="396.08118"
+       y="235.21933"
+       id="text3040"><tspan
+         id="tspan3042"
+         x="396.08118"
+         y="235.21933"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">$n$</tspan></text>
+    <text
+       id="text3044"
+       y="215.21933"
+       x="716.08118"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         y="215.21933"
+         x="716.08118"
+         id="tspan3046"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">$n^2$</tspan></text>
+    <rect
+       ry="0"
+       y="492.24725"
+       x="-320.11493"
+       height="300.22989"
+       width="1163.6614"
+       id="rect3048"
+       style="opacity:0.5;fill:#ffffff;fill-opacity:1;stroke:#ff00ff;stroke-width:9.77012;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="512.36218"
+       x="560"
+       height="260"
+       width="260"
+       id="rect3050"
+       style="opacity:0.5;fill:#00ff00;fill-opacity:1;stroke:#008000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:0.5;fill:#00ffff;fill-opacity:1;stroke:#0000ff;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3052"
+       width="260"
+       height="20"
+       x="240"
+       y="632.36218" />
+    <rect
+       y="632.36218"
+       x="-260"
+       height="20"
+       width="260"
+       id="rect3054"
+       style="opacity:0.5;fill:#ffd5d5;fill-opacity:1;stroke:#ff0000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text3056"
+       y="679.505"
+       x="104.40709"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         y="679.505"
+         x="104.40709"
+         id="tspan3058"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">+=</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       x="-123.91882"
+       y="695.21936"
+       id="text3060"><tspan
+         id="tspan3062"
+         x="-123.91882"
+         y="695.21936"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">$n$</tspan></text>
+    <text
+       id="text3064"
+       y="655.21936"
+       x="948.57141"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         y="655.21936"
+         x="948.57141"
+         id="tspan3066"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">$\ao{\approx C}$</tspan></text>
+    <text
+       id="text3068"
+       y="695.21936"
+       x="396.08118"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         y="695.21936"
+         x="396.08118"
+         id="tspan3070"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">$n$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       x="716.08118"
+       y="655.21936"
+       id="text3072"><tspan
+         id="tspan3074"
+         x="716.08118"
+         y="655.21936"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">$n^2$</tspan></text>
+    <rect
+       y="572.36218"
+       x="-260"
+       height="20"
+       width="260"
+       id="rect3078"
+       style="opacity:0.5;fill:#ffd5d5;fill-opacity:1;stroke:#ff0000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:0.5;fill:#00ffff;fill-opacity:1;stroke:#0000ff;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3082"
+       width="260"
+       height="20"
+       x="240"
+       y="572.36218" />
+    <text
+       id="text3084"
+       y="635.21936"
+       x="-261.87781"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         y="635.21936"
+         x="-261.87781"
+         id="tspan3086"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">$\ao{a}$</tspan></text>
+    <text
+       id="text3088"
+       y="603.21936"
+       x="-103.91882"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         y="603.21936"
+         x="-103.91882"
+         id="tspan3090"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">$\ldots$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       x="396.08118"
+       y="603.21936"
+       id="text3092"><tspan
+         id="tspan3094"
+         x="396.08118"
+         y="603.21936"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">$\ldots$</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:3, 3;stroke-dashoffset:0;stroke-opacity:1"
+       d="m -260,592.36218 v 40"
+       id="path3096" />
+    <path
+       id="path3872"
+       d="m 0,592.36218 v 40"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:3, 3;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:3, 3;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 240,592.36218 v 40"
+       id="path3874" />
+    <path
+       id="path3876"
+       d="m 500,592.36218 v 40"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:3, 3;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m -340,192.36218 c 0,0 -169.4742,144.31989 -160,240 7.43217,75.05766 160,160 160,160"
+       id="path3878" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
+       x="-301.87781"
+       y="415.21936"
+       id="text4062"><tspan
+         id="tspan4064"
+         x="-301.87781"
+         y="415.21936"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">$\ao{\times a}$</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,128 @@
+%% Creator: Inkscape 1.2.2 (b0a8486541, 2022-12-01), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'mnist.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{109.95291138bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,3.8468999)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{mnist.pdf}}%
+    \put(0.24783335,0.43691771){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\times$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{mnist.pdf}}%
+    \put(0.1748193,0.18953926){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{mnist.pdf}}%
+    \put(0.14571582,0.96077866){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}ReLU\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{mnist.pdf}}%
+    \put(0.13116409,0.69884847){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{mnist.pdf}}%
+    \put(0.24783335,1.45553586){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\times$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{mnist.pdf}}%
+    \put(0.14571582,1.97939639){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}ReLU\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{mnist.pdf}}%
+    \put(0.13116409,1.71746633){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_3$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{mnist.pdf}}%
+    \put(0.11661207,1.2081574){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{mnist.pdf}}%
+    \put(0.24783335,2.47415362){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\times$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{mnist.pdf}}%
+    \put(0.11661235,2.22677527){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_4$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{mnist.pdf}}%
+    \put(0.05840497,2.98346269){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}softmax\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{mnist.pdf}}%
+    \put(0.10206075,2.73608403){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_5$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{mnist.pdf}}%
+    \put(0.61136968,0.10222882){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$W_0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{mnist.pdf}}%
+    \put(0.61136968,1.12084669){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$W_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{mnist.pdf}}%
+    \put(0.61136968,2.13946469){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$W_2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{mnist.pdf}}%
+    \put(0.17481944,3.24539275){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$y$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{mnist.pdf}}%
+    \put(0.24783335,0.43691771){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\times$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{mnist.pdf}}%
+    \put(0.1748193,0.18953926){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{mnist.pdf}}%
+    \put(0.14571582,0.96077866){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}ReLU\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=20]{mnist.pdf}}%
+    \put(0.13116409,0.69884847){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=21]{mnist.pdf}}%
+    \put(0.24783335,1.45553586){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\times$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=22]{mnist.pdf}}%
+    \put(0.14571582,1.97939639){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}ReLU\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=23]{mnist.pdf}}%
+    \put(0.13116409,1.71746633){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_3$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=24]{mnist.pdf}}%
+    \put(0.11661207,1.2081574){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=25]{mnist.pdf}}%
+    \put(0.24783335,2.47415362){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\times$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=26]{mnist.pdf}}%
+    \put(0.11661235,2.22677527){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_4$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=27]{mnist.pdf}}%
+    \put(0.05840497,2.98346269){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}softmax\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=28]{mnist.pdf}}%
+    \put(0.10206075,2.73608403){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x_5$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=29]{mnist.pdf}}%
+    \put(0.61136968,0.10222882){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$W_0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=30]{mnist.pdf}}%
+    \put(0.61136968,1.12084669){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$W_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=31]{mnist.pdf}}%
+    \put(0.61136968,2.13946469){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$W_2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=32]{mnist.pdf}}%
+    \put(0.17481944,3.24539275){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$y$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=33]{mnist.pdf}}%
+    \put(0.68412976,3.24539275){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=34]{mnist.pdf}}%
+    \put(0.14571499,3.49277187){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$H$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=35]{mnist.pdf}}%
+    \put(0.17481944,3.75470137){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$e$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=36]{mnist.pdf}}%
+  \end{picture}%
+\endgroup%

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="299.74759mm"
+   height="130.47563mm"
+   id="svg2"
+   version="1.1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs4">
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         id="path3947"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4780"
+       style="overflow:visible">
+      <path
+         id="path4782"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(320.89443,-121.86218)">
+    <path
+       style="fill:#ff2a2a;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -318.04327,354.3189 60,-130 30,50 49.99999,-80 30,50 20,-20 30,60 30,20 70,10 70,20 40,20 z"
+       id="path3136" />
+    <path
+       style="fill:none;stroke:#ffff00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -320,352.36218 60,-30 10,-30 v -20 l 20,40 30,-10 30,20 70,20 h 80 l 130,10"
+       id="path3140" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="-317.74298"
+       y="390.19839"
+       id="text3930"><tspan
+         style="font-size:20px;line-height:1.25;font-family:sans-serif"
+         id="tspan3934"
+         x="-317.74298"
+         y="390.19839">my program suffers</tspan></text>
+    <path
+       id="path3138"
+       d="M 381.95673,324.31891 400,172.36218 l 10,-50 h 30 l 30,70 50,50 40,10 20,20 50,30 70,10 111.95673,11.95673 z"
+       style="fill:#ff2a2a;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path3910"
+       d="m 380,322.36218 60,-30 10,-30 v -20 l 20,40 30,-10 30,20 70,20 h 80 l 130,10"
+       style="fill:none;stroke:#ffff00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       id="text3920"
+       y="360.19839"
+       x="302.25702"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         y="360.19839"
+         x="302.25702"
+         style="font-size:20px;line-height:1.25;font-family:sans-serif"
+         id="tspan4805">create more tasks (and $T_\infty$ may be the same)</tspan></text>
+    <path
+       id="path3912"
+       d="m 411.08059,574.49385 44.41995,-130.28428 22.20999,50.10934 37.01662,-80.17494 22.20999,50.10934 14.80665,-20.04374 28.25621,8.15261 40,30 30,30 50,20.00001 29.42362,42.13166 z"
+       style="fill:#ff2a2a;stroke:#000000;stroke-width:0.861366px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path3914"
+       d="m 409.63197,572.53284 44.41995,-30.0656 7.40332,-30.06561 v -20.04372 l 14.80665,40.08746 22.20999,-10.02186 22.20997,20.04373 51.82329,20.04373 h 59.22661 l 96.24324,10.02187"
+       style="fill:none;stroke:#ffff00;stroke-width:3.44546;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="332.25702"
+       y="610.19843"
+       id="text3916"><tspan
+         id="tspan3918"
+         x="332.25702"
+         y="610.19843"
+         style="font-size:20px;line-height:1.25;font-family:sans-serif">shorten critical path</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 160,402.36218 190,80"
+       id="path3938" />
+    <path
+       id="path4384"
+       d="m 160,302.36218 190,-80"
+       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)" />
+  </g>
+</svg>

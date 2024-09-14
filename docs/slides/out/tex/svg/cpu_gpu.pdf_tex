@@ -1,0 +1,86 @@
+%% Creator: Inkscape 1.2.2 (b0a8486541, 2022-12-01), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'cpu_gpu.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{480.17741046bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.38934441)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{cpu_gpu.pdf}}%
+    \put(0.11384629,0.35137016){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}host (CPU)\end{tabular}}}}%
+    \put(0.61090765,0.35137016){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}device (GPU)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{cpu_gpu.pdf}}%
+    \put(0.11384629,0.35137016){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}host (CPU)\end{tabular}}}}%
+    \put(0.61090765,0.35137016){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}device (GPU)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{cpu_gpu.pdf}}%
+    \put(0.22235847,0.16034556){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{cpu_gpu.pdf}}%
+    \put(0.11384629,0.35137016){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}host (CPU)\end{tabular}}}}%
+    \put(0.61090765,0.35137016){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}device (GPU)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{cpu_gpu.pdf}}%
+    \put(0.22235847,0.16034556){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{cpu_gpu.pdf}}%
+    \put(0.11384629,0.35137016){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}host (CPU)\end{tabular}}}}%
+    \put(0.61090765,0.35137016){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}device (GPU)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{cpu_gpu.pdf}}%
+    \put(0.31723575,0.05517913){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}cudaMalloc\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{cpu_gpu.pdf}}%
+    \put(0.22232239,0.16636332){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a\end{tabular}}}}%
+    \put(0.79451422,0.1012799){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a_dev\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{cpu_gpu.pdf}}%
+    \put(0.11384629,0.35137016){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}host (CPU)\end{tabular}}}}%
+    \put(0.61090765,0.35137016){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}device (GPU)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{cpu_gpu.pdf}}%
+    \put(-0.00275777,0.04162008){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}cudaMemcpy\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{cpu_gpu.pdf}}%
+    \put(0.2216509,0.17136577){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a\end{tabular}}}}%
+    \put(0.78759505,0.10003465){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a_dev\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

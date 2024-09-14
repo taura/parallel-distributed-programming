@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="335.63446mm"
+   height="101.60576mm"
+   id="svg2"
+   version="1.1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs4">
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         id="path14579"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="g4356"
+     transform="translate(404.26984,828.65955)"
+     style="display:inline">
+    <rect
+       style="opacity:0.5;fill:#ffffff;fill-opacity:1;stroke:#ff00ff;stroke-width:6;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4358"
+       width="1262.5397"
+       height="378.02176"
+       x="-401.26984"
+       y="-825.65955"
+       ry="0" />
+    <rect
+       style="opacity:0.5;fill:#ffffff;fill-opacity:1;stroke:#008000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4362"
+       width="260"
+       height="260"
+       x="500"
+       y="-727.63782" />
+    <rect
+       y="-727.63782"
+       x="180"
+       height="260"
+       width="260"
+       id="rect4364"
+       style="opacity:0.5;fill:#ffffff;fill-opacity:1;stroke:#0000ff;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:0.5;fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4366"
+       width="260"
+       height="260"
+       x="-260"
+       y="-727.63782" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="41.42857"
+       y="-580.495"
+       id="text4368"><tspan
+         id="tspan4370"
+         x="41.42857"
+         y="-580.495"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">+=</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-380"
+       y="-707.63782"
+       id="text4410"><tspan
+         id="tspan4412"
+         x="-380"
+         y="-707.63782"
+         style="font-size:16px;line-height:1.25;font-family:sans-serif"> </tspan></text>
+    <text
+       id="text4426"
+       y="-560.495"
+       x="-198.57141"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         y="-560.495"
+         x="-198.57141"
+         id="tspan4428"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">$l$</tspan></text>
+    <rect
+       style="opacity:0.5;fill:#00ffff;fill-opacity:1;stroke:#0000ff;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4913"
+       width="62.398113"
+       height="62.398113"
+       x="300"
+       y="-667.63782" />
+    <rect
+       y="-667.63782"
+       x="-200"
+       height="60.817299"
+       width="60.817299"
+       id="rect4915"
+       style="opacity:0.5;fill:#ffd5d5;fill-opacity:1;stroke:#ff0000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="-667.63782"
+       x="560"
+       height="60.817299"
+       width="60.817299"
+       id="rect4917"
+       style="opacity:0.5;fill:#00ff00;fill-opacity:1;stroke:#008000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="-278.57141"
+       y="-620.495"
+       id="text4919"><tspan
+         id="tspan4921"
+         x="-278.57141"
+         y="-620.495"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">$l$</tspan></text>
+  </g>
+</svg>

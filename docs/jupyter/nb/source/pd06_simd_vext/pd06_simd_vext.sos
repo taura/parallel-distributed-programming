@@ -1,0 +1,615 @@
+<!--- md label=prob,ans --->
+#* SIMD programming (II) --- explicit/low-level SIMD programming with vector extension + intrinsics
+<!--- end md --->
+
+<!--- md --->
+# Introduction
+
+* GCC, LLVM, and NVIDIA HPC Compilers allow you to define a type representing a vector of values
+* see [GCC manual](https://gcc.gnu.org/onlinedocs/gcc-9.5.0/gcc/Vector-Extensions.html#Vector-Extensions) for reference
+* with this feature, you can write a code that explicitly manipulates a vector of values
+* for example, the code below defines a new type, `floatv`, as a 64-byte vector of `float`s (i.e., sixteen elements of `float`s)
+```
+typedef float floatv __attribute__((vector_size(64)));
+```
+* good news is that this type supports a familiar syntax for many of arithmetic expressions (+, -, *, /, etc.)
+* for other operations you can use intrinsic functions
+* in this notebook you are going to experience these features
+<!--- end md --->
+
+<!--- md --->
+# Compilers
+
+## Set up NVIDIA HPC SDK
+
+Execute this before you use NVIDIA HPC SDK
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.9/compilers/bin:$PATH
+#export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/compilers/bin:$PATH
+<!--- end code --->
+
+<!--- md --->
+Check if it works (check if full paths of nvc/nvc++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which nvc
+which nvc++
+<!--- end code --->
+
+<!--- md --->
+## Set up LLVM
+
+Execute this before you use LLVM
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+export PATH=/home/share/llvm/bin:$PATH
+<!--- end code --->
+
+<!--- md --->
+Check if it works (check if full paths of gcc/g++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which clang
+which clang++
+<!--- end code --->
+
+<!--- md --->
+## GCC
+
+<!--- end md --->
+
+<!--- md --->
+Check if it works (check if full paths of nvc/nvc++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which gcc
+which g++
+<!--- end code --->
+
+<!--- md --->
+# Vector extension
+
+* the following code defines types representing a vector of four, eight, and sixteen floats (`float_4`, `float_8`, and `float_16`, respectively) and functions that takes two such values
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile vector_ext.c
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd06_simd_vext/include/vector_ext.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+# will produce vector_ext.s
+clang -S -Wall -O3 -mavx512f -mfma vector_ext.c
+#nvc -S -Wall -O3 -mavx512f -mfma vector_ext.c
+#gcc -S -Wall -O3 -mavx512f -mfma vector_ext.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n vector_ext.s
+<!--- end code --->
+
+<!--- md --->
+* recent Clang/NVIDIA/GCC allow arithmetic expressions mixing vectors and scalars
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile scalar_vector.c
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd06_simd_vext/include/vector_ext.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+# will produce scalar_vector.s
+clang -S -Wall -O3 -mavx512f -mfma scalar_vector.c
+#nvc -S -Wall -O3 -mavx512f -mfma scalar_vector.c
+#gcc -S -Wall -O3 -mavx512f -mfma scalar_vector.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n scalar_vector.s
+<!--- end code --->
+
+<!--- md --->
+* you almost certainly want to match the size of the vector with instructions used (i.e., 64 for AVX512F and 32 for AVX or AVX2)
+* for which you can use following compile-time macros to make your code somewhat portable
+  * `__AVX512F__` defined when AVX512F instructions will be used
+  * `__AVX2__` defined when AVX2 instructions will be used
+  * `__AVX__` defined when AVX instructions will be used
+  * `__SSE__` defined when SSE instructions will be used
+  * etc.
+* you will typically want to use the largest available vector size and if it is all you need, the following code defines `floatv` vector type and try to maintain ISA-dependent code small
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile def_vector_type.c
+<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd06_simd_vext/include/vector_ext.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+# without -mavx512f, it will use only up to AVX2 (something that will change in future and may be compiler-dependent)
+clang -S -Wall -O3 -mfma def_vector_type.c
+#nvc -S -Wall -O3 -mfma def_vector_type.c
+#gcc -S -Wall -O3 -mfma def_vector_type.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n def_vector_type.s
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+# for today, you should give -mavx512f to make sure the compiler uses AVX512 instructions (512 bit SIMD)
+clang -S -Wall -O3 -mavx512f -mfma def_vector_type.c
+#nvc -S -Wall -O3 -mavx512f -mfma def_vector_type.c
+#gcc -S -Wall -O3 -mavx512f -mfma def_vector_type.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n def_vector_type.s
+<!--- end code --->
+
+<!--- md --->
+## a note about `aligned(sizeof(float))`
+
+* if you are curious, `aligned(sizeof(float))` specifies its minimum alignment to be the size of float (4), which is convenient as `floatv` will be used to work on an array of floats
+* without it, the alignment becomes the size of `floatv` (32)
+* the true effect is that the compiler uses vector load/store instructions `vmovups`, which does not assume 32 byte alignment; without it, the compiler uses `vmovaps`, vector load/store instructions that will raise a segfault when the given address is not 32 byte-aligned
+* recent Intel CPUs do not impose any performance penalty on `vmovups` compared to `vmovaps`, so there is not much point in making `floatv` aligned to 32 byte
+<!--- end md --->
+
+<!--- md --->
+# Programming in vector extension
+
+* once you have defined a vector type, there are not much you should learn other than how to build a vector from scalars and vice versa
+
+##  Building a vector value from scalars
+
+### from an array of scalars
+
+* you access an array of scalars (i.e., `float *`) with a pointer to a vector (e.g., `floatv`) and you get a vector of consecutive elements starting from the given address
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile loadv.c
+<!--- exec-include ./mk_version.py -D VER=4 nb/source/pd06_simd_vext/include/vector_ext.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+# will produce loadv.s
+clang -S -Wall -O3 -mavx512f -mfma loadv.c
+#nvc -S -Wall -O3 -mavx512f -mfma loadv.c
+#gcc -S -Wall -O3 -mavx512f -mfma loadv.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n loadv.s
+<!--- end code --->
+
+<!--- md --->
+### building a vector of arbitrary values
+
+* you can build a vector of arbitrary values just by making an array of these values and by applying the method above
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile make_vector.c
+<!--- exec-include ./mk_version.py -D VER=5 nb/source/pd06_simd_vext/include/vector_ext.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+# will produce make_vector.s
+clang -S -Wall -O3 -mavx512f -mfma make_vector.c
+#nvc -S -Wall -O3 -mavx512f -mfma make_vector.c
+#gcc -S -Wall -O3 -mavx512f -mfma make_vector.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n make_vector.s
+<!--- end code --->
+
+<!--- md --->
+* you will later learn there is an intrinsic function exactly for it
+
+## Extracting a scalar value from a vector
+
+### to an array of scalars
+
+* you can store a vector into an array of scalars
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile storev.c
+<!--- exec-include ./mk_version.py -D VER=6 nb/source/pd06_simd_vext/include/vector_ext.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+# will produce storev.s
+clang -S -Wall -O3 -mavx512f -mfma storev.c
+#nvc -S -Wall -O3 -mavx512f -mfma storev.c
+#gcc -S -Wall -O3 -mavx512f -mfma storev.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n storev.s
+<!--- end code --->
+
+<!--- md --->
+### index notation
+
+* a vector's element can be extracted using an index notation for arrays, but internally, it typically stores the vector into a temporary array and then extracts the element you want, which is not terribly efficient
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile get_i.c
+<!--- exec-include ./mk_version.py -D VER=7 nb/source/pd06_simd_vext/include/vector_ext.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+# will produce get_i.s
+clang -S -Wall -O3 -mavx512f -mfma get_i.c
+#nvc -S -Wall -O3 -mavx512f -mfma get_i.c
+#gcc -S -Wall -O3 -mavx512f -mfma get_i.c
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+cat -n get_i.s
+<!--- end code --->
+
+<!--- md --->
+# Vector intrinsics
+
+## When you have to use vector intrinsics
+
+* vector intrinsics are functions almost directly compiled to corresponding SIMD instructions
+* remember that with vector extension, you can have a vector of values and write arithmetic expressions involving them; you do not have to use vector intrinsics where it is applicable
+* things you wish you could do with it but cannot include
+  * comparisons between two vectors; given `A` and `B` of type `floatv`, one wishes `A < B` a vector of booleans or ints {A[0]<B[0], A[1]<B[1], ..., A[L-1]<B[L-1]} but it doesn't
+  * math functions such as sqrt, log, exp, etc.; given `V` of type `floatv`, one wishes `sqrt(V)` returns a value of `floatv` applying sqrt on each element of `V` but it doesn't (a SIMD sqrt instruction in fact exists on recent Intel CPUs)
+  * array indexing using a vector of integers; given `I` of type `intv` (a vector of ints, whose definition will follow the definition of `floatv` above) and `a` of `float*`, one wishes `a[I]` to be a value of `floatv` {a[I[0]], a[I[1]], ..., a[I[L-1]]} (what a gather instruction does on Intel CPUs supporting AVX2)
+* in all these circumstances, you need vector intrinsics
+
+## Vector intrinsics introduction
+
+* https://software.intel.com/sites/landingpage/IntrinsicsGuide/
+* you will be overwhelmed by the sheer number of functions; never have to remember all functions that exist
+* just remember that
+  * most functions correspond to a SIMD instruction, so what you reasonably hope will exist hopefully exists
+    * e.g., wish to do SIMD sqrt? just search for sqrt and look for what you need
+  * Intel keeps extending instruction set and SIMD width, so there are multiple versions doing a similar thing
+
+* with that said, here are an overview
+
+### The header file
+
+* You should include 
+```
+#include <x86intrin.h>
+```
+
+### Types
+
+* type names begin with __m followed by the number of bits (128, 256 or 512), possibly followed by a character indicating the element type
+
+* `__m128`, `__m256`, `__m512` : vector of floats, with size 128, 256, and 512 bits, respectively.  they are presumably defined exactly like floatv we have introduced before
+* `__m128d`, `__m256d`, `__m512d` : vector of doubles, with size 128, 256, and 512 bits, respectively
+* `__m128i`, `__m256i`, `__m512i` : vector of ints, with size 128, 256, and 512 bits, respectively
+
+### Function names
+
+* function names begin with _mm followed by the number of bits (128 bit versions lack this part). e.g.,
+  * `__m512 _mm512_fmadd_ps (__m512 a, __m512 b, __m512 c)` takes three 512 bit vectors and perform fmadd (a * b + c)
+
+### set and set1
+
+* `_mm_set_ps`, `_mm256_set_ps` and `_mm512_set_ps` take 4, 8 and 16 float values and returns a vector of them, respectively
+* `_mm_set1_ps`, `_mm256_set1_ps` and `_mm512_set1_ps` takes a float value and returns a 4, 8 and 16-element vector of it. e.g., `_mm_set1_ps(3)` returns `{3,3,3,3}`
+* similar functions exist for doubles (e.g., `_mm512_set_pd` takes eight double values)
+
+* they are special in that there are actually no instructions directly corresponding them; they are provided for convenience and implemented by a sequence of operations. you should not assume they are as efficient as a single instruction
+
+### A brief categorization
+
+Inside parentheses is the category you want to check at the Intel Intrinsics Guide page
+
+* arithmetic, which you can do just with vector extension without using intrinsics (Arithmetic)
+* math functions (Elementary Math)
+* comparison (Compare)
+* shuffling values on vectors (Bit Manipulation)
+* memory access (Load and Store)
+<!--- end md --->
+
+<!--- md --->
+# Manual vectorization with vector types and intrinsics
+
+## Loops containing branches
+
+* the basic template for a loop containing branch (if expression), like this
+```
+for (i = 0; i < n; i++) {
+    if (C(i)) {
+      T(i);
+    } else {
+      E(i);
+    }
+}  
+```
+is
+```
+for (i = 0; i < n; i += L) {
+    k = C(i:i+L); // L bit mask
+    T(i:i+L) predicated on k;
+    E(i:i+L) predicated on ~k;
+}  
+```
+
+* to realize this, you need
+  * compare instructions to calculate the mask
+  * predicated version of many instructions
+  * instructions that blend values from two SIMD values
+
+* search [Intrinsics guide](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html) for "cmp" to know the flavor of compare instructions, 
+* "mm512_mask_" to know the flavor of various predicated instructions (e.g., mm512_mask_add), and
+* "mm512_mask_blend" to know the flavor of value-blending instructions
+<!--- end md --->
+
+<!--- md label=prob,ans --->
+#*P Vectorize integral
+
+* the following code calculates
+$$ \int_0^1 \int_0^1 f(x,y)\,dx\,dy $$
+where
+$$ f(x,y) = \left\{\begin{array}{ll} \sqrt{1 - x^2 - y^2} & (1 - x^2 - y^2 > 0) \\ 0 & \mbox{otherwise} \end{array}\right. $$
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile integral_no_simd.c
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd06_simd_vext/include/compare_integral.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -Wall -O3 -mavx512f -mfma -o integral_no_simd integral_no_simd.c -lm
+#nvc -Wall -O3 -mavx512f -mfma -o integral_no_simd integral_no_simd.c -lm
+#gcc -Wall -O3 -mavx512f -mfma -o integral_no_simd integral_no_simd.c -lm
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+./integral_no_simd 10000
+./integral_no_simd 30000
+<!--- end code --->
+
+<!--- md --->
+* vectorize it by changing the following code
+* the key is how to vectorize despite the presence of the branch 
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile integral_simd.c
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd06_simd_vext/include/compare_integral.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -Wall -O3 -mavx512f -mfma -o integral_simd integral_simd.c -lm
+#nvc -Wall -O3 -mavx512f -mfma -o integral_simd integral_simd.c -lm
+#gcc -Wall -O3 -mavx512f -mfma -o integral_simd integral_simd.c -lm
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+prlimit --cpu=3.0 ./integral_simd 10000
+prlimit --cpu=10.0 ./integral_simd 30000
+<!--- end code --->
+
+<!--- md --->
+* <font color="red">note:</font> `prlimit --cpu=x` limits the CPU time the command is allowed to spend to `x` sec
+* this is for our safety net when your program goes terribly wrong
+* you are encouraged to use it always when you are not sure, even when it is not given by default (I easily forget to put it)
+* you can change the time as necessary, but default values give you a clue about the expectation (if your program is killed, chances are your program is slower than it should be)
+<!--- end md --->
+
+<!--- md label=ans --->
+_<font color="green">Example answer:</font>_
+<!--- end md --->
+<!--- code w kernel=python label=ans --->
+%%writefile integral_simd_ans.c
+<!--- exec-include ./mk_version.py -D VER=7 nb/source/pd06_simd_vext/include/compare_integral.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash label=ans --->
+clang -Wall -O3 -mavx512f -mfma -o integral_simd_ans integral_simd_ans.c -lm
+#nvc -Wall -O3 -mavx512f -mfma -o integral_simd_ans integral_simd_ans.c -lm
+#gcc -Wall -O3 -mavx512f -mfma -o integral_simd_ans integral_simd_ans.c -lm
+<!--- end code --->
+
+<!--- code w kernel=bash label=ans --->
+./integral_simd_ans
+<!--- end code --->
+
+
+<!--- md --->
+## Loops containing non-contiguous memory access
+
+* when you vectorize a scalar loop
+```
+for (i = 0; i < n; i++) {
+    S(i);
+}  
+```
+into something like
+```
+for (i = 0; i < n; i += L) {
+    S(i:i+L);
+}  
+```
+an issue arises when consecutive iterations, say S(i) and S(i+1), access non-contiguous elements by the same instruction, like this.
+```
+for (i = 0; i < n; i++) {
+    ... a[2 * i] ...
+}  
+```
+
+* to implement an expression `a[2 * i]`, we wish to have an instruction that accesses `a[2*i], a[2*i+2], a[2*i+4], ...`
+* in a vector extension, you can easily access consecutive elements `a[2*i], a[2*i+1], a[2*i+2], ...` for an array of integers (int or long) or floating point numbers (float or double), just by dereferencing a pointer to an appropriate vector type, but there is no convenient expression to access non-contiguous elements
+
+* Intel recently introduced gather/scatter instructions that just do that (gather for load and scatter for store)
+* search [Intrinsics guide](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html) for "gather" or "scatter" to know their flavors
+<!--- end md --->
+
+<!--- md label=prob,ans --->
+#*P Vectorize binary search
+
+* <font color="red">WARNING: challenges ahead</font>
+* binary search is a method to efficiently search a sorted array
+* it is a very sequential algorithm, so there is no way to vectorize (or parallelize, for that matter) searching for a single element
+* but when given many elements to search for, we naturally wish to vectorize it, which is what you will be doing 
+* the function that takes a single value to search for (`binsearch`) and the outer loop that searches for many elements (`binsearch_many`) look like this
+<!--- end md --->
+
+<!--- code w kernel=python points=1 label=prob,ans --->
+%%writefile binsearch_nosimd.h
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd06_simd_vext/include/binsearch_nosimd.h --->
+<!--- end code --->
+
+<!--- md --->
+* your goal is to vectorize `binsearch(int * a, int n, int x)`, so that it now takes a vector of (16) integers and returns another vector, and `int binsearch_many(int * a, int n, int * x, int m)`, so that it now passes a vector of (16) integers at a time rather than one
+* it is very challenging, as `binsearch` itself contains a loop, branches, non-contiguous accesses, everything that challenges vectorizing compilers (and human)
+* here is the skeleton code that emits an error when executed (modify this cell)
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile binsearch_simd.h
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd06_simd_vext/include/binsearch_simd.h --->
+<!--- end code --->
+
+<!--- md --->
+* the problem is challenging as you have to use so many intrinsics and their names are so long and obscure that they will damage your brain (e.g., `(a < b)` becomes `_mm512_cmp_epi32_mask(a, b, _MM_CMPINT_LT)`)
+* to help circumvent this issue, C++ operator overloading can help you a lot, to make the code much more "ordinary"
+* I gave a header file, `binsearch_simd_util.h` specifically tailored for this problem
+* you might want to add your own utility function there too, but I do not expect that is necessary
+<!--- end md --->
+
+<!--- code w kernel=python points=1 label=prob,ans --->
+%%writefile binsearch_simd_util.h
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd06_simd_vext/include/binsearch_simd_util.h --->
+<!--- end code --->
+
+<!--- md --->
+* the main function that generates an array and measure time
+<!--- end md --->
+
+<!--- code w kernel=python points=1 label=prob,ans --->
+%%writefile binsearch_main.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd06_simd_vext/include/binsearch_main.cc --->
+<!--- end code --->
+
+<!--- md label=ans --->
+_<font color="green">Example answer:</font>_
+<!--- end md --->
+<!--- code kernel=python label=ans --->
+%%writefile binsearch_simd.h
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd06_simd_vext/include/binsearch_simd.h --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 label=prob,ans --->
+clang++ -Wall -O3 -mavx512f -mfma -o binsearch_main binsearch_main.cc
+#nvc++ -Wall -O3 -mavx512f -mfma -o binsearch_main binsearch_main.cc
+#g++ -Wall -O3 -mavx512f -mfma -o binsearch_main binsearch_main.cc
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+prlimit --cpu=10.0 ./binsearch_main
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 label=ans --->
+echo "=== no SIMD ==="
+prlimit --cpu=10.0 ./binsearch_main 0
+echo "=== SIMD ==="
+prlimit --cpu=10.0 ./binsearch_main 1
+<!--- end code --->
+
+<!--- md --->
+* if you give 1 to the first command line argument, it executes SIMD version, which is of course not implemented
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+prlimit --cpu=10.0 ./binsearch_main 1
+<!--- end code --->
+
+<!--- md --->
+* default parameters are the following and can be specified as second and third parameters
+  * the size of the array to be searched = 10 * 1000 * 1000
+  * the number of elements to search for = 5 * 1000 * 1000
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+# search 10-element array for 3 values, without SIMD
+prlimit --cpu=10.0 ./binsearch_main 0 10 3
+<!--- end code --->
+
+<!--- md --->
+* for the same parameters, scalar version and SIMD version must find exactly the same number of elements
+* <font color="green">your job is to make that happen and make SIMD version run pleasingly faster (you cannot make it 16x times faster), by modifying `binsearch_nosimd.h` above</font>
+* <font color="red">as I said in the beginning, this problem is very challenging
+* if you find it too challenging, work on the next problem first, which is easier (and more rewarding :-)
+* you will find it more efficient to work outside the browser using SSH + your favorite text editor + command line; feel free to do so
+  * when doing so, be careful not to overwrite your file by hitting SHIFT + ENTER on the code cell; work on a renamed file and paste it into the cell after everything is done
+
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+n=$((10 * 1000 * 1000))
+m=$((5 * 1000 * 1000))
+echo "===== no simd ====="
+prlimit --cpu=10.0 ./binsearch_main 0 ${n} ${m}  # no simd
+echo "===== simd ====="
+prlimit --cpu=10.0 ./binsearch_main 1 ${n} ${m}  # simd (you must make it)
+<!--- end code --->
+
+<!--- md label=prob,ans --->
+# Combining vectorization + parallelization
+
+* now you learned both parallelization and vectorization
+* why don't you do both?
+
+#*P Vectorize + parallelize integral
+
+* apply both simd and parallel for to the following
+* you don't have to stick with the given parameter (10000 or 30000); play with it to observe good performance
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile integral_parallel_simd.c
+<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd06_simd_vext/include/compare_integral.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -Wall -O3 -mavx512f -mfma -o integral_parallel_simd integral_parallel_simd.c -lm
+#nvc -Wall -O3 -mavx512f -mfma -o integral_parallel_simd integral_parallel_simd.c -lm
+#gcc -Wall -O3 -mavx512f -mfma -o integral_parallel_simd integral_parallel_simd.c -lm
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+prlimit --cpu=3.0 ./integral_parallel_simd 10000
+prlimit --cpu=10.0 ./integral_parallel_simd 30000
+<!--- end code --->
+
+<!--- md label=ans --->
+_<font color="green">Example answer:</font>_
+<!--- end md --->
+<!--- code w kernel=python label=ans --->
+%%writefile integral_parallel_simd_ans.c
+<!--- exec-include ./mk_version.py -D VER=8 nb/source/pd06_simd_vext/include/compare_integral.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash label=ans --->
+clang -Wall -O3 -fopenmp -mavx512f -mfma -o integral_parallel_simd_ans integral_parallel_simd_ans.c -lm
+#nvc -Wall -O3 -mp -mavx512f -mfma -o integral_parallel_simd_ans integral_parallel_simd_ans.c -lm
+#gcc -Wall -O3 -fopenmp -mavx512f -mfma -o integral_parallel_simd_ans integral_parallel_simd_ans.c -lm
+<!--- end code --->
+
+<!--- code w kernel=bash label=ans  --->
+OMP_NUM_THREADS=8 ./integral_parallel_simd_ans
+<!--- end code --->
+
