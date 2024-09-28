@@ -37,7 +37,9 @@ data_py := $(wildcard data/*/graphs.py)
 #
 dvi := $(tex:.tex=.dvi)
 chk_fig := $(tex:.tex=.chk_fig)
-pdf := $(patsubst %.dvi,pdf/%.pdf,$(dvi))
+#pdf := $(patsubst %.dvi,pdf/%.pdf,$(dvi))
+pdf := $(patsubst %.dvi,../docs/slides/%.pdf,$(dvi))
+
 
 # ----- files generated and included -------------------------
 deps := 
@@ -115,7 +117,8 @@ deps += $(data_tex)
 all : $(pdf)
 chk : $(chk_fig)
 
-$(pdf) : pdf/%.pdf : %.dvi
+# $(pdf) : pdf/%.pdf : %.dvi
+$(pdf) : ../docs/slides/%.pdf : %.dvi
 	mkdir -p $(dir $@)
 	TTFONTS=/usr/share/fonts/truetype// dvipdfmx -f misc/font.map -o $@ $<
 
