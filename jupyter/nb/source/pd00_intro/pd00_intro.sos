@@ -2,6 +2,7 @@
 
 #* Parallel and Distributed Programming Hands-on Environment
 
+
 <!--- end md --->
 
 <!--- md w --->
@@ -19,23 +20,79 @@ Enter your name and student ID.
 <!--- end md --->
 
 <!--- md --->
+## Cell
 
+
+
+
+
+* A textbox like below is called a "cell"
+* Press SHIFT+ENTER to execute it
+
+<!--- end md --->
+
+<!--- md --->
 ## Python program cells
+<!--- end md --->
 
-* Execute by SHIFT + Enter
+<!--- code w kernel=python --->
+def f(x):
+    return x + 1
+
+f(3)
+<!--- end code --->
+
+<!--- md --->
+
+
+
+
+
+
+
+* while a cell is executing, `[*]` is shown on the left, which turns into a number like `[2]`
+* remember that you cannot execute other cells while `[*]` is shown
+* execute the cell below and observe `[*]`
 
 <!--- end md --->
 
 <!--- code w kernel=python --->
-# a Python cell
-def f(x):
-    return x + 1
+import time
+time.sleep(5.0)
+<!--- end code --->
 
-f(10)
+<!--- md --->
+
+
+
+
+
+
+
+
+
+
+
+* you should be able to stop an executing cell by ■ button at top of the tab, but do not expect it to work reliably
+* if it doesn't work, **reset kernel** by going to menu and selecting Kernel -&gt; Restart Kernel
+* even more powerful method to reset everything is to **restart the server** by going to menu and selecting File -&gt; Hub Control Panel -&gt; Stop Server -&gt; Start Server
+* execute the cell below and stop it before it finishes by ■ button
+* also try to reset kernel and restart server
+<!--- end md --->
+
+<!--- code w kernel=python --->
+import time
+time.sleep(10.0)
 <!--- end code --->
 
 <!--- md --->
 ## Cells starting with `%%writefile`
+
+
+
+
+
+
 
 * Pressing SHIFT + Enter on cells that begin with `%%writefile filename` save the contents of the cell into the specified file
 * They look like Python cells, but they typically contain C programs which are then compiled and executed by bash cells
@@ -54,13 +111,19 @@ int main() {
 <!--- md --->
 ## bash cells
 
-* Bash cells can run any Linux command
-* Jupyter seems to have a bug that unpredictably drops the output (when in doubt, execute it again)
-* In my experience, the bug is likely to appear when you execute the cell for the first time
+
+
+
+
+
+* The cell below is bash, in which you can execute Linux commands
+* There seems a bug that misses outputs.  Repeat executing several times when the output is suspicious.
 
 <!--- end md --->
 
 <!--- code w kernel=bash --->
+
+# if the result is not displayed, execute it again
 pwd
 <!--- end code --->
 
@@ -74,17 +137,55 @@ gcc hello.c -o hello
 <!--- end code --->
 
 <!--- md --->
+## text (markdown)
+
+
+* there are cells for ordinary texts (markdown format), not code
+
+<!--- end md --->
+
+<!--- md w --->
+
+
+* double-click this cell and edit
+  * after done, press SHIFT-ENTER to save
+<!--- end md --->
+
+<!--- md --->
 
 # Jupyter Terminals
 
-* A typical Jupyter environment executes programs of a programming language.  There is, however, an environment to execute arbitrary commands (terminal)
 
+
+
+
+
+
+
+
+
+
+
+* A typical Jupyter environment executes programs of a programming language.  There is, however, an environment to execute arbitrary commands (terminal)
 * click the "+" icon right below the menu to show the launcher page
 * select "Terminal" to open the command line terminal
 * some circumstances in which you want to use it
   * you browse a man page
-  * use kill command to terminate a program that does not stop with the reset button
-* to do them, however, you probably want to master SSH login described below instead
-* see [How to access Jupyter environment](https://taura.github.io/programming-languages/html/jupyter.html?lang=en) for how to set up SSH
+  * use kill command to terminate a program that does not stop with ■ button
+<!--- end md --->
 
+<!--- md --->
+
+# SSH でログイン / Login with SSH
+
+
+
+
+
+
+
+
+* to do them, however, you probably want to master SSH login described below instead
+* you don't have to do this immediately, but need it in later assignments
+* see [How to access Jupyter environment](https://taura.github.io/operating-systems/html/jupyter.html?lang=en) for how to set up SSH
 <!--- end md --->

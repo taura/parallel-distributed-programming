@@ -4,7 +4,7 @@
 
 # What's new (in the newest-first order)
 
-* <font color=blue>(Posted: Sep. 29, 2022)</font> Site up
+* <font color=blue>(Posted: Sep. 28, 2024)</font> Site up
 
 # Slides
 
