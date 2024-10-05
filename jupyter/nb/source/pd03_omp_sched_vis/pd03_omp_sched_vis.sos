@@ -25,7 +25,7 @@ Enter your name and student ID.
 <!--- md --->
 # Compilers
 
-* We use [LLVM ver. 15.0](https://llvm.org/) (`clang` and `clang++`) in this exercise, as [NVIDIA HPC SDK](https://docs.nvidia.com/hpc-sdk/index.html) (`nvc` and `nvc++`) does not support some of the OpenMP features we use below (taskloop)
+* We use [LLVM ver. 18.1.8](https://llvm.org/) (`clang` and `clang++`) in this exercise, as [NVIDIA HPC SDK](https://docs.nvidia.com/hpc-sdk/index.html) (`nvc` and `nvc++`) does not support some of the OpenMP features we use below (taskloop)
 <!--- end md --->
 
 <!--- md --->
@@ -36,6 +36,7 @@ Execute this before you use LLVM
 
 <!--- code w kernel=bash --->
 export PATH=/home/share/llvm/bin:$PATH
+export LD_LIBRARY_PATH=/home/share/llvm/lib:/home/share/llvm/lib/x86_64-unknown-linux-gnu:$LD_LIBRARY_PATH
 <!--- end code --->
 
 <!--- md --->
