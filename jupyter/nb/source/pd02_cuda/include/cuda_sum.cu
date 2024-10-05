@@ -1,13 +1,13 @@
-#com 2
+/*** com 2 */
 #include <assert.h>
 #include <stdio.h>
 
 #include "cuda_util.h"
 
 #include <cooperative_groups.h>
-#ifpy VER == 3
+/*** if VER == 3 */
 #include <cooperative_groups/reduce.h>
-#endifpy
+/*** endif */
 
 //using namespace cooperative_groups;
 // Alternatively use an alias to avoid polluting the namespace with collective algorithms
@@ -18,9 +18,9 @@ __global__ void sum_array(double * c, long n) {
   // you can destroy other elements of the array
   cg::grid_group g = cg::this_grid();
   unsigned long long i = g.thread_rank();
-#ifpy VER == 1
+/*** if VER == 3 */
   
-#elifpy VER == 2
+/*** elif VER == 2 */
   unsigned long long h;
   for (int m = n; m > 1; m = h) {
     h = (m + 1) / 2;
@@ -29,7 +29,7 @@ __global__ void sum_array(double * c, long n) {
     }
     g.sync();
   }
-#endifpy
+/*** endif */
 }
 
 int main(int argc, char ** argv) {

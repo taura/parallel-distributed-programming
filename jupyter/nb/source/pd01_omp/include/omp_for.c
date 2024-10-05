@@ -1,4 +1,3 @@
-#com 1
 #include <stdio.h>
 #include <unistd.h>
 #include <omp.h>
@@ -17,4 +16,3 @@ int main() {
   }
   return 0;
 }
-

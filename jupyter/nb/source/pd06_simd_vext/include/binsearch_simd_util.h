@@ -87,7 +87,7 @@ mask operator<=(int a, intv b) {
 // blend a and b by mask value
 // k[i] is 1 -> take a[i]
 // k[i] is 0 -> take b[i]
-// read it as if it is C's (k ? a : b) expression
+// read it as if it is C expression (k ? a : b)
 intv blend(mask k, intv a, intv b) {
   _intv v = _mm512_mask_blend_epi32(k, b.v, a.v);
   return intv(v);

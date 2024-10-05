@@ -1,8 +1,8 @@
-#com 2
+/*** com 2 */
 #include <assert.h>
 #include <stdio.h>
 
-#ifpy VER == 1
+/*** if VER == 1 */
 /*
   you'd better spend time on making sure you always check errors ...
 */
@@ -29,9 +29,9 @@ void check_launch_error_(const char * msg, const char * file, int line) {
 
 #define check_launch_error(exp) do { exp; check_launch_error_(#exp, __FILE__, __LINE__); } while (0)
 
-#elifpy VER == 2
+/*** elif VER == 2 */
 #include "cuda_util.h"
-#endifpy
+/*** endif */
 
 __global__ void cuda_thread_fun(int n) {
   int i        = blockDim.x * blockIdx.x + threadIdx.x;

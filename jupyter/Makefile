@@ -4,7 +4,7 @@
 #mk_nb_flags := --dbg 2
 
 nb_srcs :=
-nb_srcs += $(wildcard nb/source/pd??_*/*.sos)
+nb_srcs += $(wildcard nb/source/pd??_*/*.sos nb/source/pd??_*/pd*.py)
 
 aux_srcs :=
 #aux_srcs += $(wildcard nb_src/source/pd11_*/*.h)
@@ -16,4 +16,4 @@ aux_srcs :=
 users_csv := users.csv
 
 feedback_class := pd
-include ../../../jupyter_tools/authoring/jupyter_tools.mk
+include ../../jupyter_tools/authoring/jupyter_tools.mk

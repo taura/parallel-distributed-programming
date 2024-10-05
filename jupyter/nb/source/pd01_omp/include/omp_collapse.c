@@ -1,10 +1,9 @@
-#com 2
-
+/*** com 2 */
 #include <stdio.h>
 #include <unistd.h>
 #include <omp.h>
 
-#ifpy VER == 1
+/*** if VER == 1 */
 int main() {
   double t0 = omp_get_wtime();
   /* apply collapse and schedule */
@@ -20,7 +19,7 @@ int main() {
   printf("%f sec\n", t1 - t0);
   return 0;
 }
-#elifpy VER == 2
+/*** elif VER == 2 */
 int main() {
   double t0 = omp_get_wtime();
   /* apply collapse and schedule */
@@ -36,6 +35,7 @@ int main() {
   printf("%f sec\n", t1 - t0);
   return 0;
 }
-#endifpy
+/*** endif */
+
 
 

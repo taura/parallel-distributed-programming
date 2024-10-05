@@ -1,13 +1,13 @@
-#com 8
+/*** com 8 */
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#ifpy 4 <= VER <= 8
+/*** if 4 <= VER <= 8 */
 #include <omp.h>
-#endifpy
+/*** endif */
 
-#ifpy VER == 1
+/*** if VER == 1 */
 /* scalar version */
 double int_sqrt_one_minus_x2_y2(long n) {
   double h = 1.0 / n;
@@ -26,7 +26,7 @@ double int_sqrt_one_minus_x2_y2(long n) {
   }
   return s * h * h;
 }
-#elifpy VER == 2
+/*** elif VER == 2 */
 double int_sqrt_one_minus_x2_y2(long n) {
   double h = 1.0 / n;
   double s = 0.0;
@@ -44,7 +44,7 @@ double int_sqrt_one_minus_x2_y2(long n) {
   }
   return s * h * h;
 }
-#elifpy VER == 3
+/*** elif VER == 3 */
 double int_sqrt_one_minus_x2_y2(long n) {
   double h = 1.0 / n;
   double s = 0.0;
@@ -62,7 +62,7 @@ double int_sqrt_one_minus_x2_y2(long n) {
   }
   return s * h * h;
 }
-#elifpy VER == 4
+/*** elif VER == 4 */
 double int_sqrt_one_minus_x2_y2(long n) {
   double h = 1.0 / n;
   double s = 0.0;
@@ -81,7 +81,7 @@ double int_sqrt_one_minus_x2_y2(long n) {
   }
   return s * h * h;
 }
-#elifpy VER == 5
+/*** elif VER == 5 */
 double int_sqrt_one_minus_x2_y2(long n) {
   double h = 1.0 / n;
   double s = 0.0;
@@ -100,7 +100,7 @@ double int_sqrt_one_minus_x2_y2(long n) {
   }
   return s * h * h;
 }
-#elifpy VER == 6
+/*** elif VER == 6 */
 double int_sqrt_one_minus_x2_y2(long n) {
   double h = 1.0 / n;
   double s = 0.0;
@@ -117,8 +117,7 @@ double int_sqrt_one_minus_x2_y2(long n) {
   }
   return s * h * h;
 }
-
-#elifpy 7 <= VER < 9
+/*** elif 7 <= VER < 9 */
 #include <x86intrin.h>
 #if defined(__AVX512F__)
 enum { simd_width = 64 };       /* 512 bit = 64 bytes */
@@ -155,8 +154,7 @@ double vsum(doublev x) {
   return ((x[0] + x[1]) + (x[2] + x[3])) + ((x[4] + x[5]) + (x[6] + x[7]));
 }
 
-#ifpy VER == 7
-
+/*** if VER == 7 */
 double int_sqrt_one_minus_x2_y2(long n) {
   double h = 1.0 / n;
   doublev s = U(0);
@@ -175,8 +173,7 @@ double int_sqrt_one_minus_x2_y2(long n) {
   }
   return vsum(s) * h * h;
 }
-
-#elifpy VER == 8
+/*** elif VER == 8 */
 /* user-defined reduction on vec_t */
 #pragma omp declare reduction (vplus : doublev : omp_out += omp_in) initializer(omp_priv = U(0))
 
@@ -199,9 +196,7 @@ double int_sqrt_one_minus_x2_y2(long n) {
   }
   return vsum(s) * h * h;
 }
-#endifpy
-
-#elifpy VER == 9
+/*** elif VER == 9 */
 /* GPU */
 
 #include "cuda_util.h"
@@ -237,8 +232,8 @@ double int_sqrt_one_minus_x2_y2(long n) {
   check_api_error(cudaMemcpy(&s, s_dev, sizeof(double), cudaMemcpyDeviceToHost));
   return s;
 }
-
-#endifpy
+/*** endif */
+/*** endif */
 
 // wall clock time
 double get_wtime() {

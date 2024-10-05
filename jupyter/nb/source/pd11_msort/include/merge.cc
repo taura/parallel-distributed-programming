@@ -1,8 +1,8 @@
-#com 2
+/*** com 2 */
 #include <assert.h>
 #include "msort.h"
 
-#ifpy VER == 1
+/*** if VER == 1 */
 void merge(float * a, float * b, long p, long q, long s, long t, long d, long th) {
   (void)th;
   long i = p;
@@ -28,8 +28,7 @@ void merge_from_main(float * a, float * b, long p, long q, long s, long t, long 
   merge(a, b, p, q, s, t, d, th);
 }
 
-#elsepy
-
+/*** else */
 /* merge a[p:q] and a[r:s] --> b[d:] */
 static void merge_s(float * a, float * b, long p, long q, long s, long t, long d) {
   long i = p;
@@ -104,5 +103,4 @@ void merge_from_main(float * a, float * b, long p, long q, long s, long t, long 
 #pragma omp master
   merge(a, b, p, q, s, t, d, th);
 }
-
-#endifpy
+/*** endif */

@@ -1,11 +1,11 @@
-#com 2
+/*** com 2 */
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <omp.h>
 #include <immintrin.h>
 
-#ifpy VER == 1
+/*** if VER == 1 */
 long collatz(long a, long b, long n) {
   long s = 0;
   for (long i = a; i < b; i++) {
@@ -19,7 +19,7 @@ long collatz(long a, long b, long n) {
   }
   return s;
 }
-#elifpy VER == 2
+/*** elif VER == 2 */
 typedef long _longv __attribute__((vector_size(64), __may_alias__, aligned(sizeof(long))));
 struct longv {
   _longv v;
@@ -96,7 +96,7 @@ long collatz(long a, long b, long n) {
   }
   return s;
 }
-#endifpy
+/*** endif */
 
 int main(int argc, char ** argv) {
   int i = 1;
@@ -111,4 +111,3 @@ int main(int argc, char ** argv) {
   printf("answer = %ld\n", c);
   return 0;
 }
-

@@ -1,9 +1,9 @@
-#com 3
+/*** com 3 */
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifpy VER <= 2
+/*** if VER <= 2 */
 double l2_norm(double * a, long n) {
   double s = 0.0;
   for (long i = 0; i < n; i++) {
@@ -11,7 +11,7 @@ double l2_norm(double * a, long n) {
   }
   return sqrt(s);
 }
-#elifpy VER == 3
+/*** elif VER == 3 */
 #include <x86intrin.h>
 #if defined(__AVX512F__)
 #define SIMD_WIDTH 64
@@ -57,7 +57,7 @@ double l2_norm(double * a, long n) {
   }
   return sqrt(s);
 }
-#endifpy
+/*** endif */
 
 int main(int argc, char ** argv) {
   int i = 1;

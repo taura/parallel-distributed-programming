@@ -1,10 +1,10 @@
-#com 2
+/*** com 2 */
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-#ifpy VER == 1
+/*** if VER == 1 */
 /* serial version */
 double int_sqrt_one_minus_x2_y2(long n) {
   double h = 1.0 / n;
@@ -23,7 +23,7 @@ double int_sqrt_one_minus_x2_y2(long n) {
   }
   return s * h * h;
 }
-#elifpy VER == 2
+/*** elif VER == 2 */
 /* serial version */
 double int_sqrt_one_minus_x2_y2(long n) {
   double h = 1.0 / n;
@@ -43,7 +43,7 @@ double int_sqrt_one_minus_x2_y2(long n) {
   }
   return s * h * h;
 }
-#endifpy
+/*** endif */
 
 int main(int argc, char ** argv) {
   int i = 1;

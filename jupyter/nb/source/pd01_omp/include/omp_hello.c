@@ -1,6 +1,6 @@
-#com 3
+/*** com 3 */
 #include <stdio.h>
-#ifpy VER == 1
+/*** if VER == 1 */
 
 int main() {
   printf("hello\n");
@@ -9,7 +9,7 @@ int main() {
   printf("good bye\n");
   return 0;
 }
-#elifpy VER == 2
+/*** elif VER == 2 */
 
 int main() {
   printf("hello\n");
@@ -20,7 +20,7 @@ int main() {
   }
   return 0;
 }
-#elifpy VER == 3
+/*** elif VER == 3 */
 #include <omp.h>
 
 int main() {
@@ -34,4 +34,4 @@ int main() {
   printf("good bye\n");
   return 0;
 }
-#endifpy
+/*** endif */

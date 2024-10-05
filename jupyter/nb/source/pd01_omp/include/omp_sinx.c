@@ -1,4 +1,4 @@
-#com 4
+/*** com 4 */
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>
@@ -11,22 +11,21 @@ int main() {
   double dx = (b - a) / n;
   double s = 0.0;
   double t0 = omp_get_wtime();
-#ifpy VER == 2
+/*** if VER == 2 */
 #pragma omp parallel for reduction(+:s)
-#else
+/*** else */
 #pragma omp parallel for
-#endifpy
+/*** endif */
   for (int i = 0; i < n; i++) {
     double x = a + i * dx;
-#ifpy VER == 3
+/*** if VER == 3 */
 #pragma omp critical
-#elifpy VER == 4
+/*** elif VER == 4 */
 #pragma omp atomic
-#endifpy
+/*** endif */
     s += 0.5 * (sin(x) + sin(x + dx)) * dx;
   }
   double t1 = omp_get_wtime();
   printf("ans = %.9f in %f sec\n", s, t1 - t0);
   return 0;
 }
-

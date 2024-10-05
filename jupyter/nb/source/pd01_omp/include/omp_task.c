@@ -1,4 +1,3 @@
-#com 1
 #include <stdio.h>
 #include <unistd.h>
 #include <omp.h>
@@ -26,4 +25,3 @@ int main() {
   printf("%f sec\n", t1 - t0);
   return 0;
 }
-

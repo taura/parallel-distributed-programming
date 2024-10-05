@@ -1,4 +1,3 @@
-#com 1
 #include <assert.h>
 #include <stdio.h>
 

@@ -1,4 +1,3 @@
-#com 1
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>

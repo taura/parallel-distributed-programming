@@ -1,23 +1,23 @@
-#ifpy VER == 1
+/*** if VER == 1 */
 /* 
  * mm_main_cpu.cc
  */
-#elifpy VER == 2
+/*** elif VER == 2 */
 /* 
  * mm_main_cuda.cc
  */
-#endifpy
+/*** endif */
 
 #include <assert.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifpy VER == 1
+/*** if VER == 1 */
 #include "mm_cpu.h"
-#elifpy VER == 2
+/*** elif VER == 2 */
 #include "mm_cuda.h"
-#endifpy
+/*** endif */
 #include "event.h"
 
 void gemm(matrix A, matrix B, matrix C);
@@ -77,20 +77,20 @@ int main(int argc, char ** argv) {
   rand_init(A, rg);
   rand_init(B, rg);
   zero_init(C);
-#ifpy VER == 2
+/*** if VER == 2 */
   A.to_dev();
   B.to_dev();
   C.to_dev();
-#endifpy
+/*** endif */
   
   const long fmas = (long)M * (long)N * (long)K;
   const long repeat = (approx_fmas + fmas - 1) / fmas;
   const long fmas_total = fmas * repeat;
   printf("M = %ld, N = %ld, K = %ld\n", M, N, K);
   printf("sizeof(real) = %ld\n", sizeof(real));
-#ifpy VER == 1
+/*** if VER == 1 */
   printf("L : %u\n", L);
-#endifpy
+/*** endif */
   printf("A : %ld x %ld (ld=%ld) %ld bytes\n",
          M, K, (long)A.ld, M * A.ld * sizeof(real));
   printf("B : %ld x %ld (ld=%ld) %ld bytes\n",
@@ -103,38 +103,38 @@ int main(int argc, char ** argv) {
   printf("perform %ld fmas ... ", fmas_total); fflush(stdout);
 
   const char * events = getenv("EV");
-#ifpy VER == 1
+/*** if VER == 1 */
   if (!events) events = "cycles,ref-cycles,instructions";
-#elifpy VER == 2
+/*** elif VER == 2 */
   if (!events) events = "ref-cycles";
-#endifpy
+/*** endif */
   perf_event_counters_t pc = mk_perf_event_counters(events);
   perf_event_values_t v0 = perf_event_counters_get(pc);
-#ifpy VER == 2
+/*** if VER == 2 */
   long long int t0 = get_gpu_clock();
-#endifpy
+/*** endif */
   /* real thing happens here */
   for (long i = 0; i < repeat; i++) {
     gemm(A, B, C);
   }
-#ifpy VER == 2
+/*** if VER == 2 */
   long long int t1 = get_gpu_clock();
   long long int dt = t1 - t0;
-#endifpy
+/*** endif */
   /* real thing ends here */
   perf_event_values_t v1 = perf_event_counters_get(pc);
   printf("done\n");
-#ifpy VER == 2
+/*** if VER == 2 */
   C.to_host();
-#endifpy
+/*** endif */
 
   /* show performance counters */
   for (int i = 0; i < pc.n; i++) {
     printf("%s : %lld\n", pc.events[i], v1.values[i] - v0.values[i]);
   }
-#ifpy VER == 2
+/*** if VER == 2 */
   printf("gpu-clock : %lld\n", dt);
-#endifpy
+/*** endif */
   for (int i = 0; i < pc.n; i++) {
     if (strcmp(pc.events[i], "cycles") == 0) {
       long dt = v1.values[i] - v0.values[i];
@@ -149,9 +149,9 @@ int main(int argc, char ** argv) {
       printf("%f fmas/instruction\n", fmas_total / (double)di);
     }
   }
-#ifpy VER == 2
+/*** if VER == 2 */
   printf("%f fmas/gpu-clock\n", fmas_total / (double)dt);
-#endifpy
+/*** endif */
   printf("=== checking results of randomly picked %ld elements ===\n", chk);
   for (long c = 0; c < chk; c++) {
     long i = nrand48(rg) % M;

@@ -1,4 +1,4 @@
-#com 2
+/*** com 2 */
 #include "msort.h"
 
 /* insertion sort for leaf cases */
@@ -37,17 +37,17 @@ static void msort_r(float * a, float * b, float * g, long p, long q, long th0, l
     long r = (p + q) / 2;
     /* get partial results into the other array != g */
     float * h = (g == a ? b : a);
-#ifpy VER == 2
+/*** if VER == 2 */
 #pragma omp task
-#endifpy
+/*** endif */
     msort_r(a, b, h, p, r, th0, th1);
-#ifpy VER == 2
+/*** if VER == 2 */
 #pragma omp task
-#endifpy
+/*** endif */
     msort_r(a, b, h, r, q, th0, th1);
-#ifpy VER == 2
+/*** if VER == 2 */
 #pragma omp taskwait
-#endifpy
+/*** endif */
     /* merge h[p:r] and h[r:q] -> g[p:]*/
     merge(h, g, p, r, r, q, p, th1);
   }
@@ -55,10 +55,10 @@ static void msort_r(float * a, float * b, float * g, long p, long q, long th0, l
 
 /* merge sort, called from the main */
 void msort_from_main(float * a, float * b, float * g, long p, long q, long th0, long th1) {
-#ifpy VER == 2
+/*** if VER == 2 */
 #pragma omp parallel
 #pragma omp master
-#endifpy
+/*** endif */
   msort_r(a, b, g, p, q, th0, th1);
 }
 

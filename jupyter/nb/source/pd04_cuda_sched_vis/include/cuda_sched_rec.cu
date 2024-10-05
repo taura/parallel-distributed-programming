@@ -1,4 +1,4 @@
-#com 3
+/*** com 3 */
 #include <assert.h>
 #include <stdio.h>
 
@@ -20,9 +20,9 @@ typedef struct {
    on are recorded to R. */
 __global__ void cuda_thread_fun(double a, double b, record_t * R,
                                 llint * T, llint n, llint m,
-#ifpy VER == 3
+/*** if VER == 3 */
                                 int D,
-#endifpy
+/*** endif */
                                 int nthreads) {
   // my thread index
   int idx      = blockDim.x * blockIdx.x + threadIdx.x;
@@ -37,17 +37,17 @@ __global__ void cuda_thread_fun(double a, double b, record_t * R,
   // occasionally recording the clock
   for (long i = 0; i < n; i++) {
     T[i] = clock64();
-#ifpy VER == 3
+/*** if VER == 3 */
     if ((idx / D) % 2 == 0) {
       for (long j = 0; j < m; j++) {
         x = a * x + b;
       }
     }
-#elsepy
+/*** else */
     for (long j = 0; j < m; j++) {
       x = a * x + b;
     }
-#endifpy
+/*** endif */
   }
   // record ending SM (must be = sm0)
   R[idx].sm1 = get_smid();
@@ -99,13 +99,13 @@ int main(int argc, char ** argv) {
   // call the kernel
   int shm_elems = shm_sz / sizeof(double);
   int shm_size = shm_elems * sizeof(double);
-#ifpy VER == 3
+/*** if VER == 3 */
   check_launch_error((cuda_thread_fun<<<n_thread_blocks,thread_block_sz,shm_size>>>
                       (a, b, R_dev, T_dev, n, m, D, nthreads)));
-#elsepy
+/*** else */
   check_launch_error((cuda_thread_fun<<<n_thread_blocks,thread_block_sz,shm_size>>>
                       (a, b, R_dev, T_dev, n, m, nthreads)));
-#endifpy
+/*** endif */
   cudaDeviceSynchronize();
 
   // get back the results and clocks

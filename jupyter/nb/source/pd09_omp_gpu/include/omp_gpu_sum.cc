@@ -1,4 +1,4 @@
-#com 2
+/*** com 2 */
 #include <stdio.h>
 #include <unistd.h>
 #include <time.h>
@@ -30,9 +30,9 @@ struct vec {
 // a function that calculates the sum of all elements of v
 float sum(vec v) {
   float s = 0.0;
-#ifpy VER >= 2
+/*** if VER >= 2 */
 #pragma omp target teams distribute parallel for reduction(+:s) map(to: v, v.a[0:v.n]) map(tofrom: s)
-#endifpy
+/*** endif */
   for (long i = 0; i < v.n; i++) {
     s += v[i];
   }

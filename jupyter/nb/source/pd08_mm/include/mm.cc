@@ -1,12 +1,12 @@
-#com 5
+/*** com 5 */
 #include <assert.h>
-#ifpy VER < 10
+/*** if VER < 10 */
 #include "mm_cpu.h"
-#elsepy
+/*** else */
 #include "mm_cuda.h"
-#endifpy
+/*** endif */
 
-#ifpy VER == 1
+/*** if VER == 1 */
 void gemm(matrix A, matrix B, matrix C) {
   idx_t M = C.M;
   idx_t N = C.N;
@@ -24,7 +24,7 @@ void gemm(matrix A, matrix B, matrix C) {
   }
 }
 
-#elifpy VER == 2
+/*** elif VER == 2 */
 void gemm(matrix A, matrix B, matrix C) {
   idx_t M = C.M;
   idx_t N = C.N;
@@ -43,7 +43,7 @@ void gemm(matrix A, matrix B, matrix C) {
   }
 }
 
-#elifpy VER == 3
+/*** elif VER == 3 */
 void gemm(matrix A, matrix B, matrix C) {
   idx_t M = C.M;
   idx_t N = C.N;
@@ -71,7 +71,7 @@ void gemm(matrix A, matrix B, matrix C) {
   }
 }
 
-#elifpy VER == 4
+/*** elif VER == 4 */
 void gemm(matrix A, matrix B, matrix C) {
   idx_t M = C.M;
   idx_t N = C.N;
@@ -106,7 +106,7 @@ void gemm(matrix A, matrix B, matrix C) {
   }
 }
 
-#elifpy VER < 10
+/*** elif VER < 10 */
 template<idx_t N>
 struct matric {
   idx_t M;
@@ -206,7 +206,7 @@ void gemm(matrix A, matrix B, matrix C) {
   }
 }
 
-#elifpy VER == 10
+/*** elif VER == 10 */
 __global__ void gemm_cuda(matrix A, matrix B, matrix C) {
   idx_t M = C.M;
   idx_t N = C.N;
@@ -225,6 +225,6 @@ __global__ void gemm_cuda(matrix A, matrix B, matrix C) {
 void gemm(matrix A, matrix B, matrix C) {
   check_launch_error((gemm_cuda<<<1,1>>>(A, B, C)));
 }
+/*** endif */
 
-#endifpy
 

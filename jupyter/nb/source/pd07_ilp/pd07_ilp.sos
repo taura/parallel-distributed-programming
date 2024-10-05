@@ -16,9 +16,7 @@ Execute this before you use NVIDIA HPC SDK
 <!--- end md --->
 
 <!--- code w kernel=bash --->
-export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.11/compilers/bin:$PATH
-#export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.9/compilers/bin:$PATH
-#export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/compilers/bin:$PATH
+export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/24.9/compilers/bin:$PATH
 <!--- end code --->
 
 <!--- md --->

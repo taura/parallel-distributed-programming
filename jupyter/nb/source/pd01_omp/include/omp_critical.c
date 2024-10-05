@@ -1,4 +1,4 @@
-#com 2
+/*** com 2 */
 #include <stdio.h>
 #include <unistd.h>
 #include <omp.h>
@@ -9,13 +9,12 @@ int main() {
 #pragma omp parallel
   {
     int id = omp_get_thread_num();
-#ifpy VER == 2
+/*** if VER == 2 */
 #pragma omp critical
-#endifpy
+/*** endif */
     x++;
     printf("thread %d : x = %d\n", id, x);
   }
   printf("after : x = %d\n", x);
   return 0;
 }
-

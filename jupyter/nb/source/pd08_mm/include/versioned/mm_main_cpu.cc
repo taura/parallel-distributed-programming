@@ -62,8 +62,8 @@ int main(int argc, char ** argv) {
   matrix C(M, N);
 
   unsigned short rg[3] = { (unsigned short)((seed >> 16) & 65535),
-			   (unsigned short)((seed >> 8)  & 65535),
-			   (unsigned short)((seed >> 0)  & 65535) };
+                           (unsigned short)((seed >> 8)  & 65535),
+                           (unsigned short)((seed >> 0)  & 65535) };
   rand_init(A, rg);
   rand_init(B, rg);
   zero_init(C);
@@ -81,7 +81,7 @@ int main(int argc, char ** argv) {
   printf("C : %ld x %ld (ld=%ld) %ld bytes\n",
          M, N, (long)C.ld, M * C.ld * sizeof(real));
   printf("total = %ld bytes\n",
-	 (M * A.ld + K * B.ld + M * C.ld) * sizeof(real));
+         (M * A.ld + K * B.ld + M * C.ld) * sizeof(real));
   printf("repeat : %ld times\n", repeat);
   printf("perform %ld fmas ... ", fmas_total); fflush(stdout);
 
@@ -121,7 +121,7 @@ int main(int argc, char ** argv) {
     long j = nrand48(rg) % N;
     real s = comp_ij(A, B, i, j, repeat);
     printf("C(%ld,%ld) = %f, ans = %f, |C(%ld,%ld) - s| = %.9f\n",
-	   i, j, C(i,j), s,
+           i, j, C(i,j), s,
            i, j, fabs(C(i,j) - s));
   }
   perf_event_counters_destroy(pc);

@@ -31,7 +31,7 @@
 # Compilers
 
 * Modern compilers including GCC, LLVM, NVIDIA HPC SDK support SIMD.
-* We continue to use [NVIDIA HPC SDK ver. 22.9](https://docs.nvidia.com/hpc-sdk/index.html) (`nvc` and `nvc++`) and [LLVM ver. 15.0](https://llvm.org/) (`clang` and `clang++`)
+* We continue to use [NVIDIA HPC SDK ver. 24.9](https://docs.nvidia.com/hpc-sdk/index.html) (`nvc` and `nvc++`) and [LLVM ver. 20.0](https://llvm.org/) (`clang` and `clang++`)
 * We also try GCC to see if which compilers are able to vectorize which code
 
 ## Set up NVIDIA HPC SDK
@@ -40,8 +40,7 @@ Execute this before you use NVIDIA HPC SDK
 <!--- end md --->
 
 <!--- code w kernel=bash --->
-export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.9/compilers/bin:$PATH
-#export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/compilers/bin:$PATH
+export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/24.9/compilers/bin:$PATH
 <!--- end code --->
 
 <!--- md --->

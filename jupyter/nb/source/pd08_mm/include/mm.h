@@ -1,16 +1,16 @@
-#ifpy VER == 1
+/*** if VER == 1 */
 /* 
  * mm_cpu.h
  */
-#elifpy VER == 2
+/*** elif VER == 2 */
 /* 
  * mm_cuda.h
  */
-#endifpy
+/*** endif */
 
 /* type definition */
 typedef float real;
-#ifpy VER == 1
+/*** if VER == 1 */
 typedef long idx_t;
 
 #if ! defined(__AVX512F__)
@@ -32,7 +32,7 @@ __attribute__((unused))
 static realv& V(real& p) {
   return *((realv*)&p);
 }
-#elifpy VER == 2
+/*** elif VER == 2 */
 typedef int idx_t;
 
 #include <stdio.h>
@@ -158,7 +158,7 @@ static long long int get_gpu_clock(void) {
   dev_free(t_dev);
   return t[0];
 }
-#endifpy
+/*** endif */
 
 #define CHECK_IDX 0
 
@@ -167,24 +167,24 @@ struct matrix {
   idx_t N;                      // number of columns
   idx_t ld;                     // leading dimension (usually = N)
   real * a;                     // array of values (M x ld elements)
-#ifpy VER == 2
+/*** if VER == 2 */
   real * a_dev;                 // shadow of a on GPU
-#endifpy
+/*** endif */
   matrix(idx_t _M, idx_t _N) {
     M = _M;
     N = _N;
     ld = _N;
-#ifpy VER == 1
+/*** if VER == 1 */
     a = (real *)aligned_alloc(vwidth, sizeof(real) * M * ld);
-#elifpy VER == 2
+/*** elif VER == 2 */
     a = (real *)malloc(sizeof(real) * M * ld);
     a_dev = (real *)dev_malloc(sizeof(real) * M * ld);
-#endifpy
+/*** endif */
   }
   /* return a scalar A(i,j) */
-#ifpy VER == 2
+/*** if VER == 2 */
   __host__ __device__
-#endifpy
+/*** endif */
   real& operator() (idx_t i, idx_t j) {
 #if CHECK_IDX
     assert(i < M);
@@ -192,17 +192,17 @@ struct matrix {
     assert(i >= 0);
     assert(j >= 0);
 #endif
-#ifpy VER == 1
+/*** if VER == 1 */
     return a[i * ld + j];
-#elifpy VER == 2
+/*** elif VER == 2 */
 #ifdef __CUDA_ARCH__
     return a_dev[i * ld + j];
 #else
     return a[i * ld + j];
 #endif
-#endifpy
+/*** endif */
   }
-#ifpy VER == 1
+/*** if VER == 1 */
   /* A.V(i,j) returns a vector at A(i,j) (i.e., A(i,j:j+L)).
      you can put it on lefthand side, e.g., A.V(i,j) = ... */
   realv& V(idx_t i, idx_t j) {
@@ -214,14 +214,14 @@ struct matrix {
 #endif
     return ::V(a[i * ld + j]);
   }
-#endifpy
-#ifpy VER == 2
+/*** endif */
+/*** if VER == 2 */
   void to_dev() {
     ::to_dev(a_dev, a, sizeof(real) * M * ld);
   }
   void to_host() {
     ::to_host(a, a_dev, sizeof(real) * M * ld);
   }
-#endifpy
+/*** endif */
 };
 

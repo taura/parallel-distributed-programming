@@ -23,8 +23,7 @@ Enter your name and student ID.
 # Compilers
 
 * We use [NVIDIA HPC SDK](https://docs.nvidia.com/hpc-sdk/index.html) (`nvcc`) for CUDA compilers
-* [LLVM ver. 15.0](https://llvm.org/) (`clang` and `clang++`) and NVIDA's C/C++ compilers (`nvc` and `nvc++`) we used for OpenMP also support CUDA, but they fail to compile some of our code, so we stick to more traditional `nvcc`
-* Note: the new version of NVIDIA HPC SDK, ver. 22.9, just appeared and is installed in our Jupyter environment
+* [LLVM ver. 20.0](https://llvm.org/) (`clang` and `clang++`) and NVIDA's C/C++ compilers (`nvc` and `nvc++`) we used for OpenMP also support CUDA, but they fail to compile some of our code, so we stick to more traditional `nvcc`
 <!--- end md --->
 
 <!--- md --->
@@ -34,8 +33,7 @@ Enter your name and student ID.
 <!--- end md --->
 
 <!--- code w kernel=bash --->
-#export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/compilers/bin:$PATH
-export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.9/compilers/bin:$PATH
+export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/24.9/compilers/bin:$PATH
 <!--- end code --->
 
 <!--- md --->
@@ -47,6 +45,8 @@ export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.9/compilers/bin:$PATH
 which nvcc
 which nvc
 which nvc++
+nvcc --version
+nvc --version
 <!--- end code --->
 
 <!--- md --->
@@ -67,6 +67,7 @@ export PATH=/home/share/llvm/bin:$PATH
 <!--- code w kernel=bash --->
 which clang
 which clang++
+clang --version
 <!--- end code --->
 
 <!--- md --->

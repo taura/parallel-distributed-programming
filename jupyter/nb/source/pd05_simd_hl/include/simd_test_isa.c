@@ -1,5 +1,5 @@
-#com 2
-#ifpy VER == 1
+/*** com 2 */
+/*** if VER == 1 */
 #include <stdio.h>
 #include <x86intrin.h>
 int main(int argc, char ** argv) {
@@ -11,7 +11,7 @@ int main(int argc, char ** argv) {
   printf("OK: c[0] = %f\n", c[0]);
   return 0;
 }
-#elifpy VER == 2
+/*** elif VER == 2 */
 #include <stdio.h>
 #include <x86intrin.h>
 int main(int argc, char ** argv) {
@@ -23,4 +23,4 @@ int main(int argc, char ** argv) {
   printf("OK: c[0] = %f\n", c[0]);
   return 0;
 }
-#endifpy
+/*** endif */

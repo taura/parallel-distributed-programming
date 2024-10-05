@@ -37,7 +37,7 @@ Execute this before you use NVIDIA HPC SDK
 <!--- end md --->
 
 <!--- code w kernel=bash --->
-export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/compilers/bin:$PATH
+export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/24.9/compilers/bin:$PATH
 <!--- end code --->
 
 <!--- md --->
@@ -47,6 +47,7 @@ Check if it works (check if full paths of nvc/nvc++ are shown)
 <!--- code w kernel=bash --->
 which nvc
 which nvc++
+which nvcc
 <!--- end code --->
 
 <!--- md --->
@@ -60,7 +61,7 @@ export PATH=/home/share/llvm/bin:$PATH
 <!--- end code --->
 
 <!--- md --->
-Check if it works (check if full paths of nvc/nvc++ are shown)
+Check if it works (check if full paths of clang/clang++ are shown)
 <!--- end md --->
 
 <!--- code w kernel=bash --->
@@ -141,8 +142,8 @@ OMP_NUM_THREADS=3 ./omp_hello_nvc
 <!--- md --->
 # `#pragma omp parallel`
 
-* [#pragma omp parallel](https://www.openmp.org/spec-html/5.0/openmpse14.html#x54-800002.6) creates a _team_ of threads, each of which executes the next statement
-* Note that only the statement that is right next to the pragma is executed by the team of threads
+* [#pragma omp parallel](https://www.openmp.org/spec-html/5.0/openmpse14.html#x54-800002.6) creates a _team_ of threads, each of which executes the statement below
+* Note that only the statement that is right below the pragma is executed by the team of threads
 * Of course, the statement can be a compound statement and/or include a function call, so each thread can actually execute arbitrary number of statements
 * See [Determining the Number of Threads for a parallel Region](https://www.openmp.org/spec-html/5.0/openmpsu35.html#x55-880002.6.1) for more details on the number of threads created by `#pragma omp parallel`
 <!--- end md --->
@@ -326,22 +327,8 @@ OMP_NUM_THREADS=4 ./omp_parallel_for
 #*P Specifying the scheduling policy by schedule clause
 
 * In the following (artificial) loop, iteration _i_ roughly sleeps for (100 x _i_) milliseconds and this is almost exactly the time it takes
-1. reason about the executing time of the parallel for loop with the default (static) scheduling policy
+1. predict the executing time of the parallel for loop with the default (static) scheduling policy
 1. vary the scheduling policy and reason about their execution times
-
-2022 note:
-dynamic policy ends up
-
-```
-444488888888222222222222666666666666666600000000000000000000
-155555999999999333333333333377777777777777777111111111111111111111
-226666660000000000444444444444448888888888888888882222222222222222222222
-333777777711111111111555555555555555999999999999999999933333333333333333333333
-```
-
-(3 + 7 + ... + 23) * 0.1 = 7.8 sec 
-
-many think dynamic policy should take (0 + 1 + ... + 23) / 4 = 6.9 sec
 
 <!--- end md --->
 
@@ -360,9 +347,11 @@ OMP_NUM_THREADS=4 ./omp_schedule
 <!--- end code --->
 
 <!--- md label=prob,ans --->
-* What should be the execution time with the default (static) policy?
-* What should be the execution time with the dynamic policy?
-* Compare them with what you observed 
+* Predict the execution time with the default (static) policy
+* Predict the execution time with the dynamic policy?
+* Compare them with what you observed
+
+* Explain your reasoning below
 <!--- end md --->
 
 <!--- md w points=1 --->
@@ -374,18 +363,20 @@ _<font color="green">Example answer:</font>_
 
 In this loop, later iterations take longer.  Therefore, 
 
-* in the static policy, the execution time of the entire parallel loop will be the execution time of the thread 3, which are assigned iterations 18 - 23.  the execution time will therefore be ((18 + 19 + ... + 23) * 100) milliseconds = 12.3 seconds
+* in the static policy, the execution time of the entire parallel loop will be the execution time of the thread 3, which are assigned iterations 9-11.  the execution time will therefore be ((9 + 10 + 11) * 100) milliseconds = 3.0 seconds
 
-* in the dynamic policy, a crude (and optimistic) estimation, which assumes a perfect load balancing, is simply the serial execution time divided by the number of threads, which is ((0 + 1 + ... + 23) * 100) / 4 milliseconds = 6.9 seconds.  To be more precise in this particular case, the likely scenario will be the following (a number represents the last digit of an iteration number).
+* in the dynamic policy, a crude (and optimistic) estimation, which assumes a perfect load balancing, is simply the serial execution time divided by the number of threads, which is ((0 + 1 + ... + 11) * 100) / 4 milliseconds = 1.65 seconds.
+
+This crude approximation isn't quite acurate in this example, however.  To be more precise in this particular case, the likely scenario will be the following (a number represents the last digit of an iteration number).
 
 ```
-[0] 44448888888822222222222266666666666666660000000000000000000
-[1] 15555599999999933333333333337777777777777777711111111111111111111
-[2] 22666666000000000044444444444444888888888888888888222222222222222222222
-[3] 33377777771111111111155555555555555599999999999999999933333333333333333333333
+[0] 444488888888
+[1] 155555999999999
+[2] 226666660000000000
+[3] 333777777711111111111
 ```
 
-In this case, the execution time will be (3 + 7 + ... + 23) * 100 milliseconds = 7.8 seconds
+In this case, the execution time will be (3 + 7 + 11) * 100 milliseconds = 2.1 seconds
 <!--- end md --->
 
 <!--- md --->
@@ -472,7 +463,7 @@ OMP_NUM_THREADS=3 ./omp_collapse_ans
 <!--- end code --->
 
 <!--- md --->
-# Tasks
+# Task parallelism
 
 * Task is a more general mechanism to extract parallelism and distribute computation (called a task) _dynamically_ to threads in a team created by `#pragma omp parallel`
 * A thread can create a task at any point in the execution of a parallel region and they are dispatched to available threads at runtime

@@ -1,4 +1,4 @@
-#com 3
+/*** com 3 */
 #include <assert.h>
 #include <stdio.h>
 
@@ -7,11 +7,11 @@
 __global__ void cuda_thread_fun(unsigned long long * p, int n) {
   int i        = blockDim.x * blockIdx.x + threadIdx.x;
   if (i < n) {
-#ifpy VER == 1 or VER == 2
+/*** if VER == 1 or VER == 2 */
     *p = *p + 1;
-#elifpy VER == 3
+/*** elif VER == 3 */
     atomicAdd(p, 1L);
-#endifpy
+/*** endif */
   }
 }
 
