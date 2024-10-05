@@ -36,8 +36,6 @@ export PATH=/usr/local/cuda/bin:$PATH
 
 <!--- code w kernel=bash --->
 which nvcc
-which nvc
-which nvc++
 <!--- end code --->
 
 <!--- md --->
