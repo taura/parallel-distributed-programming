@@ -40,7 +40,7 @@ export LD_LIBRARY_PATH=/home/share/llvm/lib:/home/share/llvm/lib/x86_64-unknown-
 <!--- end code --->
 
 <!--- md --->
-Check if it works (check if full paths of nvc/nvc++ are shown)
+Check if it works (check if full paths of clang/clang++ are shown)
 <!--- end md --->
 
 <!--- code w kernel=bash --->

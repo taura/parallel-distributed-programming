@@ -27,13 +27,14 @@ Enter your name and student ID.
 <!--- end md --->
 
 <!--- md --->
-## NVIDIA HPC SDK
+## Set up NVIDIA CUDA and HPC SDK
 
-* Execute this before you use NVIDIA HPC SDK
+Execute this before you use NVIDIA HPC SDK
 <!--- end md --->
 
 <!--- code w kernel=bash --->
 export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/24.9/compilers/bin:$PATH
+export PATH=/usr/local/cuda/bin:$PATH
 <!--- end code --->
 
 <!--- md --->
