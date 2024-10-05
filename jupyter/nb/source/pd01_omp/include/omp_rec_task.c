@@ -18,7 +18,8 @@ void recursive_tasks(int n, int tid) {
 }
 int main() {
   double t0 = omp_get_wtime();
-#pragma omp parallel master
+#pragma omp parallel
+#pragma omp master
   {
     recursive_tasks(5, 0);
   }

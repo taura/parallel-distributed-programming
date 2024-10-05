@@ -4,7 +4,8 @@
 
 int main() {
   double t0 = omp_get_wtime();
-#pragma omp parallel master
+#pragma omp parallel
+#pragma omp master
   {
     printf("I am thread %d of a team of %d threads\n",
            omp_get_thread_num(), omp_get_num_threads());

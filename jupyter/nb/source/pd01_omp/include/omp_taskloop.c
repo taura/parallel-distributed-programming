@@ -4,7 +4,8 @@
 
 int main() {
   double t0 = omp_get_wtime();
-#pragma omp parallel master
+#pragma omp parallel
+#pragma omp master
 #pragma omp taskloop
   for (int i = 0; i < 5; i++) {
     printf("i = %d starts\n", i);

@@ -19,7 +19,6 @@ int main() {
 #pragma omp atomic
 /*** endif */
     x++;
-    printf("thread %d : x = %d\n", id, x);
   }
   printf("after : x = %d\n", x);
   return 0;
