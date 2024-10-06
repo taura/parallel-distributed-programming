@@ -1,4 +1,4 @@
-<!--- md label=prob,ans --->
+<!--- md --->
 
 #* OpenMP Programming Tutorial and Hands-on
 
@@ -126,7 +126,7 @@ OMP_NUM_THREADS=3 ./omp_hello_clang
 OMP_NUM_THREADS=3 ./omp_hello_nvc
 <!--- end code --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Change the number of threads
 
 * Execute them with various numbers of threads and see what happens
@@ -153,7 +153,7 @@ OMP_NUM_THREADS=3 ./omp_hello_nvc
 * See [Determining the Number of Threads for a parallel Region](https://www.openmp.org/spec-html/5.0/openmpsu35.html#x55-880002.6.1) for more details on the number of threads created by `#pragma omp parallel`
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Executing multiple statements by threads
 
 * Change following program so that both "world" and "good bye" are printed as many times as the number of threads
@@ -208,7 +208,7 @@ OMP_NUM_THREADS=3 ./omp_hello
 * You need `#include <omp.h>` to use these functions or any OpenMP API functions, for that matter
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 
 #*P Using `omp_get_num_threads()` and `omp_get_thread_num()`
 
@@ -265,24 +265,24 @@ OMP_NUM_THREADS=3 ./omp_hello_id_ans
 * `#pragma omp for` lets you divide iterations of a loop into threads created by `#pragma omp parallel`
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P How does `#pragma omp for` divide iterations to threads?
 
 * Execute the following cell and observe which iteration is executed by which thread
 * Based on the observation, change the number of iterations and threads and predict the mapping between iterations and threads
 <!--- end md --->
 
-<!--- code w kernel=python points=1 label=prob,ans --->
+<!--- code w kernel=python points=1 --->
 %%writefile omp_for.c
 <!--- exec-include ./mk_version.py -D VER=1 nb/source/pd01_omp/include/omp_for.c --->
 <!--- end code --->
 
-<!--- code w kernel=bash points=1 label=prob,ans --->
+<!--- code w kernel=bash points=1 --->
 clang -fopenmp omp_for.c -o omp_for
 # nvc -mp omp_for.c -o omp_for
 <!--- end code --->
 
-<!--- code w kernel=bash points=1 label=prob,ans --->
+<!--- code w kernel=bash points=1 --->
 OMP_NUM_THREADS=4 ./omp_for
 <!--- end code --->
 
@@ -326,9 +326,68 @@ OMP_NUM_THREADS=4 ./omp_parallel_for
 * As you witnessed, the default scheduling policy in our environment (may be implementation dependent) seems static scheduling (assign roughly the same number of contiguous iterations to each thread)
 * Is it enough? Clearly, it does not do a good job when iterations take a different amount of time
 * You can change the policy by [schedule clause](https://www.openmp.org/spec-html/5.0/openmpsu41.html#x64-1290002.9.2)
+
+## Visualizing scheduling
+
+* The program below executes the function `iter_fun`
+```
+#pragma omp parallel for
+  for (long i = 0; i < L; i++) {
+    iter_fun(a, b, i, M, N, R, T);
+  }
+```
+
+* `iter_fun(a, b, i, M, N, R, T)` repeats x = a x + b many (M * N) times and record time every N iterations
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- code w kernel=python points=1 --->
+%%writefile omp_sched_rec.c
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd01_omp/include/omp_sched_rec.c --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang -fopenmp -D_GNU_SOURCE omp_sched_rec.c -o omp_sched_rec
+# nvc -mp omp_sched_rec.c -o omp_sched_rec
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+OMP_NUM_THREADS=4 ./omp_sched_rec > a.dat
+<!--- end code --->
+
+<!--- md --->
+* Execute the following cell to visialize it
+* In the graph,
+  * horizontal axis is the time from the start in nanosecond
+  * vertical axis is the iteration number
+  * the color represents the thread that executed the iteration
+
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+import sched_vis
+sched_vis.sched_plt(["a.dat"])
+# sched_vis.sched_plt(["a.dat"], start_t=1.5e7, end_t=2.0e7)
+<!--- end code --->
+
+<!--- md --->
+#*P Understanding scheduling by visualization
+
+* Add `schedule` clause to the program (`schedule(runtime)` allows you to set the schedule in the command line)
+* Change the number of threads and schedule and observe how iterations are executed
+* Set the number of threads very large (higher than the physical number of cores) and see what happens
+  * Hint : you can get the number of cores by `nproc` command 
+* In the above program, each iteration performs exactly the same amount of computation (i.e., x = a x + b (M * N) times), thus takes almost exactly the same time
+* Specifically, make iteration `i` repeats x = a x + b (M * (i * N)) times (i.e., change the inner loop in `iter_fun` to `for (long k = 0; k < i * N; k++) { ...`)
+
+* `sched_plt` function below takes optional parameters `start_t` and `end_t` specifying the horizontal range to display
+* If you zoom _very_ closely to a particular point, you can see individual points and intervals between them, from which you can deduce how long it takes to perform `x = a x + b` once
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+nproc
+<!--- end code --->
+
+<!--- md --->
 #*P Specifying the scheduling policy by schedule clause
 
 * In the following (artificial) loop, iteration _i_ roughly sleeps for (100 x _i_) milliseconds and this is almost exactly the time it takes
@@ -351,7 +410,7 @@ clang -fopenmp omp_schedule.c -o omp_schedule
 OMP_NUM_THREADS=4 ./omp_schedule
 <!--- end code --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 * Predict the execution time with the default (static) policy
 * Predict the execution time with the dynamic policy?
 * Compare them with what you observed
@@ -428,7 +487,7 @@ is not a rectangular loop.
 * Consider using tasks below for more general form of nested parallelism
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Apply collapse and schedule
 
 * Apply collapse and schedule to the following loop
@@ -554,7 +613,7 @@ clang -fopenmp omp_rec_task.c -o omp_rec_task
 OMP_NUM_THREADS=10 ./omp_rec_task
 <!--- end code --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P A quiz about recursive tasks
 
 * Answer the following questions
@@ -584,7 +643,7 @@ Let $L(n)$ be the number of leaf tasks created by `recursive_tasks(n, 0)`.  Then
 Therefore, the number of leaf tasks $= L(n) = 2^n$
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 * Approximately what is the ideal execution time of `recursive_tasks(5, 0)` when using 10 threads?
 * Compare it with what you observed
 <!--- end md --->
@@ -677,7 +736,7 @@ OMP_NUM_THREADS=3 ./omp_taskloop
 * `#pragma omp parallel` can thus specify whether local variables in the scope (i.e., defined outside the statement) are privatized (i.e., made private to each thread)
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Observe the effect of privatization
 
 * Execute the following and make sense of the output
@@ -711,7 +770,7 @@ _<font color="green">Example answer:</font>_
 * `firstprivate(x)` is like `private(x)`, except that `x` of each thread is initialized by the value of `x` just before entering the parallel region
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Observe the effect of `private` and `firstprivate`
 
 * Execute the following and observe the output
@@ -780,7 +839,7 @@ Here, "concurrently access" means these accesses are not guaranteed to be separa
 * [#pragma omp critical](https://www.openmp.org/spec-html/5.0/openmpsu89.html#x120-4470002.17.1) guarantees the statement following the pragma is executed not overlapping in time
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Apply `#pragma omp critical`
 
 * Execute the following program a few times and observe that the result is undeterministic and often not what we want (i.e., 123 + the number of threads)
@@ -824,7 +883,7 @@ OMP_NUM_THREADS=100 ./omp_critical_ans
 * [#pragma omp atomic](https://www.openmp.org/spec-html/5.0/openmpsu95.html#x126-4840002.17.7) is similar to `#pragma omp critical` but its effect is slightly different and its applicability limited (see below)
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Apply `#pragma omp atomic`
 
 * Add `#pragma omp atomic` to the statement `x++` and see the result
@@ -899,7 +958,7 @@ for (i = 0; i < n; i++) {
 * This can be safely parallelized by introducing `reduction(+ : v)`
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Apply reduction
 
 * Add `reduction` clause to `#pragma omp parallel` below and observe the result
@@ -986,7 +1045,7 @@ int x = G;
   * (I) would be omp_priv = 0
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 ## Apply a user-defined reduction
 
 * Here is a simple (broken) parallel for loop that is meant to do a reduction on 3-element vector
@@ -1021,7 +1080,7 @@ clang -fopenmp omp_ud_reduction_ans.c -o omp_ud_reduction_ans
 OMP_NUM_THREADS=10 ./omp_ud_reduction_ans
 <!--- end code --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Putting them together: calculating an integral
 
 Write an OpenMP program that calculates

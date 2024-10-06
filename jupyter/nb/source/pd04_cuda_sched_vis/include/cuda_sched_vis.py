@@ -29,7 +29,8 @@ def read_dat(files_dat):
 def cuda_sched_plt(files_dat, start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf")):
     log = read_dat(files_dat)
     n_sms = max(sm for sm in log) + 1
-    cmap = plt.cm.get_cmap('RdYlGn', n_sms)
+    # cmap = plt.cm.get_cmap('RdYlGn', n_sms)
+    cmap = plt.get_cmap('RdYlGn', n_sms)
     fig, ax = plt.subplots()
     plt.xlabel("cycles")
     plt.ylabel("thread idx")

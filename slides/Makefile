@@ -13,9 +13,13 @@ bibtex := biber
 run_bibtex_and_latex_twice:=n
 
 # tex files
-tex := $(wildcard *.tex)
+tex := $(wildcard intro.tex)
 # svg files
 svg_svg := 
+#svg_svg += $(wildcard svg/quad_mother_board_*.svg)
+svg_svg += $(wildcard svg/diagram_multisocket.svg)
+
+#svg_svg += svg/top500_2024_june.svg
 #svg_svg += $(wildcard svg/*.svg)
 # layered svg files
 #lsvg_svg := $(wildcard lsvg/*.svg)

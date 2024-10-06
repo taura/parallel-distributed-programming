@@ -182,7 +182,7 @@ escapechar=\@,
 \frametitle{There are no serial machines any more}
 \begin{itemize}
 \item virtually all CPUs are now \ao{\textit{multicore}}
-\item high performance accelerators (GPUs and Xeon Phi) run at
+\item high performance accelerators (GPUs, AI accelerators, etc.) run at
   even low frequencies and have many more cores \ao{\textit{(manycore)}}
 \end{itemize}
 \end{frame}
@@ -191,9 +191,9 @@ escapechar=\@,
 \begin{frame}
 \frametitle{Processors for supercomputers are ordinary, perhaps even more so}
   \begin{center}
-    \includegraphics[width=0.7\textwidth]{out/pdf/svg/top500_2022_june.pdf}
+    \includegraphics[width=0.7\textwidth]{out/pdf/svg/top500_2024_june.pdf}
 
-    \url{https://www.top500.org/lists/top500/2022/06/}
+    \url{https://www.top500.org/lists/top500/2024/06/}
   \end{center}
 \end{frame}
 
@@ -230,7 +230,7 @@ escapechar=\@,
 \frametitle{Implication to software}
 \begin{itemize}
 \item<1-> existing serial SWs do not get (dramatically) faster on new CPUs
-\item<2-> just writing it in C/C++ goes nowhere close to machine's potential performance,
+\item<2-> just reducing instructions goes nowhere close to machine's potential performance,
   unless you know how to exploit parallelism of the machine
 \item<3-> you need to understand
   \begin{itemize}
@@ -297,7 +297,7 @@ C[1200][1200] = 3011.108154
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}
-\frametitle{What a single parallel machine (node) looks like}
+\frametitle{What a single multicore machine (node) looks like}
 \begin{columns}
 \begin{column}{0.4\textwidth}
 \begin{center}
