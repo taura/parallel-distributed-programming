@@ -4,6 +4,12 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Oct. 06, 2024)</font> Plan for Oct. 07
+  * [Introduction](slides/intro.pdf)
+  * [Play with Jupyter](https://taura.github.io/programming-languages/html/jupyter.html?lang=en)
+  * pd00_intro
+  * [OpenMP](slides/openmp.pdf)
+  * pd01_omp
 * <font color=blue>(Posted: Sep. 28, 2024)</font> Site up
 
 # Slides
