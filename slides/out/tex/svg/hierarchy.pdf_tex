@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{226.41325703bp}%
+    \setlength{\unitlength}{224.68857653bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,19 +50,19 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.5357214)%
+  \begin{picture}(1,0.50609393)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{hierarchy.pdf}}%
-    \put(0.37004549,0.07217429){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}virtual core\end{tabular}}}}%
-    \put(0.36855744,0.16492504){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}core\end{tabular}}}}%
-    \put(0.37113241,0.26430085){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}socket\end{tabular}}}}%
-    \put(0.36858332,0.3570516){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}board\end{tabular}}}}%
+    \put(0.4002154,0.03898869){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}virtual core\end{tabular}}}}%
+    \put(0.39871593,0.13245139){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}core\end{tabular}}}}%
+    \put(0.40131067,0.23258999){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}socket\end{tabular}}}}%
+    \put(0.39874201,0.32605269){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}board\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{hierarchy.pdf}}%
-    \put(0.17434761,0.33717644){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}x2-8\end{tabular}}}}%
-    \put(0.11588669,0.23780063){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}x2-16\end{tabular}}}}%
-    \put(0.06956307,0.13842483){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}x2-8\end{tabular}}}}%
-    \put(0.65698929,0.10816067){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{SIMD (x8-32)}\end{tabular}}}}%
-    \put(0.62273414,0.05320182){\color[rgb]{0,0,0}\rotatebox{28.887574}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\huge{\}}\end{tabular}}}}}%
+    \put(0.20301537,0.30602497){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}x2-8\end{tabular}}}}%
+    \put(0.14410571,0.20588636){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}x2-64\end{tabular}}}}%
+    \put(0.09742652,0.10574776){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}x2-8\end{tabular}}}}%
+    \put(0.68936175,0.0752513){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{SIMD (x8-32)}\end{tabular}}}}%
+    \put(0.65484366,0.0198706){\color[rgb]{0,0,0}\rotatebox{28.887574}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\huge{\}}\end{tabular}}}}}%
   \end{picture}%
 \endgroup%

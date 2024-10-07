@@ -4426,7 +4426,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -4520,7 +4519,7 @@
          x="197.13187"
          y="111.18176"
          id="tspan9331"
-         style="font-size:16px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';text-align:end;text-anchor:end">x2-16</tspan></text>
+         style="font-size:16px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';text-align:end;text-anchor:end">x2-64</tspan></text>
     <text
        id="text9333"
        y="141.18176"

@@ -190,10 +190,9 @@ escapechar=\@,
 %%%%%%%%%%%%%%%%% 
 \begin{frame}
 \frametitle{Processors for supercomputers are ordinary, perhaps even more so}
+  \url{https://www.top500.org/lists/top500/2024/06/}
   \begin{center}
     \includegraphics[width=0.7\textwidth]{out/pdf/svg/top500_2024_june.pdf}
-
-    \url{https://www.top500.org/lists/top500/2024/06/}
   \end{center}
 \end{frame}
 
@@ -230,9 +229,8 @@ escapechar=\@,
 \frametitle{Implication to software}
 \begin{itemize}
 \item<1-> existing serial SWs do not get (dramatically) faster on new CPUs
-\item<2-> just reducing instructions goes nowhere close to machine's potential performance,
-  unless you know how to exploit parallelism of the machine
-\item<3-> you need to understand
+\item<2-> just reducing instructions goes nowhere close to machine's potential performance
+\item<3-> you have to exploit \ao{\it parallelism} of the machine
   \begin{itemize}
   \item does it use multiple cores (and how the work is distributed)?
   \item does it use SIMD instructions?
@@ -241,7 +239,7 @@ escapechar=\@,
 \end{itemize}
 \end{frame}
 
-%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \frametitle{Example: matrix multiply}
 
@@ -412,7 +410,8 @@ acrh     model      & threads & FMAs   & freq  & SM       & paek   & TDP     \\
                     &         & SP/DP  & GHz   &          & SP/DP  & W       \\\hline
 Pascal {\tiny P100} & 32  & 2/1 & 1.328 & 56  & 9519/4760  & 300     \\
 Volta {\tiny V100}  & 32  & 2/1 & 1.530 & 80  & 15667/7833 & 300     \\
-\mura{Ampere {\tiny A100}} & 32  & 2/1 & 1.410 & 108 & \mura{19353/9676} & 400     \\\hline
+\mura{Ampere {\tiny A100}} & 32  & 2/1 & 1.410 & 108 & \mura{19353/9676} & 400     \\
+Hopper {\tiny H100} & 32  & 4/2 & 1.98? & 132 & \mura{66908/33454} & 700     \\\hline
 \end{tabular}}
 \end{itemize}
 
