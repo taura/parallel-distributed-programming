@@ -971,7 +971,7 @@ nvcc --generate-code arch=compute_80,code=sm_80 -o cuda_sched_rec_warp cuda_sche
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
-B=8
+B=4
 T=32
 D=1
 ./cuda_sched_rec_warp ${B} ${T} 100 1000 0 ${D} > cs_warp.dat
@@ -984,7 +984,7 @@ cuda_sched_vis.cuda_sched_plt(["cs_warp.dat"], start_t=0, end_t=float("inf"), st
 
 <!--- md --->
 * Observe the following in the visualization
-  * When $D \leq 32$ or is not a multiple of 32, threads within a warp may take both branches (diverge)
+  * When $D < 32$ or is not a multiple of 32, threads within a warp may take both branches (diverge)
   * When $D$ is a multiple of 32 and $\geq 32$, all threads within a warp take the same branch
 <!--- end md --->
 
