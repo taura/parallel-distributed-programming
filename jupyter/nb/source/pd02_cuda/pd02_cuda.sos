@@ -1,6 +1,6 @@
 <!--- md label=prob,ans --->
 
-# CUDA Programming Tutorial and Hands-on
+#* CUDA Programming Tutorial and Hands-on
 
 <!--- end md --->
 
@@ -469,6 +469,7 @@ nvcc -o cuda_dev_to_host_ans cuda_dev_to_host_ans.cu
 #*P Use Unified Memory
 
 * Change the following program so that it uses `cudaMallocManaged` instead of `malloc`
+* Make other changes as you find them necessary 
 <!--- end md --->
  
 <!--- code w kernel=python points=1 --->
@@ -802,7 +803,7 @@ cuda_sched_vis.cuda_sched_plt(["cs_N_N.dat"], start_t=0, end_t=float("inf"), sta
 
 * There is a hardwired limit on the number of threads per block. Try to find it and then confirm it with Google.
 
-* When increasing N, find out when the execution time starts to increase. Why do you think it doesn't immediately increase with N&gt;1?
+* When increasing $N$, find out when the execution time starts to increase. Why doesn't it immediately increase with $N$&gt;1?
 
 * With a modest value of $N$ (say 100), zoom in at either end of the execution and observe whether there is _any_ difference on when they started or finished execution.  If you look carefully, you will notice that a number of consecutive threads start and end _exactly the same clock_.  Those threads are called a _warp_ and they share an instruction pointer.  It is very analogous to SIMD instruction found in CPUs that apply the same operation on multiple operands.  Guess the number of threads of a warp from the experimental results and confirm it by Google.
 <!--- end md --->

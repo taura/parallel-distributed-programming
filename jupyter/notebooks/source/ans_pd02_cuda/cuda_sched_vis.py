@@ -26,7 +26,7 @@ def read_dat(files_dat):
                 log[sm0].append((thread, t))
     return log
 
-def cuda_sched_plt(files_dat, start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf")):
+def cuda_sched_plt(files_dat, start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"), show_every=1):
     log = read_dat(files_dat)
     n_sms = max(sm for sm in log) + 1
     # cmap = plt.cm.get_cmap('RdYlGn', n_sms)
@@ -40,7 +40,7 @@ def cuda_sched_plt(files_dat, start_t=0, end_t=float("inf"), start_thread=0, end
         Y = []
         sm_color = cmap(sm)
         for thread, T in records:
-            if start_thread <= thread < end_thread:
+            if start_thread <= thread < end_thread and thread % show_every == 0:
                 for t in T:
                     if start_t <= t - T0 <= end_t:
                         X.append(t - T0)
