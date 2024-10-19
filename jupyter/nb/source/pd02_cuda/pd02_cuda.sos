@@ -1,4 +1,4 @@
-<!--- md label=prob,ans --->
+<!--- md --->
 
 #* CUDA Programming Tutorial and Hands-on
 
@@ -241,7 +241,7 @@ kernel_func<<<num_of_blocks,num_of_threads_per_block>>>(...);
   * Remember that a single SM is like a CPU core; a single GPU device has a number of SMs just like a single CPU has a number of cores.
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Change the number of threads per block
 
 Change the arguments of the following command line in various ways and see what happens
@@ -307,7 +307,7 @@ nvcc -o cuda_hello_2d cuda_hello_2d.cu
 ./cuda_hello_2d
 <!--- end code --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Specify 2D thread blocks and grids
 
 * Change the arguments of the following command line in various ways and see what happens
@@ -465,7 +465,7 @@ nvcc -o cuda_dev_to_host_ans cuda_dev_to_host_ans.cu
 * You get a pointer that is valid both on CPU and GPU
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Use Unified Memory
 
 * Change the following program so that it uses `cudaMallocManaged` instead of `malloc`
@@ -533,7 +533,7 @@ nvcc -o cuda_race cuda_race.cu
 ./cuda_race
 <!--- end code --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Observe race condition
 
 Execute the above program many times and observe the results; try changing parameters.
@@ -563,7 +563,7 @@ It performs `*p = *p + x` _atomically_, meaning that it is guaranteed that `*p` 
 * See [atomicAdd](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#atomicadd) for reference
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Use `atomicAdd`
 
 * Change the following program to resolve the race condition using `atomicAdd` and make sure the result always matches the number of threads launched.
@@ -641,7 +641,7 @@ f<<<nb,bs>>>(a0, a1, ...);
 * See [Cooperative Groups](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#cooperative-groups) for reference
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Use barrier synchronization
 
 Change the following program `sum_array()` so that it correctly outputs the sum of the array by implementing reduction on barrier synchronization.
@@ -700,10 +700,10 @@ it creates (_nb * bs_) CUDA threads.
 * Specifically,
 
 ```
-./cuda_sched_rec NTHREADS THREAD_BLOCK_SZ N M 
+./cuda_sched_rec NB BS N M 
 ```
 
-creates approximately NTHREADS threads, with THREAD_BLOCK_SZ threads in each thread block (the number of threads is not exactly NTHREADS when it is not a multiple of THREAD_BLOCK_SZ).
+creates approximately (NB $\times$ BS) threads, with BS threads in each thread block
 
   * Each thread repeats x = A x + B, ($N \times M$) times.
   * Each thread records the clock $N$ times (every $M$ iterations).
@@ -718,7 +718,7 @@ thread=<idx> x=<ans> sm0=<starting SM> sm1=<ending SM> t0 t1 t2 ... t_{n-1}
 
 <!--- code w kernel=python points=1 --->
 %%writefile cuda_sched_rec.cu
-<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd04_cuda_sched_vis/include/cuda_sched_rec.cu --->
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd02_cuda/include/cuda_sched_rec.cu --->
 <!--- end code --->
 
 <!--- md --->
@@ -730,20 +730,16 @@ nvcc --generate-code arch=compute_80,code=sm_80 -o cuda_sched_rec cuda_sched_rec
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
-./cuda_sched_rec 64 32 10 100 | head -10
+./cuda_sched_rec 2 32 10 100 | head -10
 <!--- end code --->
 
 <!--- md --->
-# Visualization
-
 * The following python code parses and visualizes the output of cuda_sched_rec.
 * The code is shown below for your information; you don't have to understand how it works.
-<!--- end md --->
 
-<!--- md --->
-Let's visualize a few configurations.
+* Let's visualize a few configurations.
 
-## one thread
+## one thread ($1 \times 1$)
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
@@ -761,68 +757,67 @@ cuda_sched_vis.cuda_sched_plt(["cs_1_1.dat"], start_t=0, end_t=float("inf"), sta
 <!--- end md --->
 
 <!--- md --->
-## $N$ thread blocks $\times$ 1 thread/block
+## 1 thread block $\times$ $T$ threads/block ($1 \times T$)
 
-* play with changing $N$ to other values
+* play with changing $T$ to other values
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
-N=150
-./cuda_sched_rec ${N} 1 100 1000 > cs_N_1.dat
+T=8
+./cuda_sched_rec 1 ${T} 100 1000 > cs_1_T.dat
 <!--- end code --->
 
 <!--- code w kernel=python points=1 --->
 import cuda_sched_vis
-cuda_sched_vis.cuda_sched_plt(["cs_N_1.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"))
-<!--- end code --->
-
-<!--- md --->
-* Increase $N$ and observe when the execution time (the time at the right end of the graph) starts to increase.
-* Even in that case, all $N$ threads appear to be executing simultaneously (not one after another).
-* That is, _hardware_ interleaves execution of these threads, rapidly switching from one to another.
-<!--- end md --->
-
-<!--- md --->
-## 1 thread block $\times$ $N$ threads/block
-
-* play with changing $N$ to other values
-<!--- end md --->
-
-<!--- code w kernel=bash points=1 --->
-N=150
-./cuda_sched_rec ${N} ${N} 100 1000 > cs_N_N.dat
-<!--- end code --->
-
-<!--- code w kernel=python points=1 --->
-import cuda_sched_vis
-cuda_sched_vis.cuda_sched_plt(["cs_N_N.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"))
+cuda_sched_vis.cuda_sched_plt(["cs_1_T.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"))
 <!--- end code --->
 
 <!--- md --->
 * Observe that they are always executed on the same SM. You are not utilizing multiple SMs at all.
-
+* Compare the time for $T=1$ and $T=8$; incease $T$ until the time starts to increase.
+* Increase $T$ until the execution time starts to increase almost linearly with $T$. Why doesn't it immediately happen with $T$&gt;1?
 * There is a hardwired limit on the number of threads per block. Try to find it and then confirm it with Google.
 
-* When increasing $N$, find out when the execution time starts to increase. Why doesn't it immediately increase with $N$&gt;1?
+* With a modest value of $T$ (say 100), zoom in at either end of the execution and observe whether there is _any_ difference on when they started or finished execution.  If you look carefully, you will notice that a number of consecutive threads start and end _exactly the same clock_.  Those threads are called a _warp_ and they share an instruction pointer.  It is very analogous to SIMD instruction found in CPUs that apply the same operation on multiple operands.  Guess the number of threads of a warp from the experimental results and confirm it by Google.
+<!--- end md --->
 
-* With a modest value of $N$ (say 100), zoom in at either end of the execution and observe whether there is _any_ difference on when they started or finished execution.  If you look carefully, you will notice that a number of consecutive threads start and end _exactly the same clock_.  Those threads are called a _warp_ and they share an instruction pointer.  It is very analogous to SIMD instruction found in CPUs that apply the same operation on multiple operands.  Guess the number of threads of a warp from the experimental results and confirm it by Google.
+<!--- md label=none --->
+## $B$ thread blocks $\times$ 1 thread/block ($B \times 1$)
+
+* play with changing $B$ to other values
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 label=none --->
+B=3
+./cuda_sched_rec ${B} 1 100 1000 > cs_B_1.dat
+<!--- end code --->
+
+<!--- code w kernel=python points=1 label=none --->
+import cuda_sched_vis
+cuda_sched_vis.cuda_sched_plt(["cs_B_1.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"))
+<!--- end code --->
+
+<!--- md label=none --->
+* Increase $B$ and observe when the execution time (the time at the right end of the graph) starts to increase.
+* Even in that case, all $B$ threads appear to be executing simultaneously (not one after another).
+* That is, _hardware_ interleaves execution of these threads, rapidly switching from one to another.
 <!--- end md --->
 
 <!--- md --->
-## many thread blocks $\times$ many threads/block
+## many thread blocks $\times$ many threads/block ($B \times T$)
 
-* play with changing $N$ and $B$ to other values
+* play with changing $B$ and $T$ to other values
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
-N=150
-B=64
-./cuda_sched_rec ${N} ${B} 100 1000 > cs_N_B.dat
+B=3
+T=64
+./cuda_sched_rec ${B} ${T} 100 1000 > cs_B_T.dat
 <!--- end code --->
 
 <!--- code w kernel=python points=1 --->
 import cuda_sched_vis
-cuda_sched_vis.cuda_sched_plt(["cs_N_B.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"), show_every=1)
+cuda_sched_vis.cuda_sched_plt(["cs_B_T.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"), show_every=1)
 <!--- end code --->
 
 <!--- md --->
@@ -907,9 +902,9 @@ extern __shared__ T shmem[];
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
-N=150
+B=3
 S=$((32 * 1024))
-./cuda_sched_rec ${N} 1 100 1000 ${S} > cs_N_1_S.dat
+./cuda_sched_rec ${B} 1 100 1000 ${S} > cs_B_1_S.dat
 <!--- end code --->
 
 <!--- md --->
@@ -918,7 +913,7 @@ S=$((32 * 1024))
 
 <!--- code w kernel=python points=1 --->
 import cuda_sched_vis
-cuda_sched_vis.cuda_sched_plt(["cs_N_1_S.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"))
+cuda_sched_vis.cuda_sched_plt(["cs_B_1_S.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"))
 <!--- end code --->
 
 <!--- md --->
@@ -957,7 +952,7 @@ when and only when (idx / D) is an odd number.
 
 <!--- code w kernel=python points=1 --->
 %%writefile cuda_sched_rec_warp.cu
-<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd04_cuda_sched_vis/include/cuda_sched_rec.cu --->
+<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd02_cuda/include/cuda_sched_rec.cu --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -969,8 +964,8 @@ nvcc --generate-code arch=compute_80,code=sm_80 -o cuda_sched_rec_warp cuda_sche
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
-N=256
-./cuda_sched_rec_warp ${N} 32 100 1000 1 > cs_warp.dat
+B=3
+./cuda_sched_rec_warp ${B} 32 100 1000 0 1 > cs_warp.dat
 <!--- end code --->
 
 <!--- code w kernel=python points=1 --->
@@ -979,7 +974,7 @@ cuda_sched_vis.cuda_sched_plt(["cs_warp.dat"], start_t=0, end_t=float("inf"), st
 <!--- end code --->
 
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Putting them together: calculating an integral
 
 * Write a CUDA program that calculates
