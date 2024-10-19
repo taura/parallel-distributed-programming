@@ -181,8 +181,8 @@ escapechar=\@,
 \begin{frame}
   \frametitle{A running example: Sparse Matrix Vector Multiply (SpMV)}
   \begin{itemize}
-  \item sparse matrix : a matrix whose elements are mostly zeros
-  \item i.e. the number of non-zero elements (nnz) $\ll$ the number of all elements ($M \times N$)
+  \item \ao{sparse matrix} : a matrix whose elements are mostly zeros
+  \item i.e. the number of non-zero elements (\ao{nnz}) $\ll$ the number of all elements (\ao{$M \times N$})
     \begin{itemize}
     \item $M$ : the number of rows
     \item $N$ : the number of columns
@@ -207,7 +207,7 @@ escapechar=\@,
     \begin{itemize}
     \item $A_{i,j} = $ the weight of the edge $i \rightarrow j$ (or $j \rightarrow i$)
     \item Web, social network, road/traffic networks,
-      metabolic pathways, etc.
+      citation networks, metabolic pathways, etc.
     \end{itemize}
     
   \item many problems can be solved using SpMV
@@ -230,7 +230,7 @@ escapechar=\@,
     (or just impossible)
   \item $\rightarrow$ use a data structure that takes memory/computation
     only (or mostly) for non-zero elements
-    (coordinate list, compressed sparse row, etc.)
+    \ao{(coordinate list, compressed sparse row, etc.)}
   \item []
       \begin{center}
         \includegraphics[width=0.3\textwidth]{out/pdf/svg/spmv.pdf}
@@ -279,7 +279,7 @@ for (k = 0; k < A.nnz; k++) {
   \item puts elements of a single row in a contiguous range 
   \item an index (number) specifies where a particular row begins
     in the {\tt elems} array
-  \item $\rightarrow$ no need to have $i$ for every single element
+  \item $\rightarrow$ \ao{\it no need to have $i$ for every single element}
   \item data format:
 \begin{lstlisting}
 struct coo {
