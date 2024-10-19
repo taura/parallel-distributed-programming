@@ -822,11 +822,14 @@ B=64
 
 <!--- code w kernel=python points=1 --->
 import cuda_sched_vis
-cuda_sched_vis.cuda_sched_plt(["cs_N_B.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"))
+cuda_sched_vis.cuda_sched_plt(["cs_N_B.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"), show_every=1)
 <!--- end code --->
 
 <!--- md --->
+* `show_every` parameter specifies that only visualize every this number of threads
+  * it reduces the time to visualize when the number of threads is so large
 * Try to find the maximum number of threads that does not increase the execution time.
+  * use `show_every=32` to reduce the time for visualization
 <!--- end md --->
 
 <!--- md --->
