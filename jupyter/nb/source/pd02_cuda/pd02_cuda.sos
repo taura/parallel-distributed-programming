@@ -81,7 +81,7 @@ clang --version
 
 <!--- code w kernel=bash --->
 hostname
-hostname | grep tauleg || echo "Oh, you are not on the right host, access https://tauleg000.zapto.org/ instead"
+hostname | grep tauleg || echo "Oh, you are not on the right host, access https://tauleg.zapto.org/ instead"
 <!--- end code --->
 
 <!--- md --->
