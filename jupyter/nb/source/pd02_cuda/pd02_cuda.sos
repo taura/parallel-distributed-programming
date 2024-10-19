@@ -974,7 +974,7 @@ nvcc --generate-code arch=compute_80,code=sm_80 -o cuda_sched_rec_warp cuda_sche
 B=8
 T=32
 D=1
-./cuda_sched_rec_warp ${B} {T} 100 1000 0 ${D} > cs_warp.dat
+./cuda_sched_rec_warp ${B} ${T} 100 1000 0 ${D} > cs_warp.dat
 <!--- end code --->
 
 <!--- code w kernel=python points=1 --->
