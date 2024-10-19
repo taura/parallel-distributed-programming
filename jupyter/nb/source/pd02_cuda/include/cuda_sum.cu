@@ -17,11 +17,11 @@ __global__ void sum_array(double * c, long n) {
   // should return c[0] + c[1] + ... + c[n-1] in c[0]
   // you can destroy other elements of the array
   cg::grid_group g = cg::this_grid();
-  unsigned long long i = g.thread_rank();
+  long i = g.thread_rank();
 /*** if VER == 3 */
   
 /*** elif VER == 2 */
-  unsigned long long h;
+  long h;
   for (int m = n; m > 1; m = h) {
     h = (m + 1) / 2;
     if (i + h < m) {
