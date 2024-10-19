@@ -896,20 +896,17 @@ extern __shared__ T shmem[];
 
 * `cuda_sched_rec.cu` is already written to take the size of the shared memory per thread block as a parameter.
 
-* Let's allocate 32KB for each thread block; then, on Ampere, only up to three thread blocks (163KB/32KB) can be executed simultaneously.
+* The following code creates $B$ thread blocks each of which has only one thread
 
-* The following creates 100 thread blocks (in order to avoid creating too many threads, it will set the thread per block to an unusual value of one).
+* It allocates 8KB for each thread block
+
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
 B=3
-S=$((32 * 1024))
+S=$((8 * 1024))
 ./cuda_sched_rec ${B} 1 100 1000 ${S} > cs_B_1_S.dat
 <!--- end code --->
-
-<!--- md --->
-* Before visualizing it, imagine what it is like.
-<!--- end md --->
 
 <!--- code w kernel=python points=1 --->
 import cuda_sched_vis
@@ -917,8 +914,9 @@ cuda_sched_vis.cuda_sched_plt(["cs_B_1_S.dat"], start_t=0, end_t=float("inf"), s
 <!--- end code --->
 
 <!--- md --->
-* Play with changing $N$ above; predict when thread blocks start executing not simultaneously (one after another) and confirm it by the experiment (hint: Ampere has 108 streaming multiprocessors).
-* Change $S$ and see how it affects the above threshold value.
+* Increase $S$ to find the maximum shared memory size you can allocate for each thread block
+* Fix $S$ to that maximum value and increase $B$; predict when the execution time starts to increase
+  * Hint : Ampere architecture has 108 streaming multiprocessors (SMs), each having 164KB shared memory; each SM can simultaneously execute only as many thread blocks as will fit within its available shared memory
 <!--- end md --->
 
 <!--- md --->
@@ -937,17 +935,25 @@ if (thread_idx % 2 == 0) {
 * If there are _any_ thread executing A and _any_ thread executing B within a warp, the time the warp takes is the time to execute A _plus_ the time to execute B.
 * An important performance implication is you'd better not have threads branching differently within the same warp.
 
-* Change the following code as follows.
-  * it takes an additional command line parameter D
-  * each thread executes the loop
+* In the following code, each thread executes
 ```
-      for (long j = 0; j < m; j++) {
-        x = a * x + b;
-      }
+if ((idx / D) is even) {
+  for (long i = 0; i < n; i++) {
+    T[i] = clock64();
+    for (long j = 0; j < m; j++) {
+      x = a * x + b;
+    }
+  }
+} else {
+  for (long i = 0; i < n; i++) {
+    T[i] = clock64();
+    for (long j = 0; j < m / 2; j++) {
+      x = a * x + b;
+    }
+  }
+}
 ```
-when and only when (idx / D) is an odd number.
-  * for example, if D is 1, then all even-numbered threads execute the loop and all odd-numbered threads do not execute it
-  * if D is 32, for example, (idx / D) is essentially the "warp index"; even-numbered warps execute the loop and odd-numbered warps skip it
+* Given D, the first $D$ threads (thread idx=$0, 1, ..., D-1$) execute the "then" clause, the next $D$ threads (thread idx=$D, D+1, ..., 2D-1$, the "else" clause, and so on
 <!--- end md --->
 
 <!--- code w kernel=python points=1 --->
@@ -961,11 +967,14 @@ nvcc --generate-code arch=compute_80,code=sm_80 -o cuda_sched_rec_warp cuda_sche
 
 <!--- md --->
 * Execute the code with various D's (and perhaps other parameters) to visualize the effect of warps and its performance implication
+* Predict what the visualization looks like
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
-B=3
-./cuda_sched_rec_warp ${B} 32 100 1000 0 1 > cs_warp.dat
+B=8
+T=32
+D=1
+./cuda_sched_rec_warp ${B} {T} 100 1000 0 ${D} > cs_warp.dat
 <!--- end code --->
 
 <!--- code w kernel=python points=1 --->
@@ -973,6 +982,11 @@ import cuda_sched_vis
 cuda_sched_vis.cuda_sched_plt(["cs_warp.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"))
 <!--- end code --->
 
+<!--- md --->
+* Observe the following in the visualization
+  * When $D \leq 32$ or is not a multiple of 32, threads within a warp may take both branches (diverge)
+  * When $D$ is a multiple of 32 and $\geq 32$, all threads within a warp take the same branch
+<!--- end md --->
 
 <!--- md --->
 #*P Putting them together: calculating an integral
