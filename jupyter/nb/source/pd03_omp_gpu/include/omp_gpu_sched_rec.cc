@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <err.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -102,8 +103,19 @@ void iter_fun(double a, double b, long i, long M, long N,
   R[i].x = x;
 }
 
-void dump(record_t * R, long * T, long L, long M, long t0) {
+void dump(record_t * R, long * T, long L, long M) {
+  long t0 = LONG_MAX;
   long k = 0;
+  assert(L * M > 0);
+  // find min clock
+  for (long i = 0; i < L; i++) {
+    for (long j = 0; j < M; j++) {
+      t0 = (T[k] < t0 ? T[k] : t0);
+      k++;
+    }
+  }
+  assert(t0 < LONG_MAX);
+  k = 0;
   for (long i = 0; i < L; i++) {
     printf("i=%ld x=%f team0=%d thread0=%d sm0=%d team1=%d thread1=%d sm1=%d",
            i, R[i].x,
@@ -144,7 +156,7 @@ int main(int argc, char ** argv) {
   }
   long t1 = get_gpu_clock();
   printf("%ld GPU clocks\n", t1 - t0);
-  dump(R, T, L, M, t0);
+  dump(R, T, L, M);
   return 0;
 }
 
