@@ -873,7 +873,7 @@ OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=${T} OMP_NUM_THREADS=${H} ./omp_gpu_s
 <!--- code w kernel=python points=1 --->
 import omp_gpu_sched_vis
 omp_gpu_sched_vis.sched_plt(["a.dat"])
-# omp_gpu_sched_vis.sched_plt(["a.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"), show_every=1)
+# omp_gpu_sched_vis.sched_plt(["a.dat"], start_t=0, end_t=float("inf"), start_i=0, end_i=float("inf"), show_every=1)
 <!--- end code --->
 
 <!--- md --->
@@ -939,7 +939,7 @@ OMP_TARGET_OFFLOAD=MANDATORY ./omp_gpu_integral
 
 <!--- code kernel=python label=ans --->
 %%writefile omp_gpu_integral_ans.cc
-<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_gpu_integral.cc --->
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd03_omp_gpu/include/omp_gpu_integral.cc --->
 <!--- end code --->
 
 <!--- code kernel=bash label=ans --->

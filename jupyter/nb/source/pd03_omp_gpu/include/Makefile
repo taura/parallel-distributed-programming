@@ -1,6 +1,6 @@
 ext:=cc
 #srcs:=$(wildcard *.$(ext))
-srcs:=omp_gpu_sched_rec.cc
+srcs:=omp_gpu_integral.cc
 bases:=$(patsubst %.$(ext),%,$(srcs))
 #mkv:=../../../../../../jupyter_tools/authoring/mk_version.py
 mkv:=./mk_version.py

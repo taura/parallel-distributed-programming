@@ -1026,10 +1026,11 @@ $$ f(x) = \left\{\begin{array}{ll}\sqrt{1 - x^2 - y^2} & (x^2 + y^2 \leq 1) \\ 0
 <!--- code w kernel=python points=1 --->
 %%writefile cuda_integral.cu
 
+// Write Your Code Here
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
-nvcc -o cuda_integral cuda_integral.cu
+nvcc --generate-code arch=compute_80,code=sm_80 -o cuda_integral cuda_integral.cu
 # nvc++ -Wall -o cuda_integral cuda_integral.cu
 # clang++ -Wall -Wno-unknown-cuda-version -o cuda_integral cuda_integral.cu -L/usr/local/cuda/lib64 -lcudart
 <!--- end code --->
@@ -1044,7 +1045,7 @@ nvcc -o cuda_integral cuda_integral.cu
 <!--- end code --->
 
 <!--- code w kernel=bash label=ans --->
-nvcc -o cuda_integral_ans cuda_integral_ans.cu
+nvcc --generate-code arch=compute_80,code=sm_80 -o cuda_integral_ans cuda_integral_ans.cu
 # nvc++ -Wall -o cuda_integral_ans cuda_integral_ans.cu
 # clang++ -Wall -Wno-unknown-cuda-version -o cuda_integral_ans cuda_integral_ans.cu -L/usr/local/cuda/lib64 -lcudart
 <!--- end code --->
