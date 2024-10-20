@@ -1113,11 +1113,6 @@ $$ f(x) = \left\{\begin{array}{ll}\sqrt{1 - x^2 - y^2} & (x^2 + y^2 \leq 1) \\ 0
 
 <!--- end code --->
 
-<!--- md label=comment --->
-* N を指定しないと採点がしづらい
-* 台数効果を測るように指示しないと採点しづらい
-<!--- end md --->
-
 <!--- md label=ans --->
 _<font color="green">Example answer:</font>_
 <!--- end md --->

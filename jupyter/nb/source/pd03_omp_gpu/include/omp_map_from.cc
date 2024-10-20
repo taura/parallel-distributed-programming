@@ -1,6 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <omp.h>
-struct point { float x; float y; };
+struct point {
+  float x;
+  float y;
+};
+
 int main(int argc, char ** argv) {
   int i = 1;
   float t = (argc > i ? atof(argv[i]) : 10.0); i++;

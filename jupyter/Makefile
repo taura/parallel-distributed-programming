@@ -4,16 +4,16 @@
 #mk_nb_flags := --dbg 2
 
 nb_srcs :=
-nb_srcs += $(wildcard nb/source/pd??_*/*.sos nb/source/pd??_*/pd*.py)
+nb_srcs += $(wildcard nb/source/pd??_*/*.sos nb/source/pd03_*/pd*.py)
 
 aux_srcs :=
 aux_srcs += $(wildcard nb/source/pd01_*/sched_vis.py)
 aux_srcs += $(wildcard nb/source/pd02_*/*.h)
 aux_srcs += $(wildcard nb/source/pd02_*/cuda_sched_vis.py)
-aux_srcs += $(wildcard nb/source/pd03_*/omp_sched_rec.c)
-aux_srcs += $(wildcard nb/source/pd03_*/aux.h)
-aux_srcs += $(wildcard nb/source/pd03_*/log2ppm.py)
-aux_srcs += $(wildcard nb/source/pd04_*/*.h)
+#aux_srcs += $(wildcard nb/source/pd03_*/omp_sched_rec.c)
+#aux_srcs += $(wildcard nb/source/pd03_*/aux.h)
+#aux_srcs += $(wildcard nb/source/pd03_*/log2ppm.py)
+#aux_srcs += $(wildcard nb/source/pd04_*/*.h)
 #aux_srcs += $(wildcard nb/source/pd11_*/*.h)
 #aux_srcs += $(wildcard nb/source/pd11_*/*.mk)
 # aux_srcs += $(wildcard nb/source/pl04/*/*/*)

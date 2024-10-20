@@ -48,6 +48,7 @@ double int_sqrt_one_minus_x2_y2(long n) {
 int main(int argc, char ** argv) {
   int i = 1;
   long n      = (argc > i ? atof(argv[i]) : 30L * 1000L); i++;
+  printf("n = %ld (%ld points to evaluate integrand on)\n", n, n * n);
   double s = int_sqrt_one_minus_x2_y2(n);
   printf("s = %.9f (err = %e)\n", s, fabs(s - M_PI/6));
   return 0;

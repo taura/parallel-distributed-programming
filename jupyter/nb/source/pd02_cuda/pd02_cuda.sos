@@ -993,9 +993,19 @@ cuda_sched_vis.cuda_sched_plt(["cs_warp.dat"], start_t=0, end_t=float("inf"), st
 
 * Write a CUDA program that calculates
 
-$$ \int_0^1 \int_0^1 \sqrt{1 - x^2 - y^2}\,dx\,dy $$
+$$ \int \int_D \sqrt{1 - x^2 - y^2}\,dx\,dy $$
 
-* mathematical note: consider the integrand to be zero outside $1 - x^2 - y^2 \geq 0$
+where
+
+$$ D = \{\;(x, y)\;|\;0\leq x \leq 1, 0\leq y \leq 1, x^2 + y^2 \leq 1 \}$$
+
+* Note: an alternative way to put it is to calculate
+
+$$ \int_0^1 \int_0^1 f(x)\,dx\,dy $$
+
+where
+
+$$ f(x) = \left\{\begin{array}{ll}\sqrt{1 - x^2 - y^2} & (x^2 + y^2 \leq 1) \\ 0 & (\mbox{otherwise}) \end{array}\right. $$
 
 * Write a CUDA kernel that computes the integrand on a single point
 * And launch it with as many threads as the number of points you compute the integrand at
@@ -1004,6 +1014,13 @@ $$ \int_0^1 \int_0^1 \sqrt{1 - x^2 - y^2}\,dx\,dy $$
 * Measure the time not just for the entire computation, but the time of each step including cudaMalloc, cudaMemcpy to initialize variables on the device, kernel and cudaMemcpy to get the result back
 * Try atomicAdd as well as reduction 
 * Play with unified memory also
+* Take the number of thread blocks and the number of threads per block in the command line
+
+* Compare the execution speed of OpenMP (CPU) and CUDA (GPU) in various settings
+  * a single CPU thread vs single CUDA thread
+  * a single CPU thread vs multiple CUDA threads in a single thread block 
+  * multiple CPU threads vs multiple CUDA threads in multiple thread blocks
+
 <!--- end md --->
 
 <!--- code w kernel=python points=1 --->
