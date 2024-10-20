@@ -75,7 +75,7 @@ typedef struct {
    record thread and cpu to R.
  */
 void iter_fun(double a, double b, long i, long M, long N,
-              record_t * R, long * T, int team_, int thread_) {
+              record_t * R, long * T) {
   // initial value (not important)
   double x = i;
   // record in T[i * M] ... T[(i+1) * M - 1]
@@ -133,9 +133,7 @@ int main(int argc, char ** argv) {
   long t0 = get_gpu_clock();
 #pragma omp target teams distribute parallel for num_teams(n_teams) num_threads(n_threads_per_team) map(tofrom: R[0:L], T[0:L*M])
   for (long i = 0; i < L; i++) {
-    int team = omp_get_team_num();
-    int thread = omp_get_thread_num();
-    iter_fun(a, b, i, M, N, R, T, team, thread);
+    iter_fun(a, b, i, M, N, R, T);
   }
   long t1 = get_gpu_clock();
   printf("%ld GPU clocks\n", t1 - t0);
