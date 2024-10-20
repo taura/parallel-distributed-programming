@@ -34,7 +34,7 @@ def cuda_sched_plt(files_dat, start_t=0, end_t=float("inf"), start_thread=0, end
     fig, ax = plt.subplots()
     plt.xlabel("cycles")
     plt.ylabel("thread idx")
-    T0 = min(T[0] for records in log.values() for thread, T in records)
+    T0 = min(t for records in log.values() for _, T in records for t in T[:1])
     for sm,records in sorted(list(log.items())):
         X = []
         Y = []
