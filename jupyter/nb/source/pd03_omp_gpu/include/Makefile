@@ -26,4 +26,3 @@ clean :
 	rm -rf exes vers
 
 .DELETE_ON_ERROR:
-
