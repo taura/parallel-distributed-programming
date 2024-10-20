@@ -141,6 +141,7 @@ int main(int argc, char ** argv) {
   long t0 = get_gpu_clock();
 #pragma omp target teams distribute parallel for num_teams(n_teams) num_threads(n_threads_per_team) map(tofrom: R[:L]) map(tofrom: T[:L*M])
   for (long i = 0; i < L; i++) {
+    printf("thread = %ld\n", i);
     iter_fun(a, b, i, M, N, R, T);
   }
   long t1 = get_gpu_clock();
