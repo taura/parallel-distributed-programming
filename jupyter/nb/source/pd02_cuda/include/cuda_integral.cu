@@ -58,7 +58,7 @@ int main(int argc, char ** argv) {
   check_api_error(cudaMemcpy(&s, s_dev, sizeof(double), cudaMemcpyDeviceToHost));
   double t4 = cur_time();
   
-  printf("ans = %.9f\n", s);
+  printf("s = %.9f (err = %e)\n", s, fabs(s - M_PI/6));
   printf(" cudaMalloc  : %f sec\n", t1 - t0);
   printf(" host -> dev : %f sec\n", t2 - t1);
   printf(" kernel      : %f sec\n", t3 - t2);

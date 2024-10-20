@@ -1143,8 +1143,8 @@ _<font color="green">Remarks:</font>_
 <!--- end code --->
 
 <!--- code w kernel=bash label=ans --->
-clang -fopenmp omp_integral_ans.c -o omp_integral_ans
-# nvc -mp omp_integral.c -o omp_integral
+clang -O3 -fopenmp omp_integral_ans.c -o omp_integral_ans -lm
+# nvc -O4 -mp omp_integral_ans.c -o omp_integral_ans
 <!--- end code --->
 
 <!--- md --->

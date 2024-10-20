@@ -947,7 +947,7 @@ nvc++ -O4 -mp=gpu omp_gpu_integral_ans.cc -o omp_gpu_integral_ans
 <!--- end code --->
 
 <!--- code kernel=bash label=ans --->
-OMP_TARGET_OFFLOAD=MANDATORY ./omp_gpu_integral_ans
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=108 OMP_NUM_THREADS=1024 ./omp_gpu_integral_ans
 <!--- end code --->
 
 <!--- md label=comment --->
