@@ -33,7 +33,6 @@ static long long int clock64(void) {
   return (unsigned int)(-1);
 #endif
 }
-
 #endif
 
 __attribute__((unused))

@@ -34,8 +34,8 @@ def cuda_sched_plt(files_dat, start_t=0, end_t=float("inf"), start_thread=0, end
     fig, ax = plt.subplots()
     plt.xlabel("cycles")
     plt.ylabel("thread idx")
+    T0 = min(T[0] for records in log.values() for thread, T in records)
     for sm,records in sorted(list(log.items())):
-        T0 = min(T[0] for thread, T in records)
         X = []
         Y = []
         sm_color = cmap(sm)

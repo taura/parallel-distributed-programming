@@ -1,43 +1,112 @@
-#include <assert.h>
+#include <err.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <omp.h>
+#include <nv/target>
 
-#include "omp_gpu_util.h"
+long cur_time_ns() {
+  struct timespec ts[1];
+  if (clock_gettime(CLOCK_REALTIME, ts) == -1) err(1, "clock_gettime");
+  return ts->tv_sec * 1000000000L + ts->tv_nsec;
+}
 
-// record of execution
-typedef unsigned int uint;
+#if __NVCOMPILER
+/* get SM id (for NVIDIA compiler).
+   return -1 if called on CPU */
+__host__ __device__ static unsigned int get_smid(void) {
+  if target(nv::target::is_device) {
+    unsigned int sm;
+    asm("mov.u32 %0, %%smid;" : "=r"(sm));
+    return sm;
+  } else {
+    return (unsigned int)(-1);
+  }
+}
+#endif
+
+#if __clang__
+/* get SM id (for Clang LLVM compiler).
+   return -1 if called on CPU */
+__attribute__((unused))
+static unsigned int get_smid(void) {
+#if __CUDA_ARCH__
+  unsigned int sm;
+  asm("mov.u32 %0, %%smid;" : "=r"(sm));
+  return sm;
+#else
+  return (unsigned int)(-1);
+#endif
+}
+
+/* get GPU clock (for Clang LLVM compiler).
+   return -1 if called on CPU */
+__attribute__((unused))
+static long long int clock64(void) {
+#if __CUDA_ARCH__
+  long long int clock;
+  asm volatile("mov.s64 %0, %%clock64;" : "=r" (clock));
+  return clock;
+#else
+  return (unsigned int)(-1);
+#endif
+}
+#endif
+
 typedef struct {
-  double x;                     // a (meaningless) answer
-  uint sm0;                     // SM on which a thread got started
-  uint sm1;                     // SM on which a thread ended (MUST BE = sm0; just to verify that)
+  double x;
+  int team[2];
+  int thread[2];
+  int sm[2];
 } record_t;
 
-/* this thread repeats x = a x + b (N * M) times.
-   it records the clock N times (every M iterations of x = a x + b)
-   to array T.
-   final result of x = a x + b, as well as SM each thread was executed
-   on are recorded to R. */
-void iter(double a, double b, record_t * R, 
-          long * T, long n, long m, long idx) {
+/* the function for an iteration
+   perform
+   x = a x + b
+   (M * N) times and record current time
+   every N iterations to T.
+   record thread and cpu to R.
+ */
+void iter_fun(double a, double b, long i, long M, long N,
+              record_t * R, long * T) {
   // initial value (not important)
-  double x = idx;
-  // where clocks are recorded
-  T = &T[idx * n];
-  // record starting SM
-  R[idx].sm0 = get_smid();
-  // main thing. repeat a x + b many times,
-  // occasionally recording the clock
-  for (long i = 0; i < n; i++) {
-    T[i] = clock64();
-    for (long j = 0; j < m; j++) {
+  double x = i;
+  // record in T[i * M] ... T[(i+1) * M - 1]
+  T = &T[i * M];
+  // record starting thread/cpu
+  R[i].team[0] = omp_get_team_num();
+  R[i].thread[0] = omp_get_thread_num();
+  R[i].sm[0] = get_smid();
+  // repeat a x + b many times.
+  // record time every N iterations
+  for (long j = 0; j < M; j++) {
+    T[j] = clock64();
+    for (long k = 0; k < N; k++) {
       x = a * x + b;
     }
   }
-  // record ending SM (must be = sm0)
-  R[idx].sm1 = get_smid();
+  // record ending SM (must be = thread0)
+  R[i].team[1] = omp_get_team_num();
+  R[i].thread[1] = omp_get_thread_num();
+  R[i].sm[1] = get_smid();
   // record result, just so that the computation is not
   // eliminated by the compiler
-  R[idx].x = x;
+  R[i].x = x;
+}
+
+void dump(record_t * R, long * T, long L, long M, long t0) {
+  long k = 0;
+  for (long i = 0; i < L; i++) {
+    printf("i=%ld x=%f team0=%d thread0=%d sm0=%d team1=%d thread1=%d sm1=%d",
+           i, R[i].x,
+           R[i].team[0], R[i].thread[0], R[i].sm[0],
+           R[i].team[1], R[i].thread[1], R[i].sm[1]);
+    for (long j = 0; j < M; j++) {
+      printf(" %ld", T[k] - t0);
+      k++;
+    }
+    printf("\n");
+  }
 }
 
 int getenv_int(const char * v) {
@@ -49,43 +118,25 @@ int getenv_int(const char * v) {
   return atoi(s);
 }
 
-/* usage
-   ./omp_gpu_sched_rec N_TEAMS N_THREADS_PER_TEAM N M A B
-
-   creates about N_THREAD_BLOCKS blocks x THREAD_BLOCK_SZ 
-   threads.
-   each thread repeats x = A x + B (N * M) times.
-*/
 int main(int argc, char ** argv) {
+  int idx = 1;
+  long L   = (idx < argc ? atol(argv[idx]) : 100);  idx++;
+  long M   = (idx < argc ? atol(argv[idx]) : 100);  idx++;
+  long N   = (idx < argc ? atol(argv[idx]) : 100);  idx++;
+  double a = (idx < argc ? atof(argv[idx]) : 0.99); idx++;
+  double b = (idx < argc ? atof(argv[idx]) : 1.00); idx++;
   int n_teams = getenv_int("OMP_NUM_TEAMS");
-  int n_threads_per_team = getenv_int("OMP_NUM_TEAMS");
-  int i = 1;
-  long n             = (argc > i ? atol(argv[i]) : 100);   i++;
-  long m             = (argc > i ? atol(argv[i]) : 1000);  i++;
-  double a           = (argc > i ? atof(argv[i])  : 0.99); i++;
-  double b           = (argc > i ? atof(argv[i])  : 1.00); i++;
-
-  // allocate record_t array (both on host and device)
-  long n_threads = n_teams * n_threads_per_team;
-  // iter x uses R[x]
-  record_t * R = (record_t *)calloc(sizeof(record_t), n_threads);
-  // allocate clock array (both on host and device)
-  long * T = (long *)calloc(sizeof(long), n * n_threads);
-
-#pragma omp target teams distribute parallel for num_teams(n_teams) num_threads(n_threads_per_team) map(tofrom: R[:n_threads], T[:n * n_threads])
-  for (long idx = 0; idx < n_threads; idx++) {
-    iter(a, b, R, T, n, m, idx);
+  int n_threads_per_team = getenv_int("OMP_NUM_THREADS");
+  record_t * R = (record_t *)calloc(L, sizeof(record_t));
+  long * T = (long *)calloc(L * M, sizeof(long));
+  long t0 = cur_time_ns();
+#pragma omp target teams distribute parallel for num_teams(n_teams) num_threads(n_threads_per_team)
+  for (long i = 0; i < L; i++) {
+    iter_fun(a, b, i, M, N, R, T);
   }
-  // dump the for visualization
-  long k = 0;
-  for (long idx = 0; idx < n_threads; idx++) {
-    printf("thread=%ld x=%f sm0=%u sm1=%u", idx, R[idx].x, R[idx].sm0, R[idx].sm1);
-    for (long i = 0; i < n; i++) {
-      printf(" %ld", T[k]);
-      k++;
-    }
-    printf("\n");
-  }
+  long t1 = cur_time_ns();
+  printf("%ld nsec\n", t1 - t0);
+  dump(R, T, L, M, t0);
   return 0;
 }
 
