@@ -2,7 +2,8 @@ ext:=cu
 #srcs:=$(wildcard *.$(ext))
 srcs:=cuda_sched_rec.cu
 bases:=$(patsubst %.cu,%,$(srcs))
-mkv:=../../../../../../jupyter_tools/authoring/mk_version.py
+#mkv:=../../../../../../jupyter_tools/authoring/mk_version.py
+mkv:=./mk_version.py
 
 define rule
 all : exes/$(base)_$(v)
