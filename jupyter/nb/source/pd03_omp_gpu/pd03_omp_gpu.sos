@@ -827,6 +827,64 @@ then map clauses are unnecessary by using the `nvc++ -gpu=mem:managed` option.
 
 <!--- end md --->
 
+
+<!--- md --->
+# Visualizing execution
+
+* Let's perform the same experiment we did for multicore before, this time on GPU
+* The program below executes the function `iter_fun`
+```
+#pragma omp target teams distribute parallel for num_teams(n_teams) num_threads(n_threads_per_team)
+  for (long i = 0; i < L; i++) {
+    iter_fun(a, b, i, M, N, R, T);
+  }
+```
+
+* `iter_fun(a, b, i, M, N, R, T)` repeats x = a x + b many (M * N) times and record time every N iterations
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile omp_gpu_sched_rec.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_gpu_sched_rec.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+nvc++ -mp=gpu omp_gpu_sched_rec.cc -o omp_gpu_sched_rec
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_gpu_sched_rec.cc -o omp_gpu_sched_rec
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+OMP_NUM_TEAMS=3 OMP_NUM_THREADS=32 ./omp_gpu_sched_rec > a.dat
+<!--- end code --->
+
+<!--- md --->
+* Execute the following cell to visialize it
+* In the graph,
+  * horizontal axis is the time from the start in the number of clock cycles on GPU
+  * vertical axis is the iteration number (i)
+  * the color represents the thread that executed the iteration
+
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+import sched_vis
+omp_gpu_sched_vis.sched_plt(["a.dat"])
+# omp_gpu_sched_vis.sched_plt(["a.dat"], start_t=1.5e7, end_t=2.0e7, show_every=1)
+<!--- end code --->
+
+<!--- md --->
+#*P Understanding scheduling by visualization
+
+* Set the number of teams to 1 and increase the number of threads (per team) from 32 to larger numbers, to find how many iterations can execute almost simultaneously in a single team (i.e., SM)
+  * use `show_every` parameter to reduce the number of iterations visualized 
+* Then you fix the number of threads per team and increase the number of teams, again to find how many iterations can execute almost simultaneously in the device
+* Find the equivalent number on CPU and compare them
+  * You will confirm the number for GPU is much larger than that for CPU, with no surprise
+  * Make no mistake; CPU has other axes of parallelism (SIMD and superscalar) that cannot be tapped just by using multicores (omp parallel), which we will see later in this course (do not interpret the ratio between the two as the ratio of the peak performance between the two)
+  * Still, it's safe to say GPU "simplifies" high-performance programming, in the sense that the required effort to tap all available hardware-level parallelism is much lower if the program has ample loop-level parallelism (the number of independently executable iterations)
+
+<!--- end md --->
+
 <!--- md --->
 #*P Putting them together: calculating an integral
 
