@@ -855,7 +855,10 @@ nvc++ -mp=gpu -cuda omp_gpu_sched_rec.cc -o omp_gpu_sched_rec
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
-OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 OMP_NUM_THREADS=32 ./omp_gpu_sched_rec > a.dat
+T=2   # teams
+H=32  # threads
+L=$((T * H))
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=${T} OMP_NUM_THREADS=${H} ./omp_gpu_sched_rec ${L} > a.dat
 <!--- end code --->
 
 <!--- md --->
@@ -868,15 +871,15 @@ OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 OMP_NUM_THREADS=32 ./omp_gpu_sched_
 <!--- end md --->
 
 <!--- code w kernel=python points=1 --->
-import sched_vis
+import omp_gpu_sched_vis
 omp_gpu_sched_vis.sched_plt(["a.dat"])
-# omp_gpu_sched_vis.sched_plt(["a.dat"], start_t=1.5e7, end_t=2.0e7, show_every=1)
+# omp_gpu_sched_vis.sched_plt(["a.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"), show_every=1)
 <!--- end code --->
 
 <!--- md --->
 #*P Understanding scheduling by visualization
 
-* Set the number of teams to 1 and increase the number of threads (per team) from 32 to larger numbers, to find how many iterations can execute almost simultaneously in a single team (i.e., SM)
+* Set the number of teams to 1 and increase both the iteration count and the number of threads (per team) from 32 to larger numbers, to find how many iterations can execute almost simultaneously in a single team (i.e., SM)
   * use `show_every` parameter to reduce the number of iterations visualized 
 * Then you fix the number of threads per team and increase the number of teams, again to find how many iterations can execute almost simultaneously in the device
 * Find the equivalent number on CPU and compare them
