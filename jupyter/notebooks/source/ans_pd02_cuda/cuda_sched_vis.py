@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def read_dat(files_dat):
-    pat = re.compile("thread=(?P<thread>\d+) x=(?P<x>\d+\.\d+) sm0=(?P<sm0>\d+) sm1=(?P<sm1>\d+)(?P<t>( \d+)*)")
+    pat = re.compile(r"thread=(?P<thread>\d+) x=(?P<x>\d+\.\d+) sm0=(?P<sm0>\d+) sm1=(?P<sm1>\d+)(?P<t>( \d+)*)")
     log = {}
     for file_dat in files_dat:
         with open(file_dat) as fp:
@@ -34,8 +34,8 @@ def cuda_sched_plt(files_dat, start_t=0, end_t=float("inf"), start_thread=0, end
     fig, ax = plt.subplots()
     plt.xlabel("cycles")
     plt.ylabel("thread idx")
-    T0 = min(t for records in log.values() for _, T in records for t in T[:1])
     for sm,records in sorted(list(log.items())):
+        T0 = min(t for _, T in records for t in T[:1])
         X = []
         Y = []
         sm_color = cmap(sm)
