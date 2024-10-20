@@ -359,7 +359,7 @@ OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 OMP_NUM_THREADS=32 ./omp_parallel
   * but this seems not possible when executing on GPUs (I don't know whether it is an implementation issue or specification)
   * you have to use `num_threads(x)` if you need to set it, just as done above
   * or you can just omit it to leave it to the system
-* also, it seems that with both clang and nvc, <font color=red>_the number of threads must a multiple of 32_</font>
+* also, it seems that with both clang and nvc, <font color=red>_the number of threads must be 1 or a multiple of 32_</font>
   * it does not even signal an error, so you must be careful not to unintentionally specify a wrong number
   * this is another reason to leave it to the system unless necessary
 
@@ -849,12 +849,12 @@ then map clauses are unnecessary by using the `nvc++ -gpu=mem:managed` option.
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
-nvc++ -mp=gpu omp_gpu_sched_rec.cc -o omp_gpu_sched_rec
+nvc++ -mp=gpu -cuda omp_gpu_sched_rec.cc -o omp_gpu_sched_rec
 # clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_gpu_sched_rec.cc -o omp_gpu_sched_rec
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
-OMP_NUM_TEAMS=3 OMP_NUM_THREADS=32 ./omp_gpu_sched_rec > a.dat
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 OMP_NUM_THREADS=32 ./omp_gpu_sched_rec > a.dat
 <!--- end code --->
 
 <!--- md --->

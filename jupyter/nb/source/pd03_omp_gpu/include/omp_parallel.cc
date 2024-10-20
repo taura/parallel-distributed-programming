@@ -12,8 +12,8 @@ int getenv_int(const char * v) {
 
 int main(int argc, char ** argv) {
   int n_threads= getenv_int("OMP_NUM_THREADS");
-  if (n_threads % 32) {
-    fprintf(stderr, "OMP_NUM_THREADS (%d) must be a multiple of 32\n", n_threads);
+  if (n_threads != 1 && n_threads % 32) {
+    fprintf(stderr, "OMP_NUM_THREADS (%d) must be 1 or a multiple of 32\n", n_threads);
     exit(1);
   }
   printf("hello on host\n");

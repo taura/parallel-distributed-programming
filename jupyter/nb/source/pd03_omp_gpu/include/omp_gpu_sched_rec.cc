@@ -53,6 +53,14 @@ static long long int clock64(void) {
 }
 #endif
 
+__attribute__((unused))
+static long long int get_gpu_clock(void) {
+  long long int t = 0;
+#pragma omp target map(from: t)
+  t = clock64();
+  return t;
+}
+
 typedef struct {
   double x;
   int team[2];
@@ -129,13 +137,13 @@ int main(int argc, char ** argv) {
   int n_threads_per_team = getenv_int("OMP_NUM_THREADS");
   record_t * R = (record_t *)calloc(L, sizeof(record_t));
   long * T = (long *)calloc(L * M, sizeof(long));
-  long t0 = cur_time_ns();
-#pragma omp target teams distribute parallel for num_teams(n_teams) num_threads(n_threads_per_team)
+  long t0 = get_gpu_clock();
+#pragma omp target teams distribute parallel for num_teams(n_teams) num_threads(n_threads_per_team) map(tofrom: R[:L]) map(tofrom: T[:L*M])
   for (long i = 0; i < L; i++) {
     iter_fun(a, b, i, M, N, R, T);
   }
-  long t1 = cur_time_ns();
-  printf("%ld nsec\n", t1 - t0);
+  long t1 = get_gpu_clock();
+  printf("%ld GPU clocks\n", t1 - t0);
   dump(R, T, L, M, t0);
   return 0;
 }
