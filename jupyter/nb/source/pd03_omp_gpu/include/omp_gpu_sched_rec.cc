@@ -64,8 +64,8 @@ static long long int get_gpu_clock(void) {
 
 typedef struct {
   double x;
-  int team[2];
-  int thread[2];
+  //int team[2];
+  //int thread[2];
   int sm[2];
 } record_t;
 
@@ -83,8 +83,8 @@ void iter_fun(double a, double b, long i, long M, long N,
   // record in T[i * M] ... T[(i+1) * M - 1]
   T = &T[i * M];
   // record starting thread/cpu
-  R[i].team[0] = omp_get_team_num();
-  R[i].thread[0] = omp_get_thread_num();
+  //R[i].team[0] = omp_get_team_num();
+  //R[i].thread[0] = omp_get_thread_num();
   R[i].sm[0] = get_smid();
   // repeat a x + b many times.
   // record time every N iterations
@@ -95,8 +95,8 @@ void iter_fun(double a, double b, long i, long M, long N,
     }
   }
   // record ending SM (must be = thread0)
-  R[i].team[1] = omp_get_team_num();
-  R[i].thread[1] = omp_get_thread_num();
+  //R[i].team[1] = omp_get_team_num();
+  //R[i].thread[1] = omp_get_thread_num();
   R[i].sm[1] = get_smid();
   // record result, just so that the computation is not
   // eliminated by the compiler
@@ -106,10 +106,13 @@ void iter_fun(double a, double b, long i, long M, long N,
 void dump(record_t * R, long * T, long L, long M) {
   long k = 0;
   for (long i = 0; i < L; i++) {
-    printf("i=%ld x=%f team0=%d thread0=%d sm0=%d team1=%d thread1=%d sm1=%d",
+    // team0=%d thread0=%d team1=%d thread1=%d 
+    printf("i=%ld x=%f sm0=%d sm1=%d",
            i, R[i].x,
-           R[i].team[0], R[i].thread[0], R[i].sm[0],
-           R[i].team[1], R[i].thread[1], R[i].sm[1]);
+           //R[i].team[0], R[i].thread[0],
+           R[i].sm[0],
+           //R[i].team[1], R[i].thread[1],
+           R[i].sm[1]);
     for (long j = 0; j < M; j++) {
       printf(" %ld", T[k]);
       k++;
