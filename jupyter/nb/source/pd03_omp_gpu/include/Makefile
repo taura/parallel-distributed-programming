@@ -11,7 +11,7 @@ vers/$(base)_$(v).$(ext) : $(base).$(ext) vers/dir
 	$(mkv) -D VER=$(v) $$< > $$@
 exes/$(base)_$(v) : vers/$(base)_$(v).$(ext) exes/dir
 	nvc++ -mp=gpu -cuda -O4 -o $$@ $$<
-#	/home/share/llvm/bin/clang++ -fopenmp -fopenmp-targets=nvptx64 -O0 -g -o $$@ $$<
+#	clang++ -fopenmp -fopenmp-targets=nvptx64 -O4 -o $$@ $$<
 endef
 
 all :
