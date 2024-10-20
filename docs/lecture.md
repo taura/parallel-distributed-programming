@@ -4,6 +4,12 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Oct. 20, 2024)</font> Plan for Oct. 21
+  * [OpenMP](slides/openmp.pdf)
+  * pd01_omp
+  * [CUDA](slides/cuda.pdf)
+  * pd02_cuda
+
 * <font color=blue>(Posted: Oct. 06, 2024)</font> Plan for Oct. 07
   * make sure you can see [the course page](https://utol.ecc.u-tokyo.ac.jp/lms/course?idnumber=2024_4884_4840-1004_01) in UTOL and check the comments from the instructor of "Assignment 0: Jupyter password"
   * [Introduction](slides/intro.pdf)
