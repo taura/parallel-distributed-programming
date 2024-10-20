@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <omp.h>
 #include <nv/target>
+#include <omp.h>
 
 long cur_time_ns() {
   struct timespec ts[1];
@@ -42,7 +42,7 @@ static unsigned int get_smid(void) {
 
 /* get GPU clock (for Clang LLVM compiler).
    return -1 if called on CPU */
-__attribute__((unused))
+__attribute__((unused,nothrow))
 static long long int clock64(void) {
 #if __CUDA_ARCH__
   long long int clock;
@@ -77,14 +77,16 @@ typedef struct {
    record thread and cpu to R.
  */
 void iter_fun(double a, double b, long i, long M, long N,
-              record_t * R, long * T) {
+              record_t * R, long * T, int team_, int thread_) {
   // initial value (not important)
   double x = i;
   // record in T[i * M] ... T[(i+1) * M - 1]
   T = &T[i * M];
   // record starting thread/cpu
-  R[i].team[0] = omp_get_team_num();
-  R[i].thread[0] = omp_get_thread_num();
+  int team = omp_get_team_num();
+  int thread = omp_get_thread_num();
+  R[i].team[0] = team;
+  R[i].thread[0] = thread;
   R[i].sm[0] = get_smid();
   // repeat a x + b many times.
   // record time every N iterations
@@ -95,8 +97,8 @@ void iter_fun(double a, double b, long i, long M, long N,
     }
   }
   // record ending SM (must be = thread0)
-  R[i].team[1] = omp_get_team_num();
-  R[i].thread[1] = omp_get_thread_num();
+  R[i].team[1] = team;
+  R[i].thread[1] = thread;
   R[i].sm[1] = get_smid();
   // record result, just so that the computation is not
   // eliminated by the compiler
@@ -138,12 +140,14 @@ int main(int argc, char ** argv) {
   int n_threads_per_team = getenv_int("OMP_NUM_THREADS");
   record_t * R = (record_t *)calloc(L, sizeof(record_t));
   long * T = (long *)calloc(L * M, sizeof(long));
-  long t0 = 0; // get_gpu_clock();
-#pragma omp target teams distribute parallel for num_teams(n_teams) num_threads(n_threads_per_team) map(tofrom: R[0:L]) map(tofrom: T[0:L*M])
+  long t0 = get_gpu_clock();
+#pragma omp target teams distribute parallel for num_teams(n_teams) num_threads(n_threads_per_team) map(tofrom: R[0:L], T[0:L*M])
   for (long i = 0; i < L; i++) {
-    iter_fun(a, b, i, M, N, R, T);
+    int team = omp_get_team_num();
+    int thread = omp_get_thread_num();
+    iter_fun(a, b, i, M, N, R, T, team, thread);
   }
-  long t1 = 0; // get_gpu_clock();
+  long t1 = get_gpu_clock();
   printf("%ld GPU clocks\n", t1 - t0);
   dump(R, T, L, M);
   return 0;
