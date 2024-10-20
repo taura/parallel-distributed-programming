@@ -82,6 +82,7 @@ hostname | grep tauleg || echo "Oh, you are not on the right host, access https:
 
 * `nvc`/`nvc++` : `-mp=gpu` option
 * `clang`/`clang++` : `-fopenmp -fopenmp-targets=nvptx64` options
+
 <!--- end md --->
 
 <!--- md --->
