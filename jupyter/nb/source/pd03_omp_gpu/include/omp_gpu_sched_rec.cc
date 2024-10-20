@@ -40,6 +40,15 @@ void iter(double a, double b, record_t * R,
   R[idx].x = x;
 }
 
+int getenv_int(const char * v) {
+  char * s = getenv(v);
+  if (!s) {
+    fprintf(stderr, "specify environment variable %s\n", v);
+    exit(1);
+  }
+  return atoi(s);
+}
+
 /* usage
    ./omp_gpu_sched_rec N_TEAMS N_THREADS_PER_TEAM N M A B
 
@@ -48,10 +57,8 @@ void iter(double a, double b, record_t * R,
    each thread repeats x = A x + B (N * M) times.
 */
 int main(int argc, char ** argv) {
-  char * n_teams_s = getenv("OMP_NUM_TEAMS");
-  char * n_threads_per_team_s = getenv("OMP_NUM_THREADS");
-  long n_teams = (n_teams_s ? atol(n_teams_s) : 1);
-  long n_threads_per_team = (n_threads_per_team_s ? atol(n_threads_per_team_s) : 32);
+  int n_teams = getenv_int("OMP_NUM_TEAMS");
+  int n_threads_per_team = getenv_int("OMP_NUM_TEAMS");
   int i = 1;
   long n             = (argc > i ? atol(argv[i]) : 100);   i++;
   long m             = (argc > i ? atol(argv[i]) : 1000);  i++;

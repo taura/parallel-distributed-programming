@@ -1,8 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <omp.h>
+int getenv_int(const char * v) {
+  char * s = getenv(v);
+  if (!s) {
+    fprintf(stderr, "specify environment variable %s\n", v);
+    exit(1);
+  }
+  return atoi(s);
+}
+
 int main(int argc, char ** argv) {
-  int n_threads= atoi(getenv("OMP_NUM_THREADS"));
+  int n_threads= getenv_int("OMP_NUM_THREADS");
   if (n_threads % 32) {
     fprintf(stderr, "OMP_NUM_THREADS (%d) must be a multiple of 32\n", n_threads);
     exit(1);
