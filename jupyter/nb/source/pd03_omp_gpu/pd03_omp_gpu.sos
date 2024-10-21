@@ -1,0 +1,996 @@
+<!--- md --->
+#* OpenMP for GPU
+<!--- end md --->
+
+<!--- md w --->
+
+Enter your name and student ID.
+
+ * Name:
+ * Student ID:
+
+<!--- end md --->
+
+<!--- md --->
+
+# OpenMP for GPU
+
+* <a href="http://openmp.org/" target="_blank" rel="noopener">OpenMP</a> is the de fact programming model for multicore environment
+* More recently, it supports GPU offloading
+* In this notebook you are going to learn OpenMP for GPU
+* Consult [the spec](https://www.openmp.org/spec-html/5.0/openmp.html) when necessary
+* Take a look at [a talk slide OPENMP IN NVIDIA'S HPC by Jeff Larkin](https://openmpcon.org/wp-content/uploads/openmpcon2021-nvidia.pdf)
+
+<!--- end md --->
+
+<!--- md --->
+# Compilers
+
+* [NVIDIA HPC SDK](https://docs.nvidia.com/hpc-sdk/index.html) (`nvc` and `nvc++`) and recent [LLVM](https://llvm.org/) (`clang` and `clang++`) have a decent support of OpenMP for GPU
+<!--- end md --->
+
+<!--- md --->
+## Set up NVIDIA HPC SDK
+
+Execute this before you use NVIDIA HPC SDK
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/24.9/compilers/bin:$PATH
+<!--- end code --->
+
+<!--- md --->
+Check if it works (check if full paths of nvc/nvc++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which nvc
+which nvc++
+<!--- end code --->
+
+<!--- md --->
+## Set up LLVM
+
+Execute this before you use LLVM
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+export PATH=/home/share/llvm/bin:$PATH
+export LD_LIBRARY_PATH=/home/share/llvm/lib:/home/share/llvm/lib/x86_64-unknown-linux-gnu:$LD_LIBRARY_PATH
+<!--- end code --->
+
+<!--- md --->
+Check if it works (check if full paths of nvc/nvc++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which clang
+which clang++
+<!--- end code --->
+
+<!--- md --->
+* Compilers can work at any host, but make sure you are on the GPU host before running GPU programs
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+hostname
+hostname | grep tauleg || echo "Oh, you are not on the right host, access https://tauleg.zapto.org/ instead"
+<!--- end code --->
+
+<!--- md --->
+## Summary of compiler options to compile OpenMP programs for GPU
+
+* `nvc`/`nvc++` : `-mp=gpu` option
+* `clang`/`clang++` : `-fopenmp -fopenmp-targets=nvptx64` options
+
+<!--- end md --->
+
+<!--- md --->
+# Summary of directives you are going to learn
+
+* [`#pragma omp target`](https://www.openmp.org/spec-html/5.0/openmpsu60.html#x86-2820002.12.5) : offloads the immediately following statement to the device
+* [`#pragma omp teams`](https://www.openmp.org/spec-html/5.0/openmpse15.html#x57-910002.7) : creates a number of teams (similar to `#pragma omp parallel`)
+* [`#pragma omp distribute`](https://www.openmp.org/spec-html/5.0/openmpsu43.html#x66-1580002.9.4) : distributes iterations of the immediately following for loop to teams
+* [`#pragma omp parallel`](https://www.openmp.org/spec-html/5.0/openmpse14.html#x54-800002.6) : creates a number of threads within a team
+* [`#pragma omp for`](https://www.openmp.org/spec-html/5.0/openmpsu41.html#x64-1290002.9.2) : distributes iterations of the immediately following for loop to threads of a team
+* [`#pragma omp target data`](https://www.openmp.org/spec-html/5.0/openmpsu57.html#x83-2580002.12.2)
+
+<!--- end md --->
+
+<!--- md --->
+# [`#pragma omp target`](https://www.openmp.org/spec-html/5.0/openmpsu60.html) $\sim$ moving control to a GPU
+
+* <font color="blue">syntax</font>
+```
+#pragma omp target
+    S
+```
+executes $S$ on (_offloads_ $S$ to) a device (hopefully a GPU)
+
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_target.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_target.cc --->
+<!--- end code --->
+
+<!--- md --->
+* Compiling
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp -target=gpu omp_target.cc -o omp_target
+# clang++ -fopenmp -fopenmp-targets=nvptx64 omp_target.cc -o omp_target
+<!--- end code --->
+
+<!--- md --->
+* Running
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+./omp_target
+<!--- end code --->
+
+<!--- md --->
+* note:
+  * while using `target` almost always intends to use a GPU, it can actually run without a GPU (fallback)
+  * executing the above program results in an identical result whether your machine has a GPU or not
+  * while good for portability, it may be confusing, so you can force it to run on GPU or signal an error when GPU is not available, by setting environment variable `OMP_TARGET_OFFLOAD=MANDATORY`.  `OMP_TARGET_OFFLOAD=DISABLED` has the opposite effect
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+# force it to run on GPU or signal an error
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_target
+# force it to run on the host even if GPU is available
+OMP_TARGET_OFFLOAD=DISABLED ./omp_target
+<!--- end code --->
+
+<!--- md --->
+# [`#pragma omp teams`](https://www.openmp.org/spec-html/5.0/openmpse15.html#x57-910002.7) $\sim$ creating thread blocks
+
+## basics
+
+* <font color="blue">syntax</font>
+```
+#pragma omp target
+#pragma omp teams
+    S
+```
+creates a number of _teams_ and the master of each team will execute $S$
+
+* it is similar to `#pragma omp parallel` in the sense that the effect is to have many threads execute the same statement
+* you can think of `teams` an extra layer of parallelism outside `parallel` (`parallel` is a construct that creates threads _within_ a team)
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_teams.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_teams.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_teams.cc -o omp_teams
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_teams.cc -o omp_teams
+<!--- end code --->
+
+<!--- md --->
+* Running
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_teams
+<!--- end code --->
+
+<!--- md --->
+* note:
+  * `teams` should appear right inside `target`
+  * as such, `target` and `teams` are often used in the combined form (`#pragma omp target teams`)
+<!--- end md --->
+
+<!--- md --->
+## specifying the number of teams
+
+* you can set the number of teams created by `teams` construct to $x$ either by
+  * having `num_teams(x)` clause in the `teams` construct
+  * setting `OMP_NUM_TEAMS=x` environment variable when running the command
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 ./omp_teams
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=5 ./omp_teams
+<!--- end code --->
+
+<!--- md --->
+## getting team ID and the number of teams
+
+* just as `omp_get_thread_num()` and `omp_get_num_threads()` tell you the thread ID and the number of threads of your team, you can get the team ID and the number of teams by
+* `omp_get_num_teams()` 
+  * `omp_get_team_num()`
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_team_num.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_team_num.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_team_num.cc -o omp_team_num
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_team_num.cc -o omp_team_num
+<!--- end code --->
+
+<!--- md --->
+* Running
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=5 ./omp_team_num
+<!--- end code --->
+
+<!--- md --->
+# [`#pragma omp distribute`](https://www.openmp.org/spec-html/5.0/openmpsu43.html#x66-1580002.9.4) $\sim$ distributing iterations to thread blocks
+
+* <font color="blue">syntax</font>
+```
+#pragma omp target
+#pragma omp teams
+    {
+      ...
+#pragma omp distribute
+      for (...) {
+        ...
+      }
+    }
+```
+distributes iterations of the for-loop across teams
+
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_distribute.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_distribute.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_distribute.cc -o omp_distribute
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_distribute.cc -o omp_distribute
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 ./omp_distribute 5
+<!--- end code --->
+
+<!--- md --->
+* execute the following command with different number of teams and the command line (the number of iterations) and make sense of the result
+<!--- end md --->
+
+<!--- md --->
+#*P Understand teams and distribute
+
+* a small quiz before things get more confusing
+* reason about which lines are executed by how many threads, and as a result, how many lines are printed when you run the above program with <font color="blue"><tt>OMP_NUM_TEAMS=$T$ ./omp_distribute $m$</tt></font>
+* answer with an expression of $T$ and $m$
+* you can easily check your answer by counting the number of lines using `wc` command
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 ./omp_distribute 5 | wc
+<!--- end code --->
+
+<!--- md w points=1 --->
+
+<!--- end md --->
+
+<!--- md --->
+* execute the following command with different number of teams and the command line (the number of iterations)
+<!--- end md --->
+
+
+
+<!--- md --->
+* note:
+  * if there is no statements between `teams` and `distribute` they can be combined into one directive, just as * recall that `target` can be combined with `teams`, so you can combine all the three 
+`parallel` and `for` can be combined
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_target_teams_distribute.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_target_teams_distribute.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_target_teams_distribute.cc -o omp_target_teams_distribute
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_target_teams_distribute.cc -o omp_target_teams_distribute
+<!--- end code --->
+
+
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 ./omp_target_teams_distribute 7
+<!--- end code --->
+
+<!--- md --->
+* note:
+  * you can parallelize a loop with just `teams` and `distribute` without `parallel` and `for` described below
+  * however, to effectively use GPUs, you need to use `parallel` within each team
+  * while implementation dependent, you can think of a team as a single thread block, so only using teams, you end up creating many thread blocks each having only a single thread, resulting in very inefficient use of GPUs 
+<!--- end md --->
+
+<!--- md --->
+# [`#pragma omp parallel`](https://www.openmp.org/spec-html/5.0/openmpse14.html#x54-800002.6) $\sim$ having threads in a thread block
+
+## `parallel` inside `teams`
+
+* syntax:
+```
+#pragma omp target
+#pragma omp teams
+    {
+      ...
+#pragma omp parallel
+      S
+    }
+```
+creates a number of thread within each team
+
+* recall that you used `parallel` to create threads when executing on CPUs
+* used inside `teams`, it will create threads within the team, each executing $S$
+
+* here is an example that illustrates it
+<font color="blue"><tt>OMP_NUM_TEAMS=$T$ OMP_NUM_THREADS=$H$ ./omp_team_parallel</tt></font>
+creates $T$ teams each of which create $H$ threads
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_parallel.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_parallel.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_parallel.cc -o omp_parallel
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_parallel.cc -o omp_parallel
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 OMP_NUM_THREADS=32 ./omp_parallel
+<!--- end code --->
+
+<!--- md --->
+
+* <font color="red">important remarks on the number of threads you specify in `parallel` directive</font>
+  * on CPU, the number of threads created by `parallel` could be specified either with `OMP_NUM_THREADS=x` environment variable or `num_threads(x)` in `parallel` directive
+  * but this seems not possible when executing on GPUs (I don't know whether it is an implementation issue or specification)
+  * you have to use `num_threads(x)` if you need to set it, just as done above
+  * or you can just omit it to leave it to the system
+* also, it seems that with both clang and nvc, <font color=red>_the number of threads must be 1 or a multiple of 32_</font>
+  * it does not even signal an error, so you must be careful not to unintentionally specify a wrong number
+  * this is another reason to leave it to the system unless necessary
+
+<!--- end md --->
+
+<!--- md --->
+#*P Understand teams and parallel
+
+* a similar quiz about the combination of teams and parallel
+* reason about which lines are executed by how many threads, and as a result, how many lines are printed when you run the above program with <font color="blue"><tt>OMP_NUM_TEAMS=$T$ OMP_NUM_THREADS=$H$ ./omp_parallel</tt></font>
+* answer with an expression of $T$ and $H$
+* you can easily check your answer by counting the number of lines using `wc` command
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 OMP_NUM_THREADS=32 ./omp_parallel | wc
+<!--- end code --->
+
+<!--- md w points=1 --->
+
+<!--- end md --->
+
+<!--- md --->
+## `parallel` inside `distribute` inside `teams`
+
+* more typically you call `parallel` inside `distribute` (which is necessarily inside `teams`), as you will be parallelizing loops
+* there is nothing new syntactically
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_distribute_parallel.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_distribute_parallel.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_distribute_parallel.cc -o omp_distribute_parallel
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_distribute_parallel.cc -o omp_distribute_parallel
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 OMP_NUM_THREADS=32 ./omp_distribute_parallel 5
+<!--- end code --->
+
+
+<!--- md --->
+#*P Understand teams, distribute, and parallel
+
+* a similar quiz about the combination of teams, distribute, and parallel
+* reason about which lines are executed by how many threads, and as a result, how many lines are printed when you run the above program with <font color="blue"><tt>OMP_NUM_TEAMS=$T$ OMP_NUM_THREADS=$H$ ./omp_distribute_parallel $m$</tt></font>
+* answer with an expression of $T$, $H$, and $m$
+* you can easily check your answer by counting the number of lines using `wc` command
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 OMP_NUM_THREADS=32 ./omp_distribute_parallel 5 | wc
+<!--- end code --->
+
+<!--- md w points=1 --->
+
+<!--- end md --->
+
+<!--- md --->
+# [`#pragma omp for`](https://www.openmp.org/spec-html/5.0/openmpsu41.html#x64-1290002.9.2) $\sim$ distributing iterations to threads within a thread block
+
+* syntax:
+```
+#pragma omp target
+#pragma omp teams
+    ...
+#pragma omp distribute
+#pragma omp parallel
+    ...
+#pragma omp for
+for (...) {
+    ...
+}  
+```
+
+* used inside `parallel`, it will distribute iterations of the loop to threads
+
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_for.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_for.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_for.cc -o omp_for
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_for.cc -o omp_for
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 OMP_NUM_THREADS=32 ./omp_for 5 6
+<!--- end code --->
+
+<!--- md --->
+#*P Understand teams, distribute, parallel, and for
+
+* a similar quiz about the combination of teams, distribute, parallel, and for
+* reason about which lines are executed by how many threads, and as a result, how many lines are printed when you run the above program with <font color="blue"><tt>OMP_NUM_TEAMS=$T$ OMP_NUM_THREADS=$H$ ./omp_for $m$ $n$</tt></font>
+* answer with an expression of $T$, $H$, $m$, and $n$
+* you can easily check your answer by counting the number of lines using `wc` command
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 OMP_NUM_THREADS=32 ./omp_for 5 6 | wc
+<!--- end code --->
+
+<!--- md w points=1 --->
+
+<!--- end md --->
+
+
+<!--- md --->
+# Common combined directives
+
+* anybody who has a right mind will feel sick with the whole series of different directive names that have little or no consistency
+* each of them is nominally an independent, standalone directive, but many of them are almost always used together in practice
+* since the purpose is often to execute a loop nest in parallel, most typically they are used in one of the following forms
+
+* combine everything 
+```
+#pragma omp target teams distribute parallel for
+    for (...) {
+      ...
+    }
+```
+
+* parallelize an outer loop with `teams` $+$ `distribute` and an inner loop with `parallel` $+$ `for`
+
+```
+#pragma omp target teams distribute
+    for (...) {
+#pragma omp parallel for
+      for (...) {
+        ...
+      }
+    }  
+```
+<!--- end md --->
+
+<!--- md --->
+# [`#pragma omp target data`](https://www.openmp.org/spec-html/5.0/openmpsu57.html#x83-2580002.12.2) $\sim$ mapping data between the host CPU and GPU
+
+* in the CUDA programming, the only data transfer that more or less automatically occurs is passing call-by-value arguments (scalars and structures)
+* arrays and data pointed to by pointers must all be explicitly (1) allocated on GPU memory by `cudaMalloc` and (2) moved between CPU and GPU by `cudaMemcpy`, which quickly becomes tedious and error-prone
+* what we are conceptually doing when programming in CUDA is to maintain the mapping between data address on CPU and corresponding data address on GPU and synchronize their contents (data in that address) when necessary
+```
+a = malloc(...); // data on CPU @ a
+cudaMalloc(&a_dev, ...); // data on GPU @ a_dev
+cudaMemcpy(a_dev, a, ...); // move contents a[..] -> a_dev[..]
+  ...
+cudaMemcpy(a, a_dev, ...); // move contents a[..] <- a_dev[..]
+```
+
+* `target data` and its `map` clauses make it possible to do this task more easily and declaratively
+
+* <font color="red">Warning:</font> I could not (and do not want to) decipher this [super lawyerish spec document about it](https://www.openmp.org/spec-html/5.0/openmpsu109.html#x142-6180002.19.7) to fully understand the behavior of `map` clauses
+* I am trying to explain it hopefully in a more non-lawyer-friendly and straight-to-the-point way, but part of it is not backed up by the spec document but rather based on actual experiments and my imagination and common sense about what the implementation is doing
+* when you are not sure, play safe or conduct a similar experiment yourself
+
+* <font color="blue">syntax:</font>
+```
+#pragma omp target data map(to: ...) map(from: ...) map(tofrom: ...) ...
+    S
+```
+where ... is a variable, array name, or base address + range (e.g., a[0:n])
+
+* basically, these clauses say that specified variables, arrays, or address ranges are valid expressions you can get "expected" values in the during or after $S$
+* more specifically, 
+  * those specified in `map(to: ...)` become valid on GPU during $S$
+  * those specified in `map(from: ...)` become valid on CPU after $S$
+* to accomplish that, the <font color="blue">_mapping_</font> between CPU address and GPU address are maintained by the runtime system and contents may be moved to or from GPU as necessary
+  * data specified in `map(to: ...)` may be copied to GPU (CPU -&gt; GPU) before $S$
+  * data specified in `map(from: ...)` may be copied from GPU (GPU -&gt; CPU) after $S$
+* `map(tofrom: ...)` has the effect of both; it makes data available to GPU during $S$ and to CPU after $S$
+
+* it helps you understand if you think it has two effects
+  * one is "transfer data" that may be accessed from GPU
+  * the other is "redirecting pointers" so that the same expression (e.g., a, a[i], p->x) accesses different locations depending on whether you are on GPU or CPU
+
+* you typically use this directive together with `#pragma omp target` and you can in fact specify these clauses in `#pragma omp target`
+<!--- end md --->
+
+<!--- md --->
+## local variables and arrays
+
+* local variables and arrays that do not appear in any `map` clause are sent to GPU automatically
+* so, normally, you don't have to write anything to use (i.e., read) local variables/arrays visible in the scope of `#pragma target` directive
+note that a local arrays (`a`) and a structure (`p`) seems available without any declaration
+* the following program demonstrates that
+<!--- end md --->
+
+
+<!--- code w kernel=python --->
+%%writefile omp_map_local.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_map_local.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_map_local.cc -o omp_map_local
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_map_local.cc -o omp_map_local
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_map_local
+<!--- end code --->
+
+<!--- md --->
+## need map(from: $x$) or map(tofrom: $x$) to get the result back
+
+* the following code fails to obtain the result written to variable `t`
+  * to my surprise, values written to `a` and `p` are available back on CPU
+  * I didn't try to decipher [the lawyerish spec document](https://www.openmp.org/spec-html/5.0/openmpsu109.html#x142-6180002.19.7) to understand this behavior
+  * for now, I think it's a safe bet to always specify variables through which you want to obtain results from GPU when you are not sure
+
+* you need to specify `map` clause for `t`, either with `map(from: t)` when you don't have to send the value set by CPU to GPU, or with `map(tofrom: t)` when you have to
+
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_map_from.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_map_from.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_map_from.cc -o omp_map_from
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_map_from.cc -o omp_map_from
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_map_from
+<!--- end code --->
+
+<!--- md --->
+#*P Use map(from: ..) or map(tofrom: ..) to get the result back
+
+* add an appropriate `map` clause above so the CPU can get all the results back
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_map_from
+<!--- end code --->
+
+<!--- md --->
+## global variables and arrays
+
+* global variables and arrays are similar to local variables and arrays in that they are sent to GPU automatically when they do not appear in any `map` clause 
+* again, the opposite is not true
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_map_global.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_map_global.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_map_global.cc -o omp_map_global
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_map_global.cc -o omp_map_global
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_map_global
+<!--- end code --->
+
+<!--- md --->
+## what happens on pointers?
+
+* interestingly, a local pointer pointing to another local variable or an array mapped by a map clause (or a lack thereof) gets automatically "redirected" so that it points to the GPU version
+ints to (`a`) are automatically mapped on GPU
+* in the following program, data access through a pointer `pa` are valid without any map clause, as the data it
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_map_ptr.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_map_ptr.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_map_ptr.cc -o omp_map_ptr
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_map_ptr.cc -o omp_map_ptr
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_map_ptr
+<!--- end code --->
+
+<!--- md --->
+* it's interesting to see the addresses of these data
+* the addresses of array `a` are naturally different between CPU and GPU
+* remarkably, the addresses held in a pointer variable `pa` are _adjusted_ so it now points to the GPU version of `a`
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_map_ptr_with_addr.cc
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd03_omp_gpu/include/omp_map_ptr.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_map_ptr_with_addr.cc -o omp_map_ptr_with_addr
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_map_ptr_with_addr.cc -o omp_map_ptr_with_addr
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_map_ptr_with_addr
+<!--- end code --->
+
+<!--- md --->
+* this adjustment happens because `a` is mapped on the GPU as well, due to expressions involving `a`, such as `a[0]`, `a[1]`, etc. appear in the target statement
+d you get an error
+* if you remove the first statement to leave only the expressions involving `pa`, the adjustment does not occur
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_map_ptr_err.cc
+<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd03_omp_gpu/include/omp_map_ptr.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_map_ptr_err.cc -o omp_map_ptr_err
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_map_ptr_err.cc -o omp_map_ptr_err
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_map_ptr_err
+<!--- end code --->
+
+<!--- md --->
+## a pointer buried in another data
+
+* another situation you need to explicitly handle data mapping is when a pointer is buried in another data structure (e.g., a struct containing a pointer)
+* such a pointer is not automatically _adjusted_ even if it happens to point to a local variable or an array that will be mapped automatically or by an explicit `map` clause
+
+* here is an example
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_map_ptr_in_data.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_map_ptr_in_data.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_map_ptr_in_data.cc -o omp_map_ptr_in_data
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_map_ptr_in_data.cc -o omp_map_ptr_in_data
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_map_ptr_in_data
+<!--- end code --->
+
+<!--- md --->
+#*P make pointer in another data structure valid
+
+* specify a map clause to indicate that you want to read `c.a[0:3]` in GPU
+* <font color="red">if you do that, however, a surprising side effect happens (another thing I couldn't get yet witness by yourself and fix it
+from the spec)</font>
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_map_ptr_in_data.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_map_ptr_in_data.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_map_ptr_in_data.cc -o omp_map_ptr_in_data
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_map_ptr_in_data.cc -o omp_map_ptr_in_data
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_map_ptr_in_data
+<!--- end code --->
+
+<!--- md --->
+## pointer to heap-allocated data
+
+* it's not that everything is handled so nicely, of course
+* the most basic situation you need to handle yourself is a pointer to heap-allocated data (by `malloc` or `new`, or anything other than local/global variables/arrays visible and used in `target`, as a matter of fact)
+* in these cases you need to explicitly specify a pointer and a range you want to make valid on GPU, by a range expression like <font color="blue">_p_[_start_:_end_]</font> or <font color="blue">_p_[_start_:_end_:_stride_]</font>
+
+* here is an example
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_map_heap.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_map_heap.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_map_heap.cc -o omp_map_heap
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_map_heap.cc -o omp_map_heap
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_map_heap
+<!--- end code --->
+
+<!--- md --->
+#*P Use `map` clause (with a range expression) to make pointer to heap valid
+
+* add an appropriate `map` clause so the GPU can get data in array `a` from CPU
+
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_map_heap.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_map_heap.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu omp_map_heap.cc -o omp_map_heap
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_map_heap.cc -o omp_map_heap
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_map_heap
+<!--- end code --->
+
+<!--- md --->
+## GOOD NEWS: `nvc(++) -gpu=mem:managed` makes heap-allocated data automatically shared
+
+* If you give `-gpu=mem:managed` option to NVIDIA HPC SDK compiler (`nvc` or `nvc++`), heap-allocated data --- data allocated by `malloc` or `new` --- get automatically shared
+* This makes working on pointer-based data structures particularly easy
+
+* Notes:
+  * This is presumably implemented by replacing calls to `malloc` by `cudaMallocManaged`
+  * Data allocated by `mmap` is NOT shared on this platform
+  * More recent OS supporting the hierarchical memory management (HMM) share mmap-allocated data, too
+    * [Details](https://developer.nvidia.com/blog/simplifying-gpu-application-development-with-heterogeneous-memory-management/)
+  * More recent GPUs supporting hardware unified memory share local variables and global variables data, too
+
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile omp_nomap_heap.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_map_heap.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+nvc++ -mp=gpu -gpu=mem:managed omp_nomap_heap.cc -o omp_nomap_heap
+<!--- end code --->
+
+<!--- code w kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_nomap_heap
+<!--- end code --->
+
+<!--- md --->
+# Summary : when is `map` clause necessary?
+
+ |allocated as/by       |syntax                        |CPU -> GPU         |GPU -> CPU         | Remarks |
+ |----------------------|------------------------------|-------------------|-------------------|---------|
+ |local/global variable |`int v;`                      |                   |`map(from:v)`      |         |
+ |local/global array    |`int a[N];`                   |                   |`map(from:a[p:q])` |         |
+ |malloc/new            |`int * h = (int *)malloc(..);`|`map(to:h[p:q])`   |`map(to:h[p:q])`   | \*      |
+ |                      |`int * h = new int[N];`       |`map(to:h[p:q])`   |`map(to:h[p:q])`   | \*      |
+ |mmap                  |`int * h = (int *)mmap(..);`  |`map(to:h[p:q])`   |`map(to:h[p:q])`   |         |
+
+* \* unnecessary when `nvc++ -gpu=mem:managed` option
+* Therefore, if you
+  * restrict GPU-to-CPU communication to data allocated by malloc or new (i.e., not through local or global variables), and 
+  * do not use mmap,
+  
+then map clauses are unnecessary by using the `nvc++ -gpu=mem:managed` option.
+* That is, the data will largely be transparently shared between the GPU and CPU
+
+<!--- end md --->
+
+
+<!--- md --->
+# Visualizing execution
+
+* Let's perform the same experiment we did for multicore before, this time on GPU
+* The program below executes the function `iter_fun`
+```
+#pragma omp target teams distribute parallel for num_teams(n_teams) num_threads(n_threads_per_team)
+  for (long i = 0; i < L; i++) {
+    iter_fun(a, b, i, M, N, R, T);
+  }
+```
+
+* `iter_fun(a, b, i, M, N, R, T)` repeats x = a x + b many (M * N) times and record time every N iterations
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile omp_gpu_sched_rec.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_gpu_sched_rec.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+nvc++ -mp=gpu -cuda omp_gpu_sched_rec.cc -o omp_gpu_sched_rec
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_gpu_sched_rec.cc -o omp_gpu_sched_rec
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+T=2   # teams
+H=32  # threads
+L=$((T * H))
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=${T} OMP_NUM_THREADS=${H} ./omp_gpu_sched_rec ${L} > a.dat
+<!--- end code --->
+
+<!--- md --->
+* Execute the following cell to visialize it
+* In the graph,
+  * horizontal axis is the time from the start in the number of clock cycles on GPU
+  * vertical axis is the iteration number (i)
+  * the color represents the thread that executed the iteration
+
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+import omp_gpu_sched_vis
+omp_gpu_sched_vis.sched_plt(["a.dat"])
+# omp_gpu_sched_vis.sched_plt(["a.dat"], start_t=0, end_t=float("inf"), start_i=0, end_i=float("inf"), show_every=1)
+<!--- end code --->
+
+<!--- md --->
+#*P Understanding scheduling by visualization
+
+* Set the number of teams to 1 and increase both the iteration count and the number of threads (per team) from 32 to larger numbers, to find how many iterations can execute almost simultaneously in a single team (i.e., SM)
+  * use `show_every` parameter to reduce the number of iterations visualized 
+* Then you fix the number of threads per team and increase the number of teams, again to find how many iterations can execute almost simultaneously in the device
+* Find the equivalent number on CPU and compare them
+  * You will confirm the number for GPU is much larger than that for CPU, with no surprise
+  * Make no mistake; CPU has other axes of parallelism (SIMD and superscalar) that cannot be tapped just by using multicores (omp parallel), which we will see later in this course (do not interpret the ratio between the two as the ratio of the peak performance between the two)
+  * Still, it's safe to say GPU "simplifies" high-performance programming, in the sense that the required effort to tap all available hardware-level parallelism is much lower if the program has ample loop-level parallelism (the number of independently executable iterations)
+
+<!--- end md --->
+
+<!--- md --->
+#*P Putting them together: calculating an integral
+
+Write an OpenMP program that calculates
+
+$$ \int \int_D \sqrt{1 - x^2 - y^2}\,dx\,dy $$
+
+where
+
+$$ D = \{\;(x, y)\;|\;0\leq x \leq 1, 0\leq y \leq 1, x^2 + y^2 \leq 1 \}$$
+
+<font color=red>on GPU.</font>
+
+* Note: an alternative way to put it is to calculate
+
+$$ \int_0^1 \int_0^1 f(x)\,dx\,dy $$
+
+where
+
+$$ f(x) = \left\{\begin{array}{ll}\sqrt{1 - x^2 - y^2} & (x^2 + y^2 \leq 1) \\ 0 & (\mbox{otherwise}) \end{array}\right. $$
+
+* Use a nested loop to calculate the double integral
+* Use `target`, `teams`, `distribute`, `parallel`, and `for` to execute it on GPU
+* The result should be close to $\pi/6 = 0.52359..$ (1/8 of the volume of the unit ball)
+* Play with the number of infinitesimal intervals for integration and the number of threads so that you can observe a speedup
+
+* Take the number of thread blocks (passed to `num_teams(..)`) and the number of threads per block (passed to `num_threads(x)`) in the command line
+
+* Compare the execution speed of OpenMP (CPU), CUDA (GPU), and OpenMP (GPU) in various settings
+  * a single CPU thread vs single CUDA thread
+  * a single CPU thread vs multiple CUDA threads in a single thread block 
+  * multiple CPU threads vs multiple CUDA threads in multiple thread blocks
+
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile omp_gpu_integral.cc
+
+<!--- end code --->
+
+<!--- code kernel=bash --->
+nvc++ -O4 -mp=gpu omp_gpu_integral.cc -o omp_gpu_integral
+<!--- end code --->
+
+<!--- code kernel=bash --->
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_gpu_integral
+<!--- end code --->
+
+<!--- code kernel=python label=ans --->
+%%writefile omp_gpu_integral_ans.cc
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd03_omp_gpu/include/omp_gpu_integral.cc --->
+<!--- end code --->
+
+<!--- code kernel=bash label=ans --->
+nvc++ -O4 -mp=gpu omp_gpu_integral_ans.cc -o omp_gpu_integral_ans
+<!--- end code --->
+
+<!--- code kernel=bash label=ans --->
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=108 OMP_NUM_THREADS=1024 ./omp_gpu_integral_ans
+<!--- end code --->
+
+<!--- md label=comment --->
+# Putting them all together
+
+#*P get sum of arrays on GPU using OpenMP
+
+* the following is a CPU-only serial code that initializes an array and calculate the sum of elements
+* all elements are initialized with ones to make the result easy to predict, but of course your code shouldn't exploit that
+* add appropriate omp directives to calculate the summation on GPU
+* remember that you are using OpenMP, so many of features you already learned in the CPU context just work (e.g., reduction)
+* hint:
+  * you only add a single line to make everything work
+* change the number of teams (`OMP_NUM_TEAMS`) to see it affects performance 
+
+<!--- end md --->
+
+<!--- code w kernel=python points=1 label=comment --->
+%%writefile omp_gpu_sum.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd03_omp_gpu/include/omp_gpu_sum.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 label=comment --->
+nvc++ -mp=gpu omp_gpu_sum.cc -o omp_gpu_sum
+# clang++ -Wall -fopenmp -fopenmp-targets=nvptx64 omp_gpu_sum.cc -o omp_gpu_sum
+<!--- end code --->
+
+<!--- md label=comment --->
+
+* note: in this experiment you don't expect things to run faster on GPU
+* just make sure things are running on GPU
+* to this end, play with
+  * `OMP_TARGET_OFFLOAD=MANDATORY` and `OMP_TARGET_OFFLOAD=DISABLED` and
+  * `OMP_NUM_TEAMS`
+to see that performance in fact changes between CPU and GPU and between a large and small number of teams (thread blocks)
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 label=comment --->
+# make sure you do things on GPU!
+OMP_TARGET_OFFLOAD=MANDATORY ./omp_gpu_sum
+# play with a small number of teams
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=1 ./omp_gpu_sum
+# CPU
+OMP_TARGET_OFFLOAD=DISABLED ./omp_gpu_sum
+<!--- end code --->
+

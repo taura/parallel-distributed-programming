@@ -16,7 +16,7 @@ run_bibtex_and_latex_twice:=n
 tex := $(wildcard openmp.tex)
 # svg files
 svg_svg := 
-svg_svg += $(wildcard svg/hierarchy.svg)
+# svg_svg += $(wildcard svg/hierarchy.svg)
 # svg_svg += $(wildcard svg/diagram_multisocket.svg)
 
 #svg_svg += svg/top500_2024_june.svg

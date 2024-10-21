@@ -377,7 +377,8 @@ sched_vis.sched_plt(["a.dat"])
 * Set the number of threads very large (higher than the physical number of cores) and see what happens
   * Hint : you can get the number of cores by `nproc` command 
 * In the above program, each iteration performs exactly the same amount of computation (i.e., x = a x + b (M * N) times), thus takes almost exactly the same time
-* Specifically, make iteration `i` repeats x = a x + b (M * (i * N)) times (i.e., change the inner loop in `iter_fun` to `for (long k = 0; k < i * N; k++) { ...`)
+* See what happens if this is not the case
+  * Specifically, make iteration `i` repeats x = a x + b (M * (i * N)) times (i.e., change the inner loop in `iter_fun` to `for (long k = 0; k < i * N; k++) { ...`)
 
 * `sched_plt` function below takes optional parameters `start_t` and `end_t` specifying the horizontal range to display
 * If you zoom _very_ closely to a particular point, you can see individual points and intervals between them, from which you can deduce how long it takes to perform `x = a x + b` once
@@ -1113,11 +1114,6 @@ $$ f(x) = \left\{\begin{array}{ll}\sqrt{1 - x^2 - y^2} & (x^2 + y^2 \leq 1) \\ 0
 
 <!--- end code --->
 
-<!--- md label=comment --->
-* N を指定しないと採点がしづらい
-* 台数効果を測るように指示しないと採点しづらい
-<!--- end md --->
-
 <!--- md label=ans --->
 _<font color="green">Example answer:</font>_
 <!--- end md --->
@@ -1147,8 +1143,8 @@ _<font color="green">Remarks:</font>_
 <!--- end code --->
 
 <!--- code w kernel=bash label=ans --->
-clang -fopenmp omp_integral_ans.c -o omp_integral_ans
-# nvc -mp omp_integral.c -o omp_integral
+clang -O3 -fopenmp omp_integral_ans.c -o omp_integral_ans -lm
+# nvc -O4 -mp omp_integral_ans.c -o omp_integral_ans
 <!--- end code --->
 
 <!--- md --->

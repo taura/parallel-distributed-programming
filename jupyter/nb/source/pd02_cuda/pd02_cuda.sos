@@ -1,6 +1,6 @@
-<!--- md label=prob,ans --->
+<!--- md --->
 
-# CUDA Programming Tutorial and Hands-on
+#* CUDA Programming
 
 <!--- end md --->
 
@@ -81,7 +81,7 @@ clang --version
 
 <!--- code w kernel=bash --->
 hostname
-hostname | grep tauleg || echo "Oh, you are not on the right host, access https://tauleg000.zapto.org/ instead"
+hostname | grep tauleg || echo "Oh, you are not on the right host, access https://tauleg.zapto.org/ instead"
 <!--- end code --->
 
 <!--- md --->
@@ -241,7 +241,7 @@ kernel_func<<<num_of_blocks,num_of_threads_per_block>>>(...);
   * Remember that a single SM is like a CPU core; a single GPU device has a number of SMs just like a single CPU has a number of cores.
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Change the number of threads per block
 
 Change the arguments of the following command line in various ways and see what happens
@@ -307,7 +307,7 @@ nvcc -o cuda_hello_2d cuda_hello_2d.cu
 ./cuda_hello_2d
 <!--- end code --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Specify 2D thread blocks and grids
 
 * Change the arguments of the following command line in various ways and see what happens
@@ -368,72 +368,113 @@ check_api_error(cudaFree(dev_p));
 
 * frees memory allocated by cudaMalloc
 
-* The following code demonstrates how to get some results back to host using `cudaMalloc` and `cudaMemcpy`
-* Results show when each CUDA thread started executing
+## You cannot access malloc-allocated region on the device
+
+* The following code demonstrates that if the device code accesses a region allocated by malloc (or any other host memory including stacks and global variables), you get a segmentation fault on the device
+
+* In practice, you never pass the pointer to malloc-allocated area to a kernel
+
 <!--- end md --->
 
 <!--- code w kernel=python points=1 --->
-%%writefile cuda_memcpy.cu
+%%writefile cuda_dev_segfault.cu
 <!--- exec-include ./mk_version.py -D VER=1 nb/source/pd02_cuda/include/cuda_memcpy.cu --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
-nvcc -o cuda_memcpy cuda_memcpy.cu
-# nvc++ -Wall -o cuda_memcpy cuda_memcpy.cu
-# clang++ -Wall -Wno-unknown-cuda-version -o cuda_memcpy cuda_memcpy.cu -L/usr/local/cuda/lib64 -lcudart
+nvcc -o cuda_dev_segfault cuda_dev_segfault.cu
+# nvc++ -Wall -o cuda_dev_segfault cuda_dev_segfault.cu
+# clang++ -Wall -Wno-unknown-cuda-version -o cuda_dev_segfault cuda_dev_segfault.cu -L/usr/local/cuda/lib64 -lcudart
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
-./cuda_memcpy
+./cuda_dev_segfault
 <!--- end code --->
 
-<!--- md label=prob,ans --->
-#*P Get data back from GPU to CPU
+<!--- md --->
 
-* Change the arguments of the following command line in various ways and observe clock values printed
+## You cannot access cudaMalloc-allocated region on the host
+
+* The following code demonstrates the oppssite; if the host code accesses a region allocated by `cudaMalloc`, you get a segmentation fault on the host
+
 <!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile cuda_host_segfault.cu
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd02_cuda/include/cuda_memcpy.cu --->
+<!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
-./cuda_memcpy 10 3
+nvcc -o cuda_host_segfault cuda_host_segfault.cu
+# nvc++ -Wall -o cuda_host_segfault cuda_host_segfault.cu
+# clang++ -Wall -Wno-unknown-cuda-version -o cuda_host_segfault cuda_host_segfault.cu -L/usr/local/cuda/lib64 -lcudart
 <!--- end code --->
 
-<!--- md label=ans --->
-_<font color="green">Answer for trivial work omitted</font>_
+<!--- code w kernel=bash points=1 --->
+./cuda_host_segfault
+<!--- end code --->
+
+<!--- md --->
+
+* So, to get a result computed on the device back to the host, call `cudaMemcpy`
+
+#*P Getting the result back from the device
+
+* Add an appropriate call to `cudaMemcpy` to the following code, so it correctly prints the values computed on the device (i.e., c[i] = i)
+
 <!--- end md --->
 
-<!--- md label=prob,ans --->
-* You observe some threads record exactly the same clock value
-* What do you deduce from that?
-<!--- end md --->
+<!--- code w kernel=python points=1 --->
+%%writefile cuda_dev_to_host.cu
+<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd02_cuda/include/cuda_memcpy.cu --->
+<!--- end code --->
 
-<!--- md w points=1 --->
+<!--- code w kernel=bash points=1 --->
+nvcc -o cuda_dev_to_host cuda_dev_to_host.cu
+# nvc++ -Wall -o cuda_dev_to_host cuda_dev_to_host.cu
+# clang++ -Wall -Wno-unknown-cuda-version -o cuda_dev_to_host cuda_dev_to_host.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
 
-<!--- end md --->
+<!--- code w kernel=bash points=1 --->
+./cuda_dev_to_host
+<!--- end code --->
 
-<!--- md label=ans --->
-_<font color="green">Example answer</font>_
+<!--- code w kernel=python label=ans --->
+%%writefile cuda_dev_to_host_ans.cu
+<!--- exec-include ./mk_version.py -D VER=4 nb/source/pd02_cuda/include/cuda_memcpy.cu --->
+<!--- end code --->
 
-* Threads having 32 consecuive thread IDs report exactly the same clock value
-* It stems from the fact that those threads share an instruction pointer (execute the same instruction)
-<!--- end md --->
+<!--- code w kernel=bash label=ans --->
+nvcc -o cuda_dev_to_host_ans cuda_dev_to_host_ans.cu
+# nvc++ -Wall -o cuda_dev_to_host_ans cuda_dev_to_host_ans.cu
+# clang++ -Wall -Wno-unknown-cuda-version -o cuda_dev_to_host_ans cuda_dev_to_host_ans.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- code w kernel=bash label=ans --->
+./cuda_dev_to_host_ans
+<!--- end code --->
+
 
 <!--- md --->
 # Unified Memory
 
-* with unified memory you do not have to call `cudaMemcpy` to move data between host and GPU
-* all you need to master is `cudaMallocManaged`, which you call in place of `cudaMalloc`
-* you get a pointer that is valid both on CPU and GPU
+* Unified Memory is a part of memory accessible both by the host and device
+* Values written to it by the host are automatically visible to the device and vice versa
+* Therefore with unified memory you do not have to call `cudaMemcpy` to move data between host and GPU
+* All you need to master is `cudaMallocManaged`, which you call in place of `cudaMalloc`
+* You get a pointer that is valid both on CPU and GPU
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Use Unified Memory
 
-* Change the following program so that it uses `cudaMallocManaged` instead of `cudaMalloc`.  Make appropriate changes to other parts (e.g., remove unnecessary `cudaMemcpy`) so that it behaves similar to the original one
+* Change the following program so that it uses `cudaMallocManaged` instead of `malloc`
+* Make other changes as you find them necessary 
 <!--- end md --->
  
 <!--- code w kernel=python points=1 --->
 %%writefile cuda_malloc_managed.cu
-<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd02_cuda/include/cuda_malloc_managed.cu --->
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd02_cuda/include/cuda_memcpy.cu --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -447,8 +488,18 @@ nvcc -o cuda_malloc_managed cuda_malloc_managed.cu
 <!--- end code --->
 
 <!--- code w kernel=python label=ans --->
-%%writefile cuda_malloc_managed.cu
-<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd02_cuda/include/cuda_malloc_managed.cu --->
+%%writefile cuda_malloc_managed_ans.cu
+<!--- exec-include ./mk_version.py -D VER=5 nb/source/pd02_cuda/include/cuda_memcpy.cu --->
+<!--- end code --->
+
+<!--- code w kernel=bash label=ans --->
+nvcc -o cuda_malloc_managed_ans cuda_malloc_managed_ans.cu
+# nvc++ -Wall -o cuda_malloc_managed_ans cuda_malloc_managed_ans.cu
+# clang++ -Wall -Wno-unknown-cuda-version -o cuda_malloc_managed_ans cuda_malloc_managed_ans.cu -L/usr/local/cuda/lib64 -lcudart
+<!--- end code --->
+
+<!--- code w kernel=bash label=ans --->
+./cuda_malloc_managed_ans
 <!--- end code --->
 
 <!--- md --->
@@ -482,7 +533,7 @@ nvcc -o cuda_race cuda_race.cu
 ./cuda_race
 <!--- end code --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Observe race condition
 
 Execute the above program many times and observe the results; try changing parameters.
@@ -512,7 +563,7 @@ It performs `*p = *p + x` _atomically_, meaning that it is guaranteed that `*p` 
 * See [atomicAdd](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#atomicadd) for reference
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Use `atomicAdd`
 
 * Change the following program to resolve the race condition using `atomicAdd` and make sure the result always matches the number of threads launched.
@@ -590,7 +641,7 @@ f<<<nb,bs>>>(a0, a1, ...);
 * See [Cooperative Groups](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#cooperative-groups) for reference
 <!--- end md --->
 
-<!--- md label=prob,ans --->
+<!--- md --->
 #*P Use barrier synchronization
 
 Change the following program `sum_array()` so that it correctly outputs the sum of the array by implementing reduction on barrier synchronization.
@@ -626,14 +677,335 @@ nvcc -o cuda_sum_ans cuda_sum_ans.cu
 ./cuda_sum_ans
 <!--- end code --->
 
-<!--- md label=prob,ans --->
+
+
+<!--- md --->
+
+# Visualizing threads executing on the device
+
+* When you call a kernel (function f) with
+```
+f<<<nb,bs>>>();
+```
+it creates (_nb * bs_) CUDA threads.
+
+* More precisely, it creates _nb_ thread blocks, each of which has _bs_ CUDA threads.
+
+* The following code is a program that records how threads are executed on GPU.
+
+* It creates many threads repeating a trivial (useless) computation x = a * x + b many times.
+
+* Each thread occasionally records the clock to record when and where these threads progress over time.
+
+* Specifically,
+
+```
+./cuda_sched_rec NB BS N M 
+```
+
+creates approximately (NB $\times$ BS) threads, with BS threads in each thread block
+
+  * Each thread repeats x = A x + B, ($N \times M$) times.
+  * Each thread records the clock $N$ times (every $M$ iterations).
+
+* At the end of execution, it dumps the results in the following format for each line.
+
+```
+thread=<idx> x=<ans> sm0=<starting SM> sm1=<ending SM> t0 t1 t2 ... t_{n-1}
+```
+
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile cuda_sched_rec.cu
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd02_cuda/include/cuda_sched_rec.cu --->
+<!--- end code --->
+
+<!--- md --->
+* Read the code carefully and understand what it is doing.  
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+nvcc --generate-code arch=compute_80,code=sm_80 -o cuda_sched_rec cuda_sched_rec.cu
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_sched_rec 2 32 10 100 | head -10
+<!--- end code --->
+
+<!--- md --->
+* The following python code parses and visualizes the output of cuda_sched_rec.
+* The code is shown below for your information; you don't have to understand how it works.
+
+* Let's visualize a few configurations.
+
+## one thread ($1 \times 1$)
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+./cuda_sched_rec 1 1 100 1000 > cs_1_1.dat
+<!--- end code --->
+
+<!--- code w kernel=python points=1 --->
+import cuda_sched_vis
+cuda_sched_vis.cuda_sched_plt(["cs_1_1.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"))
+<!--- end code --->
+
+<!--- md --->
+* you can change `start_t` and `end_t` to zoom into a narrower time interval and change `start_thread` and `end_thread` to zoom into a range of threads
+* or, you can open `sched.svg` generated along with the visualization and magnify anywhere you want to look into, either by the browser or any SVG viewer on your PC
+<!--- end md --->
+
+<!--- md --->
+## 1 thread block $\times$ $T$ threads/block ($1 \times T$)
+
+* play with changing $T$ to other values
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+T=8
+./cuda_sched_rec 1 ${T} 100 1000 > cs_1_T.dat
+<!--- end code --->
+
+<!--- code w kernel=python points=1 --->
+import cuda_sched_vis
+cuda_sched_vis.cuda_sched_plt(["cs_1_T.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"))
+<!--- end code --->
+
+<!--- md --->
+* Observe that they are always executed on the same SM. You are not utilizing multiple SMs at all.
+* Compare the time for $T=1$ and $T=8$; incease $T$ until the time starts to increase.
+* Increase $T$ until the execution time starts to increase almost linearly with $T$. Why doesn't it immediately happen with $T$&gt;1?
+* There is a hardwired limit on the number of threads per block. Try to find it and then confirm it with Google.
+
+* With a modest value of $T$ (say 100), zoom in at either end of the execution and observe whether there is _any_ difference on when they started or finished execution.  If you look carefully, you will notice that a number of consecutive threads start and end _exactly the same clock_.  Those threads are called a _warp_ and they share an instruction pointer.  It is very analogous to SIMD instruction found in CPUs that apply the same operation on multiple operands.  Guess the number of threads of a warp from the experimental results and confirm it by Google.
+<!--- end md --->
+
+<!--- md label=none --->
+## $B$ thread blocks $\times$ 1 thread/block ($B \times 1$)
+
+* play with changing $B$ to other values
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 label=none --->
+B=3
+./cuda_sched_rec ${B} 1 100 1000 > cs_B_1.dat
+<!--- end code --->
+
+<!--- code w kernel=python points=1 label=none --->
+import cuda_sched_vis
+cuda_sched_vis.cuda_sched_plt(["cs_B_1.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"))
+<!--- end code --->
+
+<!--- md label=none --->
+* Increase $B$ and observe when the execution time (the time at the right end of the graph) starts to increase.
+* Even in that case, all $B$ threads appear to be executing simultaneously (not one after another).
+* That is, _hardware_ interleaves execution of these threads, rapidly switching from one to another.
+<!--- end md --->
+
+<!--- md --->
+## many thread blocks $\times$ many threads/block ($B \times T$)
+
+* play with changing $B$ and $T$ to other values
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+B=3
+T=64
+./cuda_sched_rec ${B} ${T} 100 1000 > cs_B_T.dat
+<!--- end code --->
+
+<!--- code w kernel=python points=1 --->
+import cuda_sched_vis
+cuda_sched_vis.cuda_sched_plt(["cs_B_T.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"), show_every=1)
+<!--- end code --->
+
+<!--- md --->
+* `show_every` parameter specifies that only visualize every this number of threads
+  * it reduces the time to visualize when the number of threads is so large
+* Try to find the maximum number of threads that does not increase the execution time.
+  * use `show_every=32` to reduce the time for visualization
+<!--- end md --->
+
+<!--- md --->
+# Thread blocks
+
+A thread block is the unit of dispatching to a streaming multiprocessor (SM), which is like a physical core of a CPU.  Threads within a thread block are always dispatched together to the same SM and once dispatched stay on the same SM until finished.
+
+* see [CUDA C++ Programming Guide: A Scalable Programming Model](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#scalable-programming-model)
+
+* An SM is a highly multithreaded processor, which can accommodate many threads at the same time and interleave them  by hardware.  For example, it can easily hold, say, 500 threads and interleave their execution without involving software.  In terms of hardware capability, it is somewhat similar to simultaneous multithreading (SMT) of CPUs.  The degree of multithreading is very different, however; Intel CPUs normally support only two hardware threads (virtual cores) on each physical core.  Moreover, software (either operating system or user-level software) needs to designate which virtual core you want to run a thread on.  In a sense, CPU exposes each virtual core as a single-threaded machine.  If you put more than one OpenMP (OS-level) thread on the same virtual core, software (i.e., OS) switches between them from time to time.  A streaming multiprocessor of a GPU, in contrast, is a machine that literally takes many threads and concurrently executes them by hardware.  Determining the SM a thread block executes on is done by hardware.
+
+* How many thread blocks are scheduled on an SM at the same time?  It depends; it depends on how much "resources" a single thread block requires.  Here, "resources" mean two things.
+1. registers
+1. shared memory (see below)
+* _Registers_ are used for holding local variables and intermediate results of computation.  How many registers a thread block uses is not something you can reliably determine by looking at your code; it depends on the code generated by the compiler.  You can know it by passing `-Xptxas -v` to nvcc and looking at the compiler message.
+
+* _Shared memory_ is a scratch-pad memory only shared within a single thread block.  Physically, you can consider it to be a small fast memory attached to each SM.  The name "shared memory" is clearly a misnomer; ordinary memory you get by `cudaMalloc` _is_ shared by all threads (called "global memory").  In contrast, shared memory is, contrary to its name, shared only among threads within a single thread block.  "Local memory" (as opposed to global memory) would have been a better name for it, IMO.
+
+* Both registers and shared memory for a thread block are kept on physical registers/memory of an SM throughout the lifetime of the thread block.  Thus, accommodating a larger number of thread blocks at the same time requires a proportionally larger amount of registers/shared memory, which is subject to the physical resource limit of an SM.
+
+* Each SM has the following physical resources.
+
+|       | registers      |  shared memory  |
+|-------|----------------|-----------------|
+|Pascal | 32 bit x 65536 |  64KB           |
+|Volta  | 32 bit x 65536 |  up to 96KB (*) |
+|Ampere | 32 bit x 65536 |  up to 163KB    |
+
+(*) configurable subject to L1 cache + shared memory <= 128KB and shared memory <= 96KB
+
+* [Pascal Tuning Guide: Occupancy](https://docs.nvidia.com/cuda/pascal-tuning-guide/index.html#sm-occupancy)
+* [Volta Tuning Guide: Occupancy](https://docs.nvidia.com/cuda/volta-tuning-guide/index.html#sm-occupancy)
+* [NVIDIA Ampere GPU Architecture Tuning Guide: Occupancy](https://docs.nvidia.com/cuda/ampere-tuning-guide/index.html#sm-occupancy)
+
+* By default, a thread does not use shared memory at all.
+
+* Let's observe how many registers a thread uses.
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+nvcc --generate-code arch=compute_80,code=sm_80 -Xptxas -v -o cuda_sched_rec cuda_sched_rec.cu
+<!--- end code --->
+
+<!--- md --->
+* Since the computation is very simple, register usage will not be a limiting factor for this computation.
+* Also, since it does not use shared memory at all, it won't be a limiting factor either.
+* Only the hardwired limit is the limiting factor.
+<!--- end md --->
+
+<!--- md --->
+# Shared memory
+
+* Let's use shared memory to observe how it affects the number of thread blocks simultaneously executed.
+You specify the size of shared memory per thread block via the third parameter of kernel call, like this.
+
+```
+f<<<nb,bs,S>>>();
+```
+
+* The above kernel launch statement specifies that $S$ bytes of shared memory should be allocated to _each thread block_.  Each SM can therefore execute only up to (SHARED_MEMORY_SIZE_PER_SM / $S$) thread blocks simultaneously.
+
+* You can get a pointer to the part of the shared memory allocated to each thread via the following strange syntax within your kernel function, though it is not necessary in our current experiment.
+
+```
+extern __shared__ T shmem[];
+```
+
+* With that, `shmem` points to the start of the shared memory for the thread block.  The name can be arbitrary.
+
+* `cuda_sched_rec.cu` is already written to take the size of the shared memory per thread block as a parameter.
+
+* The following code creates $B$ thread blocks each of which has only one thread
+
+* It allocates 8KB for each thread block
+
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+B=3
+S=$((8 * 1024))
+./cuda_sched_rec ${B} 1 100 1000 ${S} > cs_B_1_S.dat
+<!--- end code --->
+
+<!--- code w kernel=python points=1 --->
+import cuda_sched_vis
+cuda_sched_vis.cuda_sched_plt(["cs_B_1_S.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"))
+<!--- end code --->
+
+<!--- md --->
+* Increase $S$ to find the maximum shared memory size you can allocate for each thread block
+* Fix $S$ to that maximum value and increase $B$; predict when the execution time starts to increase
+  * Hint : Ampere architecture has 108 streaming multiprocessors (SMs), each having 164KB shared memory; each SM can simultaneously execute only as many thread blocks as will fit within its available shared memory
+<!--- end md --->
+
+<!--- md --->
+# Warp
+
+* Consecutively numbered 32 threads within a thread block makes a _warp_ and they can execute only one same instruction at a time.
+* That is, it's not possible, within a single cycle, for some threads to execute an instruction A while others in the same warp execute another instruction B.  All the GPU can do is simply to keep some threads from executing instructions that they should not execute.
+* A typical example is an "if" statement. e.g.,
+```
+if (thread_idx % 2 == 0) {
+  A;
+} else {
+  B;
+}
+```
+* If there are _any_ thread executing A and _any_ thread executing B within a warp, the time the warp takes is the time to execute A _plus_ the time to execute B.
+* An important performance implication is you'd better not have threads branching differently within the same warp.
+
+* In the following code, each thread executes
+```
+if ((idx / D) is even) {
+  for (long i = 0; i < n; i++) {
+    T[i] = clock64();
+    for (long j = 0; j < m; j++) {
+      x = a * x + b;
+    }
+  }
+} else {
+  for (long i = 0; i < n; i++) {
+    T[i] = clock64();
+    for (long j = 0; j < m / 2; j++) {
+      x = a * x + b;
+    }
+  }
+}
+```
+* Given D, the first $D$ threads (thread idx=$0, 1, ..., D-1$) execute the "then" clause, the next $D$ threads (thread idx=$D, D+1, ..., 2D-1$, the "else" clause, and so on
+<!--- end md --->
+
+<!--- code w kernel=python points=1 --->
+%%writefile cuda_sched_rec_warp.cu
+<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd02_cuda/include/cuda_sched_rec.cu --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+nvcc --generate-code arch=compute_80,code=sm_80 -o cuda_sched_rec_warp cuda_sched_rec_warp.cu
+<!--- end code --->
+
+<!--- md --->
+* Execute the code with various D's (and perhaps other parameters) to visualize the effect of warps and its performance implication
+* Predict what the visualization looks like
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+B=4
+T=32
+D=1
+./cuda_sched_rec_warp ${B} ${T} 100 1000 0 ${D} > cs_warp.dat
+<!--- end code --->
+
+<!--- code w kernel=python points=1 --->
+import cuda_sched_vis
+cuda_sched_vis.cuda_sched_plt(["cs_warp.dat"], start_t=0, end_t=float("inf"), start_thread=0, end_thread=float("inf"))
+<!--- end code --->
+
+<!--- md --->
+* Observe the following in the visualization
+  * When $D < 32$ or is not a multiple of 32, threads within a warp may take both branches (diverge)
+  * When $D$ is a multiple of 32 and $\geq 32$, all threads within a warp take the same branch
+<!--- end md --->
+
+<!--- md --->
 #*P Putting them together: calculating an integral
 
-Write a CUDA program that calculates
+* Write a CUDA program that calculates
 
-$$ \int_0^1 \int_0^1 \sqrt{1 - x^2 - y^2}\,dx\,dy $$
+$$ \int \int_D \sqrt{1 - x^2 - y^2}\,dx\,dy $$
 
-* mathematical note: consider the integrand to be zero outside $1 - x^2 - y^2 \geq 0$
+where
+
+$$ D = \{\;(x, y)\;|\;0\leq x \leq 1, 0\leq y \leq 1, x^2 + y^2 \leq 1 \}$$
+
+* Note: an alternative way to put it is to calculate
+
+$$ \int_0^1 \int_0^1 f(x)\,dx\,dy $$
+
+where
+
+$$ f(x) = \left\{\begin{array}{ll}\sqrt{1 - x^2 - y^2} & (x^2 + y^2 \leq 1) \\ 0 & (\mbox{otherwise}) \end{array}\right. $$
 
 * Write a CUDA kernel that computes the integrand on a single point
 * And launch it with as many threads as the number of points you compute the integrand at
@@ -642,15 +1014,23 @@ $$ \int_0^1 \int_0^1 \sqrt{1 - x^2 - y^2}\,dx\,dy $$
 * Measure the time not just for the entire computation, but the time of each step including cudaMalloc, cudaMemcpy to initialize variables on the device, kernel and cudaMemcpy to get the result back
 * Try atomicAdd as well as reduction 
 * Play with unified memory also
+* Take the number of thread blocks and the number of threads per block in the command line
+
+* Compare the execution speed of OpenMP (CPU) and CUDA (GPU) in various settings
+  * a single CPU thread vs single CUDA thread
+  * a single CPU thread vs multiple CUDA threads in a single thread block 
+  * multiple CPU threads vs multiple CUDA threads in multiple thread blocks
+
 <!--- end md --->
 
 <!--- code w kernel=python points=1 --->
 %%writefile cuda_integral.cu
 
+// Write Your Code Here
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
-nvcc -o cuda_integral cuda_integral.cu
+nvcc --generate-code arch=compute_80,code=sm_80 -o cuda_integral cuda_integral.cu
 # nvc++ -Wall -o cuda_integral cuda_integral.cu
 # clang++ -Wall -Wno-unknown-cuda-version -o cuda_integral cuda_integral.cu -L/usr/local/cuda/lib64 -lcudart
 <!--- end code --->
@@ -665,7 +1045,7 @@ nvcc -o cuda_integral cuda_integral.cu
 <!--- end code --->
 
 <!--- code w kernel=bash label=ans --->
-nvcc -o cuda_integral_ans cuda_integral_ans.cu
+nvcc --generate-code arch=compute_80,code=sm_80 -o cuda_integral_ans cuda_integral_ans.cu
 # nvc++ -Wall -o cuda_integral_ans cuda_integral_ans.cu
 # clang++ -Wall -Wno-unknown-cuda-version -o cuda_integral_ans cuda_integral_ans.cu -L/usr/local/cuda/lib64 -lcudart
 <!--- end code --->

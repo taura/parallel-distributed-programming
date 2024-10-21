@@ -27,6 +27,6 @@ int main(int argc, char ** argv) {
   check_api_error(cudaDeviceSynchronize());
   check_api_error(cudaMemcpy(&c, c_dev, sizeof(unsigned long long), cudaMemcpyDeviceToHost));
   check_api_error(cudaFree(c_dev));
-  printf("c = %llu\n", c);
+  printf("c = %lu\n", c);
   return 0;
 }
