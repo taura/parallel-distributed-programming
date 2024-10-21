@@ -565,6 +565,9 @@ and run it as follows,
 $ @\ao{\texttt{OMP\_NUM\_THREADS=50}}@ ./a.out
 \end{lstlisting} %$
 you will get 50 OS-level threads, each doing {\tt worker()}
+
+\item $\Rightarrow$ specifying a number ($>$ the hardware
+  core count) causes more harm than good on CPUs
 \end{itemize}
 \end{frame}
 
@@ -768,6 +771,26 @@ except {\tt <} and {\tt +=} may be other similar operators
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}[fragile]
+\frametitle{Parallelizing loop nests by \ao{\tt collapse}}
+\begin{itemize}
+\item \ao{\tt collapse($l$)} can be used to work-share nested loops. e.g.,
+\begin{lstlisting}
+#pragma omp for @\ao{collapse(2)}@
+for (i = 0; i < n; i++)
+  for (j = 0; j < n; j++)
+    @$S$@
+\end{lstlisting}
+will partition $n^2$ iterations of the doubly-nested loop
+\item {\tt schedule} clause applies to nested loops as if 
+  the nested loop is an equivalent flat loop
+\item restriction: the loop must be \ao{\em ``perfectly nested''}
+  (the iteration space must be a rectangular and no intervening
+  statement between different levels of the nest)
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%% 
+\begin{frame}[fragile]
 \frametitle{Parallel SpMV for CSR using {\tt \#pragma omp for}}
 \begin{itemize}
 \item it only takes to work-share the outer for loop
@@ -802,6 +825,8 @@ for (k = 0; k < A.nnz; k++) {
   @\aka{\tt y[i]}@ += Aij * x[j];
 }
 \end{lstlisting}
+\item for a similar reason, we cannot apply \ao{\tt collapse} to the
+  CSR loop 
 
 \item a possible remedy will be described later
   \end{itemize}
@@ -872,27 +897,7 @@ $ OMP_SCHEDULE=dynamic,2 ./a.out
 \end{itemize}
 \end{frame}
 
-%%%%%%%%%%%%%%%%% 
-\begin{frame}[fragile]
-\frametitle{Parallelizing loop nests by \ao{\tt collapse}}
-\begin{itemize}
-\item \ao{\tt collapse($l$)} can be used to partition nested loops. e.g.,
-\begin{lstlisting}
-#pragma omp for @\ao{collapse(2)}@
-for (i = 0; i < n; i++)
-  for (j = 0; j < n; j++)
-    @$S$@
-\end{lstlisting}
-will partition $n^2$ iterations of the doubly-nested loop
-\item {\tt schedule} clause applies to nested loops as if 
-  the nested loop is an equivalent flat loop
-\item restriction: the loop must be \ao{\em ``perfectly nested''}
-  (the iteration space must be a rectangular and no intervening
-  statement between different levels of the nest)
-\end{itemize}
-\end{frame}
-
-
+\iffalse
 %%%%%%%%%%%%%%%%% 
 \begin{frame}[fragile]
 \frametitle{Visualizing schedulers}
@@ -946,6 +951,13 @@ for (i = 0; i < 1000; i++)
 {\footnotesize dynamic}
 \end{column}
 \end{columns}
+\end{frame}
+\fi
+
+%%%%%%%%%%%%%%%%% 
+\begin{frame}[fragile]
+\frametitle{Visualizing schedulers}
+See demo
 \end{frame}
 
 %%%%%%%%%%%%%%%%% 
@@ -1160,6 +1172,7 @@ void ms(a, a_end, t, dest) {
   \end{itemize}
 \end{frame}
 
+\iffalse
 %%%%%%%%%%%%%%%%% 
 \begin{frame}[fragile]
 \frametitle{Visualizing task parallel schedulers}
@@ -1284,6 +1297,7 @@ for(i = @{\em init}@; i < @{\em limit}@; i += @{\em incr}@)
   like the {\tt task} construct
 \end{itemize}
 \end{frame}
+\fi
 
 %%%%%%%%%%%%%%%%%
 \iffalse
@@ -1359,6 +1373,7 @@ for(i = @{\em init}@; i < @{\em limit}@; i += @{\em incr}@)
 \end{frame}
 
 
+\iffalse
 %%%%%%%%%%%%%%%%% 
 \begin{frame}[fragile]
 \frametitle{Deterministic and predictable schedulers}
@@ -1380,8 +1395,8 @@ for(i = @{\em init}@; i < @{\em limit}@; i += @{\em incr}@)
 {\scriptsize \input{out/tex/svg/deterministic_schedule.pdf_tex}}
 \end{column}
 \end{columns}
-
 \end{frame}
+\fi
 
 
 %=================================
@@ -1745,7 +1760,7 @@ int main() {
 #pragma omp parallel
 #pragma omp for
   for (long i = 0; i < 10000; i++) {
-    @\aka{\tt y.a[i \% 3]}@ += 1;
+    @\aka{\tt y.a[..]}@ += 1;
   }
 }
 \end{lstlisting}
@@ -1801,7 +1816,7 @@ int main() {
 #pragma omp parallel
 #pragma omp for @\ao{\tt reduction(vp : y)}@
   for (long i = 0; i < 10000; i++) {
-    y.a[i % 3] += 1;
+    y.a[..] += 1;
   }
 }
 \end{lstlisting}
@@ -1823,7 +1838,7 @@ int main() {
 \begin{lstlisting}
 #pragma omp for @\ao{\tt reduction(vp : y)}@
   for (long i = 0; i < 10000; i++) {
-    y.a[i % 3] += 1;
+    y.a[..] += 1;
   }
 \end{lstlisting}
 \item []$\approx$
@@ -1832,7 +1847,7 @@ int main() {
   @\ao{\tt vec\_init(\&y\_priv)}@; // initializer
 #pragma omp for
   for (long i = 0; i < 10000; i++) {
-    y_priv.a[i % 3] += 1;
+    y_priv.a[..] += 1;
   }
   // merge the partial result into the shared variable
   // actual implementation may be (is likely to be) different
