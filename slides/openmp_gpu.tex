@@ -168,12 +168,13 @@ escapechar=\@,
 $ clang -Wall @\ao{\tt -fopenmp -fopenmp-targets=nvptx64}@ program.c
 \end{lstlisting}%$
 \begin{itemize}
-\item you get a warning: ``CUDA version is newer than the latest supported version 11.5'' and {\tt -Wunknown-cuda-version} suppresses it
+\item you need to set {\tt LD\_LIBRARAY\_PATH} environment variable when you run the executable (details on Jupyter notebook)
+% \item you get a warning: ``CUDA version is newer than the latest supported version 11.5'' and {\tt -Wunknown-cuda-version} suppresses it
 \end{itemize}
 
 \item NVIDIA HPC SDK ({\tt nvc/nvc++}) : compile with {\tt -mp -target-gpu}
 \begin{lstlisting}
-$ nvc -Wall @\ao{\tt -mp -target=gpu}@ program.c
+$ nvc -Wall @\ao{\tt -mp=gpu}@ program.c
 \end{lstlisting}% $
 \end{itemize}
 \end{frame}
@@ -194,20 +195,20 @@ $ nvc -Wall @\ao{\tt -mp -target=gpu}@ program.c
     \begin{itemize}
     \item \ao{\tt teams} and \ao{\tt distribute}
       \begin{itemize}
-      \item {\tt teams} : creates a number of teams executing the same statement
+      \item \ao{\tt teams} : creates a number of teams executing the same statement
         ($\approx$ {\tt parallel} pragma)
-      \item {\tt distributed} : distribute iterations of a for loop among teams
+      \item \ao{\tt distribute} : distribute iterations of a for loop among teams
         ($\approx$ {\tt for} pragma)
       \end{itemize}
     \item \ao{\tt parallel} and \ao{\tt for}
       \begin{itemize}
-      \item {\tt parallel} : creates a number of threads
+      \item \ao{\tt parallel} : creates a number of threads
         executing the same statement in a team
-      \item {\tt for} : distribute iterations of a for loop among threads
+      \item \ao{\tt for} : distribute iterations of a for loop among threads
         in a team
       \end{itemize}
-    \item think of {\tt teams} $+$ {\tt distributed} another layer
-      outside {\tt parallel} $+$ {\tt for}
+    \item think of \ao{\tt teams} $+$ \ao{\tt distribute} another layer
+      outside \ao{\tt parallel} $+$ \ao{\tt for}
     \end{itemize}
   \item move (or sync) data
     \begin{itemize}
@@ -262,7 +263,7 @@ for (int i = start; i < end; i += incr) {
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}[fragile]
-  \frametitle{Data mapping}
+  \frametitle{Data mapping (in CUDA)}
   a major headache when programming in CUDA is data management
   
   \begin{itemize}
@@ -270,7 +271,7 @@ for (int i = start; i < end; i += incr) {
 \begin{lstlisting}
 f<<<nb,bs>>>(a, b, c, ...);
 \end{lstlisting}
-  \item gettint the result back from GPU is already painful
+  \item getting the result back from GPU is already painful
 \begin{lstlisting}
 cudaMalloc(&r_dev, ...);
 f<<<nb,bs>>>(a, b, c, ..., r);
@@ -288,28 +289,27 @@ cudaMemcpy(r, r_dev, ...);
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}[fragile]
-  \frametitle{Data mapping example}
+  \frametitle{OpenMP data mapping example}
   \begin{itemize}
   \item 
 \begin{lstlisting}
-#pragma target data @\ao{\tt map(to: a[b:c]) map(from: x)}@
+#pragma target data @\ao{\tt map(to:{\it u}) map(from:{\it v})}@
    @$S$@
 \end{lstlisting}
 \begin{itemize}
-\item send the array range {\tt a[b:c]} ({\tt a[b], a[b+1], \ldots, a[c-1]})
-  {\it to} GPU before $S$
-\item send {\tt x} {\it from} GPU after $S$
+\item $u, v$ : variable name, range expression (e.g., {\tt a[p:q]})
+\item send $u$ {\it to} GPU {\it before} $S$ if necessary
+\item send $v$ {\it from} GPU {\it after} $S$ if necessary
 \end{itemize}
 \item you can combine \ao{\tt to:} and \ao{\tt from:} into \ao{\tt tofrom:}
 \item somewhat ``declarative'' way of understanding this
   \begin{itemize}
-  \item expressions {\tt a[$i$]} ({\tt b} $\leq i <$ {\tt c}) become
-    valid (``mapped'') on GPU during $S$
-  \item expressions {\tt x} become valid on CPU after $S$
+  \item $u$ becomes valid (``mapped'') on GPU during $S$
+  \item $v$ becomes valid on CPU after $S$
   \end{itemize}
 \item note: you can specify {\tt map} clauses as part of
   {\tt target} (not {\tt target data}) directive, too
-\item learn details with tht notebook
+\item learn details with the notebook
 \end{itemize}
 \end{frame}
 

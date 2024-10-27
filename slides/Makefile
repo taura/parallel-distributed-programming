@@ -13,7 +13,7 @@ bibtex := biber
 run_bibtex_and_latex_twice:=n
 
 # tex files
-tex := $(wildcard openmp.tex)
+tex := $(wildcard cuda.tex openmp_gpu.tex)
 # svg files
 svg_svg := 
 # svg_svg += $(wildcard svg/hierarchy.svg)
