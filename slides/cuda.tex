@@ -281,8 +281,8 @@ for (i = 0; i < @{\it nb}@ * @{\it bs}@; i++) {
 __global__ void cuda_thread_fun(int n) {
   int i        = @\ao{\tt blockDim.x * blockIdx.x + threadIdx.x}@;
   int nthreads = @\ao{\tt gridDim.x * blockDim.x}@;
-  if (i < nthreads) {
-    printf("hello I am CUDA thread %d out of %d\n", i, nthreads);
+  if (i < n) {
+    printf("hello I am CUDA thread %d out of %d\n", i, n);
   }
 }
 \end{lstlisting}
@@ -406,7 +406,7 @@ and
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}[fragile]
-\frametitle{Remarks}
+\frametitle{{\it nb} and {\it bs} can be 2/3-Dimensional}
 \begin{itemize}
 \item as suggested by {\tt .x}, a block and the grid
   can be multidimensional (up to 3D, of {\tt .x, .y, .z})
