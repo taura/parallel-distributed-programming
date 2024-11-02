@@ -1115,12 +1115,38 @@ $$ f(x) = \left\{\begin{array}{ll}\sqrt{1 - x^2 - y^2} & (x^2 + y^2 \leq 1) \\ 0
 <!--- end code --->
 
 <!--- md label=ans --->
-_<font color="green">Example answer:</font>_
+_<font color="green">Example answer 1: parallelize outer loop only</font>_
 <!--- end md --->
 <!--- code w kernel=python label=ans --->
 %%writefile omp_integral_ans.c
 <!--- exec-include ./mk_version.py -D VER=2 nb/source/pd01_omp/include/omp_integral.c --->
 <!--- end code --->
+
+<!--- md label=ans --->
+_<font color="green">Example answer 2: parallelize the nested loop with collapse</font>_
+<!--- end md --->
+<!--- code w kernel=python label=ans --->
+%%writefile omp_integral_ans.c
+<!--- exec-include ./mk_version.py -D VER=4 nb/source/pd01_omp/include/omp_integral.c --->
+<!--- end code --->
+
+<!--- md label=ans --->
+_<font color="green">Example answer 3: use task loop</font>_
+<!--- end md --->
+<!--- code w kernel=python label=ans --->
+%%writefile omp_integral_ans.c
+<!--- exec-include ./mk_version.py -D VER=6 nb/source/pd01_omp/include/omp_integral.c --->
+<!--- end code --->
+
+<!--- md label=ans --->
+_<font color="green">Example answer 4: use tasks</font>_
+<!--- end md --->
+<!--- code w kernel=python label=ans --->
+%%writefile omp_integral_ans.c
+<!--- exec-include ./mk_version.py -D VER=8 nb/source/pd01_omp/include/omp_integral.c --->
+<!--- end code --->
+
+
 
 <!--- md label=ans --->
 _<font color="green">Remarks:</font>_

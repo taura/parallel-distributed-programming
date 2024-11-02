@@ -36,9 +36,10 @@ def sched_plt(files_dat, start_t=0, end_t=float("inf"), start_i=0, end_i=float("
     fig, ax = plt.subplots()
     plt.xlabel("ns")
     plt.ylabel("iteration idx")
+    T0 = min(t for records in log.values() for _, T in records for t in T[:1])
     for thread,records in sorted(list(log.items())):
         # we take clocks relatie to the start (minimum) clock in each thread
-        T0 = min(t for _, T in records for t in T[:1])
+        # T0 = min(t for _, T in records for t in T[:1])
         X = []
         Y = []
         thread_color = cmap(thread)
