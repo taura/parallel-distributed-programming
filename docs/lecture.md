@@ -4,6 +4,10 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Nov. 02, 2024)</font> 
+  * Example answer for [pd01\_omp](ans/pd01_omp/pd01_omp.sos.ans.html) released
+  * Example answer for [pd02\_cuda](ans/pd02_cuda/pd02_cuda.sos.ans.html) released
+
 * <font color=blue>(Posted: Oct. 27, 2024)</font> Plan for Oct. 28
   * [CUDA](slides/cuda.pdf)
   * pd02_cuda
