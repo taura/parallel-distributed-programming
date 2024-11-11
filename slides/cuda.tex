@@ -1058,7 +1058,7 @@ f<<<@{\it nb}@,@{\it bs}@,@\ao{\it S}@>>>(...);
 
 \item each SM has a fixed amount of shared memory
   (A100 : \href{https://docs.nvidia.com/cuda/ampere-tuning-guide/index.html#sm-occupancy}{164KB})
-  \[ S \times \leq \mbox{shared memory per SM} \]
+  \[ S \leq \mbox{shared memory per SM} \]
   % \mbox{\it bs} 
   \end{itemize}
 \end{frame}
@@ -1105,7 +1105,7 @@ char * b = (char *)&a[n];
       f<<<10000, 1>>>(x, y, z, ...);
 \end{lstlisting}
     and countless other ways \ldots
-  \item the goal is to run an enough number of threads {\it simultaneously}
+  \item the goal is to run a sufficient number of threads \ao{\it simultaneously}
     so they {\it utilize} the hardware capacity of an SM
 
 \begin{center}
@@ -1114,6 +1114,17 @@ char * b = (char *)&a[n];
     
   \item to this end, let's understand what a GPU actually does,
     given a thread block size and the number of blocks
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%% 
+\begin{frame}
+  \frametitle{What limits the number of threads that can run {\it simultaneously}? (an overview)}
+  \begin{itemize}
+  \item \ao{\it registers} used by simultaneously running threads must fit registers of an SM
+  \item \ao{\it shared memory} used by simultaneously running thread blocks must fit shared memory of an SM
+  \item they, along with other trivial limits,
+    together limit/determine the number of threads that can run {\it simultaneously} on a single SM
   \end{itemize}
 \end{frame}
 

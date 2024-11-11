@@ -9,6 +9,10 @@
   * [OpenMP for GPU](slides/openmp_gpu.pdf)
   * pd03\_omp\_gpu
 
+* <font color=blue>(Posted: Nov. 11, 2024)</font>
+  * <font color="red">we'll have another class this week, on Wednesday, Nov. 13th</font>
+  * <font color="red">no class in the next Monday, Nov. 18th; I'll deliver on-demand materials</font>
+
 * <font color=blue>(Posted: Nov. 02, 2024)</font> 
   * Example answer for [pd01\_omp](ans/pd01_omp/pd01_omp.sos.ans.html) released
   * Example answer for [pd02\_cuda](ans/pd02_cuda/pd02_cuda.sos.ans.html) released
