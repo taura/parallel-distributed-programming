@@ -172,7 +172,7 @@ $ clang -Wall @\ao{\tt -fopenmp -fopenmp-targets=nvptx64}@ program.c
 % \item you get a warning: ``CUDA version is newer than the latest supported version 11.5'' and {\tt -Wunknown-cuda-version} suppresses it
 \end{itemize}
 
-\item NVIDIA HPC SDK ({\tt nvc/nvc++}) : compile with {\tt -mp -target-gpu}
+\item NVIDIA HPC SDK ({\tt nvc/nvc++}) : compile with {\tt -mp=gpu}
 \begin{lstlisting}
 $ nvc -Wall @\ao{\tt -mp=gpu}@ program.c
 \end{lstlisting}% $
@@ -189,11 +189,11 @@ $ nvc -Wall @\ao{\tt -mp=gpu}@ program.c
   \begin{enumerate}
   \item move control
     \begin{itemize}
-    \item \ao{\tt target} : moves the execution to GPU
+    \item \aka{NEW} \ao{\tt target} : moves the execution to GPU
     \end{itemize}
   \item parallelize
     \begin{itemize}
-    \item \ao{\tt teams} and \ao{\tt distribute}
+    \item \aka{NEW} \ao{\tt teams} and \ao{\tt distribute}
       \begin{itemize}
       \item \ao{\tt teams} : creates a number of teams executing the same statement
         ($\approx$ {\tt parallel} pragma)
@@ -212,7 +212,7 @@ $ nvc -Wall @\ao{\tt -mp=gpu}@ program.c
     \end{itemize}
   \item move (or sync) data
     \begin{itemize}
-    \item \ao{\tt target data} : move/sync data between CPU and GPU
+    \item \aka{NEW} \ao{\tt map} : move/sync data between CPU and GPU
     \end{itemize}
   \end{enumerate}
 \end{frame}
@@ -297,17 +297,17 @@ cudaMemcpy(r, r_dev, ...);
    @$S$@
 \end{lstlisting}
 \begin{itemize}
-\item $u, v$ : variable name, range expression (e.g., {\tt a[p:q]})
-\item send $u$ {\it to} GPU {\it before} $S$ if necessary
-\item send $v$ {\it from} GPU {\it after} $S$ if necessary
+\item $u, v$ : a variable name or a range expression (e.g., {\tt a[p:q]})
+\item \ao{\tt to:} send $u$ {\it to} GPU {\it before} $S$ if necessary
+\item \ao{\tt from:} send $v$ {\it from} GPU {\it after} $S$ if necessary
 \end{itemize}
 \item you can combine \ao{\tt to:} and \ao{\tt from:} into \ao{\tt tofrom:}
 \item somewhat ``declarative'' way of understanding this
   \begin{itemize}
-  \item $u$ becomes valid (``mapped'') on GPU during $S$
-  \item $v$ becomes valid on CPU after $S$
+  \item \ao{\tt to:} $u$ becomes valid (``mapped'') on GPU during $S$
+  \item \ao{\tt from:} $v$ becomes valid on CPU after $S$
   \end{itemize}
-\item note: you can specify {\tt map} clauses as part of
+\item note: you can (and often do) specify {\tt map} clauses as part of
   {\tt target} (not {\tt target data}) directive, too
 \item learn details with the notebook
 \end{itemize}
