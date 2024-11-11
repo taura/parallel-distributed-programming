@@ -32,7 +32,7 @@ def sched_plt(files_dat, start_t=0, end_t=float("inf"), start_i=0, end_i=float("
     # cmap = plt.cm.get_cmap('RdYlGn', n_threads)
     cmap = plt.get_cmap('RdYlGn', n_sms)
     fig, ax = plt.subplots()
-    plt.xlabel("ns")
+    plt.xlabel("cycles")
     plt.ylabel("iteration idx")
     for sm,records in sorted(list(log.items())):
         T0 = min(t for _, T in records for t in T[:1])
