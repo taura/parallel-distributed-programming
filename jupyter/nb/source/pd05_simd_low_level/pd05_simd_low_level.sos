@@ -80,7 +80,7 @@ which g++
 
 <!--- code w kernel=python --->
 %%writefile vector_ext.c
-<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd06_simd_vext/include/vector_ext.c --->
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd05_simd_low_level/include/vector_ext.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -100,7 +100,7 @@ cat -n vector_ext.s
 
 <!--- code w kernel=python --->
 %%writefile scalar_vector.c
-<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd06_simd_vext/include/vector_ext.c --->
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd05_simd_low_level/include/vector_ext.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -127,7 +127,7 @@ cat -n scalar_vector.s
 
 <!--- code w kernel=python --->
 %%writefile def_vector_type.c
-<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd06_simd_vext/include/vector_ext.c --->
+<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd05_simd_low_level/include/vector_ext.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -175,7 +175,7 @@ cat -n def_vector_type.s
 
 <!--- code w kernel=python --->
 %%writefile loadv.c
-<!--- exec-include ./mk_version.py -D VER=4 nb/source/pd06_simd_vext/include/vector_ext.c --->
+<!--- exec-include ./mk_version.py -D VER=4 nb/source/pd05_simd_low_level/include/vector_ext.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -197,7 +197,7 @@ cat -n loadv.s
 
 <!--- code w kernel=python --->
 %%writefile make_vector.c
-<!--- exec-include ./mk_version.py -D VER=5 nb/source/pd06_simd_vext/include/vector_ext.c --->
+<!--- exec-include ./mk_version.py -D VER=5 nb/source/pd05_simd_low_level/include/vector_ext.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -223,7 +223,7 @@ cat -n make_vector.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile storev.c
-<!--- exec-include ./mk_version.py -D VER=6 nb/source/pd06_simd_vext/include/vector_ext.c --->
+<!--- exec-include ./mk_version.py -D VER=6 nb/source/pd05_simd_low_level/include/vector_ext.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -245,7 +245,7 @@ cat -n storev.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile get_i.c
-<!--- exec-include ./mk_version.py -D VER=7 nb/source/pd06_simd_vext/include/vector_ext.c --->
+<!--- exec-include ./mk_version.py -D VER=7 nb/source/pd05_simd_low_level/include/vector_ext.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -367,7 +367,7 @@ $$ f(x,y) = \left\{\begin{array}{ll} \sqrt{1 - x^2 - y^2} & (1 - x^2 - y^2 > 0) 
 
 <!--- code w kernel=python points=1 --->
 %%writefile integral_no_simd.c
-<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd06_simd_vext/include/compare_integral.c --->
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd05_simd_low_level/include/compare_integral.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -388,7 +388,7 @@ clang -Wall -O3 -mavx512f -mfma -o integral_no_simd integral_no_simd.c -lm
 
 <!--- code w kernel=python points=1 --->
 %%writefile integral_simd.c
-<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd06_simd_vext/include/compare_integral.c --->
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd05_simd_low_level/include/compare_integral.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -414,7 +414,7 @@ _<font color="green">Example answer:</font>_
 <!--- end md --->
 <!--- code w kernel=python label=ans --->
 %%writefile integral_simd_ans.c
-<!--- exec-include ./mk_version.py -D VER=7 nb/source/pd06_simd_vext/include/compare_integral.c --->
+<!--- exec-include ./mk_version.py -D VER=7 nb/source/pd05_simd_low_level/include/compare_integral.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash label=ans --->
@@ -469,7 +469,7 @@ for (i = 0; i < n; i++) {
 
 <!--- code w kernel=python points=1 label=prob,ans --->
 %%writefile binsearch_nosimd.h
-<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd06_simd_vext/include/binsearch_nosimd.h --->
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd05_simd_low_level/include/binsearch_nosimd.h --->
 <!--- end code --->
 
 <!--- md --->
@@ -480,7 +480,7 @@ for (i = 0; i < n; i++) {
 
 <!--- code w kernel=python points=1 --->
 %%writefile binsearch_simd.h
-<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd06_simd_vext/include/binsearch_simd.h --->
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd05_simd_low_level/include/binsearch_simd.h --->
 <!--- end code --->
 
 <!--- md --->
@@ -492,7 +492,7 @@ for (i = 0; i < n; i++) {
 
 <!--- code w kernel=python points=1 label=prob,ans --->
 %%writefile binsearch_simd_util.h
-<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd06_simd_vext/include/binsearch_simd_util.h --->
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd05_simd_low_level/include/binsearch_simd_util.h --->
 <!--- end code --->
 
 <!--- md --->
@@ -501,7 +501,7 @@ for (i = 0; i < n; i++) {
 
 <!--- code w kernel=python points=1 label=prob,ans --->
 %%writefile binsearch_main.cc
-<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd06_simd_vext/include/binsearch_main.cc --->
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd05_simd_low_level/include/binsearch_main.cc --->
 <!--- end code --->
 
 <!--- md label=ans --->
@@ -509,7 +509,7 @@ _<font color="green">Example answer:</font>_
 <!--- end md --->
 <!--- code kernel=python label=ans --->
 %%writefile binsearch_simd.h
-<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd06_simd_vext/include/binsearch_simd.h --->
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd05_simd_low_level/include/binsearch_simd.h --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 label=prob,ans --->
@@ -581,7 +581,7 @@ prlimit --cpu=10.0 ./binsearch_main 1 ${n} ${m}  # simd (you must make it)
 
 <!--- code w kernel=python points=1 --->
 %%writefile integral_parallel_simd.c
-<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd06_simd_vext/include/compare_integral.c --->
+<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd05_simd_low_level/include/compare_integral.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -600,7 +600,7 @@ _<font color="green">Example answer:</font>_
 <!--- end md --->
 <!--- code w kernel=python label=ans --->
 %%writefile integral_parallel_simd_ans.c
-<!--- exec-include ./mk_version.py -D VER=8 nb/source/pd06_simd_vext/include/compare_integral.c --->
+<!--- exec-include ./mk_version.py -D VER=8 nb/source/pd05_simd_low_level/include/compare_integral.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash label=ans --->

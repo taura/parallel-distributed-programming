@@ -101,7 +101,7 @@ which g++
 
 <!--- code w kernel=python points=1 --->
 %%writefile axpb.c
-<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -148,7 +148,7 @@ where `x[i:i+L]` represents a vector of L values `x[i], x[i+1], ..., x[i+L-1]`.
   * `-march=native` should use instructions supported on the compilation host, but do not count on this (see below)
 * by giving a suitable flag, it is possible to generate instructions regardless of the instructions supported on the compilation host. e.g., `-mavx512f` will generate AVX512F instructions even on hosts not supporting them
 * you can check which ISAs are supported by looking at `/proc/cpuinfo`
-* taulec and tauleg000 support AVX512F (and its ancestors AVX2, AVX, and SSE)
+* taulec and tauleg support AVX512F (and its ancestors AVX2, AVX, and SSE)
 * giving `-march=native` on taulec should use AVX512F, but it doesn't, for reasons I don't know. let's stick with `-mavx512f -mfma` (you can change it to other flags when necessary)
 <!--- end md --->
 
@@ -159,12 +159,12 @@ grep flags /proc/cpuinfo | uniq
 
 <!--- md --->
 * if you run an executable that uses unsupported instructions, you will get an illegal instruction
-* the following should run OK on our environment (taulec, tauleg000, or some other hosts that come out later)
+* the following should run OK on our environment (taulec, tauleg, or some other hosts that come out later)
 <!--- end md --->
 
 <!--- code w kernel=python points=1 --->
 %%writefile test_isa_avx512f.c
-<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd05_simd_hl/include/simd_test_isa.c --->
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd04_simd_high_level/include/simd_test_isa.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -197,7 +197,7 @@ clang -O3 -Wall -mavx512f -mfma -o test_isa_avx512f test_isa_avx512f.c
 
 <!--- code w kernel=python points=1 --->
 %%writefile axpb_scalar.c
-<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- md --->
@@ -249,7 +249,7 @@ cat -n axpb_scalar.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile axpb_simd.c
-<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -308,7 +308,7 @@ for (; i < n; i++) {
 
 <!--- code w kernel=python points=1 --->
 %%writefile axpy_simd_no_remainder.c
-<!--- exec-include ./mk_version.py -D VER=4 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=4 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -336,7 +336,7 @@ cat -n axpy_simd_no_remainder.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile dependency.c
-<!--- exec-include ./mk_version.py -D VER=5 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=5 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- md --->
@@ -396,7 +396,7 @@ creating exactly the same problem as the previous one.
 
 <!--- code w kernel=python points=1 --->
 %%writefile uncertain_dependency.c
-<!--- exec-include ./mk_version.py -D VER=6 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=6 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -424,7 +424,7 @@ cat -n uncertain_dependency.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile axpy_omp_simd.c
-<!--- exec-include ./mk_version.py -D VER=7 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=7 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -464,7 +464,7 @@ s = sv[0] + ... + sv[L-1];
 
 <!--- code w kernel=python points=1 --->
 %%writefile sum.c
-<!--- exec-include ./mk_version.py -D VER=8 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=8 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -491,7 +491,7 @@ cat -n sum.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile branch.c
-<!--- exec-include ./mk_version.py -D VER=9 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=9 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -517,7 +517,7 @@ cat -n branch.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile loop_c.c
-<!--- exec-include ./mk_version.py -D VER=10 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=10 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -540,7 +540,7 @@ cat -n loop_c.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile loop_i.c
-<!--- exec-include ./mk_version.py -D VER=11 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=11 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -563,7 +563,7 @@ cat -n loop_i.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile loop_v.c
-<!--- exec-include ./mk_version.py -D VER=12 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=12 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -586,7 +586,7 @@ cat -n loop_v.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile funcall.c
-<!--- exec-include ./mk_version.py -D VER=13 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=13 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -610,7 +610,7 @@ cat -n funcall.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile funcall_decl_simd.c
-<!--- exec-include ./mk_version.py -D VER=14 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=14 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -631,7 +631,7 @@ cat -n funcall_decl_simd.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile fundef_decl_simd.c
-<!--- exec-include ./mk_version.py -D VER=15 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=15 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -664,7 +664,7 @@ reads the consecutive 64 bytes starting from the address in the `rax` register a
 
 <!--- code w kernel=python points=1 --->
 %%writefile stride_load.c
-<!--- exec-include ./mk_version.py -D VER=16 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=16 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -683,7 +683,7 @@ cat -n stride_load.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile stride_store.c
-<!--- exec-include ./mk_version.py -D VER=17 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=17 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -705,7 +705,7 @@ cat -n stride_store.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile struct_load.c
-<!--- exec-include ./mk_version.py -D VER=18 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=18 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -727,7 +727,7 @@ cat -n struct_load.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile non_affine_idx.c
-<!--- exec-include ./mk_version.py -D VER=19 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=19 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
@@ -749,7 +749,7 @@ cat -n non_affine_idx.s
 
 <!--- code w kernel=python points=1 --->
 %%writefile indirect_idx.c
-<!--- exec-include ./mk_version.py -D VER=20 nb/source/pd05_simd_hl/include/simd_examples.c --->
+<!--- exec-include ./mk_version.py -D VER=20 nb/source/pd04_simd_high_level/include/simd_examples.c --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
