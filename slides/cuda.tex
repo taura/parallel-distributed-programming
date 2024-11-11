@@ -1045,10 +1045,10 @@ void sum(double * c, long n) {
 f<<<@{\it nb}@,@{\it bs}@,@\ao{\it S}@>>>(...);
 \end{lstlisting}
 
-\item from CUDA program's perspective, it is a memory {\it only shared within a thread block} and
+\item from CUDA program's perspective, it is a memory \ao{\it only shared within a thread block} and
   {\it only active during the thread block's lifetime}
   \begin{itemize}
-  \item the term {\it shared memory} is a misnomer, IMO;
+  \item the term \ao{\it shared memory} is a misnomer, IMO;
     ordinary memory you allocate via {\tt cudaMalloc}
     {\it is} shared by all threads
   \item local memory or something will be a more appropriate name
