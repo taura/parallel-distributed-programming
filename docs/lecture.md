@@ -4,6 +4,11 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Nov. 11, 2024)</font> Plan for Nov. 11
+  * [CUDA](slides/cuda.pdf)
+  * [OpenMP for GPU](slides/openmp_gpu.pdf)
+  * pd03\_omp\_gpu
+
 * <font color=blue>(Posted: Nov. 02, 2024)</font> 
   * Example answer for [pd01\_omp](ans/pd01_omp/pd01_omp.sos.ans.html) released
   * Example answer for [pd02\_cuda](ans/pd02_cuda/pd02_cuda.sos.ans.html) released
@@ -30,10 +35,10 @@
 1. [Introduction](slides/intro.pdf)
 1. [OpenMP](slides/openmp.pdf)
 1. [CUDA](slides/cuda.pdf)
+1. [OpenMP for GPU](slides/openmp_gpu.pdf)
 1. [SIMD](slides/simd.pdf)
 1. [How to get nearly peak FLOPS (with CPU)](slides/peak_cpu.pdf)
 1. [What You Must Know about Memory, Caches, and Shared Memory](slides/memory.pdf)
-1. [OpenMP for GPU](slides/openmp_gpu.pdf)
 1. [Divide and Conquer](slides/divide_and_conquer.pdf)
 1. [Neural Network Basics](slides/nn.pdf)
 1. [Analyzing Data Access of Algorithms and How to Make Them Cache-Friendly?](slides/cache.pdf)

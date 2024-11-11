@@ -287,8 +287,8 @@ OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 ./omp_distribute 5 | wc
 
 <!--- md --->
 * note:
-  * if there is no statements between `teams` and `distribute` they can be combined into one directive, just as * recall that `target` can be combined with `teams`, so you can combine all the three 
-`parallel` and `for` can be combined
+  * if there is no statements between `teams` and `distribute` they can be combined into one directive, just as `parallel` and `for` can
+  * recall that `target` can be combined with `teams`, so you can combine all the three 
 <!--- end md --->
 
 <!--- code w kernel=python --->
@@ -309,7 +309,7 @@ OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 ./omp_target_teams_distribute 7
 
 <!--- md --->
 * note:
-  * you can parallelize a loop with just `teams` and `distribute` without `parallel` and `for` described below
+  * in principle you could parallelize a loop with just `teams` and `distribute` without `parallel` and `for` described below
   * however, to effectively use GPUs, you need to use `parallel` within each team
   * while implementation dependent, you can think of a team as a single thread block, so only using teams, you end up creating many thread blocks each having only a single thread, resulting in very inefficient use of GPUs 
 <!--- end md --->
@@ -356,13 +356,16 @@ OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=3 OMP_NUM_THREADS=32 ./omp_parallel
 <!--- md --->
 
 * <font color="red">important remarks on the number of threads you specify in `parallel` directive</font>
+* <font color="red">I observed:</font>
   * on CPU, the number of threads created by `parallel` could be specified either with `OMP_NUM_THREADS=x` environment variable or `num_threads(x)` in `parallel` directive
   * but this seems not possible when executing on GPUs (I don't know whether it is an implementation issue or specification)
   * you have to use `num_threads(x)` if you need to set it, just as done above
   * or you can just omit it to leave it to the system
-* also, it seems that with both clang and nvc, <font color=red>_the number of threads must be 1 or a multiple of 32_</font>
-  * it does not even signal an error, so you must be careful not to unintentionally specify a wrong number
-  * this is another reason to leave it to the system unless necessary
+* also, it seems that with both clang and nvc, <font color=red>_the number of threads seems rounded down to a nearest multiple of 32 (e.g., 35 -> 32)_, except when it is $< 32$, in which case it is treated as 1</font>
+* finally, <font color=red>`omp_thread_num()` seems to return a bogus number (992) when it is $< 32$</font>
+* in summary
+  * do not think you can control the number of threads and leave it to the system unless necessary, which often suffices
+  * avoid using `omp_thread_num()` or `omp_num_threads()` on GPUs
 
 <!--- end md --->
 
@@ -818,7 +821,7 @@ OMP_TARGET_OFFLOAD=MANDATORY ./omp_nomap_heap
  |                      |`int * h = new int[N];`       |`map(to:h[p:q])`   |`map(to:h[p:q])`   | \*      |
  |mmap                  |`int * h = (int *)mmap(..);`  |`map(to:h[p:q])`   |`map(to:h[p:q])`   |         |
 
-* \* unnecessary when `nvc++ -gpu=mem:managed` option
+* \* unnecessary when `nvc++ -gpu=mem:managed` option is given
 * Therefore, if you
   * restrict GPU-to-CPU communication to data allocated by malloc or new (i.e., not through local or global variables), and 
   * do not use mmap,
@@ -879,10 +882,10 @@ omp_gpu_sched_vis.sched_plt(["a.dat"])
 <!--- md --->
 #*P Understanding scheduling by visualization
 
-* Set the number of teams to 1 and increase both the iteration count and the number of threads (per team) from 32 to larger numbers, to find how many iterations can execute almost simultaneously in a single team (i.e., SM)
+1. Set the number of teams to 1 and increase both the iteration count and the number of threads (per team) from 32 to larger numbers, to find how many iterations can execute almost simultaneously in a single team (i.e., SM)
   * use `show_every` parameter to reduce the number of iterations visualized 
-* Then you fix the number of threads per team and increase the number of teams, again to find how many iterations can execute almost simultaneously in the device
-* Find the equivalent number on CPU and compare them
+2. Then you fix the number of threads per team to that value and increase the number of teams, again to find how many iterations can execute almost simultaneously in the device
+3. Find the equivalent number on CPU and compare them
   * You will confirm the number for GPU is much larger than that for CPU, with no surprise
   * Make no mistake; CPU has other axes of parallelism (SIMD and superscalar) that cannot be tapped just by using multicores (omp parallel), which we will see later in this course (do not interpret the ratio between the two as the ratio of the peak performance between the two)
   * Still, it's safe to say GPU "simplifies" high-performance programming, in the sense that the required effort to tap all available hardware-level parallelism is much lower if the program has ample loop-level parallelism (the number of independently executable iterations)
