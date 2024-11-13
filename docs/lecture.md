@@ -4,8 +4,16 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Nov. 13, 2024)</font> Plan for Nov. 13
+  * pd03\_omp\_gpu
+  * [SIMD](slides/simd.pdf) high level approach
+  * pd04\_simd\_high\_level
+  * [SIMD](slides/simd.pdf) low level approach
+  * pd04\_simd\_low\_level
+
 * <font color=blue>(Posted: Nov. 11, 2024)</font> Plan for Nov. 11
   * [CUDA](slides/cuda.pdf)
+  * pd02\_cuda
   * [OpenMP for GPU](slides/openmp_gpu.pdf)
   * pd03\_omp\_gpu
 
