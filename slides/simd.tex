@@ -310,13 +310,13 @@ Haswell           & AVX2    & 2 fmas        & 8     & 32 \\
 \begin{center}
 {\scriptsize
 \begin{tabular}{|l|c|c|c|c|c|}\hline
-Microarchitecture & ISA    & throughput    & vector   & max SP flops/cycle \\
-                  &        & (per clock)   & width (SP) & /core          \\
+Microarchitecture & ISA    & vector        & throughput & max SP flops/cycle \\
+                  &        & width (SP)    & (per clock)  & /core          \\
 \hline
-Nehalem           & SSE     & 1 add + 1 mul & 4     & 8  \\
-Sandy Bridge      & AVX     & 1 add + 1 mul & 8     & 16 \\
-Haswell           & AVX2    & 2 fmas        & 8     & 32 \\
-\ao{Ice Lake}     & \ao{AVX-512} & \ao{2 fmas}  & \ao{16} & \ao{64} \\
+Nehalem           & SSE     & 4 & 1 add + 1 mul      & 8  \\
+Sandy Bridge      & AVX     & 8 & 1 add + 1 mul     & 16 \\
+Haswell           & AVX2    & 8 & 2 fmas             & 32 \\
+\ao{Ice Lake}     & \ao{AVX-512} & \ao{16}  & \ao{2 fmas} & \ao{64} \\
 \hline
 \end{tabular}
 }
