@@ -1,0 +1,23 @@
+<!--- md label=prob,ans --->
+#* Exercise : optimizing a neural network inference
+<!--- end md --->
+
+<!--- md --->
+
+* In this exercise, you combine all the knowledges you have learned so far and you will learn soon, to make a simple neural network faster
+* This notebook just serves as the toplevel instruction and the working directory
+* You should do this work using terminal rather than in the notebook
+  * If you have never done so, see the [instruction](https://taura.github.io/programming-languages/html/jupyter.html)
+* Start by, from your own machine, 
+```
+ssh u2XXXX@tauleg.zapto.org   # or u2XXXX@taulec.zapto.org
+```
+* On the `tauleg` (or `taulec`) machine, do
+```
+tauleg$ cd notebooks/pd30_mlp
+```
+and follow the instruction at https://github.com/taura/parallel-distributed-programming-code-2024/tree/main/30mlp
+* Work under `notebooks/pd30_mlp/parallel-distributed-programming-code-2024/30mlp`, so that when you submit this notebook, your program will be automatically included
+
+<!--- end md --->
+
