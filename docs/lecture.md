@@ -4,6 +4,12 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Nov. 16, 2024)</font> 
+  * I released a new Jupyter notebook, `pd30_mlp`
+  * It is going to be the next assignment you will submit  
+  * See the notebook, as well as this [github page](https://github.com/taura/parallel-distributed-programming-code-2024/tree/main/30mlp) for more details and further updates
+  * As due is still undecided, there is no entry in UTOL yet, but I will make it once due is fixed
+
 * <font color=blue>(Posted: Nov. 13, 2024)</font> Plan for Nov. 13
   * pd03\_omp\_gpu
   * [SIMD](slides/simd.pdf) high level approach
