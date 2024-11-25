@@ -4,6 +4,12 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Nov. 25, 2024)</font> Plan for Nov. 25
+  * pd04\_simd\_high\_level
+  * [SIMD](slides/simd.pdf) low level approach
+  * pd05\_simd\_low\_level
+  * pd30\_mlp
+
 * <font color=blue>(Posted: Nov. 16, 2024)</font> 
   * I released a new Jupyter notebook, `pd30_mlp`
   * It is going to be the next assignment you will submit  
@@ -15,7 +21,7 @@
   * [SIMD](slides/simd.pdf) high level approach
   * pd04\_simd\_high\_level
   * [SIMD](slides/simd.pdf) low level approach
-  * pd04\_simd\_low\_level
+  * pd05\_simd\_low\_level
 
 * <font color=blue>(Posted: Nov. 11, 2024)</font> Plan for Nov. 11
   * [CUDA](slides/cuda.pdf)
