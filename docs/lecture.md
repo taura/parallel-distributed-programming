@@ -5,6 +5,7 @@
 # What's new (in the newest-first order)
 
 * <font color=blue>(Posted: Nov. 25, 2024)</font> Plan for Nov. 25
+  * [SIMD](slides/simd.pdf) high level approach (recap)
   * pd04\_simd\_high\_level
   * [SIMD](slides/simd.pdf) low level approach
   * pd05\_simd\_low\_level
