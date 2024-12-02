@@ -3,8 +3,10 @@
 
 # Introduction
 
-* CPU has multicore and SIMD parallelism
-* The last dimension of parallelism is Instruction Level Parallelism (ILP), the ability to execute many instructions <font color=red>of a single thread</font> concurrently (i.e., execution of many instructions overlap in time)
+* we have learned that CPU has multicore and SIMD parallelism
+* the last dimension of parallelism is _Instruction Level Parallelism (ILP)_, the ability to execute many instructions <font color=red>of a single thread</font> concurrently (i.e., execution of many instructions overlap in time)
+* in contrast, GPU does not aggressively try to extract ILP from a single thread; parallelism mostly comes from simultaneously executing many threads
+* illuminating the difference between the two is both instructive and practically important, especially for optimizing CPU code
 <!--- end md --->
 
 <!--- md --->
@@ -64,328 +66,345 @@ which g++
 <!--- end code --->
 
 <!--- md --->
-# No SIMD/ILP
+# CPU without ILP
 
 * this is an experiment very similar to what we did on GPUs
 * each thread repeats x = a * x + b many times and occasionally record time
+* although the primary focus is a single-thread performance, the program is written with OpenMP so it can be executed on multicore CPUs and GPUs
+* the compilation option below enables execution on both GPU and CPU
 <!--- end md --->
 
 <!--- code w kernel=python --->
-%%writefile no_simd_no_ilp.c
-<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd07_ilp/include/ilp_rec.c --->
+%%writefile no_ilp.cc
+<!--- exec-include ./mk_version.py -D VER=1 nb/source/pd06_ilp/include/ilp_rec.cc --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
-clang -Wall -O3 -mavx512f -mfma -fopenmp no_simd_no_ilp.c -o no_simd_no_ilp
-#nvc   -Wall -O3 -mavx512f -mfma -mp      no_simd_no_ilp.c -o no_simd_no_ilp
-#gcc   -Wall -O3 -mavx512f -mfma -fopenmp no_simd_no_ilp.c -o no_simd_no_ilp
-<!--- end code --->
-
-<!--- code w kernel=bash points=1 --->
-OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./no_simd_no_ilp 100 1000000
+clang++ -Wall -O3 -mavx512f -mfma -fopenmp no_ilp.cc -o no_ilp
+#nvc++   -Wall -O3 -mavx512f -mfma -mp=multicore -cuda no_ilp.cc -o no_ilp
+#g++     -Wall -O3 -mavx512f -mfma -fopenmp no_ilp.cc -o no_ilp
 <!--- end code --->
 
 <!--- md --->
-# Visualizaiton
-
-* here is a visualization code
-<!--- end md --->
-
-<!--- code w kernel=python --->
-<!--- include nb/source/pd07_ilp/include/ilp_vis.py --->
-<!--- end code --->
-
-<!--- md --->
-# Visualizaiton
-
-* the following command line iterates `x = a * x + b` (100 x 10000) times and records the clock every 10000 iterations (i.e., the clock is recorded 100 times)
+* run it on a single core
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
-OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./no_simd_no_ilp 100 1000000 > no_simd_no_ilp.log
+OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./no_ilp 1 100 1000000 > a.dat
+cat a.dat
 <!--- end code --->
 
 <!--- md --->
-* get the result in into a file and visualize it
-<!--- end md --->
-
-<!--- code w kernel=python --->
-ilp_plt(["./no_simd_no_ilp.log"])
-<!--- end code --->
-
-<!--- md --->
-* how many cycles does a single `x = a * x + b` take?
-* remember that this CPU's single-core peak performance is two SIMD DP FMA instructions/cycle (16 multiply-and-adds/cycle or 32 flops/cycle for double-precision numbers)
-* the number you observed here should be far from it, just as it was the case in GPUs
-* it is also equally true between CPUs and GPUs that you cannot run THIS computation any faster
-* the performance of this computation is determined by the fact that
-  * computing `a * x + b` takes a few cycles (has a certain LATENCY) and
-  * performing `x = a * x + b` of an iteration <font color="red">must wait for the previous iteration to produce its result (`x`)</font>
-* <font color="blue">the only thing processors can do to "increase performance" is to run MANY of them run in the same amount of time (i.e., increase parallelism)</font>
-* the way we did it on <font color="blue">GPU was simply creating more and more threads</font>
-* the way we do it on <font color="blue">CPU is to combine SIMD and ILP</font>
-
-<!--- end md --->
-
-<!--- md --->
-# SIMD
-
-* as you learned, you can run `x = a * x + b` for many (specifically eight DP or sixteeen SP) numbers using 512-bit SIMD instructions
-* here is a simple SIMD version
-* note: a computation as simple as below can be vectorized without using vector type, but we use it for the sake of clarity and guarantee
-<!--- end md --->
-
-<!--- code w kernel=python --->
-%%writefile simd_no_ilp.c
-<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd07_ilp/include/ilp_rec.c --->
-<!--- end code --->
-
-<!--- code w kernel=bash points=1 --->
-clang -Wall -O3 -mavx512f -mfma -fopenmp simd_no_ilp.c -o simd_no_ilp
-#nvc   -Wall -O3 -mavx512f -mfma -mp      simd_no_ilp.c -o simd_no_ilp
-#gcc   -Wall -O3 -mavx512f -mfma -fopenmp simd_no_ilp.c -o simd_no_ilp
-<!--- end code --->
-
-<!--- code w kernel=bash points=1 --->
-OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./simd_no_ilp 100 1000000 > simd_no_ilp.log
-<!--- end code --->
-
-<!--- md --->
-* the following should execute in almost the same time as the previous scalar version
-* that is, SIMD fmadd instruction has the same latency as the scalar version
-<!--- end md --->
-
-<!--- code w kernel=python --->
-ilp_plt(["./simd_no_ilp.log"])
-<!--- end code --->
-
-<!--- md --->
-# A note on two kinds of clocks
-
-* you might observe that the gap between consecutive pair of points changes during the execution
-* it happens because
-  * recent CPUs boost frequencies of CPU cores (_core frequencies_) based on the load on cores (dynamic frequency scaling; aka "turbo boost" in Intel's terminology), and 
-  * the clocks recorded by the program (obtained by `_rdtsc` function, which is `rdtsc` instruction of the CPU) are _reference clocks_ running at a constant frequency regardless of the CPU's core frequency
-* in other words, the visualization shows how the iterations progress over _real time_
-* when no or little computation is running, the processor's operating frequency tends to be low
-* when a few cores are running intensively, the CPU boosts their frequencies
-* when many cores are running, the CPU typically stays at the base clock to cap the power consumption
-<!--- end md --->
-
-<!--- md --->
-## Measuring time in core cycles
-
-* while our ultimate interest is the absolute time (or equivalently, reference clocks), it is often useful to measure the execution time in the number of core cycles, as it yields a more constant result no matter at which frequency the core happens to be running
-* also, when you look up the processor spec that tells you the latency of a particular instruction in terms of clocks, it is the number of core cycles that the instruction takes
-* for example, [Intel intrinsics guide](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html) guide says FMA instruction's latency is four cycles. it means it takes four core cycles, not reference cycles
-* that's why you have observed that a single iteration took less than four cycles
-* measuring the core clock is not as easy as measuring reference clock, but is possible thanks to Linux's perf API
-* here is a version using perf API to obtain core cycles
-* see the accompanying `perf.h` if you are interested
-<!--- end md --->
-
-<!--- code w kernel=python --->
-%%writefile simd_no_ilp.c
-<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd07_ilp/include/ilp_rec.c --->
-<!--- end code --->
-
-<!--- code w kernel=bash points=1 --->
-clang -DCLOCK_IS_CORE_CLOCK=1 -Wall -O3 -mavx512f -mfma -fopenmp simd_no_ilp.c -o simd_no_ilp
-#nvc   -DCLOCK_IS_CORE_CLOCK=1 -Wall -O3 -mavx512f -mfma -mp      simd_no_ilp.c -o simd_no_ilp
-#gcc   -DCLOCK_IS_CORE_CLOCK=1 -Wall -O3 -mavx512f -mfma -fopenmp simd_no_ilp.c -o simd_no_ilp
-<!--- end code --->
-
-<!--- md --->
-* execute the following and get the number of core cycles per iteration
-* it should be almost exactly four, the latency of an FMA instruction 
-* you should check it at [Intel intrinsics guide](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html) (search for _mm512_fmadd_pd)
+* it shows cycles per iteration (of the innermost loop) by `cycles_per_iter=xxxx`, which can be extracted by
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
-OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./simd_no_ilp 100 1000000 > simd_no_ilp.log
-<!--- end code --->
-
-<!--- code w kernel=python --->
-ilp_plt(["./simd_no_ilp.log"])
+awk '{print $5}' a.dat
 <!--- end code --->
 
 <!--- md --->
-* also check the assembly code for what the loop actually looks like
-* locate the code corresponding to the inner-most loop (`for (long j = 0; j < m; j++) ...`), using `# begin loop` and `# end loop` as landmarks
+* this is essentially the _latency_ of an FMA instruction 
+* according to [Intel intrinsics guide](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html), the latency of FMA instruction is 4, but we observe a slightly lower value
+* this is due to dynamic frequency scaling (essentially, a core boosts its frequency when the total load is low; the `rdtsc` instruction we use to get the clock is a clock that runs at a constant speed regardless of the actual processor frequency)
+<!--- end md --->
+
+<!--- md --->
+* let's witness instruction sequence 
+* identify the instruction sequence corresponding to the innermost loop
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
-clang -DCLOCK_IS_CORE_CLOCK=1 -Wall -O3 -mavx512f -mfma -fopenmp simd_no_ilp.c -S
-#nvc   -DCLOCK_IS_CORE_CLOCK=1 -Wall -O3 -mavx512f -mfma -mp      simd_no_ilp.c -S
-#gcc   -DCLOCK_IS_CORE_CLOCK=1 -Wall -O3 -mavx512f -mfma -fopenmp simd_no_ilp.c -S
-<!--- end code --->
-
-<!--- md --->
-# SIMD x ILP
-
-* with SIMD, it now performs a SIMD FMA (eight DP multiply-and-adds or sixteen DP flops) every four core cycles (0.25 FMA per cycle)
-* still, it is still far from the peak, which is TWO FMAs every single cycle (1/8 of the peak)
-* how to go beyond that?
-* on a GPU SM, it was done just by increasing the number of CUDA threads thrown to a single SM
-* on a CPU core, it is done by performing `x = a * x + b` on many different variables in a single thread
-<!--- end md --->
-
-<!--- code w kernel=python --->
-%%writefile simd_ilp2.c
-<!--- exec-include ./mk_version.py -D VER=4 nb/source/pd07_ilp/include/ilp_rec.c --->
+clang++ -Wall -O3 -mavx512f -mfma -fopenmp no_ilp.cc -S
+#nvc++   -Wall -O3 -mavx512f -mfma -mp=multicore -cuda no_ilp.cc -S
+#g++     -Wall -O3 -mavx512f -mfma -fopenmp no_ilp.cc -S
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
-clang -DCLOCK_IS_CORE_CLOCK=1 -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp2.c -o simd_ilp2
-#nvc   -DCLOCK_IS_CORE_CLOCK=1 -Wall -O3 -mavx512f -mfma -mp      simd_ilp2.c -o simd_ilp2
-#gcc   -DCLOCK_IS_CORE_CLOCK=1 -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp2.c -o simd_ilp2
-<!--- end code --->
-
-<!--- code w kernel=bash points=1 --->
-OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./simd_ilp2 100 1000000 > simd_ilp2.log
+cat no_ilp.s
 <!--- end code --->
 
 <!--- md --->
-* the following should execute in almost the same time as the previous scalar/SIMD version
-* note that we doubled the amount of work, but the execution time stays almost the same, because these two instructions are independent and can run concurrently
-<!--- end md --->
+# Double ILP on CPU
 
-<!--- code w kernel=python --->
-ilp_plt(["./simd_ilp2.log"])
-<!--- end code --->
-
-<!--- code w kernel=bash points=1 --->
-clang -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp2.c -S
-#nvc   -Wall -O3 -mavx512f -mfma -mp      simd_ilp2.c -S
-#gcc   -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp2.c -S
-<!--- end code --->
-
-<!--- md --->
-#*P Dependent or not: that is the problem
-
-* what happens if you change the two assignments
+* an ILP increases when there are multiple instructions that are _independent_
+* no processor can execute the following sequence faster than 4 cycles / FMA, because each instruction has to wait for the previous instruction to produce its result (i.e., depends on the previous instruction)
 ```
-      x0 = a * x0 + b;
-      x1 = a * x1 + b;
+x = a * x + b
+x = a * x + b
+x = a * x + b
+  ...
 ```
-into 
+* what a CPU _can_ do is to execute something like the following as fast as 4 cycles / (2 FMAs)
 ```
-      x0 = a * x1 + b;
-      x1 = a * x0 + b;
+x0 = a * x0 + b
+x1 = a * x1 + b
+x0 = a * x0 + b
+x1 = a * x1 + b
+x0 = a * x0 + b
+x1 = a * x1 + b
+  ...
 ```
-?
-* do it and see what happens
-* explain why
-<!--- end md --->
-
-<!--- md w points=1 --->
-* the core cycles per iteration =
-
-* the reason
-<!--- end md --->
-
-<!--- md --->
-# Getting to a single-core peak
-
-* we can have more than two variables and increase the number of concurrent operations, until we hopefully reach the peak
-* doing it using literally many variables makes the program ugly
-* the following program uses an array of doubles instead of multiple separate variables of `doublev`
-* you can easily change the number of variables by setting a compile-time macro C at the command line by giving `-DC=x` (e.g., `-DC=2` will use two `doublev` variables (sixteen DP numbers))
-* if the compiler is not clever, it may load and store values between memory and registers each time it performs fmadd
-* fortunately, gcc and clang are clever enough to do the inner loop entirely on registers
+* this is possible because instructions working on x0 do not depend on those working on x1 and vice versa
 <!--- end md --->
 
 <!--- code w kernel=python --->
-%%writefile simd_ilp.c
-<!--- exec-include ./mk_version.py -D VER=5 nb/source/pd07_ilp/include/ilp_rec.c --->
+%%writefile ilp2.cc
+<!--- exec-include ./mk_version.py -D VER=2 nb/source/pd06_ilp/include/ilp_rec.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang++ -Wall -O3 -mavx512f -mfma -fopenmp ilp2.cc -o ilp2
+#nvc++   -Wall -O3 -mavx512f -mfma -mp=multicore -cuda ilp2.cc -o ilp2
+#g++     -Wall -O3 -mavx512f -mfma -fopenmp ilp2.cc -o ilp2
 <!--- end code --->
 
 <!--- md --->
-#*P Getting to a single-core peak
-
-* play with changing the value of `C` below and measure the execution time
-* what is the minimum value of `C` that attains peak performance?
-* what if you make `C` slightly larger?
-* what if you make `C` even larger?
+* run it on a single core again
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
-C=2
-clang -DC=${C} -DCLOCK_IS_CORE_CLOCK=1 -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp.c -o simd_ilp
-#nvc   -DC=${C} -DCLOCK_IS_CORE_CLOCK=1 -Wall -O3 -mavx512f -mfma -mp      simd_ilp.c -o simd_ilp
-#gcc   -DC=${C} -DCLOCK_IS_CORE_CLOCK=1 -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp.c -o simd_ilp
-<!--- end code --->
-
-<!--- code w kernel=bash points=1 --->
-OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./simd_ilp 100 1000000 > simd_ilp.log
-<!--- end code --->
-
-<!--- code w kernel=python --->
-ilp_plt(["./simd_ilp.log"])
+OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./ilp2 1 100 1000000 > a.dat
+awk '{print $5}' a.dat
 <!--- end code --->
 
 <!--- md --->
-* run it with varying C's 
+* observe that the number of cycles per iteration does not change almost at all
+* put differently, it increased the _throughput_, the number of operations executed per cycle (or a unit time)
 <!--- end md --->
 
-<!--- code w kernel=bash points=1 --->
-for C in $(seq 1 16); do 
-    echo "=== C=${C} ==="
-    clang -DC=${C} -DCLOCK_IS_CORE_CLOCK=1 -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp.c -o simd_ilp
-    #nvc   -DC=${C} -DCLOCK_IS_CORE_CLOCK=1 -Wall -O3 -mavx512f -mfma -mp      simd_ilp.c -o simd_ilp
-    #gcc   -DC=${C} -DCLOCK_IS_CORE_CLOCK=1 -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp.c -o simd_ilp
-    OMP_NUM_THREADS=1 ./simd_ilp > ilp_rec.log
-done
-<!--- end code --->
-
 <!--- md --->
-* copy the result below and draw the graph
+# Increase ILP further
+
+* let's increase ILP furter
+* the following code can configure the number of variables to update in the `k` loop (therefore the number of _independent_ FMA instructions) by setting a preprocessor constant `C`
 <!--- end md --->
 
 <!--- code w kernel=python --->
-<!--- include nb/source/pd07_ilp/include/fmas_per_cycle_vis.py --->
+%%writefile ilp.cc
+<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd06_ilp/include/ilp_rec.cc --->
 <!--- end code --->
 
 <!--- md --->
-# SIMD x ILP x multicore
-
-* finally run it with multicore to get nearly peak performance of the CPU!
-* we use the reference clock to measure time, as core clocks are per-core clocks (it is misleading to put them in the same graph)
+* compile it with `C=4`
+* we inhibit vectorization to make sure we witness the effect of ILP, not of SIMD instructions
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
-C=8
-clang -DC=${C} -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp.c -o simd_ilp
-#nvc   -DC=${C} -Wall -O3 -mavx512f -mfma -mp      simd_ilp.c -o simd_ilp
-#gcc   -DC=${C} -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp.c -o simd_ilp
+clang++ -DC=4 -Wall -O3 -mavx512f -mfma -fopenmp -fno-vectorize ilp.cc -o ilp
+#nvc++   -DC=4 -Wall -O3 -mavx512f -mfma -mp=multicore -Mnovect -cuda ilp.cc -o ilp
+#g++     -DC=4 -Wall -O3 -mavx512f -mfma -fopenmp -fno-tree-vectorize ilp.cc -o ilp
 <!--- end code --->
 
+<!--- md --->
+* and run it on a single core
+<!--- end md --->
+
 <!--- code w kernel=bash points=1 --->
-OMP_NUM_THREADS=16 OMP_PROC_BIND=true ./simd_ilp 100 1000000 > simd_ilp_multicore.log
+OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./ilp 1 100 1000000 > a.dat
+awk '{print $5}' a.dat
+<!--- end code --->
+
+<!--- md --->
+* change the `C` above and how far you can go, without noticeably increasing the cycles per iteration
+* it is the processor's _throughput_ limit, determined by the number of execution units for floatint point operations (two on many CPUs)
+* note: this number if the same even if it is SIMD FMA, which we will see below
+
+* change `C` systematically and graph the result
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+for L in 1; do
+    for M in 100 ; do
+        for N in 1000000; do
+            for C in 1 2     ; do  # put values of C you want to experiment with
+                # choose the compiler and craft an appropriate command
+                # line to produce exe file ilp_${C}
+                clang++/nvc++/g++ -DC=${C} ilp.cc -o ilp_${C} ... \
+                    && (echo -n "L=${L} M=${M} N=${N} C=${C} ";
+                        OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./ilp_${C} ${L} ${M} ${N} | awk '{print $5}')
+            done
+        done
+    done
+done 
 <!--- end code --->
 
 <!--- code w kernel=python --->
-ilp_plt(["./simd_ilp_multicore.log"])
+DATA_STRING_CPU = r"""
+L=1 M=100 N=10000000 C=1 cycles_per_iter=2.128242
+L=1 M=100 N=10000000 C=2 cycles_per_iter=2.126931
+L=1 M=100 N=10000000 C=3 cycles_per_iter=2.125129
+    ...
+"""
+<!--- end code --->
+
+<!--- code w kernel=python --->
+import vis_latency_throughput
+vis_latency_throughput.vis(DATA_STRING_CPU)
+<!--- end code --->
+
+
+<!--- md --->
+# GPU 
+
+* what about GPU?
+* GPU does not aggressively exploit ILP
+* let's fast see the case where we have almost no ilp
+* the code can be exactly the same as the CPU case; we merely have to change the compile option
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+clang++ -Wall -O3 -mavx512f -mfma -fopenmp -fopenmp-targets=nvptx64 no_ilp.cc -o no_ilp_gpu
+#nvc++   -Wall -O3 -mavx512f -mfma -mp=gpu -cuda no_ilp.cc -o no_ilp_gpu
 <!--- end code --->
 
 <!--- md --->
-#* Remarks on multicore performance
-
-* `OMP_PROC_BIND=true` above ensures each OpenMP thread is pinned to a virtual core (is not moved by the operating system) and to a distinct virtual core up to the number of virtual cores
-* what we wish to observe is therefore that
-  * the execution time does not increase up to the number of physical cores (38 in `taulec`) and
-  * it increases up to 2x up to the number of virtual cores (76 in `taulec`)
-* there are several reasons why it may not happen in practice
-  1. two OpenMP threads of your program may happen to run on tho two virtual cores of the same physical core
-  1. one of your OpenMP thread and another thread run by your friends may happen to run on the same virtual or physical core
-  1. one of your OpenMP thread and other system services (Jupyter server, SSH server, etc.) may happen to run on the same virtual or physical core
-* when you execute your program when many people are not using `taulec`, you are likely to be able to avoid the problems 2 and 3
-* it is difficult to avoid the problem 1 in the virtualized environment (which taulec is), as the mapping between CPU number seen in taulec and the physical core is unknown and can even change at runtime
-  * in physical machines, you can know which virtual cores visible in the environment share the same physical core, so, using appropriate Linux tools (e.g., taskset or numactl), you can guarantee that only one virtual core on each physical core is used to run your program 
-* if two threads that would reach the peak performance happen to run on the two virtual cores of the same physical core, each thread gets half of the peak performance
-* therefore what you can hope is that the execution time becomes 2x at the worst case, up to the number of virtual cores (76 in `taulec`)
-* even this may not happen due to the problems 2 and 3, especially when many users use `taulec` (try at night)
+* and run it with a single thread
 <!--- end md --->
 
+<!--- code w kernel=bash points=1 --->
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./no_ilp_gpu 1 100 1000000 > a.dat
+awk '{print $5}' a.dat
+<!--- end code --->
 
+<!--- md --->
+* this is the _latency_ of FMA instruction on NVIDIA GPU
+* it is slightly longer than in terms of the number of cycles; it is even longer in terms of absolute time (as the frequency of A100 GPU, 1.095GHz - 1.41MHz, is lower than that of Intel Xeon Platinum 8368, 2.40GHz - 3.4GHz)
+<!--- end md --->
+
+<!--- md --->
+* another good news is that this same executable can actually run on CPUs too
+* we merely have to disable offloading by changing the environment variable
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+# execute on CPU
+OMP_TARGET_OFFLOAD=DISABLED OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./no_ilp_gpu 1 100 1000000 > a.dat
+awk '{print $5}' a.dat
+<!--- end code --->
+
+<!--- md --->
+# GPU with ILP?
+
+* combined, A100 GPU is about 3x slower than Xeon Platinum 8363 CPU when it comes to the latency of an FMA
+* but that's not the main point
+* the main point is what happens if we expose more independent FMAs to a _single thread_ of GPU
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+clang++ -DC=2 -Wall -O3 -mavx512f -mfma -fopenmp -fopenmp-targets=nvptx64 ilp.cc -o ilp_gpu
+#nvc++   -DC=2 -Wall -O3 -mavx512f -mfma -mp=gpu -cuda ilp.cc -o ilp_gpu
+<!--- end code --->
+
+<!--- md --->
+* and run it with a single thread, on GPU
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./ilp_gpu 1 100 1000000 > a.dat
+awk '{print $5}' a.dat
+<!--- end code --->
+
+<!--- md --->
+* and on CPU
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+OMP_TARGET_OFFLOAD=DISABLED OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./ilp_gpu 1 100 1000000 > a.dat
+awk '{print $5}' a.dat
+<!--- end code --->
+
+<!--- md --->
+* change the value of `C` and see what happens on GPU 
+<!--- end md --->
+
+<!--- md --->
+* then change `C` systematically and graph the result
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+for L in 1; do
+    for M in 100 ; do
+        for N in 1000000; do
+            for C in 1 2    ; do  # put values of C you want to experiment with
+                # choose the compiler and craft an appropriate command
+                # line to produce exe file ilp_gpu_${C}
+                clang++/nvc++/g++ -DC=${C} ilp.cc -o ilp_gpu_${C} ... \
+                    && (echo -n "L=${L} M=${M} N=${N} C=${C} ";
+                        OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./ilp_gpu_${C} ${L} ${M} ${N} | awk '{print $5}')
+            done
+        done
+    done
+done 
+<!--- end code --->
+
+<!--- code w kernel=python --->
+DATA_STRING_GPU = r"""
+L=1 M=100 N=10000000 C=1 cycles_per_iter=2.128242
+L=1 M=100 N=10000000 C=2 cycles_per_iter=2.126931
+L=1 M=100 N=10000000 C=3 cycles_per_iter=2.125129
+    ...
+"""
+<!--- end code --->
+
+<!--- code w kernel=python --->
+import vis_latency_throughput
+vis_latency_throughput.vis(DATA_STRING_GPU)
+<!--- end code --->
+
+<!--- md --->
+# CPU with SIMD x ILP
+
+* Intel CPU is able to execute up to two _SIMD_ FMAs per cycle
+* therefore, the throughput limit of a single thread is actually even higher
+
+* change the following code if necessary to take advantage of SIMD and get throughput higher than the case without SIMD
+* does the compiler successfully vectorize the loop without any code change?
+* see how far can you go with a single thread
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile simd_ilp.cc
+<!--- exec-include ./mk_version.py -D VER=3 nb/source/pd06_ilp/include/ilp_rec.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang++ -DC=16 -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp.cc -o simd_ilp
+#nvc++   -DC=16 -Wall -O3 -mavx512f -mfma -mp=multicore -cuda simd_ilp.cc -o simd_ilp
+#g++     -DC=16 -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp.cc -o simd_ilp
+<!--- end code --->
+
+
+<!--- md --->
+* then change `C` systematically and graph the result
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+for L in 1; do
+    for M in 100 ; do
+        for N in 1000000; do
+            for C in 1 2     ; do  # put values of C you want to experiment with
+                # choose the compiler and craft an appropriate command
+                # line to produce exe file simd_ilp_${C}
+                clang++/nvc++/g++ -DC=${C} simd_ilp.cc -o simd_ilp_${C} ... \
+                    && (echo -n "L=${L} M=${M} N=${N} C=${C} ";
+                        OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./simd_ilp_${C} ${L} ${M} ${N} | awk '{print $5}')
+            done
+        done
+    done
+done 
+<!--- end code --->
+
+<!--- code w kernel=python --->
+DATA_STRING_SIMD = r"""
+L=1 M=100 N=10000000 C=1 cycles_per_iter=2.128242
+L=1 M=100 N=10000000 C=2 cycles_per_iter=2.126931
+L=1 M=100 N=10000000 C=3 cycles_per_iter=2.125129
+    ...
+"""
+<!--- end code --->
+
+<!--- code w kernel=python --->
+import vis_latency_throughput
+vis_latency_throughput.vis(DATA_STRING_SIMD)
+<!--- end code --->
 
