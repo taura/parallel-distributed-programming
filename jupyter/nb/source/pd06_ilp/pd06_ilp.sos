@@ -355,7 +355,7 @@ vis_latency_throughput.vis(DATA_STRING_GPU)
 # CPU with SIMD x ILP
 
 * Intel CPU is able to execute up to two _SIMD_ FMAs per cycle
-* therefore, the throughput limit of a single thread is actually even higher
+* therefore, the throughput limit of a single thread is actually even higher than what you saw above
 
 * change the following code if necessary to take advantage of SIMD and get throughput higher than the case without SIMD
 * does the compiler successfully vectorize the loop without any code change?

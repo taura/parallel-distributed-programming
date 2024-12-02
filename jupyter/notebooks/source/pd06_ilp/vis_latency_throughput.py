@@ -29,8 +29,8 @@ def vis(data_string):
     lat = [data[c]["cpi"] for c in C]
     thr = [data[c]["L"] * c / data[c]["cpi"] for c in C]
     fig, ax0 = plt.subplots()
-    print(lat)
-    print(thr)
+    #print(lat)
+    #print(thr)
     ax0.plot(C, lat, 'b-', label="latency")
     ax0.set_xlabel("C")
     ax0.set_ylabel("latency (cycles/iter)", color='b')
