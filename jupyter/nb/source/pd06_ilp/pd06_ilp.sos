@@ -210,6 +210,7 @@ awk '{print $5}' a.dat
 * note: this number if the same even if it is SIMD FMA, which we will see below
 
 * change `C` systematically and graph the result
+* make sure to increase `C` to observe that the throughput initially rises and eventually plateaus at a certain point
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
@@ -219,7 +220,9 @@ for L in 1; do
             for C in 1 2     ; do  # put values of C you want to experiment with
                 # choose the compiler and craft an appropriate command
                 # line to produce exe file ilp_${C}
-                clang++/nvc++/g++ -DC=${C} ilp.cc -o ilp_${C} ... \
+                clang++ -DC=${C} -Wall -O3 -mavx512f -mfma -fopenmp -fno-vectorize ilp.cc -o ilp_${C} \
+                #nvc++   -DC=${C} -Wall -O3 -mavx512f -mfma -mp=multicore -Mnovect -cuda ilp.cc -o ilp_${C} \
+                #g++     -DC=${C} -Wall -O3 -mavx512f -mfma -fopenmp -fno-tree-vectorize ilp.cc -o ilp_${C} \
                     && (echo -n "L=${L} M=${M} N=${N} C=${C} ";
                         OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./ilp_${C} ${L} ${M} ${N} | awk '{print $5}')
             done
@@ -319,6 +322,7 @@ awk '{print $5}' a.dat
 
 <!--- md --->
 * then change `C` systematically and graph the result
+* observe that latency immediately starts increasing and thus the throughput does not increase
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
@@ -328,9 +332,10 @@ for L in 1; do
             for C in 1 2    ; do  # put values of C you want to experiment with
                 # choose the compiler and craft an appropriate command
                 # line to produce exe file ilp_gpu_${C}
-                clang++/nvc++/g++ -DC=${C} ilp.cc -o ilp_gpu_${C} ... \
+                clang++ -DC=${C} -Wall -O3 -mavx512f -mfma -fopenmp -fopenmp-targets=nvptx64 ilp.cc -o ilp_gpu_${C} \
+                #nvc++   -DC=${C} -Wall -O3 -mavx512f -mfma -mp=gpu -cuda ilp.cc -o ilp_gpu_${C} \
                     && (echo -n "L=${L} M=${M} N=${N} C=${C} ";
-                        OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./ilp_gpu_${C} ${L} ${M} ${N} | awk '{print $5}')
+                        OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./ilp_gpu_${C} ${L} ${M} ${N} | awk '{print $5}')
             done
         done
     done
@@ -359,7 +364,6 @@ vis_latency_throughput.vis(DATA_STRING_GPU)
 
 * change the following code if necessary to take advantage of SIMD and get throughput higher than the case without SIMD
 * does the compiler successfully vectorize the loop without any code change?
-* see how far can you go with a single thread
 <!--- end md --->
 
 <!--- code w kernel=python --->
@@ -376,6 +380,8 @@ clang++ -DC=16 -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp.cc -o simd_ilp
 
 <!--- md --->
 * then change `C` systematically and graph the result
+* make sure to increase `C` to observe that the throughput initially rises and eventually plateaus at a certain point
+* see how far you can go with a single thread on CPUs
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
@@ -385,7 +391,9 @@ for L in 1; do
             for C in 1 2     ; do  # put values of C you want to experiment with
                 # choose the compiler and craft an appropriate command
                 # line to produce exe file simd_ilp_${C}
-                clang++/nvc++/g++ -DC=${C} simd_ilp.cc -o simd_ilp_${C} ... \
+                clang++ -DC=${C} -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp.cc -o simd_ilp_${C} \
+                #nvc++   -DC=${C} -Wall -O3 -mavx512f -mfma -mp=multicore -cuda simd_ilp.cc -o simd_ilp_${C} \
+                #g++     -DC=${C} -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp.cc -o simd_ilp_${C} \
                     && (echo -n "L=${L} M=${M} N=${N} C=${C} ";
                         OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./simd_ilp_${C} ${L} ${M} ${N} | awk '{print $5}')
             done
