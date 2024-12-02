@@ -220,9 +220,9 @@ for L in 1; do
             for C in 1 2     ; do  # put values of C you want to experiment with
                 # choose the compiler and craft an appropriate command
                 # line to produce exe file ilp_${C}
-                clang++ -DC=${C} -Wall -O3 -mavx512f -mfma -fopenmp -fno-vectorize ilp.cc -o ilp_${C} \
                 #nvc++   -DC=${C} -Wall -O3 -mavx512f -mfma -mp=multicore -Mnovect -cuda ilp.cc -o ilp_${C} \
                 #g++     -DC=${C} -Wall -O3 -mavx512f -mfma -fopenmp -fno-tree-vectorize ilp.cc -o ilp_${C} \
+                clang++ -DC=${C} -Wall -O3 -mavx512f -mfma -fopenmp -fno-vectorize ilp.cc -o ilp_${C} \
                     && (echo -n "L=${L} M=${M} N=${N} C=${C} ";
                         OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./ilp_${C} ${L} ${M} ${N} | awk '{print $5}')
             done
@@ -332,8 +332,8 @@ for L in 1; do
             for C in 1 2    ; do  # put values of C you want to experiment with
                 # choose the compiler and craft an appropriate command
                 # line to produce exe file ilp_gpu_${C}
-                clang++ -DC=${C} -Wall -O3 -mavx512f -mfma -fopenmp -fopenmp-targets=nvptx64 ilp.cc -o ilp_gpu_${C} \
                 #nvc++   -DC=${C} -Wall -O3 -mavx512f -mfma -mp=gpu -cuda ilp.cc -o ilp_gpu_${C} \
+                clang++ -DC=${C} -Wall -O3 -mavx512f -mfma -fopenmp -fopenmp-targets=nvptx64 ilp.cc -o ilp_gpu_${C} \
                     && (echo -n "L=${L} M=${M} N=${N} C=${C} ";
                         OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./ilp_gpu_${C} ${L} ${M} ${N} | awk '{print $5}')
             done
@@ -391,9 +391,9 @@ for L in 1; do
             for C in 1 2     ; do  # put values of C you want to experiment with
                 # choose the compiler and craft an appropriate command
                 # line to produce exe file simd_ilp_${C}
-                clang++ -DC=${C} -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp.cc -o simd_ilp_${C} \
                 #nvc++   -DC=${C} -Wall -O3 -mavx512f -mfma -mp=multicore -cuda simd_ilp.cc -o simd_ilp_${C} \
                 #g++     -DC=${C} -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp.cc -o simd_ilp_${C} \
+                clang++ -DC=${C} -Wall -O3 -mavx512f -mfma -fopenmp simd_ilp.cc -o simd_ilp_${C} \
                     && (echo -n "L=${L} M=${M} N=${N} C=${C} ";
                         OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./simd_ilp_${C} ${L} ${M} ${N} | awk '{print $5}')
             done
