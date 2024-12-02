@@ -5,8 +5,8 @@
 # What's new (in the newest-first order)
 
 * <font color=blue>(Posted: Dec. 2, 2024)</font> Plan for Dec. 2
-1. [Instruction Level Parallelism](slides/peak_cpu.pdf)
   * pd06\_ilp
+  * [Instruction Level Parallelism or How to Get nearly peak FLOPS on CPU](slides/peak_cpu.pdf)
   * pd30\_mlp
   
 * <font color=blue>(Posted: Nov. 25, 2024)</font> Plan for Nov. 25
