@@ -177,7 +177,7 @@ escapechar=\@,
 \item measure how fast we can iterate the following loop (a similar experiment we did on GPU)
 
 \begin{lstlisting}
-  floatv a, x, c;
+  doublev a, x, c;
   for (i = 0; i < n; i++) {
     x = a * x + c;
   }
@@ -1726,7 +1726,7 @@ for (i = 0; i < M; i++)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{frame}[fragile]
-\frametitle{Step 3: increase parallelism!}
+\frametitle{Step 3: increase ILP}
 \begin{columns}
   \begin{column}{0.55\textwidth}
 \begin{center}
@@ -1911,6 +1911,8 @@ for (i = 0; i < M; i += bM')
 \end{itemize}
 \end{frame}
 \fi
+
+\end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{frame}
