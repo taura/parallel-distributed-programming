@@ -4,6 +4,10 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Dec. 9, 2024)</font> Plan for Dec. 9
+  * pd30\_mlp
+1. [What You Must Know about Memory, Caches, and Shared Memory](slides/memory.pdf)
+
 * <font color=blue>(Posted: Dec. 2, 2024)</font> Plan for Dec. 2
   * pd06\_ilp
   * [Instruction Level Parallelism or How to Get nearly peak FLOPS on CPU](slides/peak_cpu.pdf)
