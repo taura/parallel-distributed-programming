@@ -6,7 +6,7 @@
 
 * <font color=blue>(Posted: Dec. 9, 2024)</font> Plan for Dec. 9
   * pd30\_mlp
-1. [What You Must Know about Memory, Caches, and Shared Memory](slides/memory.pdf)
+  * [What You Must Know about Memory, Caches, and Shared Memory](slides/memory.pdf)
 
 * <font color=blue>(Posted: Dec. 2, 2024)</font> Plan for Dec. 2
   * pd06\_ilp
