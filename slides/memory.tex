@@ -205,7 +205,7 @@ for (i = 0; i < M; i++)
   \aka{\it far more costly} than calculation
 \item<3-> moreover, the cost of the same data access instruction
   significantly differs
-  depending on \ao{\em where dare are coming from}
+  depending on \ao{\em where data are coming from}
   \begin{itemize}
   \item registers
   \item caches
@@ -238,7 +238,7 @@ for (i = 0; i < M; i++)
 \item<1-> \ao{latency:} get a sense of how many cycles it takes to get data
   from main memory and caches
 
-\item<2-> \ao{bandwidth:} get a sense of how much data CPU can bring from main
+\item<2-> \ao{bandwidth:} get a sense of how much data CPU/GPU can bring from main
   memory and caches
 
 \item<3-> what does ``memory bandwidth'' we see in a processor spec sheet really mean? e.g.,
@@ -263,7 +263,7 @@ for (i = 0; i < M; i++)
   %     \ao{512 \mbox{ GB/sec in the entire node}} \]
   \end{itemize}
 
-\item<4-> Can we achieve this easily?  If not, when/how can we?
+\item<4-> When can we achieve this?
 \end{itemize}
 \end{frame}
 
@@ -275,8 +275,8 @@ for (i = 0; i < M; i++)
 \begin{frame}
 \frametitle{What does memory performance imply for FLOPS?}
 \begin{itemize}
-\item<1-> many computationally \emph{efficient} algorithms do not touch 
-  the same data too many times
+\item<1-> many computationally \emph{efficient} algorithms do not use
+  (thus touch) the same data too many times
 \item<2-> e.g., $O(n)$ algorithms $\rightarrow$ 
   uses a single element only a constant number of times (on average)
 
@@ -433,36 +433,55 @@ for (i = 0; i < M; i++)
       C(i,j) += A(i,k) * B(k,j);
 \end{lstlisting}
 
-
-% \item a macroscopic argument
-%   \begin{itemize}
-%   \item $O(N^3)$ flops on $O(N^2)$ bytes
-%   \item \ao{\it if the same element does not go back and forth many times,}
-%     the memory traffic is hopefully not a bottleneck
-%   \end{itemize}
-\item a microscopic argument
+\item a macroscopic argument:
   \begin{itemize}
-\item the innermost statement
-\begin{lstlisting}
-C(i,j) += A(i,k) * B(k,j)
-\end{lstlisting}
-still performs (only) \ao{1} FMA for accessing \ao{3} elements
-\item but the same element (say {\tt C(i,j)}) is used many ($K$) times
-  in the innermost loop
-\item similarly, the same {\tt A(i,k)} is used $N$ times
-\item $\Rightarrow$ after you use an element,
-  \ao{\it if you reuse it many times before it is evicted from a cache
-    (even a register)}, then the memory traffic is hopefully not a bottleneck
-\end{itemize}
+  \item $\Theta(N^3)$ flops on $\Theta(N^2)$ bytes
+    \item each element is used {\it many ($\Theta(N)$) times}
+    \item $\Rightarrow$ \ao{\it the same element may not have to be fetched
+        from main memory every time} it is used
+   \end{itemize}
 \end{itemize}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}[fragile]
-\frametitle{A simple \texttt{memcpy} experiment \ldots}
+  \frametitle{A microscopic argument}
+  \begin{itemize}
+  \item []
+\begin{lstlisting}
+for (i = 0; i < M; i++)  
+  for (j = 0; j < N; j++)  
+    for (k = 0; k < K; k++)  
+      C(i,j) += A(i,k) * B(k,j);
+\end{lstlisting}
+  \end{itemize}
+
 \begin{itemize}
-\item<1-> []
+\item the innermost statement
+\begin{lstlisting}
+C(i,j) += A(i,k) * B(k,j)
+\end{lstlisting}
+still performs (only) \ao{1} FMA for accessing \ao{3} elements
+\item but the same {\tt C(i,j)} is used in
+  \ao{\it every} iteration of the $k$-loop
+  (i.e., every 3 memory accesses)
+\item similarly, the same {\tt A(i,k)} is used in \ao{\it every}
+  iteration of the $j$-loop
+  (i.e., every $3K$ memory accesses)
+  
+% \item $\Rightarrow$ after you use an element,
+%   \ao{\it if you reuse it many times before it is evicted from a cache
+%     (even a register)}, then the memory traffic is hopefully not a bottleneck
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%% 
+\begin{frame}[fragile]
+\frametitle{An easily achievable bandwidth}
+\begin{itemize}
+\item<1-> a simple \texttt{memcpy} experiment \ldots
 \begin{lstlisting}
 double t0 = cur_time();
 memcpy(a, b, nb);
@@ -554,7 +573,7 @@ interconnect (e.g., Intel QuickPath, AMD HyperTransport, etc.)
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}
-\frametitle{Today's typical single compute node}
+\frametitle{Today's typical single CPU node}
 \begin{center}
 \def\svgwidth{0.6\textwidth}
 {\footnotesize\input{out/tex/svg/hierarchy.pdf_tex}}
@@ -567,6 +586,27 @@ Typical cache sizes
 \item L3 : $\sim$ 50MB/socket
 \end{itemize}
 
+\end{frame}
+
+%%%%%%%%%%%%%%%%% 
+\begin{frame}
+\frametitle{GPU}
+
+Typical configuration
+\begin{itemize}
+\item L1 : $\sim$ 100-200KB/SM
+\item L2 : $\sim$ 40MB/device
+
+\item note:
+  we will see later that cache latencies are much higher compared to CPU
+  
+\item note: NVIDIA GPUs per-SM fast memory can be partitioned into
+  \begin{itemize}
+  \item shared memory ($\approx$) software-managed cache
+  \item L1 cache ($\approx$) hardware-managed cache
+  \end{itemize}
+  
+\end{itemize}
 \end{frame}
 
 %=================================
@@ -718,18 +758,30 @@ L3    & 64B       & 22MB/socket (16 cores) & 11 \\  \hline
 \end{tabular}
 \end{center}
 
-\item Ivy Bridge E5-2650L
+\item \ao{NVIDIA A100}
 
 \begin{center}
 \begin{tabular}{|c|c|c|c|}\hline
 level & line size & capacity    & associativity \\\hline
-L1    & 64B       & 32KB/core   & 8 \\  
-L2    & 64B       & 256KB/core  & 8 \\  
-L3    & 64B       & 36MB/socket (8 cores) & 20 \\  \hline
+L1    & 128B?     & 192KB/core  & ? \\  
+L2    & 32B?      & 40MB/core   & ? \\  \hline
 \end{tabular}
-
-
 \end{center}
+
+
+% \iffalse
+% \item Ivy Bridge E5-2650L
+
+% \begin{center}
+% \begin{tabular}{|c|c|c|c|}\hline
+% level & line size & capacity    & associativity \\\hline
+% L1    & 64B       & 32KB/core   & 8 \\  
+% L2    & 64B       & 256KB/core  & 8 \\  
+% L3    & 64B       & 36MB/socket (8 cores) & 20 \\  \hline
+% \end{tabular}
+% \end{center}
+% \fi
+
 \end{itemize}
 \end{frame}
 
