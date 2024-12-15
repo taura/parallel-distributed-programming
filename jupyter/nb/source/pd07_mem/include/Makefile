@@ -1,5 +1,7 @@
 # latency CPU GPU
 #
+
+dbg := 2
 src_cc := latency.cc
 bases := $(patsubst %.cc,%,$(src_cc))
 vers :=
@@ -14,7 +16,7 @@ compilers += nvc++
 #compilers += nvcc
 
 flags :=
-flags += -DDBG=0
+flags += -DDBG=$(dbg)
 
 clang++_flags :=
 clang++_flags += -Wall
@@ -24,7 +26,7 @@ clang++_flags += -mfma
 clang++_flags += -mavx512f
 
 clang++_omp_flags += -fopenmp
-#clang++_flags += -fopenmp-targets=nvptx64 
+clang++_flags += -fopenmp-targets=nvptx64 
 
 nvc++_flags :=
 #nvc++_flags += -O0 -g
@@ -46,7 +48,7 @@ asms :=
 
 define gen_ver
 ver/$(base)_$(ver).cc : $(base).cc ver/dir Makefile
-	./mk_version.py -DVER="$(ver)" -DDBG=0 $$< > $$@.t
+	./mk_version.py -DVER="$(ver)" -DDBG=$(dbg) $$< > $$@.t
 	chmod 444 $$@.t
 	mv -f $$@.t $$@
 endef

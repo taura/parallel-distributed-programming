@@ -114,11 +114,13 @@ void shuffle(long * seq, long coalese_size,
       }
     }
   }
+/*** if DBG >= 2 */
 #if DBG >= 2
   for (long i = 0; i < m; i++) {
     printf("seq[%ld] = %ld\n", i, seq[i]);
   }
 #endif
+/*** endif */
 }
 
 struct cell {
@@ -130,8 +132,10 @@ __host__ __device__
 void make_cycle(cell * a, long * seq,
                 long start_idx, long n_cycles, long len_cycle) {
 /*** if DBG >= 1 */
-  printf("set_next_ptrs : a = %p, seq = %p, n_cycles = %ld, len_cycle = %ld\n",
+#if DBG >= 1
+  printf("make_cycle : a = %p, seq = %p, n_cycles = %ld, len_cycle = %ld\n",
          a, seq, n_cycles, len_cycle);
+#endif
 /*** endif */
   // a cycle starting from seq[idx] :
   // a[seq[idx]] -> a[seq[idx+n_cycles]] -> a[seq[idx+2*n_cycles]] -> ..
@@ -140,7 +144,9 @@ void make_cycle(cell * a, long * seq,
     long cur  = seq[ start_idx +      i  * n_cycles];
     long next = seq[(start_idx + (i + 1) * n_cycles) % m];
 /*** if DBG >= 2 */
-    printf("a[%ld] = %ld\n", cur, next);
+#if DBG >= 2
+    printf("a[%ld].next = &a[%ld] (%p)\n", cur, next, &a[next]);
+#endif
 /*** endif */
     a[cur].next = &a[next];
   }
@@ -182,7 +188,9 @@ void make_cycles(cell * a, long * seq, long m,
 template<typename T, typename Tv, long C>
 void chase_ptrs_simd_ilp_t(T * a, long n, T * end, long idx) {
 /*** if DBG >= 1 */
+#if DBG >= 1
   printf("chase_ptrs : cells = %p\n", a);
+#endif
 /*** endif */
   const long L = sizeof(Tv) / sizeof(T);
   assert(C % L == 0);
@@ -195,7 +203,9 @@ void chase_ptrs_simd_ilp_t(T * a, long n, T * end, long idx) {
 #pragma unroll(8)
   for (long i = 0; i < n; i++) {
 /*** if DBG >= 2 */
-    printf("chase_ptrs [%ld] : p = %ld\n", idx, k);
+#if DBG >= 2
+    printf("cycle [%ld] : p = %ld\n", idx, k);
+#endif
 /*** endif */
     for (long i = 0; i < C; i += L) {
       k[i] = V(a[k[i]])[0];
@@ -203,7 +213,9 @@ void chase_ptrs_simd_ilp_t(T * a, long n, T * end, long idx) {
   }
   asm volatile("// ---------- loop ends ---------- ");
 /*** if DBG >= 2 */
+#if DBG >= 2
   printf("chase_ptrs : return %ld\n", k);
+#endif
 /*** endif */
   for (long i = 0; i < C; i += L) {
     for (long j = 0; j < L; j++) {
@@ -264,20 +276,25 @@ void chase_ptrs_simd_ilp(T * a, long n, T * end, long idx, long C) {
 __host__ __device__
 void cycle(cell * a, long idx, long n, long * end) {
 /*** if DBG >= 1 */
-  printf("chase_ptrs : cells = %p\n", a);
+#if DBG >= 1
+  printf("cycle : a = %p\n", a);
+#endif
 /*** endif */
   cell * p = &a[idx];
   asm volatile("// ========== loop begins ========== ");
-#pragma unroll(8)
   for (long i = 0; i < n; i++) {
 /*** if DBG >= 2 */
-    printf("chase_ptrs [%ld] : p = %p\n", idx, p);
+#if DBG >= 2
+    printf("cycle [%ld,%ld] : &a[%ld] = %p\n", idx, i, p - a, p);
+#endif
 /*** endif */
     p = p->next;
   }
   asm volatile("// ---------- loop ends ---------- ");
 /*** if DBG >= 2 */
-  printf("chase_ptrs : return %ld\n", p - a);
+#if DBG >= 2
+  printf("cycle : return %ld\n", p - a);
+#endif
 /*** endif */
   end[idx] = p - a;
 }
