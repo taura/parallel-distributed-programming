@@ -455,9 +455,7 @@ int main(int argc, char ** argv) {
   }
 #endif
   printf("coalese_size : %ld\n", coalese_size);
-#if 0
   assert(n_cycles % coalese_size == 0);
-#endif
   assert(coalese_size % L == 0);
   long len_cycle = (m + n_cycles - 1) / n_cycles;
   if (m % n_cycles) {
