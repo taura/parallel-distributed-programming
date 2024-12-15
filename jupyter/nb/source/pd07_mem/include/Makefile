@@ -1,7 +1,7 @@
 # latency CPU GPU
 #
 
-dbg := 2
+dbg := 0
 src_cc := latency.cc
 bases := $(patsubst %.cc,%,$(src_cc))
 vers :=
@@ -26,12 +26,13 @@ clang++_flags += -mfma
 clang++_flags += -mavx512f
 
 clang++_omp_flags += -fopenmp
-clang++_flags += -fopenmp-targets=nvptx64 
+#clang++_flags += -fopenmp-targets=nvptx64 
 
 nvc++_flags :=
 #nvc++_flags += -O0 -g
 nvc++_flags += -O3
-nvc++_flags += -mp=gpu
+#nvc++_flags += -mp=gpu
+nvc++_flags += -mp=multicore
 #nvc++_flags += -gpu=mem:managed
 nvc++_flags += -cuda
 nvc++_flags += -march=native

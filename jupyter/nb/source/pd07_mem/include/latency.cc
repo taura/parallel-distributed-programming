@@ -123,13 +123,9 @@ void shuffle(long * seq, long coalese_size,
 /*** endif */
 }
 
-struct cell {
-  cell * next;
-};
-
 /* set a[k] to the next element to access */
 __host__ __device__
-void make_cycle(cell * a, long * seq,
+void make_cycle(long * a, long * seq,
                 long start_idx, long n_cycles, long len_cycle) {
 /*** if DBG >= 1 */
 #if DBG >= 1
@@ -145,10 +141,10 @@ void make_cycle(cell * a, long * seq,
     long next = seq[(start_idx + (i + 1) * n_cycles) % m];
 /*** if DBG >= 2 */
 #if DBG >= 2
-    printf("a[%ld].next = &a[%ld] (%p)\n", cur, next, &a[next]);
+    printf("a[%ld] = %ld\n", cur, next);
 #endif
 /*** endif */
-    a[cur].next = &a[next];
+    a[cur] = next;
   }
 }
 
@@ -161,7 +157,7 @@ __device__ long n_threads() {
 }
 
 __global__
-void make_cycles_g(cell * a, long * seq, long n_cycles, long len_cycle) {
+void make_cycles_g(long * a, long * seq, long n_cycles, long len_cycle) {
   long nthreads = n_threads();
   for (long idx = thread_index(); idx < n_cycles; idx += nthreads) {
     make_cycle(a, seq, idx, n_cycles, len_cycle);
@@ -169,7 +165,7 @@ void make_cycles_g(cell * a, long * seq, long n_cycles, long len_cycle) {
 }
 /*** endif */
 
-void make_cycles(cell * a, long * seq, long m,
+void make_cycles(long * a, long * seq, long m,
                  long n_cycles, long len_cycle, 
                  long n_teams, long n_threads_per_team) {
 /*** if "cuda" in VER */
@@ -274,34 +270,34 @@ void chase_ptrs_simd_ilp(T * a, long n, T * end, long idx, long C) {
 /* starting from cell &a[idx], chase ->next ptr n times
    and put where it ends in end[idx] */
 __host__ __device__
-void cycle(cell * a, long idx, long n, long * end) {
+void cycle(long * a, long idx, long n, long * end) {
 /*** if DBG >= 1 */
 #if DBG >= 1
   printf("cycle : a = %p\n", a);
 #endif
 /*** endif */
-  cell * p = &a[idx];
+  long k = idx;
   asm volatile("// ========== loop begins ========== ");
   for (long i = 0; i < n; i++) {
 /*** if DBG >= 2 */
 #if DBG >= 2
-    printf("cycle [%ld,%ld] : &a[%ld] = %p\n", idx, i, p - a, p);
+    printf("cycle [%ld,%ld] : %ld\n", idx, i, k);
 #endif
 /*** endif */
-    p = p->next;
+    k = a[k];
   }
   asm volatile("// ---------- loop ends ---------- ");
 /*** if DBG >= 2 */
 #if DBG >= 2
-  printf("cycle : return %ld\n", p - a);
+  printf("cycle : return %ld\n", k);
 #endif
 /*** endif */
-  end[idx] = p - a;
+  end[idx] = k;
 }
 /*** endif */
 
 /*** if "cuda" in VER */
-__global__ void cycles_g(cell * a, long n_cycles, long n, long * end) {
+__global__ void cycles_g(long * a, long n_cycles, long n, long * end) {
   long nthreads = n_threads();
   for (long idx = thread_index(); idx < n_cycles; idx += nthreads) {
     cycle(a, idx, n, end);
@@ -312,7 +308,7 @@ __global__ void cycles_g(cell * a, long n_cycles, long n, long * end) {
 /* a is an array of m cells;
    starting from &a[idx] for each idx in [0:n_cycles],
    chase ->next ptr n times and put where it ends in end[idx] */
-void cycles(cell * a, long m, long n, long * end, long n_cycles,
+void cycles(long * a, long m, long n, long * end, long n_cycles,
             long n_conc_cycles,
             long n_teams, long n_threads_per_team) {
 /*** if "cuda" in VER */
@@ -473,7 +469,7 @@ int main(int argc, char ** argv) {
   }
   printf("len_cycle : %ld\n", len_cycle);
   printf("n_elements : %ld\n", m);
-  size_t sz = sizeof(cell) * m;
+  size_t sz = sizeof(long) * m;
   printf("sz : %ld\n", sz);
   double s = opt.min_scans;
   long n = len_cycle * s;
@@ -486,7 +482,7 @@ int main(int argc, char ** argv) {
   long * seq = alloc_dev<long>(m); // OpenMP : malloc, CUDA : cudaMalloc
   shuffle(seq, coalese_size, n_cycles, len_cycle, opt.seed);
 
-  cell * a = alloc_dev<cell>(m);
+  long * a = alloc_dev<long>(m);
   double t0 = cur_time();
   make_cycles(a, seq, m, n_cycles, len_cycle, 
               n_teams, n_threads_per_team);
@@ -500,7 +496,7 @@ int main(int argc, char ** argv) {
          n_teams, n_threads_per_team);
   double t3 = cur_time();
   double dt1 = t3 - t2;
-  long bytes = sizeof(cell) * n * n_cycles;
+  long bytes = sizeof(long) * n * n_cycles;
   double bw = bytes / dt1;
   printf("bytes accessed : %ld bytes\n", bytes);
   printf("cycles : took %f sec in total\n", dt1);

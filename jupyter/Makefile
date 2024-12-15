@@ -4,7 +4,7 @@
 #mk_nb_flags := --dbg 2
 
 nb_srcs :=
-nb_srcs += $(wildcard nb/source/pd07_*/*.py)
+nb_srcs += $(wildcard nb/source/pd07_*/*.sos)
 
 aux_srcs :=
 aux_srcs += $(wildcard nb/source/pd01_*/sched_vis.py)
