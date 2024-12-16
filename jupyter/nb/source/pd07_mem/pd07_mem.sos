@@ -88,9 +88,10 @@ for (i = 0; i < n; i++) {
 ```
 so we call this kind of code _pointer chasing_ code, although we do not explicitly use pointers ($k$ serves as a "pseudo pointer" that specifies the next element that should be accessed)
 * We change the size of array $a$ and make sure the above loop repeatedly touches every element of $a$
-* Here is an example of $a$ (with 16 elements) and (part of) the resulting access order (`a[0] -> a[3] -> a[14] -> a[10] -> a[7] -> a[15] -> a[1] -> ... -> a[4] -> a[0] -> ..`); note that the above loop _repeats_ accessing all elements of $a$
+* Here is an example of $a$ (with 16 elements) and (part of) the resulting access order (`a[0] -> a[3] -> a[14] -> a[10] -> a[7] -> a[15] -> a[1] -> ... -> a[4] -> a[0] -> ..`)
+* confirm that the resulting chain comes back to `a[0]` after accessing _all_ 16 elements of the array $a$
 
-<img src="svg/latency_measurement.svg" />
+<img src="svg/latency_measurement_L1.svg" />
 
 * We also make sure the resulting access order is essentially random, to avoid the effect of prefetching or any smartness the processor might implement to run the above loop faster than an iteration / latency of the load instruction.
 
@@ -278,6 +279,9 @@ for (i = 0; i < n; i++) {
 * Either way, we make multiple chains of pointers, each of which covers a disjoint region of the entire array
 * Here is a simple example having _two_ 8-element chains of pointers
 * Confirm that the chain starting from $a[1]$ makes another 8-element chain (a[1], a[8], a[9], ...)
+
+<img src="svg/latency_measurement_L2.svg" />
+
 <!--- end md --->
 
 <!--- md --->
@@ -300,3 +304,78 @@ for (i = 0; i < n; i++) {
 %%writefile latency_ilp.cc
 <!--- exec-include ./mk_version.py -DVER=\"ilp\" -DDBG=0 nb/source/pd07_mem/include/latency.cc --->
 <!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang++ -DDBG=0 -Wall -O3 -mavx512f -mfma -fopenmp -fopenmp-targets=nvptx64 -o latency_ilp latency_ilp.cc
+#nvc++   -Wall -O3 -mavx512f -mfma -mp=gpu -cuda -o latency_ilp latency_ilp.cc
+<!--- end code --->
+
+<!--- md --->
+* To explore the effect of chasing multiple pointer chains simultaneously, the program has two parameters
+  * `--n-cycles` : the number of disjoint chain of pointers in the array
+  * `--n-conc-cycles` : the number of chains of pointers we traverse simultaneously (2 for the code shown just above)
+* Obviously we need to set the former as large as the latter
+* Below we simply set them to the same number ($C$)
+
+* First let's set $C$ to 1
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=DISABLED
+export OMP_NUM_TEAMS=1
+export OMP_NUM_THREADS=1
+export m=$((1 << 24))
+export n=$((1 << 27))
+export C=1
+./latency_ilp --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --n-conc-cycles ${C}
+<!--- end code --->
+
+<!--- md --->
+* Observe that this case shows a similar performance with the previous version
+* Now let's set $C$ to 2 and see what happens
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=DISABLED
+export OMP_NUM_TEAMS=1
+export OMP_NUM_THREADS=1
+export m=$((1 << 24))
+export n=$((1 << 27))
+export C=2
+./latency_ilp --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --n-conc-cycles ${C}
+<!--- end code --->
+
+<!--- md --->
+* Observe that `total_accesses` is the same and the execution time is almost halved (i.e., the bandwidth (`bw`) almost doubled)
+* Play with larger values of `C`
+<!--- end md --->
+
+<!--- md --->
+* Make sure that this is not an unintended side effect of changing the way cycles are formed, by setting `--n-cycles 2` and comparing the two cases `--n-conc-cycles 1` and `--n-conc-cycles 2`
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=DISABLED
+export OMP_NUM_TEAMS=1
+export OMP_NUM_THREADS=1
+export m=$((1 << 24))
+export n=$((1 << 27))
+export C=1
+./latency_ilp --n-elements ${m} --min-accesses ${n} --n-cycles 2 --n-conc-cycles ${C}
+<!--- end code --->
+
+<!--- md --->
+* Let's see whether the same thing happens on the GPU
+* Set the value of `C` to 1, 2, 3, ... and see the effect
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=MANDATORY
+export OMP_NUM_TEAMS=1
+export OMP_NUM_THREADS=1
+export m=$((1 << 24))
+export n=$((1 << 27))
+export C=2
+./latency_ilp --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --n-conc-cycles ${C}
+<!--- end code --->
+

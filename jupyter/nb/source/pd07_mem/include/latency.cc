@@ -191,7 +191,7 @@ void cycle_conc_t(long * a, long idx, long n, long * end) {
   for (long c = 0; c < C; c++) {
     k[c] = idx + c;
   }
-  asm volatile("// ========== loop begins ========== ");
+  asm volatile("// ========== loop begins C = %0 ========== " : : "i" (C));
 #pragma unroll(8)
   for (long i = 0; i < n; i++) {
 /*** if DBG >= 2 */
@@ -203,7 +203,7 @@ void cycle_conc_t(long * a, long idx, long n, long * end) {
       k[c] = a[k[c]];
     }
   }
-  asm volatile("// ---------- loop ends ---------- ");
+  asm volatile("// ---------- loop ends C = %0 ---------- " : : "i" (C));
 /*** if DBG >= 2 */
 #if DBG >= 2
   printf("chase_ptrs : return %ld\n", k);
@@ -215,45 +215,49 @@ void cycle_conc_t(long * a, long idx, long n, long * end) {
 }
 
 void cycle_conc(long * a, long idx, long C, long n, long * end) {
-  switch (C) {
+  const long max_const_c = 12;
+  long c;
+  for (c = 0; c + max_const_c <= C; c += max_const_c) {
+    cycle_conc_t<max_const_c>(a, idx + c, n, end);
+  }
+  switch (C - c) {
+  case 0:
+    break;
   case 1:
-    cycle_conc_t<1>(a, idx, n, end);
+    cycle_conc_t<1>(a, idx + c, n, end);
     break;
   case 2:
-    cycle_conc_t<2>(a, idx, n, end);
+    cycle_conc_t<2>(a, idx + c, n, end);
     break;
   case 3:
-    cycle_conc_t<3>(a, idx, n, end);
+    cycle_conc_t<3>(a, idx + c, n, end);
     break;
   case 4:
-    cycle_conc_t<4>(a, idx, n, end);
+    cycle_conc_t<4>(a, idx + c, n, end);
     break;
   case 5:
-    cycle_conc_t<5>(a, idx, n, end);
+    cycle_conc_t<5>(a, idx + c, n, end);
     break;
   case 6:
-    cycle_conc_t<6>(a, idx, n, end);
+    cycle_conc_t<6>(a, idx + c, n, end);
     break;
   case 7:
-    cycle_conc_t<7>(a, idx, n, end);
+    cycle_conc_t<7>(a, idx + c, n, end);
     break;
   case 8:
-    cycle_conc_t<8>(a, idx, n, end);
+    cycle_conc_t<8>(a, idx + c, n, end);
     break;
   case 9:
-    cycle_conc_t<9>(a, idx, n, end);
+    cycle_conc_t<9>(a, idx + c, n, end);
     break;
   case 10:
-    cycle_conc_t<10>(a, idx, n, end);
+    cycle_conc_t<10>(a, idx + c, n, end);
     break;
   case 11:
-    cycle_conc_t<11>(a, idx, n, end);
-    break;
-  case 12:
-    cycle_conc_t<12>(a, idx, n, end);
+    cycle_conc_t<11>(a, idx + c, n, end);
     break;
   default:
-    assert(C <= 12);
+    assert(C < max_const_c);
     break;
   }
 }
@@ -564,16 +568,7 @@ int main(int argc, char ** argv) {
   opts opt = parse_opts(argc, argv);
   long m = opt.n_elements;
   long n_cycles = opt.n_cycles;
-  printf("n_cycles : %ld\n", n_cycles);
   long coalese_size = opt.coalese_size;
-#if 0
-  if (coalese_size > n_cycles) {
-    fprintf(stderr, "WARNING : coalese_size (%ld) larger than n_cycles (%ld), truncated to %ld\n",
-            coalese_size, n_cycles, n_cycles);
-    coalese_size = n_cycles;
-  }
-#endif
-  printf("coalese_size : %ld\n", coalese_size);
   assert(n_cycles % coalese_size == 0);
   assert(coalese_size % L == 0);
   long len_cycle = (m + n_cycles - 1) / n_cycles;
@@ -584,17 +579,22 @@ int main(int argc, char ** argv) {
             m, n_cycles, len_cycle * n_cycles);
     m = len_cycle * n_cycles;
   }
-  printf("len_cycle : %ld\n", len_cycle);
   printf("n_elements : %ld\n", m);
   size_t sz = sizeof(long) * m;
-  printf("sz : %ld\n", sz);
+  printf("sz : %ld bytes\n", sz);
+  printf("n_cycles : %ld\n", n_cycles);
+  printf("len_cycle : %ld\n", len_cycle);
   double s = opt.min_scans;
   long n = len_cycle * s;
-  if (n < opt.min_accesses) n = opt.min_accesses;
+  if (n * n_cycles < opt.min_accesses) {
+    n = (opt.min_accesses + n_cycles - 1) / n_cycles;
+  }
   printf("n_accesses_per_cycle : %ld\n", n);
+  printf("total_accesses : %ld\n", n * n_cycles);
   long n_conc_cycles = opt.n_conc_cycles;
   printf("n_conc_cycles : %ld\n", n_conc_cycles);
   assert(n_cycles % n_conc_cycles == 0);
+  printf("coalese_size : %ld\n", coalese_size);
 
   long * seq = alloc_dev<long>(m); // OpenMP : malloc, CUDA : cudaMalloc
   shuffle(seq, coalese_size, n_cycles, len_cycle, opt.seed);
@@ -616,8 +616,8 @@ int main(int argc, char ** argv) {
   long bytes = sizeof(long) * n * n_cycles;
   double bw = bytes / dt1;
   printf("bytes accessed : %ld bytes\n", bytes);
-  printf("cycles_total : %f sec\n", dt1);
-  printf("latency_per_elem : %.1f nsec/elem\n", 1.0e9 * dt1 / n);
+  printf("time_total : %f sec\n", dt1);
+  printf("time_per_access : %.1f nsec/access\n", 1.0e9 * dt1 / (n * n_cycles));
   printf("bw : %.3f GB/sec\n", bw * 1.e-9);
   printf("checking results ... "); fflush(stdout);
   for (long idx = 0; idx < n_cycles; idx++) {
