@@ -6,13 +6,13 @@ src_cc := latency.cc
 bases := $(patsubst %.cc,%,$(src_cc))
 vers :=
 vers += omp
-vers += omp_ilp
-vers += omp_ilp_c
+#vers += omp_ilp
+#vers += omp_ilp_c
 #vers += simd
 #vers += cuda
 
 compilers := 
-compilers += g++
+#compilers += g++
 compilers += clang++
 #compilers += nvc++
 #compilers += nvcc
@@ -60,9 +60,9 @@ endef
 
 define compile
 exes += exe/$(base)_$(compiler)_$(ver).exe
-asms += asm/$(base)_$(compiler)_$(ver).s
-exe/$(base)_$(compiler)_$(ver).exe : ver/$(base)_$(ver).cc exe/dir Makefile
-	$(compiler) $(flags) $($(compiler)_flags) $($(compiler)_$(ver)_flags) -o $$@ $$<
+#asms += asm/$(base)_$(compiler)_$(ver).s
+exe/$(base)_$(compiler)_$(ver).exe : ver/$(base)_$(ver).cc ver/main_$(ver).cc exe/dir Makefile
+	$(compiler) $(flags) $($(compiler)_flags) $($(compiler)_$(ver)_flags) -o $$@ ver/$(base)_$(ver).cc ver/main_$(ver).cc
 # -Dcompiler=\"$(compiler)\" -Dver=\"$(ver)\" 
 
 asm/$(base)_$(compiler)_$(ver).s : ver/$(base)_$(ver).cc asm/dir Makefile
@@ -70,7 +70,7 @@ asm/$(base)_$(compiler)_$(ver).s : ver/$(base)_$(ver).cc asm/dir Makefile
 # -Dcompiler="$(compiler)" -Dver="$(ver)" 
 endef
 
-$(foreach base,$(bases),\
+$(foreach base,$(bases) main,\
 $(foreach ver,$(vers),\
 $(eval $(call gen_ver))))
 
