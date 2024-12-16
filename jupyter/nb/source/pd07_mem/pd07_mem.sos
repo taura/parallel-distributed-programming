@@ -70,6 +70,26 @@ which g++
 <!--- md --->
 # Measuring Latency
 
+* We do a simple experiment to measure the _latency_ of data access when the data comes from various levels of caches
+* We want to execute many ($n$) load instructions each of which is _dependent_ on the previous load instruction, measure the execution time ($T$), and divide it by $n$ (to get $T/n$)
+* To make a load instruction dependent on the previous load instruction, we determine which address it accesses based on the result of the previous load instruction, like this
+```
+k = 0;
+for (i = 0; i < n; i++) {
+  k = a[k];
+}
+```
+* We change the size of array $a$ and make sure the above loop repeatedly touches every element of $a$
+* Here is an example of $a$ (with 16 elements) and (part of) the resulting access order (`a[0] -> a[3] -> a[14] -> a[10] -> a[7] -> a[15] -> a[1] -> ... -> a[4] -> a[0] -> ..`); note that the above loop _repeats_ accessing all elements of $a$
+
+<img src="svg/latency_measurement.svg" />
+
+* We also make sure the resulting access order is essentially random, to avoid the effect of prefetching or any smartness the processor might implement to run the above loop faster than an iteration / latency of the load instruction.
+
+<!--- end md --->
+
+<!--- md --->
+* We use only a single thread for now, 
 <!--- end md --->
 
 <!--- code w kernel=python --->
@@ -84,14 +104,122 @@ clang++ -DDBG=0 -Wall -O3 -mavx512f -mfma -fopenmp -o latency latency.cc
 <!--- end code --->
 
 <!--- md --->
-* run it on a single core of CPU
+* run it on a CPU with a single thread
+* let's run it with $m = 2^{24}$ elements $= 8 \times m = $ 128MB, sufficiently above its last level cache (57MB)
+* the parameter $n$ below specifies how many accesses we perform (`n` below)
+```
+k = 0;
+for (i = 0; i < n; i++) {
+  k = a[k];
+}
+```
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
-OMP_TARGET_OFFLOAD=DISABLED OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./latency 
+export OMP_TARGET_OFFLOAD=DISABLED
+export OMP_NUM_TEAMS=1
+export OMP_NUM_THREADS=1
+export m=$((1 << 24))
+export n=$((1 << 27))
+./latency --n-elements ${m} --min-accesses ${n}
 <!--- end code --->
 
 <!--- md --->
-* it shows cycles per iteration
+* look at the number shown as
+```
+latency_per_elem : XYZ nsec/elem
+```
+which gives you the latecy imposed by _main memory_ access (when the accesses misses caches at any level)
+
+* now look at the latency of L1 (faster/smalest level) cache, buy making $a$ small than the L1 cache size (64KB)
+* we set $m = 2^{12}$ so that $a$ occupes 32KB, sufficiently smaller than L1 cache
 <!--- end md --->
 
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=DISABLED
+export OMP_NUM_TEAMS=1
+export OMP_NUM_THREADS=1
+export m=$((1 << 12))
+export n=$((1 << 27))
+./latency --n-elements ${m} --min-accesses ${n}
+<!--- end code --->
+
+<!--- md --->
+* run it on a GPU, again with a single (CUDA) thread
+* all parameters are set equal to CPU
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=MANDATORY
+export OMP_NUM_TEAMS=1
+export OMP_NUM_THREADS=1
+export m=$((1 << 24))
+export n=$((1 << 27))
+./latency --n-elements ${m} --min-accesses ${n}
+<!--- end code --->
+
+<!--- md --->
+* let's see what happens for array $a$ smaller than L1 cache (192KB)
+* to make a comarison to CPU, we set $m$ to the same value as the CPU experiment ($2^{12}$)
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=MANDATORY
+export OMP_NUM_TEAMS=1
+export OMP_NUM_THREADS=1
+export m=$((1 << 12))
+export n=$((1 << 27))
+./latency --n-elements ${m} --min-accesses ${n}
+<!--- end code --->
+
+<!--- md --->
+* it is interesting to see the huge difference in latency between CPU and GPU
+* GPU imposes several dezens of nanoseconds even when an access hits the fastest cache, whereas the L1 latency of CPU caches is as small as a few nanoseconds (a few cycles)
+<!--- end md --->
+
+<!--- md --->
+* let's see how the latency is affected by the cache level data are coming from
+* to see this, we plot the relationship between the size of $a$ and the latency per access
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=DISABLED
+export OMP_NUM_TEAMS=1
+export OMP_NUM_THREADS=1
+export min_m=100
+export max_m=$((1 << 24))
+export n=$((1 << 27))
+
+m=${min_m}
+while [ ${m} -lt ${max_m} ]; do
+    echo "==== m=${m} ===="
+    ./latency --n-elements ${m} --min-accesses ${n}
+    m=$((m * 5 / 4))
+done > cpu.txt
+<!--- end code --->
+
+<!--- code w kernel=python --->
+import vis_latency
+vis_latency.vis_latency("cpu.txt")
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=MANDATORY
+export OMP_NUM_TEAMS=1
+export OMP_NUM_THREADS=1
+export min_m=100
+export max_m=$((1 << 24))
+export n=$((1 << 27))
+
+m=${min_m}
+while [ ${m} -lt ${max_m} ]; do
+    echo "==== m=${m} ===="
+    ./latency --n-elements ${m} --min-accesses ${n}
+    m=$((m * 5 / 4))
+done > gpu.txt
+<!--- end code --->
+
+<!--- code w kernel=python --->
+import vis_latency
+vis_latency.vis_latency("gpu.txt")
+<!--- end code --->

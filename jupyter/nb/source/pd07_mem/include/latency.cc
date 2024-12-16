@@ -178,7 +178,121 @@ void make_cycles(long * a, long * seq, long m,
 /*** endif */
 }
 
-/*** if "simd" in VER */
+/*** if "ilp_c" in VER */
+template<long C>
+void cycle_conc_t(long * a, long idx, long n, long * end) {
+/*** if DBG >= 1 */
+#if DBG >= 1
+  printf("chase_ptrs : cells = %p\n", a);
+#endif
+/*** endif */
+  long k[C];
+  /* track only every L elements */
+  for (long c = 0; c < C; c++) {
+    k[c] = idx + c;
+  }
+  asm volatile("// ========== loop begins ========== ");
+#pragma unroll(8)
+  for (long i = 0; i < n; i++) {
+/*** if DBG >= 2 */
+#if DBG >= 2
+    printf("cycle [%ld] : p = %ld\n", idx, k);
+#endif
+/*** endif */
+    for (long c = 0; c < C; c++) {
+      k[c] = a[k[c]];
+    }
+  }
+  asm volatile("// ---------- loop ends ---------- ");
+/*** if DBG >= 2 */
+#if DBG >= 2
+  printf("chase_ptrs : return %ld\n", k);
+#endif
+/*** endif */
+  for (long c = 0; c < C; c++) {
+    end[idx + c] = k[c];
+  }
+}
+
+void cycle_conc(long * a, long idx, long C, long n, long * end) {
+  switch (C) {
+  case 1:
+    cycle_conc_t<1>(a, idx, n, end);
+    break;
+  case 2:
+    cycle_conc_t<2>(a, idx, n, end);
+    break;
+  case 3:
+    cycle_conc_t<3>(a, idx, n, end);
+    break;
+  case 4:
+    cycle_conc_t<4>(a, idx, n, end);
+    break;
+  case 5:
+    cycle_conc_t<5>(a, idx, n, end);
+    break;
+  case 6:
+    cycle_conc_t<6>(a, idx, n, end);
+    break;
+  case 7:
+    cycle_conc_t<7>(a, idx, n, end);
+    break;
+  case 8:
+    cycle_conc_t<8>(a, idx, n, end);
+    break;
+  case 9:
+    cycle_conc_t<9>(a, idx, n, end);
+    break;
+  case 10:
+    cycle_conc_t<10>(a, idx, n, end);
+    break;
+  case 11:
+    cycle_conc_t<11>(a, idx, n, end);
+    break;
+  case 12:
+    cycle_conc_t<12>(a, idx, n, end);
+    break;
+  default:
+    assert(C <= 12);
+    break;
+  }
+}
+  
+/*** elif "ilp" in VER */
+void cycle_conc(long * a, long idx, long C, long n, long * end) {
+/*** if DBG >= 1 */
+#if DBG >= 1
+  printf("chase_ptrs : cells = %p\n", a);
+#endif
+/*** endif */
+  long k[C];
+  /* track only every L elements */
+  for (long c = 0; c < C; c++) {
+    k[c] = idx + c;
+  }
+  asm volatile("// ========== loop begins ========== ");
+#pragma unroll(8)
+  for (long i = 0; i < n; i++) {
+/*** if DBG >= 2 */
+#if DBG >= 2
+    printf("cycle [%ld] : p = %ld\n", idx, k);
+#endif
+/*** endif */
+    for (long c = 0; c < C; c++) {
+      k[c] = a[k[c]];
+    }
+  }
+  asm volatile("// ---------- loop ends ---------- ");
+/*** if DBG >= 2 */
+#if DBG >= 2
+  printf("chase_ptrs : return %ld\n", k);
+#endif
+/*** endif */
+  for (long c = 0; c < C; c++) {
+    end[idx + c] = k[c];
+  }
+}
+/*** elif "simd" in VER */
 #define V(p) (*(volatile Tv*)&(p))
 
 template<typename T, typename Tv, long C>
@@ -313,6 +427,11 @@ void cycles(long * a, long m, long n, long * end, long n_cycles,
             long n_teams, long n_threads_per_team) {
 /*** if "cuda" in VER */
   check_cuda_launch((cycles_g<<<n_teams,n_threads_per_team>>>(a, n_cycles, n, end)));
+/*** elif "ilp" in VER */
+#pragma omp parallel for num_threads(n_threads_per_team)
+  for (long idx = 0; idx < n_cycles; idx += n_conc_cycles) {
+    cycle_conc(a, idx, n_conc_cycles, n, end);
+  }
 /*** elif "simd" in VER */
   assert(n_conc_cycles % L == 0);
 #pragma omp parallel for num_threads(n_threads_per_team)
@@ -486,8 +605,8 @@ int main(int argc, char ** argv) {
               n_teams, n_threads_per_team);
   double t1 = cur_time();
   double dt0 = t1 - t0;
-  printf("make_cycles : took %f sec in total\n", dt0);
-  printf("make_cycles : took %.1f nsec/elem\n", 1.0e9 * dt0 / m);
+  printf("make_cycles_total : %f sec\n", dt0);
+  printf("make_cycles_per_elem : %.1f nsec\n", 1.0e9 * dt0 / m);
   long * end = alloc_dev<long>(n_cycles);
   double t2 = cur_time();
   cycles(a, m, n, end, n_cycles, n_conc_cycles,
@@ -497,9 +616,9 @@ int main(int argc, char ** argv) {
   long bytes = sizeof(long) * n * n_cycles;
   double bw = bytes / dt1;
   printf("bytes accessed : %ld bytes\n", bytes);
-  printf("cycles : took %f sec in total\n", dt1);
-  printf("cycles : took %.1f nsec/elem\n", 1.0e9 * dt1 / n);
-  printf("cycles : took %.3f GB/sec\n", bw * 1.e-9);
+  printf("cycles_total : %f sec\n", dt1);
+  printf("latency_per_elem : %.1f nsec/elem\n", 1.0e9 * dt1 / n);
+  printf("bw : %.3f GB/sec\n", bw * 1.e-9);
   printf("checking results ... "); fflush(stdout);
   for (long idx = 0; idx < n_cycles; idx++) {
     assert(end[idx] == seq[(idx + n * n_cycles) % m]);
