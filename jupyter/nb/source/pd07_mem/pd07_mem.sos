@@ -273,7 +273,7 @@ vis_mem.vis_latency(["gpu.txt"])
 <!--- end code --->
 
 <!--- md --->
-# Comare the CPU and the GPU
+* Compare the CPU and the GPU
 <!--- end md --->
 
 <!--- code w kernel=python --->
@@ -335,8 +335,9 @@ for (i = 0; i < n; i++) {
 <!--- end code --->
 
 <!--- md --->
-* This code uses a variable-length array which is not supported by `nvc++`, to have a number of ($C$) variables which is determined by command line
-* `clang++` also supports this only on CPUs
+* This code uses a variable-length array to have a number of ($C$) variables which is determined by command line
+* It is not supported by `nvc++`, 
+* `clang++` supports this, but only on CPUs
 * Here is the trick to avoid variable length arrays by using templates up to a constant number
 <!--- end md --->
 
@@ -346,8 +347,8 @@ for (i = 0; i < n; i++) {
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
-clang++ -DDBG=0 -Wall -O3 -mavx512f -mfma -fopenmp -Wno-vla-cxx-extension -o latency_ilp latency_ilp_c.cc main.cc
-#nvc++   -Wall -O3 -mavx512f -mfma -mp=gpu -cuda -o latency_ilp latency_ilp_c.cc main.cc
+clang++ -DDBG=0 -Wall -O3 -mavx512f -mfma -fopenmp -fopenmp-targets=nvptx64 -o latency_ilp_c latency_ilp_c.cc main.cc
+#nvc++   -Wall -O3 -mavx512f -mfma -mp=gpu -cuda -o latency_ilp_c latency_ilp_c.cc main.cc
 <!--- end code --->
 
 <!--- md --->
@@ -367,7 +368,7 @@ export OMP_NUM_THREADS=1
 export m=$((1 << 24))
 export n=$((1 << 27))
 export C=1
-./latency_ilp --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --n-conc-cycles ${C}
+./latency_ilp_c --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --n-conc-cycles ${C}
 <!--- end code --->
 
 <!--- md --->
@@ -382,7 +383,7 @@ export OMP_NUM_THREADS=1
 export m=$((1 << 24))
 export n=$((1 << 27))
 export C=2
-./latency_ilp --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --n-conc-cycles ${C}
+./latency_ilp_c --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --n-conc-cycles ${C}
 <!--- end code --->
 
 <!--- md --->
@@ -401,11 +402,35 @@ export OMP_NUM_THREADS=1
 export m=$((1 << 24))
 export n=$((1 << 27))
 export C=1
-./latency_ilp --n-elements ${m} --min-accesses ${n} --n-cycles 2 --n-conc-cycles ${C}
+./latency_ilp_c --n-elements ${m} --min-accesses ${n} --n-cycles 2 --n-conc-cycles ${C}
 <!--- end code --->
 
 <!--- md --->
-* Let's see whether the same thing happens on the GPU
+## Plotting C vs. Bandwidth
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=DISABLED
+export OMP_NUM_TEAMS=1
+export OMP_NUM_THREADS=1
+m=$((1 << 23))
+n=$((1 << 26))
+
+for C in 1 2 3 4 6 8 10 12 14 16 20 24 28 32; do
+    echo "==== C=${C} ===="
+    echo ./latency_ilp_c --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --n-conc-cycles ${C}
+done | tee cpu_bw.txt
+<!--- end code --->
+
+<!--- code w kernel=python --->
+import vis_mem
+vis_mem.vis_bw(["cpu_bw.txt"])
+<!--- end code --->
+
+<!--- md --->
+## GPU
+
+* Let's see whether a similar thing happens on the GPU
 * Set the value of `C` to 1, 2, 3, ... and see the effect
 <!--- end md --->
 
@@ -415,7 +440,22 @@ export OMP_NUM_TEAMS=1
 export OMP_NUM_THREADS=1
 export m=$((1 << 24))
 export n=$((1 << 27))
-export C=2
-./latency_ilp --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --n-conc-cycles ${C}
+export C=1
+./latency_ilp_c --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --n-conc-cycles ${C}
+<!--- end code --->
+
+<!--- md --->
+* For GPU, a much more straightforward way to increase the bandwidth is, of course, increasing the number of threads
+* We simply set the number of cycles (`--n-cycles` to the number of threads in a team) and set the intra-thread concurrency back to one
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=MANDATORY
+export OMP_NUM_TEAMS=1
+export m=$((1 << 24))
+export n=$((1 << 27))
+export C=${OMP_NUM_THREADS}
+export OMP_NUM_THREADS=32
+./latency --n-elements ${m} --min-accesses ${n} --n-cycles ${C}
 <!--- end code --->
 
