@@ -49,7 +49,7 @@ def vis_latency(files_txt):
         dics = parse(a_txt)
         X = [d["sz"] for d in dics]
         Y = [d["latency_per_elem"] for d in dics]
-        plt.plot(X, Y, label=a_txt)
+        plt.plot(X, Y, marker="-o-", label=a_txt)
     plt.xscale("log")
     plt.yscale("log")
     plt.xlabel("size (bytes)")
@@ -57,4 +57,4 @@ def vis_latency(files_txt):
     plt.legend()
     plt.show()
     
-vis_latency(["include/a.txt", "include/a.txt"])
+# vis_latency(["include/a.txt", "include/a.txt"])

@@ -79,6 +79,14 @@ for (i = 0; i < n; i++) {
   k = a[k];
 }
 ```
+* A similar access behavior happens when the processor _chases pointers_ like this
+```
+p = ...;
+for (i = 0; i < n; i++) {
+  p = p->next;
+}
+```
+so we call this kind of code _pointer chasing_ code, although we do not explicitly use pointers ($k$ serves as a "pseudo pointer" that specifies the next element that should be accessed)
 * We change the size of array $a$ and make sure the above loop repeatedly touches every element of $a$
 * Here is an example of $a$ (with 16 elements) and (part of) the resulting access order (`a[0] -> a[3] -> a[14] -> a[10] -> a[7] -> a[15] -> a[1] -> ... -> a[4] -> a[0] -> ..`); note that the above loop _repeats_ accessing all elements of $a$
 
@@ -89,7 +97,8 @@ for (i = 0; i < n; i++) {
 <!--- end md --->
 
 <!--- md --->
-* We use only a single thread for now, 
+* We use only a single thread for now,
+* Although it is meant to be a single-thread experiment, we still use OpenMP so that it can run on GPUs too (with a single source code)
 <!--- end md --->
 
 <!--- code w kernel=python --->
@@ -98,13 +107,12 @@ for (i = 0; i < n; i++) {
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
-clang++ -DDBG=0 -Wall -O3 -mavx512f -mfma -fopenmp -o latency latency.cc
-#nvc++   -Wall -O3 -mavx512f -mfma -mp=multicore -cuda latency.cc -o latency
-#g++     -Wall -O3 -mavx512f -mfma -fopenmp latency.cc -o latency
+clang++ -DDBG=0 -Wall -O3 -mavx512f -mfma -fopenmp -fopenmp-targets=nvptx64 -o latency latency.cc
+#nvc++   -Wall -O3 -mavx512f -mfma -mp=gpu -cuda latency.cc -o latency
 <!--- end code --->
 
 <!--- md --->
-* run it on a CPU with a single thread
+* run it on a CPU with a single thread (remember `OMP_TARGET_OFFLOAD=DISABLED` disables GPU execution)
 * let's run it with $m = 2^{24}$ elements $= 8 \times m = $ 128MB, sufficiently above its last level cache (57MB)
 * the parameter $n$ below specifies how many accesses we perform (`n` below)
 ```
@@ -116,6 +124,7 @@ for (i = 0; i < n; i++) {
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
+# single thread execution on CPU
 export OMP_TARGET_OFFLOAD=DISABLED
 export OMP_NUM_TEAMS=1
 export OMP_NUM_THREADS=1
@@ -131,8 +140,13 @@ latency_per_elem : XYZ nsec/elem
 ```
 which gives you the latecy imposed by _main memory_ access (when the accesses misses caches at any level)
 
-* now look at the latency of L1 (faster/smalest level) cache, buy making $a$ small than the L1 cache size (64KB)
-* we set $m = 2^{12}$ so that $a$ occupes 32KB, sufficiently smaller than L1 cache
+* observe the latency to main memory is very large (e.g., on 2.4 GHz processor, 1 nanosecond = 2.4 cycles, thus 80 nanoseconds is as large as 200 cycles) compared to typical latency of simple arithmetic (a few cycles)
+
+* now look at the latency of L1 (faster/smalest level) cache, buy making $a$ smaller than the L1 cache size (64KB)
+
+* we set $m = 2^{12}$ so that $a$ occupies 32KB, sufficiently smaller than L1 cache
+
+* note that we set $n$ to the same value with before, so this program executes exactly the same number of iterations, with the only difference being how large area the array $a$ spans
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
@@ -145,11 +159,12 @@ export n=$((1 << 27))
 <!--- end code --->
 
 <!--- md --->
-* run it on a GPU, again with a single (CUDA) thread
-* all parameters are set equal to CPU
+* now run the same program on a GPU, again with a single (CUDA) thread (remember `OMP_TARGET_OFFLOAD=MANDATORY` makes sure the target region runs on GPU)
+* all other parameters are set equal to CPU
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
+# single thread execution on CPU
 export OMP_TARGET_OFFLOAD=MANDATORY
 export OMP_NUM_TEAMS=1
 export OMP_NUM_THREADS=1
@@ -159,7 +174,10 @@ export n=$((1 << 27))
 <!--- end code --->
 
 <!--- md --->
-* let's see what happens for array $a$ smaller than L1 cache (192KB)
+* observe the latency difference between CPU and GPU
+* GPU has a few times larger latency to the main memory
+
+* let's see what happens for array $a$ smaller than the L1 cache (192KB)
 * to make a comarison to CPU, we set $m$ to the same value as the CPU experiment ($2^{12}$)
 <!--- end md --->
 
@@ -173,8 +191,12 @@ export n=$((1 << 27))
 <!--- end code --->
 
 <!--- md --->
-* it is interesting to see the huge difference in latency between CPU and GPU
+* it is interesting to see the huge difference in L1 cache latency between CPU and GPU
 * GPU imposes several dezens of nanoseconds even when an access hits the fastest cache, whereas the L1 latency of CPU caches is as small as a few nanoseconds (a few cycles)
+<!--- end md --->
+
+<!--- md --->
+# Plotting the Latencies
 <!--- end md --->
 
 <!--- md --->
@@ -186,8 +208,8 @@ export n=$((1 << 27))
 export OMP_TARGET_OFFLOAD=DISABLED
 export OMP_NUM_TEAMS=1
 export OMP_NUM_THREADS=1
-export min_m=100
-export max_m=$((1 << 24))
+export min_m=1000
+export max_m=$((1 << 25))
 export n=$((1 << 27))
 
 m=${min_m}
@@ -195,20 +217,20 @@ while [ ${m} -lt ${max_m} ]; do
     echo "==== m=${m} ===="
     ./latency --n-elements ${m} --min-accesses ${n}
     m=$((m * 5 / 4))
-done > cpu.txt
+done | tee cpu.txt
 <!--- end code --->
 
 <!--- code w kernel=python --->
 import vis_latency
-vis_latency.vis_latency("cpu.txt")
+vis_latency.vis_latency(["cpu.txt"])
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
 export OMP_TARGET_OFFLOAD=MANDATORY
 export OMP_NUM_TEAMS=1
 export OMP_NUM_THREADS=1
-export min_m=100
-export max_m=$((1 << 24))
+export min_m=1000
+export max_m=$((1 << 25))
 export n=$((1 << 27))
 
 m=${min_m}
@@ -216,10 +238,65 @@ while [ ${m} -lt ${max_m} ]; do
     echo "==== m=${m} ===="
     ./latency --n-elements ${m} --min-accesses ${n}
     m=$((m * 5 / 4))
-done > gpu.txt
+done | tee gpu.txt
 <!--- end code --->
 
 <!--- code w kernel=python --->
 import vis_latency
-vis_latency.vis_latency("gpu.txt")
+vis_latency.vis_latency(["gpu.txt"])
+<!--- end code --->
+
+<!--- code w kernel=python --->
+import vis_latency
+vis_latency.vis_latency(["cpu.txt", "gpu.txt"])
+<!--- end code --->
+
+<!--- md --->
+# Increasing the Bandwidth
+
+* The bandwidth reported above is
+
+$$ \frac{\mbox{sizeof(long)}}{\mbox{latency per element}} $$
+
+and it is essentially the reciprocal (inverse) of the latency
+
+* When we look at the values when $a$ is much larger than the last level cache (so data are all coming from the main memory), the observed value is very small (e.g., $\approx 0.08$ GB/sec on CPU and $\approx 0.02$ GB/sec on GPU)
+* They are much smaller than the advertised hardware bandwidth ($>$ 50 GB/sec for the CPU we are using and $\approx$ 1.5 TB/sec for the A100 GPU we are using)
+* Just as we cannot reduce the latency of arithmetic, there is no way to reduce the latency between the main memory and the processor
+* We can only increase the _bandwidth_ (the amount of data we can move per unit time) by _increasing the parallelism_
+
+* There are multiple ways to do that
+  * On CPUs, it is essential to exploit instruction level parallelism _in a single thread_, which can be done by performing several loops like this for different regions of $a$ (different `start` index below)
+```
+k = start;
+for (i = 0; i < n; i++) {
+  k = a[k];
+}
+```
+  * On GPUs, principle is the same, but parallelism can be easily and most naturally extracted by having many CUDA threads perfoming a loop like the above
+
+* Either way, we make multiple chains of pointers, each of which covers a disjoint region of the entire array
+* Here is a simple example having _two_ 8-element chains of pointers
+* Confirm that the chain starting from $a[1]$ makes another 8-element chain (a[1], a[8], a[9], ...)
+<!--- end md --->
+
+<!--- md --->
+## Traversing Multiple Pointer Chains by A Single Thread
+
+* We can chase two chains simultaneously by essentially doing something like this
+```
+k0 = 0;
+k1 = 1;
+for (i = 0; i < n; i++) {
+  k0 = a[k0];
+  k1 = a[k1];
+}
+```
+
+* The code generalizes this idea so that we can chase an arbitrary number of ($C$) chains simultaneously
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile latency_ilp.cc
+<!--- exec-include ./mk_version.py -DVER=\"ilp\" -DDBG=0 nb/source/pd07_mem/include/latency.cc --->
 <!--- end code --->
