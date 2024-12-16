@@ -187,7 +187,6 @@ void cycle_conc_t(long * a, long idx, long n, long * end) {
 #endif
 /*** endif */
   long k[C];
-  /* track only every L elements */
   for (long c = 0; c < C; c++) {
     k[c] = idx + c;
   }
@@ -432,7 +431,7 @@ void cycles(long * a, long m, long n, long * end, long n_cycles,
 /*** if "cuda" in VER */
   check_cuda_launch((cycles_g<<<n_teams,n_threads_per_team>>>(a, n_cycles, n, end)));
 /*** elif "ilp" in VER */
-#pragma omp parallel for num_threads(n_threads_per_team)
+#pragma omp target teams distribute parallel for num_teams(n_teams) num_threads(n_threads_per_team) map(tofrom: a[0:m], end[0:n_cycles])
   for (long idx = 0; idx < n_cycles; idx += n_conc_cycles) {
     cycle_conc(a, idx, n_conc_cycles, n, end);
   }
