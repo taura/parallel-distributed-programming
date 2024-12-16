@@ -50,7 +50,7 @@ def vis_latency(files_txt):
         dics = sorted(dics, key=lambda d: d["sz"])
         X = [d["sz"] for d in dics]
         Y = [d["time_per_access"] for d in dics]
-        plt.plot(X, Y, marker="-*-", label=a_txt)
+        plt.plot(X, Y, marker="*", label=a_txt)
     plt.xscale("log")
     plt.yscale("log")
     plt.xlabel("size (bytes)")
@@ -64,7 +64,7 @@ def vis_bw(files_txt):
         dics = sorted(dics, key=lambda d: d["n_conc_cycles"])
         X = [d["n_conc_cycles"] for d in dics]
         Y = [d["bw"] for d in dics]
-        plt.plot(X, Y, label=a_txt)
+        plt.plot(X, Y, marker="*", label=a_txt)
         plt.plot(X, [x * Y[0] for x in X], label="ideal")
     plt.xlabel("concurrent chains")
     plt.ylabel("bandwidth (GB/sec)")

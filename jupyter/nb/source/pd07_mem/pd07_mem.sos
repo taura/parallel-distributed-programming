@@ -413,13 +413,14 @@ export C=1
 export OMP_TARGET_OFFLOAD=DISABLED
 export OMP_NUM_TEAMS=1
 export OMP_NUM_THREADS=1
-m=$((1 << 23))
-n=$((1 << 26))
+m=$((1 << 24))
+n=$((1 << 27))
 
-for C in 1 2 3 4 6 8 10 12 14 16 20 24 28 32; do
+for C in 1 2 3 4 6 8 10 12 14 16 ; do
     echo "==== C=${C} ===="
     echo ./latency_ilp_c --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --n-conc-cycles ${C}
 done | tee cpu_bw.txt
+echo "done"
 <!--- end code --->
 
 <!--- code w kernel=python --->
