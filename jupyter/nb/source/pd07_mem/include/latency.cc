@@ -1,3 +1,4 @@
+#include <assert.h>
 /*** if "omp" in VER */
 #if __NVCOMPILER                // NVIDIA nvc++
 #else  // Clang

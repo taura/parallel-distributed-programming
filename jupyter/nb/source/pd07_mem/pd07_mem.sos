@@ -242,6 +242,7 @@ while [ ${m} -lt ${max_m} ]; do
     ./latency --n-elements ${m} --min-accesses ${n}
     m=$((m * 5 / 4))
 done | tee cpu.txt
+echo "done"
 <!--- end code --->
 
 <!--- code w kernel=python --->
@@ -263,6 +264,7 @@ while [ ${m} -lt ${max_m} ]; do
     ./latency --n-elements ${m} --min-accesses ${n}
     m=$((m * 5 / 4))
 done | tee gpu.txt
+echo "done"
 <!--- end code --->
 
 <!--- code w kernel=python --->
@@ -332,9 +334,20 @@ for (i = 0; i < n; i++) {
 <!--- exec-include ./mk_version.py -DVER=\"omp_ilp\" -DDBG=0 nb/source/pd07_mem/include/latency.cc --->
 <!--- end code --->
 
+<!--- md --->
+* This code uses a variable-length array which is not supported by `nvc++`, to have a number of ($C$) variables which is determined by command line
+* `clang++` also supports this only on CPUs
+* Here is the trick to avoid variable length arrays by using templates up to a constant number
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile latency_ilp_c.cc
+<!--- exec-include ./mk_version.py -DVER=\"omp_ilp_c\" -DDBG=0 nb/source/pd07_mem/include/latency.cc --->
+<!--- end code --->
+
 <!--- code w kernel=bash points=1 --->
-clang++ -DDBG=0 -Wall -O3 -mavx512f -mfma -fopenmp -fopenmp-targets=nvptx64 -o latency_ilp latency_ilp.cc main.cc
-#nvc++   -Wall -O3 -mavx512f -mfma -mp=gpu -cuda -o latency_ilp latency_ilp.cc main.cc
+clang++ -DDBG=0 -Wall -O3 -mavx512f -mfma -fopenmp -Wno-vla-cxx-extension -o latency_ilp latency_ilp_c.cc main.cc
+#nvc++   -Wall -O3 -mavx512f -mfma -mp=gpu -cuda -o latency_ilp latency_ilp_c.cc main.cc
 <!--- end code --->
 
 <!--- md --->

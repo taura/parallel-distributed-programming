@@ -6,8 +6,8 @@ src_cc := latency.cc
 bases := $(patsubst %.cc,%,$(src_cc))
 vers :=
 vers += omp
-#vers += omp_ilp
-#vers += omp_ilp_c
+vers += omp_ilp
+vers += omp_ilp_c
 #vers += simd
 #vers += cuda
 

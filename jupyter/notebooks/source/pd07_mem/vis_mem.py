@@ -50,7 +50,7 @@ def vis_latency(files_txt):
         dics = sorted(dics, key=lambda d: d["sz"])
         X = [d["sz"] for d in dics]
         Y = [d["time_per_access"] for d in dics]
-        plt.plot(X, Y, marker="-o-", label=a_txt)
+        plt.plot(X, Y, marker="-*-", label=a_txt)
     plt.xscale("log")
     plt.yscale("log")
     plt.xlabel("size (bytes)")
@@ -72,4 +72,4 @@ def vis_bw(files_txt):
     plt.show()
 
 # vis_latency(["include/a.txt", "include/a.txt"])
-vis_bw(["b.txt"])
+#vis_bw(["b.txt"])
