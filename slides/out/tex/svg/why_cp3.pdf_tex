@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{595.27559055bp}%
+    \setlength{\unitlength}{849.67820535bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,15 +50,15 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,1.41428571)%
+  \begin{picture}(1,0.43528501)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{why_cp3.pdf}}%
-    \put(-0.40033094,0.9226667){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}my program suffers\end{tabular}}}}%
+    \put(0.00278174,0.19842809){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}my program suffers\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{why_cp3.pdf}}%
-    \put(0.38081986,0.96046432){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}create more tasks (and $T_\infty$ may be the same)\end{tabular}}}}%
+    \put(0.55004775,0.2249087){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}create more tasks (and $T_\infty$ may be the same)\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{why_cp3.pdf}}%
-    \put(0.41861747,0.64548413){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}shorten critical path\end{tabular}}}}%
+    \put(0.57652837,0.0042369){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}shorten critical path\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{why_cp3.pdf}}%
   \end{picture}%
 \endgroup%

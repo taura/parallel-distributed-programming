@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{595.27559055bp}%
+    \setlength{\unitlength}{692.86095807bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,21 +50,21 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,1.41428571)%
+  \begin{picture}(1,0.90874565)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{gemm_decomp.pdf}}%
-    \put(-0.07985459,1.26907306){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
+    \put(0.31438557,0.78491862){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{gemm_decomp.pdf}}%
-    \put(-0.07985459,0.89109687){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
+    \put(0.31438557,0.46017814){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{gemm_decomp.pdf}}%
-    \put(-0.07985459,0.4879223){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
+    \put(0.31438557,0.11378833){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{gemm_decomp.pdf}}%
-    \put(-0.38160896,1.37239941){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$M$\end{tabular}}}}%
-    \put(-0.02883118,1.37239941){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$M$\end{tabular}}}}%
-    \put(-0.33121213,1.04482006){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$N$\end{tabular}}}}%
-    \put(0.42474025,1.04482006){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$N$\end{tabular}}}}%
-    \put(0.17275612,0.64164546){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$K$\end{tabular}}}}%
-    \put(0.43481961,0.49045498){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$K$\end{tabular}}}}%
+    \put(0.05513153,0.87369207){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$M$\end{tabular}}}}%
+    \put(0.35822264,0.87369207){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$M$\end{tabular}}}}%
+    \put(0.09843026,0.59225033){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$N$\end{tabular}}}}%
+    \put(0.74791122,0.59225033){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$N$\end{tabular}}}}%
+    \put(0.53141756,0.24586049){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$K$\end{tabular}}}}%
+    \put(0.75657096,0.1159643){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$K$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1163.93684447bp}%
+    \setlength{\unitlength}{1077.94382651bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,71 +50,71 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.8392357)%
+  \begin{picture}(1,0.85163647)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{gemm_loop.pdf}}%
-    \put(0.28622585,0.68029373){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
+    \put(0.31010318,0.67897125){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{gemm_loop.pdf}}%
-    \put(0.28622585,0.40966047){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
+    \put(0.31010318,0.38674821){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{gemm_loop.pdf}}%
-    \put(0.28622585,0.13902723){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
-    \put(0.0201952,0.43819661){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
-    \put(0.0201952,0.16756337){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
+    \put(0.31010318,0.09452519){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
+    \put(0.02284993,0.41756081){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
+    \put(0.02284993,0.12533779){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{gemm_loop.pdf}}%
-    \put(0.17484277,0.24488715){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
-    \put(0.66456006,0.24488715){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
-    \put(0.01467208,0.7622201){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
-    \put(0.01895262,0.81247729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$I$ loop (= entire computation)\end{tabular}}}}%
-    \put(0.01895262,0.54184405){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}an $I$ iteration = $J$ loop\end{tabular}}}}%
-    \put(0.01895262,0.27121081){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}a $J$ iteration = $K$ loop\end{tabular}}}}%
+    \put(0.18983451,0.20883008){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
+    \put(0.71861902,0.20883008){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
+    \put(0.0168862,0.76743329){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
+    \put(0.02150822,0.82169976){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$I$ loop (= entire computation)\end{tabular}}}}%
+    \put(0.02150822,0.52947674){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}an $I$ iteration = $J$ loop\end{tabular}}}}%
+    \put(0.02150822,0.23725372){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}a $J$ iteration = $K$ loop\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{gemm_loop.pdf}}%
-    \put(0.28622585,0.68029373){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
+    \put(0.31010318,0.67897125){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{gemm_loop.pdf}}%
-    \put(0.28622585,0.40966047){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
+    \put(0.31010318,0.38674821){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{gemm_loop.pdf}}%
-    \put(0.28622585,0.13902723){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
-    \put(0.0201952,0.43819661){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
-    \put(0.0201952,0.16756337){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
+    \put(0.31010318,0.09452519){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
+    \put(0.02284993,0.41756081){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
+    \put(0.02284993,0.12533779){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{gemm_loop.pdf}}%
-    \put(0.17484277,0.24488715){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
-    \put(0.66456006,0.24488715){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
-    \put(0.01467208,0.7622201){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
-    \put(0.01895262,0.81247729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$I$ loop (= entire computation)\end{tabular}}}}%
-    \put(0.01895262,0.54184405){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}an $I$ iteration = $J$ loop\end{tabular}}}}%
-    \put(0.01895262,0.27121081){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}a $J$ iteration = $K$ loop\end{tabular}}}}%
-    \put(0.82749234,0.68029373){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C$\end{tabular}}}}%
+    \put(0.18983451,0.20883008){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
+    \put(0.71861902,0.20883008){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
+    \put(0.0168862,0.76743329){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
+    \put(0.02150822,0.82169976){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$I$ loop (= entire computation)\end{tabular}}}}%
+    \put(0.02150822,0.52947674){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}an $I$ iteration = $J$ loop\end{tabular}}}}%
+    \put(0.02150822,0.23725372){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}a $J$ iteration = $K$ loop\end{tabular}}}}%
+    \put(0.89454923,0.67897125){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=9]{gemm_loop.pdf}}%
-    \put(0.28622585,0.68029373){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
+    \put(0.31010318,0.67897125){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=10]{gemm_loop.pdf}}%
-    \put(0.28622585,0.40966047){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
+    \put(0.31010318,0.38674821){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=11]{gemm_loop.pdf}}%
-    \put(0.28622585,0.13902723){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
-    \put(0.0201952,0.43819661){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
-    \put(0.0201952,0.16756337){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
+    \put(0.31010318,0.09452519){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
+    \put(0.02284993,0.41756081){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
+    \put(0.02284993,0.12533779){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=12]{gemm_loop.pdf}}%
-    \put(0.17484277,0.24488715){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
-    \put(0.66456006,0.24488715){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
-    \put(0.01467208,0.7622201){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
-    \put(0.01895262,0.81247729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$I$ loop (= entire computation)\end{tabular}}}}%
-    \put(0.01895262,0.54184405){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}an $I$ iteration = $J$ loop\end{tabular}}}}%
-    \put(0.01895262,0.27121081){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}a $J$ iteration = $K$ loop\end{tabular}}}}%
-    \put(0.82749234,0.40966049){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C$\end{tabular}}}}%
+    \put(0.18983451,0.20883008){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
+    \put(0.71861902,0.20883008){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
+    \put(0.0168862,0.76743329){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
+    \put(0.02150822,0.82169976){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$I$ loop (= entire computation)\end{tabular}}}}%
+    \put(0.02150822,0.52947674){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}an $I$ iteration = $J$ loop\end{tabular}}}}%
+    \put(0.02150822,0.23725372){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}a $J$ iteration = $K$ loop\end{tabular}}}}%
+    \put(0.89454923,0.38674823){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=13]{gemm_loop.pdf}}%
-    \put(0.28622585,0.68029373){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
+    \put(0.31010318,0.67897125){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=14]{gemm_loop.pdf}}%
-    \put(0.28622585,0.40966047){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
+    \put(0.31010318,0.38674821){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=15]{gemm_loop.pdf}}%
-    \put(0.28622585,0.13902723){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
-    \put(0.0201952,0.43819661){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
-    \put(0.0201952,0.16756337){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
+    \put(0.31010318,0.09452519){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}+=\end{tabular}}}}%
+    \put(0.02284993,0.41756081){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
+    \put(0.02284993,0.12533779){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=16]{gemm_loop.pdf}}%
-    \put(0.17484277,0.24488715){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
-    \put(0.66456006,0.24488715){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
-    \put(0.01467208,0.7622201){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
-    \put(0.01895262,0.81247729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$I$ loop (= entire computation)\end{tabular}}}}%
-    \put(0.01895262,0.54184405){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}an $I$ iteration = $J$ loop\end{tabular}}}}%
-    \put(0.01895262,0.27121081){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}a $J$ iteration = $K$ loop\end{tabular}}}}%
-    \put(0.82749234,0.13902725){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C$\end{tabular}}}}%
+    \put(0.18983451,0.20883008){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
+    \put(0.71861902,0.20883008){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$j$\end{tabular}}}}%
+    \put(0.0168862,0.76743329){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
+    \put(0.02150822,0.82169976){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$I$ loop (= entire computation)\end{tabular}}}}%
+    \put(0.02150822,0.52947674){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}an $I$ iteration = $J$ loop\end{tabular}}}}%
+    \put(0.02150822,0.23725372){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}a $J$ iteration = $K$ loop\end{tabular}}}}%
+    \put(0.89454923,0.09452521){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
