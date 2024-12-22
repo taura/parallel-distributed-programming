@@ -1,0 +1,99 @@
+<!--- md --->
+#* Cost of Data Access (Caches and Memory Performance)
+
+# Introduction
+
+<!--- end md --->
+
+<!--- md --->
+# Compilers
+
+## Set up NVIDIA CUDA and HPC SDK
+
+Execute this before you use NVIDIA HPC SDK
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/24.9/compilers/bin:$PATH
+export PATH=/usr/local/cuda/bin:$PATH
+<!--- end code --->
+
+<!--- md --->
+* Check if it works
+  * make sure the full path of nvcc is shown as `/usr/local/...`, not `/opt/nvidia/...`
+* We do not recommend nvc/nvc++ for this exercise, but you might give them a try if you like
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which nvcc
+which nvc
+which nvc++
+nvcc --version
+nvc --version
+<!--- end code --->
+
+<!--- md --->
+## Set up LLVM
+
+Execute this before you use LLVM
+
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+export PATH=/home/share/llvm/bin:$PATH
+export LD_LIBRARY_PATH=/home/share/llvm/lib:/home/share/llvm/lib/x86_64-unknown-linux-gnu:$LD_LIBRARY_PATH
+<!--- end code --->
+
+<!--- md --->
+Check if it works (check if full paths of gcc/g++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which clang
+which clang++
+<!--- end code --->
+
+<!--- md --->
+## GCC
+
+<!--- end md --->
+
+<!--- md --->
+Check if it works (check if full paths of nvc/nvc++ are shown)
+<!--- end md --->
+
+<!--- code w kernel=bash --->
+which gcc
+which g++
+<!--- end code --->
+
+<!--- md --->
+# Measuring Latency
+
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile latency.cc
+<!--- exec-include ./mk_version.py -DVER=\"omp\" -DDBG=0 nb/source/pd07_mem/include/latency.cc --->
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+clang++ -DDBG=0 -Wall -O3 -mavx512f -mfma -fopenmp -Dcompiler=\"clang++\" -Dver=\"omp\" -o latency.exe latency.cc
+
+clang++ -Wall -O3 -mavx512f -mfma -fopenmp latency.cc -o latency
+#nvc++   -Wall -O3 -mavx512f -mfma -mp=multicore -cuda latency.cc -o latency
+#g++     -Wall -O3 -mavx512f -mfma -fopenmp latency.cc -o latency
+<!--- end code --->
+
+<!--- md --->
+* run it on a single core of CPU
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+OMP_TARGET_OFFLOAD=DISABLED OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true ./latency 
+<!--- end code --->
+
+<!--- md --->
+* it shows cycles per iteration
+<!--- end md --->
+
