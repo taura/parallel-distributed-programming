@@ -27,7 +27,6 @@ cuda_compilers += nvcc
 
 flags :=
 flags += -DDBG=$(dbg)
-flags += -I .
 
 clang++_flags :=
 clang++_flags += -Wall
@@ -55,6 +54,7 @@ nvc++_asm_flags += -gpu=keep -S
 
 nvcc_flags :=
 #nvcc_flags += -O0 -g
+nvcc_flags += -I ..
 nvcc_flags += -O4
 nvcc_flags += -x cu
 nvcc_asm_flags += --ptx
