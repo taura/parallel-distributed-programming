@@ -4,6 +4,11 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Dec. 23, 2024)</font> Plan for Dec. 23
+  * [What You Must Know about Memory, Caches, and Shared Memory](slides/memory.pdf)
+  * pd07\_mem\_ext (an extended version of pd07\_mem)
+  * [Analyzing Data Access of Algorithms and How to Make Them Cache-Friendly](slides/cache.pdf)
+  
 * <font color=blue>(Posted: Dec. 16, 2024)</font> Plan for Dec. 16
   * [What You Must Know about Memory, Caches, and Shared Memory](slides/memory.pdf)
   * pd07\_mem and pd30\_mlp
@@ -77,9 +82,9 @@
 1. [SIMD](slides/simd.pdf)
 1. [How to get nearly peak FLOPS (with CPU)](slides/peak_cpu.pdf)
 1. [What You Must Know about Memory, Caches, and Shared Memory](slides/memory.pdf)
+1. [Analyzing Data Access of Algorithms and How to Make Them Cache-Friendly](slides/cache.pdf)
 1. [Divide and Conquer](slides/divide_and_conquer.pdf)
 1. [Neural Network Basics](slides/nn.pdf)
-1. [Analyzing Data Access of Algorithms and How to Make Them Cache-Friendly?](slides/cache.pdf)
 1. [Understanding Task Scheduling Algorithms](slides/worksteal.pdf)
 
 # Languages
