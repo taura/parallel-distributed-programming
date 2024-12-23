@@ -9,14 +9,14 @@ bases := $(patsubst %.cc,%,$(src_cc))
 
 vers :=
 vers += omp
-#vers += omp_ilp
-#vers += omp_ilp_c
+vers += omp_ilp
+vers += omp_ilp_c
 vers += cuda
 #vers += simd
 
 omp_compilers := 
 #omp_compilers += g++
-#omp_compilers += clang++
+omp_compilers += clang++
 omp_compilers += nvc++
 
 omp_ilp_compilers := $(omp_compilers)

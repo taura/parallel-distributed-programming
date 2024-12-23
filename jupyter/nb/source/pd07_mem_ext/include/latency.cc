@@ -6,7 +6,7 @@
 /*** elif "omp" in VER */
 #if __NVCOMPILER                // NVIDIA nvc++
 #include <nv/target>
-__device__ int get_thread_index() {
+__device__ __host__ int get_thread_index() {
   if target(nv::target::is_device) {
     unsigned int thread_idx;
     unsigned int block_idx;
@@ -20,7 +20,7 @@ __device__ int get_thread_index() {
     return omp_get_thread_num();
   }
 }
-__device__ int get_n_threads() {
+__device__ __host__ int get_n_threads() {
   if target(nv::target::is_device) {
     unsigned int grid_dim;
     unsigned int block_dim;
@@ -99,12 +99,55 @@ void cycle_conc_t(long * a, long idx, long n, long * end, int * thread_idx) {
   }
 }
 
-void cycle_conc(long * a, long idx, long C, long n, long * end, int * thread_idx) {
+__device__ __host__ void cycle_conc(long * a, long idx, long C, long n, long * end, int * thread_idx) {
   const long max_const_c = 12;
   long c;
   for (c = 0; c + max_const_c <= C; c += max_const_c) {
     cycle_conc_t<max_const_c>(a, idx + c, n, end, thread_idx + c);
   }
+#if __NVCOMPILER
+  /* nvc++ apparently does not handle switch statement in device code ... */
+  if (C - c < 6) {
+    if (C - c < 3) {
+      // 0, 1, 2
+      if (C - c == 0) {
+      } else if (C - c == 1) {
+        cycle_conc_t<1>(a, idx + c, n, end, thread_idx + c);
+      } else if (C - c == 2) {
+        cycle_conc_t<2>(a, idx + c, n, end, thread_idx + c);
+      }
+    } else {
+      // 3, 4, 5
+      if (C - c == 3) {
+        cycle_conc_t<3>(a, idx + c, n, end, thread_idx + c);
+      } else if (C - c == 4) {
+        cycle_conc_t<4>(a, idx + c, n, end, thread_idx + c);
+      } else if (C - c == 5) {
+        cycle_conc_t<5>(a, idx + c, n, end, thread_idx + c);
+      }
+    }
+  } else {
+    if (C - c < 9) {
+      // 6, 7, 8
+      if (C - c == 6) {
+        cycle_conc_t<6>(a, idx + c, n, end, thread_idx + c);
+      } else if (C - c == 7) {
+        cycle_conc_t<7>(a, idx + c, n, end, thread_idx + c);
+      } else if (C - c == 8) {
+        cycle_conc_t<8>(a, idx + c, n, end, thread_idx + c);
+      }
+    } else {
+      // 9, 10, 11
+      if (C - c == 9) {
+        cycle_conc_t<9>(a, idx + c, n, end, thread_idx + c);
+      } else if (C - c == 10) {
+        cycle_conc_t<10>(a, idx + c, n, end, thread_idx + c);
+      } else if (C - c == 11) {
+        cycle_conc_t<11>(a, idx + c, n, end, thread_idx + c);
+      }
+    }
+  }
+#else
   switch (C - c) {
   case 0:
     break;
@@ -145,6 +188,7 @@ void cycle_conc(long * a, long idx, long C, long n, long * end, int * thread_idx
     assert(C < max_const_c);
     break;
   }
+#endif
 }
   
 /*** elif "ilp" in VER */
