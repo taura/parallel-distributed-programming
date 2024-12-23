@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{595.27559055bp}%
+    \setlength{\unitlength}{1186.28165177bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,15 +50,15 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,1.41428571)%
+  \begin{picture}(1,0.37516667)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{ws_cache_model.pdf}}%
-    \put(1.7890873,1.19712304){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}capacity of each $C$\end{tabular}}}}%
+    \put(0.75980408,0.2035773){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}capacity of each $C$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{ws_cache_model.pdf}}%
-    \put(1.31031746,0.9199405){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}capacity $\infty$\end{tabular}}}}%
-    \put(1.78980723,1.24392009){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}caches\end{tabular}}}}%
-    \put(0.48956914,0.91634069){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}main memory\end{tabular}}}}%
+    \put(0.51955759,0.06448723){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}capacity $\infty$\end{tabular}}}}%
+    \put(0.76016534,0.22706004){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}caches\end{tabular}}}}%
+    \put(0.10770646,0.06268084){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}main memory\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{ws_cache_model.pdf}}%
   \end{picture}%
 \endgroup%

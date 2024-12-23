@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{134bp}%
+    \setlength{\unitlength}{230.91400146bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,20 +50,20 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,2.20895522)%
+  \begin{picture}(1,1.90980191)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{dag_example.pdf}}%
-    \put(0.31641798,1.88059701){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$P_1$\end{tabular}}}}%
+    \put(0.35863569,1.73441193){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$P_1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{dag_example.pdf}}%
-    \put(0.67462693,1.04477612){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$P_2$\end{tabular}}}}%
+    \put(0.56650532,1.24938288){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$P_2$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{dag_example.pdf}}%
-    \put(1.03283589,0.20895522){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$P_3$\end{tabular}}}}%
+    \put(0.77437492,0.76435382){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$P_3$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{dag_example.pdf}}%
-    \put(0.67462693,-0.86567164){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$P_4$\end{tabular}}}}%
+    \put(0.56650532,0.14074504){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$P_4$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{dag_example.pdf}}%
-    \put(-0.16119396,0.80597015){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$C_1$\end{tabular}}}}%
-    \put(0.19701499,-0.02985075){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$C_2$\end{tabular}}}}%
+    \put(0.08147623,1.11080315){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$C_1$\end{tabular}}}}%
+    \put(0.28934583,0.62577409){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$C_2$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{dag_example.pdf}}%
   \end{picture}%
 \endgroup%

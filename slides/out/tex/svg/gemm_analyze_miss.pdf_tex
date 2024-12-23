@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{595.27559055bp}%
+    \setlength{\unitlength}{1440.9498416bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,22 +50,22 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,1.41428571)%
+  \begin{picture}(1,0.33346243)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{gemm_analyze_miss.pdf}}%
-    \put(-0.38002475,1.1747405){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}}%
-    \put(0.42632445,1.1747405){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}}%
-    \put(-0.73935263,0.88245756){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$w \leq C$\end{tabular}}}}}%
-    \put(-0.63855898,0.88245756){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$w \leq C$\end{tabular}}}}}%
-    \put(0.77255213,0.88245756){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$w \leq C$\end{tabular}}}}}%
-    \put(-0.07019558,0.71957129){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\cdots$\end{tabular}}}}%
-    \put(0.0183346,1.37310064){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$w$\end{tabular}}}}%
-    \put(0.84988222,0.89937048){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\} \leq \ao{C}$\end{tabular}}}}%
+    \put(0.34411074,0.22140871){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}}%
+    \put(0.67722435,0.22140871){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}}%
+    \put(0.1956676,0.10066273){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$w \leq C$\end{tabular}}}}}%
+    \put(0.2373068,0.10066273){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$w \leq C$\end{tabular}}}}}%
+    \put(0.82025562,0.10066273){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$w \leq C$\end{tabular}}}}}%
+    \put(0.4721053,0.03337224){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\cdots$\end{tabular}}}}%
+    \put(0.5086783,0.30335393){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$w$\end{tabular}}}}%
+    \put(0.85220171,0.10764969){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\} \leq \ao{C}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{gemm_analyze_miss.pdf}}%
-    \put(-1.21611871,1.04593257){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\times 1/\sqrt[3]{4}$\end{tabular}}}}%
-    \put(-1.21611871,0.94513892){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\times 1/\sqrt[3]{4}$\end{tabular}}}}%
+    \put(-0.00129082,0.16819644){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\times 1/\sqrt[3]{4}$\end{tabular}}}}%
+    \put(-0.00129082,0.12655724){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\times 1/\sqrt[3]{4}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{gemm_analyze_miss.pdf}}%
-    \put(1.10873016,1.44910717){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\ao{\log_{\sqrt[3]{4}}(w/C)}$\end{tabular}}}}}%
+    \put(0.95913524,0.33475324){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\ao{\log_{\sqrt[3]{4}}(w/C)}$\end{tabular}}}}}%
   \end{picture}%
 \endgroup%

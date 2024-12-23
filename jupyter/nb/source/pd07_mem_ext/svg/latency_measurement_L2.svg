@@ -3,8 +3,8 @@
 
 <svg
    width="177.17844mm"
-   height="30.369104mm"
-   viewBox="0 0 177.17843 30.369103"
+   height="42.037739mm"
+   viewBox="0 0 177.17843 42.037737"
    version="1.1"
    id="svg5"
    xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +30,7 @@
   </defs>
   <g
      id="g10564"
-     transform="translate(-11.998676,-113.06328)"
+     transform="translate(-11.998676,-101.39464)"
      style="display:inline">
     <rect
        style="fill:none;fill-opacity:0.985835;stroke:#000000;stroke-width:0.389074"
@@ -58,12 +58,12 @@
        y="129.74039" />
     <text
        xml:space="preserve"
-       style="font-size:7.7611px;fill:#000000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
+       style="font-size:7.7611px;fill:#ff0000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
        x="33.33749"
        y="137.84795"
        id="text10458"><tspan
          id="tspan10456"
-         style="fill:#000000;stroke:none;stroke-width:0.2"
+         style="fill:#ff0000;stroke:none;stroke-width:0.2"
          x="33.33749"
          y="137.84795">8</tspan></text>
     <rect
@@ -99,12 +99,12 @@
        y="129.74039" />
     <text
        xml:space="preserve"
-       style="font-size:7.7611px;fill:#000000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
+       style="font-size:7.7611px;fill:#ff0000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
        x="65.087502"
        y="137.84795"
        id="text10472"><tspan
          id="tspan10470"
-         style="fill:#000000;stroke:none;stroke-width:0.2"
+         style="fill:#ff0000;stroke:none;stroke-width:0.2"
          x="65.087502"
          y="137.84795">1</tspan></text>
     <rect
@@ -116,12 +116,12 @@
        y="129.74039" />
     <text
        xml:space="preserve"
-       style="font-size:7.7611px;fill:#000000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
+       style="font-size:7.7611px;fill:#ff0000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
        x="73.554169"
        y="137.84795"
        id="text10478"><tspan
          id="tspan10476"
-         style="fill:#000000;stroke:none;stroke-width:0.2"
+         style="fill:#ff0000;stroke:none;stroke-width:0.2"
          x="73.554169"
          y="137.84795">12</tspan></text>
     <rect
@@ -167,12 +167,12 @@
        y="129.74039" />
     <text
        xml:space="preserve"
-       style="font-size:7.7611px;fill:#000000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
+       style="font-size:7.7611px;fill:#ff0000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
        x="107.95002"
        y="137.84795"
        id="text10496"><tspan
          id="tspan10494"
-         style="fill:#000000;stroke:none;stroke-width:0.2"
+         style="fill:#ff0000;stroke:none;stroke-width:0.2"
          x="107.95002"
          y="137.84795">9</tspan></text>
     <rect
@@ -184,12 +184,12 @@
        y="129.74039" />
     <text
        xml:space="preserve"
-       style="font-size:7.7611px;fill:#000000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
+       style="font-size:7.7611px;fill:#ff0000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
        x="118.00416"
        y="137.84795"
        id="text10502"><tspan
          id="tspan10500"
-         style="fill:#000000;stroke:none;stroke-width:0.2"
+         style="fill:#ff0000;stroke:none;stroke-width:0.2"
          x="118.00416"
          y="137.84795">5</tspan></text>
     <rect
@@ -218,12 +218,12 @@
        y="129.74039" />
     <text
        xml:space="preserve"
-       style="font-size:7.7611px;fill:#000000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
+       style="font-size:7.7611px;fill:#ff0000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
        x="139.17079"
        y="137.84795"
        id="text10514"><tspan
          id="tspan10512"
-         style="fill:#000000;stroke:none;stroke-width:0.2"
+         style="fill:#ff0000;stroke:none;stroke-width:0.2"
          x="139.17079"
          y="137.84795">4</tspan></text>
     <rect
@@ -235,12 +235,12 @@
        y="129.74039" />
     <text
        xml:space="preserve"
-       style="font-size:7.7611px;fill:#000000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
+       style="font-size:7.7611px;fill:#ff0000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
        x="147.6375"
        y="137.84795"
        id="text10520"><tspan
          id="tspan10518"
-         style="fill:#000000;stroke:none;stroke-width:0.2"
+         style="fill:#ff0000;stroke:none;stroke-width:0.2"
          x="147.6375"
          y="137.84795">13</tspan></text>
     <rect
@@ -252,12 +252,12 @@
        y="129.74039" />
     <text
        xml:space="preserve"
-       style="font-size:7.7611px;fill:#000000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
+       style="font-size:7.7611px;fill:#ff0000;fill-opacity:0.985835;stroke:none;stroke-width:0.2"
        x="158.22084"
        y="137.84795"
        id="text10526"><tspan
          id="tspan10524"
-         style="fill:#000000;stroke:none;stroke-width:0.2"
+         style="fill:#ff0000;stroke:none;stroke-width:0.2"
          x="158.22084"
          y="137.84795">11</tspan></text>
     <rect
@@ -356,5 +356,37 @@
        style="fill:none;fill-opacity:0.985835;stroke:#0000ff;stroke-width:0.264583;stroke-dasharray:none;marker-end:url(#Arrow2)"
        d="m 87.205675,129.65193 c 0,0 -12.079114,-15.11385 -29.745659,-15.13917 -17.424774,-0.025 -29.696884,14.84739 -29.696884,14.84739"
        id="path10634" />
+    <path
+       style="fill:none;fill-opacity:0.985835;stroke:#ff0000;stroke-width:0.264583;stroke-dasharray:none;marker-end:url(#Arrow2)"
+       d="m 35.71875,129.64584 c 0,0 21.597526,-25.77908 36.548794,-26.01019 15.04253,-0.23252 37.563136,25.01993 37.563136,25.01993"
+       id="path419" />
+    <path
+       style="fill:none;fill-opacity:0.985835;stroke:#ff0000;stroke-width:0.264583;stroke-dasharray:none;marker-end:url(#Arrow2)"
+       d="m 109.87706,130.27366 c 0,0 2.90127,-27.08642 4.90973,-27.32925 2.02072,-0.24431 5.046,26.28877 5.046,26.28877"
+       id="path468" />
+    <path
+       style="fill:none;fill-opacity:0.985835;stroke:#ff0000;stroke-width:0.264583;stroke-dasharray:none;marker-end:url(#Arrow2)"
+       d="m 120.25908,130.27366 c 0,0 -12.29984,-27.08642 -20.814642,-27.32925 -8.566778,-0.24431 -21.392355,26.28877 -21.392355,26.28877"
+       id="path470" />
+    <path
+       style="fill:none;fill-opacity:0.985835;stroke:#ff0000;stroke-width:0.264583;stroke-dasharray:none;marker-end:url(#Arrow2)"
+       d="m 76.942447,130.06498 c 0,0 21.426851,-26.65554 36.260003,-26.89451 14.9237,-0.24042 37.26641,25.87058 37.26641,25.87058"
+       id="path472" />
+    <path
+       style="fill:none;fill-opacity:0.985835;stroke:#ff0000;stroke-width:0.264583;stroke-dasharray:none;marker-end:url(#Arrow2)"
+       d="m 152.42119,130.69065 c 0,0 2.9955,-27.95832 5.0692,-28.20896 2.08635,-0.25217 5.2099,27.13498 5.2099,27.13498"
+       id="path474" />
+    <path
+       style="fill:none;fill-opacity:0.985835;stroke:#ff0000;stroke-width:0.264583;stroke-dasharray:none;marker-end:url(#Arrow2)"
+       d="m 163.17918,130.5862 c 0,0 -6.39554,-27.75042 -10.82298,-27.99919 -4.45446,-0.2503 -11.12338,26.93319 -11.12338,26.93319"
+       id="path476" />
+    <path
+       style="fill:none;fill-opacity:0.985835;stroke:#ff0000;stroke-width:0.264583;stroke-dasharray:none;marker-end:url(#Arrow2)"
+       d="m 140.95416,130.5862 c 0,0 -21.02937,-27.75042 -35.58737,-27.99919 -14.646845,-0.2503 -36.575123,26.93319 -36.575123,26.93319"
+       id="path478" />
+    <path
+       style="fill:none;fill-opacity:0.985835;stroke:#ff0000;stroke-width:0.264583;stroke-dasharray:none;marker-end:url(#Arrow2)"
+       d="m 66.870801,129.52786 c 0,0 -9.027549,-27.75042 -15.277051,-27.99919 -6.287643,-0.2503 -15.701083,26.93319 -15.701083,26.93319"
+       id="path480" />
   </g>
 </svg>

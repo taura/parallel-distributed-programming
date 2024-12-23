@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{595.27559055bp}%
+    \setlength{\unitlength}{990.71125661bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,15 +50,15 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,1.41428571)%
+  \begin{picture}(1,0.33057621)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{measure_latency.pdf}}%
-    \put(0,0.99553574){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}cache line size\end{tabular}}}}%
+    \put(-0.00069197,0.03799522){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}cache line size\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{measure_latency.pdf}}%
-    \put(0.45357143,1.44910717){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}next pointers\end{tabular}}}}%
-    \put(0.90553104,0.93613949){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$N$ elements\end{tabular}}}}%
+    \put(0.2718395,0.3105267){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}next pointers\end{tabular}}}}%
+    \put(0.54340251,0.00230658){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$N$ elements\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{measure_latency.pdf}}%
-    \put(0.37797619,1.37351193){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} (link all elements in a random order)\end{tabular}}}}%
+    \put(0.22641759,0.26510479){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} (link all elements in a random order)\end{tabular}}}}%
   \end{picture}%
 \endgroup%

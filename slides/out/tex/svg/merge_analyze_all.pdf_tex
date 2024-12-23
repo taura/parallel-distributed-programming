@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{595.27559055bp}%
+    \setlength{\unitlength}{1193.87406957bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,22 +50,22 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,1.41428571)%
+  \begin{picture}(1,0.38264323)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{merge_analyze_all.pdf}}%
-    \put(-0.38002475,1.1747405){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}}%
-    \put(0.42632445,1.1747405){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}}%
-    \put(-0.73935263,0.88245756){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C/2$\end{tabular}}}}}%
-    \put(-0.63855898,0.88245756){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C/2$\end{tabular}}}}}%
-    \put(0.77255213,0.88245756){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C/2$\end{tabular}}}}}%
-    \put(-0.07019558,0.71957129){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\cdots$\end{tabular}}}}%
-    \put(0.0183346,1.37310064){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$n$\end{tabular}}}}%
-    \put(0.84988222,0.98504508){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\} \leq \ao{2n}$\end{tabular}}}}%
-    \put(0.84988222,0.89937048){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\} \leq \ao{2n}$\end{tabular}}}}%
-    \put(0.84988222,1.07323952){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\} \leq \ao{2n}$\end{tabular}}}}%
-    \put(0.84988222,1.30002524){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\} \leq \ao{2n}$\end{tabular}}}}%
+    \put(0.19435093,0.26466684){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}}%
+    \put(0.59640339,0.26466684){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}}%
+    \put(0.01518705,0.11893213){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C/2$\end{tabular}}}}}%
+    \put(0.06544361,0.11893213){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C/2$\end{tabular}}}}}%
+    \put(0.7690354,0.11893213){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C/2$\end{tabular}}}}}%
+    \put(0.34883435,0.03771567){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\cdots$\end{tabular}}}}%
+    \put(0.39297624,0.36357087){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$n$\end{tabular}}}}%
+    \put(0.80759283,0.17008312){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\} \leq \ao{2n}$\end{tabular}}}}%
+    \put(0.80759283,0.12736505){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\} \leq \ao{2n}$\end{tabular}}}}%
+    \put(0.80759283,0.21405761){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\} \leq \ao{2n}$\end{tabular}}}}%
+    \put(0.80759283,0.32713486){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\} \leq \ao{2n}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{merge_analyze_all.pdf}}%
-    \put(1.11392433,1.31441097){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$< \ao{\log (2n/C)}$\end{tabular}}}}}%
+    \put(0.93924644,0.33430771){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$< \ao{\log (2n/C)}$\end{tabular}}}}}%
   \end{picture}%
 \endgroup%

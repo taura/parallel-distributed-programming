@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{595.27559055bp}%
+    \setlength{\unitlength}{586.49997982bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,18 +50,18 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,1.41428571)%
+  \begin{picture}(1,0.62774097)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{merge3.pdf}}%
-    \put(0.35926663,0.91504816){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}$r$\end{tabular}}}}%
+    \put(0.37870872,0.02188867){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}$r$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{merge3.pdf}}%
-    \put(0.16378968,1.46170638){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}already merged\end{tabular}}}}%
-    \put(0.26477258,1.34342118){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$p$\end{tabular}}}}%
-    \put(0.61759958,1.34342118){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$q$\end{tabular}}}}%
+    \put(0.18030691,0.57672636){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}already merged\end{tabular}}}}%
+    \put(0.28280079,0.4566713){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$p$\end{tabular}}}}%
+    \put(0.64090702,0.4566713){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$q$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{merge3.pdf}}%
-    \put(0.31243571,1.01569447){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}6\end{tabular}}}}%
-    \put(0.61481666,1.21728177){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}9\end{tabular}}}}%
+    \put(0.33117708,0.12404092){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}6\end{tabular}}}}%
+    \put(0.63808246,0.32864451){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}9\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{merge3.pdf}}%
   \end{picture}%
 \endgroup%

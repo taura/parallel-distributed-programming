@@ -5,20 +5,20 @@
 <!-- Title: G Pages: 1 -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="1189pt"
+   width="1336.0718pt"
    height="908pt"
-   viewBox="0.00 0.00 1189.00 908.00"
+   viewBox="0 0 1336.0718 908"
    id="svg2"
    version="1.1"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="chol_dag_3.svg">
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="chol_dag_3.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <metadata
      id="metadata1343">
     <rdf:RDF>
@@ -35,28 +35,28 @@
     <marker
        inkscape:stockid="Arrow1Send"
        orient="auto"
-       refY="0.0"
-       refX="0.0"
+       refY="0"
+       refX="0"
        id="Arrow1Send"
-       style="overflow:visible;">
+       style="overflow:visible">
       <path
          id="path7860"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
-         transform="scale(0.2) rotate(180) translate(6,0)" />
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.2,0,0,-0.2,-1.2,0)" />
     </marker>
     <marker
        inkscape:stockid="Arrow1Mend"
        orient="auto"
-       refY="0.0"
-       refX="0.0"
+       refY="0"
+       refX="0"
        id="Arrow1Mend"
-       style="overflow:visible;">
+       style="overflow:visible">
       <path
          id="path5103"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
-         transform="scale(0.4) rotate(180) translate(10,0)" />
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
     </marker>
   </defs>
   <sodipodi:namedview
@@ -73,2204 +73,1713 @@
      id="namedview1339"
      showgrid="false"
      inkscape:zoom="0.76164847"
-     inkscape:cx="687.26601"
-     inkscape:cy="728.78531"
-     inkscape:window-x="72"
-     inkscape:window-y="21"
+     inkscape:cx="758.2238"
+     inkscape:cy="728.68262"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg2" />
+     inkscape:current-layer="svg2"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="pt" />
   <polygon
      style="fill:#ffffff;stroke:none"
      id="polygon7"
-     points="1185,-904 1185,4 -4,4 -4,4 -4,-904 "
-     transform="translate(4,904)" />
+     points="-4,4 -4,4 -4,-904 1185,-904 1185,4 "
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="567"
-     cy="-882"
+     cx="623.70398"
+     cy="22"
      rx="27"
      ry="18"
      id="ellipse12"
-     d="m 594,-882 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="567"
-     sodipodi:cy="-882"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <ellipse
-     cx="423"
-     cy="-810"
+     cx="479.70395"
+     cy="94"
      rx="27"
      ry="18"
      id="ellipse19"
-     d="m 450,-810 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="423"
-     sodipodi:cy="-810"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 549.752,33.329 c -24.354,11.839 -64.471,31.34 -92.18,44.809"
+     d="m 602.45596,33.329 c -24.354,11.839 -64.471,31.34 -92.18,44.809"
      id="path26"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#0000ff" />
   <polygon
-     points="454.859,-822.595 444.335,-821.371 451.798,-828.891 454.859,-822.595 "
+     points="451.798,-828.891 454.859,-822.595 444.335,-821.371 "
      id="polygon28"
      style="fill:#00ff00;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="711"
-     cy="-810"
+     cx="767.70398"
+     cy="94"
      rx="27"
      ry="18"
      id="ellipse33"
-     d="m 738,-810 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="711"
-     sodipodi:cy="-810"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 592.248,33.329 c 24.354,11.839 64.471,31.34 92.18,44.809"
+     d="m 644.95196,33.329 c 24.354,11.839 64.471,31.34 92.18,44.809"
      id="path40"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#ffc0cb" />
   <polygon
-     points="682.202,-828.891 689.665,-821.371 679.141,-822.595 682.202,-828.891 "
+     points="679.141,-822.595 682.202,-828.891 689.665,-821.371 "
      id="polygon42"
      style="fill:#00ff00;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="207"
-     cy="-738"
+     cx="263.70395"
+     cy="166"
      rx="27"
      ry="18"
      id="ellipse47"
-     d="m 234,-738 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="207"
-     sodipodi:cy="-738"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 403.059,102.759 c -38.621,12.516 -114.774,37.195 -158.696,51.429"
+     d="m 455.76296,102.759 c -38.621,12.516 -114.774,37.195 -158.696,51.429"
      id="path54"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#0000ff" />
   <polygon
-     points="241.311,-746.44 230.719,-746.687 239.153,-753.099 241.311,-746.44 "
+     points="239.153,-753.099 241.311,-746.44 230.719,-746.687 "
      id="polygon56"
      style="fill:#00ff00;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="423"
-     cy="-738"
+     cx="479.70395"
+     cy="166"
      rx="27"
      ry="18"
      id="ellipse61"
-     d="m 450,-738 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="423"
-     sodipodi:cy="-738"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 427,112.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 479.70396,112.303 c 0,7.714 0,16.985 0,25.585"
      id="path68"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#ffc0cb" />
   <polygon
-     points="426.5,-766.104 423,-756.104 419.5,-766.104 426.5,-766.104 "
+     points="419.5,-766.104 426.5,-766.104 423,-756.104 "
      id="polygon70"
      style="fill:#00ff00;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="711"
-     cy="-738"
+     cx="767.70398"
+     cy="166"
      rx="27"
      ry="18"
      id="ellipse75"
-     d="m 738,-738 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="711"
-     sodipodi:cy="-738"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 715,112.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 767.70396,112.303 c 0,7.714 0,16.985 0,25.585"
      id="path82"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#0000ff" />
   <polygon
-     points="714.5,-766.104 711,-756.104 707.5,-766.104 714.5,-766.104 "
+     points="707.5,-766.104 714.5,-766.104 711,-756.104 "
      id="polygon84"
      style="fill:#00ff00;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="931"
-     cy="-738"
+     cx="987.70398"
+     cy="166"
      rx="29.3722"
      ry="18"
      id="ellipse89"
-     d="m 960.3722,-738 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="931"
-     sodipodi:cy="-738"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 738.963,102.624 c 38.929,12.387 116.081,36.935 161.117,51.265"
+     d="m 791.66696,102.624 c 38.929,12.387 116.081,36.935 161.117,51.265"
      id="path96"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#ffc0cb" />
   <polygon
-     points="897.248,-753.412 905.716,-747.045 895.126,-746.742 897.248,-753.412 "
+     points="895.126,-746.742 897.248,-753.412 905.716,-747.045 "
      id="polygon98"
      style="fill:#00ff00;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="734"
-     cy="-90"
+     cx="790.70398"
+     cy="814"
      rx="27"
      ry="18"
      id="ellipse103"
-     d="m 761,-90 c 0,9.941125 -12.08831,18 -27,18 -14.91169,0 -27,-8.058875 -27,-18 0,-9.941125 12.08831,-18 27,-18 14.91169,0 27,8.058875 27,18 z"
-     sodipodi:cx="734"
-     sodipodi:cy="-90"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <ellipse
-     cx="586"
-     cy="-18"
+     cx="642.70398"
+     cy="886"
      rx="27"
      ry="18"
      id="ellipse110"
-     d="m 613,-18 c 0,9.9411255 -12.08831,18 -27,18 -14.91169,0 -27,-8.0588745 -27,-18 0,-9.941125 12.08831,-18 27,-18 14.91169,0 27,8.058875 27,18 z"
-     sodipodi:cx="586"
-     sodipodi:cy="-18"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 716.48,825.1786 c -25.21,11.9236 -67.162,31.7657 -95.782,45.3022"
+     d="m 769.18396,825.1786 c -25.21,11.9236 -67.162,31.7657 -95.782,45.3022"
      id="path117"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="618.083,-30.3026 607.546,-29.1909 615.09,-36.6305 618.083,-30.3026 "
+     points="615.09,-36.6305 618.083,-30.3026 607.546,-29.1909 "
      id="polygon119"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="438"
-     cy="-90"
+     cx="494.70395"
+     cy="814"
      rx="27"
      ry="18"
      id="ellipse124"
-     d="m 465,-90 c 0,9.941125 -12.08831,18 -27,18 -14.91169,0 -27,-8.058875 -27,-18 0,-9.941125 12.08831,-18 27,-18 14.91169,0 27,8.058875 27,18 z"
-     sodipodi:cx="438"
-     sodipodi:cy="-90"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 463.52,825.1786 c 25.21,11.9236 67.162,31.7657 95.782,45.3022"
+     d="m 516.22396,825.1786 c 25.21,11.9236 67.162,31.7657 95.782,45.3022"
      id="path131"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="556.91,-36.6305 564.454,-29.1909 553.917,-30.3026 556.91,-36.6305 "
+     points="553.917,-30.3026 556.91,-36.6305 564.454,-29.1909 "
      id="polygon133"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="99"
-     cy="-666"
+     cx="155.70396"
+     cy="238"
      rx="27"
      ry="18"
      id="ellipse138"
-     d="m 126,-666 c 0,9.94113 -12.08831,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="99"
-     sodipodi:cy="-666"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 192.188,179.193 c -17.19,11.142 -42.806,27.745 -62.181,40.303"
+     d="m 244.89196,179.193 c -17.19,11.142 -42.806,27.745 -62.181,40.303"
      id="path145"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#0000ff" />
   <polygon
-     points="127.892,-681.555 117.597,-679.053 124.084,-687.429 127.892,-681.555 "
+     points="124.084,-687.429 127.892,-681.555 117.597,-679.053 "
      id="polygon147"
      style="fill:#00ff00;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="207"
-     cy="-666"
+     cx="263.70395"
+     cy="238"
      rx="27"
      ry="18"
      id="ellipse152"
-     d="m 234,-666 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="207"
-     sodipodi:cy="-666"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 211,184.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 263.70396,184.303 c 0,7.714 0,16.985 0,25.585"
      id="path159"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#ffc0cb" />
   <polygon
-     points="210.5,-694.104 207,-684.104 203.5,-694.104 210.5,-694.104 "
+     points="203.5,-694.104 210.5,-694.104 207,-684.104 "
      id="polygon161"
      style="fill:#00ff00;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="387"
-     cy="-666"
+     cx="443.70395"
+     cy="238"
      rx="27"
      ry="18"
      id="ellipse166"
-     d="m 414,-666 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="387"
-     sodipodi:cy="-666"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 418.65,183.235 c -4.362,8.482 -9.797,19.051 -14.691,28.568"
+     d="m 471.35396,183.235 c -4.362,8.482 -9.797,19.051 -14.691,28.568"
      id="path173"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#0000ff" />
   <polygon
-     points="402.99,-690.439 395.304,-683.147 396.765,-693.641 402.99,-690.439 "
+     points="396.765,-693.641 402.99,-690.439 395.304,-683.147 "
      id="polygon175"
      style="fill:#00ff00;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="459"
-     cy="-666"
+     cx="515.70398"
+     cy="238"
      rx="27"
      ry="18"
      id="ellipse180"
-     d="m 486,-666 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="459"
-     sodipodi:cy="-666"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 435.35,183.235 c 4.362,8.482 9.797,19.051 14.691,28.568"
+     d="m 488.05396,183.235 c 4.362,8.482 9.797,19.051 14.691,28.568"
      id="path187"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#ffc0cb" />
   <polygon
-     points="449.235,-693.641 450.696,-683.147 443.01,-690.439 449.235,-693.641 "
+     points="443.01,-690.439 449.235,-693.641 450.696,-683.147 "
      id="polygon189"
      style="fill:#00ff00;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="438"
-     cy="-162"
+     cx="494.70395"
+     cy="742"
      rx="27"
      ry="18"
      id="ellipse194"
-     d="m 465,-162 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="438"
-     sodipodi:cy="-162"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 442,760.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 494.70396,760.303 c 0,7.714 0,16.985 0,25.585"
      id="path201"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="441.5,-118.104 438,-108.104 434.5,-118.104 441.5,-118.104 "
+     points="434.5,-118.104 441.5,-118.104 438,-108.104 "
      id="polygon203"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="222"
-     cy="-162"
+     cx="278.70395"
+     cy="742"
      rx="27"
      ry="18"
      id="ellipse208"
-     d="m 249,-162 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="222"
-     sodipodi:cy="-162"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 249.941,750.759 c 38.621,12.516 114.774,37.195 158.696,51.429"
+     d="m 302.64496,750.759 c 38.621,12.516 114.774,37.195 158.696,51.429"
      id="path215"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="405.847,-105.099 414.281,-98.6867 403.689,-98.4402 405.847,-105.099 "
+     points="403.689,-98.4402 405.847,-105.099 414.281,-98.6867 "
      id="polygon217"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="27"
-     cy="-594"
+     cx="83.703957"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse222"
-     d="m 54,-594 c 0,9.94113 -12.088312,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.911688,0 27,8.05887 27,18 z"
-     sodipodi:cx="27"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 88.4297,253.166 c -10.1796,9.896 -23.9536,23.288 -35.4603,34.475"
+     d="m 141.13366,253.166 c -10.1796,9.896 -23.9536,23.288 -35.4603,34.475"
      id="path229"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="51.4055,-613.846 41.7957,-609.385 46.5259,-618.865 51.4055,-613.846 "
+     points="46.5259,-618.865 51.4055,-613.846 41.7957,-609.385 "
      id="polygon231"
      style="fill:#00ff00;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="99"
-     cy="-594"
+     cx="155.70396"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse236"
-     d="m 126,-594 c 0,9.94113 -12.08831,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="99"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 103,256.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 155.70396,256.303 c 0,7.714 0,16.985 0,25.585"
      id="path243"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="102.5,-622.104 99,-612.104 95.5001,-622.104 102.5,-622.104 "
+     points="95.5001,-622.104 102.5,-622.104 99,-612.104 "
      id="polygon245"
      style="fill:#00ff00;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="171"
-     cy="-594"
+     cx="227.70396"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse250"
-     d="m 198,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="171"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 202.65,255.235 c -4.362,8.482 -9.797,19.051 -14.691,28.568"
+     d="m 255.35396,255.235 c -4.362,8.482 -9.797,19.051 -14.691,28.568"
      id="path257"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="186.99,-618.439 179.304,-611.147 180.765,-621.641 186.99,-618.439 "
+     points="180.765,-621.641 186.99,-618.439 179.304,-611.147 "
      id="polygon259"
      style="fill:#00ff00;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="243"
-     cy="-594"
+     cx="299.70395"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse264"
-     d="m 270,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="243"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 219.35,255.235 c 4.362,8.482 9.797,19.051 14.691,28.568"
+     d="m 272.05396,255.235 c 4.362,8.482 9.797,19.051 14.691,28.568"
      id="path271"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="233.235,-621.641 234.696,-611.147 227.01,-618.439 233.235,-621.641 "
+     points="227.01,-618.439 233.235,-621.641 234.696,-611.147 "
      id="polygon273"
      style="fill:#00ff00;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="171"
-     cy="-522"
+     cx="227.70396"
+     cy="382"
      rx="27"
      ry="18"
      id="ellipse278"
-     d="m 198,-522 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="171"
-     sodipodi:cy="-522"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <ellipse
-     cx="135"
-     cy="-450"
+     cx="191.70396"
+     cy="454"
      rx="27"
      ry="18"
      id="ellipse285"
-     d="m 162,-450 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="135"
-     sodipodi:cy="-450"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 166.65,399.235 c -4.362,8.482 -9.797,19.051 -14.691,28.568"
+     d="m 219.35396,399.235 c -4.362,8.482 -9.797,19.051 -14.691,28.568"
      id="path292"
      inkscape:connector-curvature="0"
      style="fill:#00ffff;stroke:#000000" />
   <polygon
-     points="150.99,-474.439 143.304,-467.147 144.765,-477.641 150.99,-474.439 "
+     points="144.765,-477.641 150.99,-474.439 143.304,-467.147 "
      id="polygon294"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="114"
-     cy="-378"
+     cx="170.70396"
+     cy="526"
      rx="27"
      ry="18"
      id="ellipse299"
-     d="m 141,-378 c 0,9.94113 -12.08831,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="114"
-     sodipodi:cy="-378"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 133.916,471.945 c -2.398,7.996 -5.317,17.724 -7.996,26.655"
+     d="m 186.61996,471.945 c -2.398,7.996 -5.317,17.724 -7.996,26.655"
      id="path306"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="125.263,-404.362 119.037,-395.789 118.558,-406.373 125.263,-404.362 "
+     points="118.558,-406.373 125.263,-404.362 119.037,-395.789 "
      id="polygon308"
      style="fill:#0000ff;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="186"
-     cy="-378"
+     cx="242.70396"
+     cy="526"
      rx="27"
      ry="18"
      id="ellipse313"
-     d="m 213,-378 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="186"
-     sodipodi:cy="-378"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 150.319,470.535 c 6.602,9.063 15.065,20.679 22.478,30.853"
+     d="m 203.02296,470.535 c 6.602,9.063 15.065,20.679 22.478,30.853"
      id="path320"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="171.653,-404.635 174.713,-394.492 165.996,-400.513 171.653,-404.635 "
+     points="165.996,-400.513 171.653,-404.635 174.713,-394.492 "
      id="polygon322"
      style="fill:#ffc0cb;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="99"
-     cy="-522"
+     cx="155.70396"
+     cy="382"
      rx="27"
      ry="18"
      id="ellipse327"
-     d="m 126,-522 c 0,9.94113 -12.08831,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="99"
-     sodipodi:cy="-522"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <path
-     d="m 111.35,399.235 c 4.362,8.482 9.797,19.051 14.691,28.568"
+     d="m 164.05396,399.235 c 4.362,8.482 9.797,19.051 14.691,28.568"
      id="path334"
      inkscape:connector-curvature="0"
      style="fill:#00ffff;stroke:#008000" />
   <polygon
-     points="125.235,-477.641 126.696,-467.147 119.01,-474.439 125.235,-477.641 "
+     points="119.01,-474.439 125.235,-477.641 126.696,-467.147 "
      id="polygon336"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 45.5703,325.166 c 10.1796,9.896 23.9536,23.288 35.4603,34.475"
+     d="m 98.27426,325.166 c 10.1796,9.896 23.9536,23.288 35.4603,34.475"
      id="path341"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="79.4741,-546.865 84.2043,-537.385 74.5945,-541.846 79.4741,-546.865 "
+     points="74.5945,-541.846 79.4741,-546.865 84.2043,-537.385 "
      id="polygon343"
      style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 103,328.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 155.70396,328.303 c 0,7.714 0,16.985 0,25.585"
      id="path348"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#008000" />
   <polygon
-     points="102.5,-550.104 99,-540.104 95.5001,-550.104 102.5,-550.104 "
+     points="95.5001,-550.104 102.5,-550.104 99,-540.104 "
      id="polygon350"
      style="fill:#00ffff;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 175,328.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 227.70396,328.303 c 0,7.714 0,16.985 0,25.585"
      id="path355"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#000000" />
   <polygon
-     points="174.5,-550.104 171,-540.104 167.5,-550.104 174.5,-550.104 "
+     points="167.5,-550.104 174.5,-550.104 171,-540.104 "
      id="polygon357"
      style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 232.43,325.166 c -10.18,9.896 -23.954,23.288 -35.461,34.475"
+     d="m 285.13396,325.166 c -10.18,9.896 -23.954,23.288 -35.461,34.475"
      id="path362"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="195.405,-541.846 185.796,-537.385 190.526,-546.865 195.405,-541.846 "
+     points="190.526,-546.865 195.405,-541.846 185.796,-537.385 "
      id="polygon364"
      style="fill:#00ffff;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="42"
-     cy="-306"
+     cx="98.703957"
+     cy="598"
      rx="27"
      ry="18"
      id="ellipse369"
-     d="m 69,-306 c 0,9.94113 -12.088312,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.911688,0 27,8.05887 27,18 z"
-     sodipodi:cx="42"
-     sodipodi:cy="-306"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 103.4297,541.166 c -10.1796,9.896 -23.9536,23.288 -35.4603,34.475"
+     d="m 156.13366,541.166 c -10.1796,9.896 -23.9536,23.288 -35.4603,34.475"
      id="path376"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="66.4055,-325.846 56.7957,-321.385 61.5259,-330.865 66.4055,-325.846 "
+     points="61.5259,-330.865 66.4055,-325.846 56.7957,-321.385 "
      id="polygon378"
      style="fill:#ffc0cb;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="114"
-     cy="-306"
+     cx="170.70396"
+     cy="598"
      rx="27"
      ry="18"
      id="ellipse383"
-     d="m 141,-306 c 0,9.94113 -12.08831,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="114"
-     sodipodi:cy="-306"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 118,544.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 170.70396,544.303 c 0,7.714 0,16.985 0,25.585"
      id="path390"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="117.5,-334.104 114,-324.104 110.5,-334.104 117.5,-334.104 "
+     points="110.5,-334.104 117.5,-334.104 114,-324.104 "
      id="polygon392"
      style="fill:#0000ff;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="186"
-     cy="-306"
+     cx="242.70396"
+     cy="598"
      rx="27"
      ry="18"
      id="ellipse397"
-     d="m 213,-306 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="186"
-     sodipodi:cy="-306"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 190,544.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 242.70396,544.303 c 0,7.714 0,16.985 0,25.585"
      id="path404"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="189.5,-334.104 186,-324.104 182.5,-334.104 189.5,-334.104 "
+     points="182.5,-334.104 189.5,-334.104 186,-324.104 "
      id="polygon406"
      style="fill:#ffc0cb;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="258"
-     cy="-306"
+     cx="314.70395"
+     cy="598"
      rx="27"
      ry="18"
      id="ellipse411"
-     d="m 285,-306 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="258"
-     sodipodi:cy="-306"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 204.57,541.166 c 10.18,9.896 23.954,23.288 35.461,34.475"
+     d="m 257.27396,541.166 c 10.18,9.896 23.954,23.288 35.461,34.475"
      id="path418"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="238.474,-330.865 243.204,-321.385 233.595,-325.846 238.474,-330.865 "
+     points="233.595,-325.846 238.474,-330.865 243.204,-321.385 "
      id="polygon420"
      style="fill:#0000ff;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="222"
-     cy="-234"
+     cx="278.70395"
+     cy="670"
      rx="27"
      ry="18"
      id="ellipse425"
-     d="m 249,-234 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="222"
-     sodipodi:cy="-234"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 226,688.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 278.70396,688.303 c 0,7.714 0,16.985 0,25.585"
      id="path432"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="225.5,-190.104 222,-180.104 218.5,-190.104 225.5,-190.104 "
+     points="218.5,-190.104 225.5,-190.104 222,-180.104 "
      id="polygon434"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="114"
-     cy="-234"
+     cx="170.70396"
+     cy="670"
      rx="27"
      ry="18"
      id="ellipse439"
-     d="m 141,-234 c 0,9.94113 -12.08831,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="114"
-     sodipodi:cy="-234"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 136.812,683.193 c 17.19,11.142 42.806,27.745 62.181,40.303"
+     d="m 189.51596,683.193 c 17.19,11.142 42.806,27.745 62.181,40.303"
      id="path446"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="196.916,-183.429 203.403,-175.053 193.108,-177.555 196.916,-183.429 "
+     points="193.108,-177.555 196.916,-183.429 203.403,-175.053 "
      id="polygon448"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 60.5703,613.166 c 10.1796,9.896 23.9536,23.288 35.4603,34.475"
+     d="m 113.27426,613.166 c 10.1796,9.896 23.9536,23.288 35.4603,34.475"
      id="path453"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="94.4741,-258.865 99.2043,-249.385 89.5945,-253.846 94.4741,-258.865 "
+     points="89.5945,-253.846 94.4741,-258.865 99.2043,-249.385 "
      id="polygon455"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 118,616.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 170.70396,616.303 c 0,7.714 0,16.985 0,25.585"
      id="path460"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="117.5,-262.104 114,-252.104 110.5,-262.104 117.5,-262.104 "
+     points="110.5,-262.104 117.5,-262.104 114,-252.104 "
      id="polygon462"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 198.35,615.235 c 4.362,8.482 9.797,19.051 14.691,28.568"
+     d="m 251.05396,615.235 c 4.362,8.482 9.797,19.051 14.691,28.568"
      id="path467"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="212.235,-261.641 213.696,-251.147 206.01,-258.439 212.235,-261.641 "
+     points="206.01,-258.439 212.235,-261.641 213.696,-251.147 "
      id="polygon469"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 253.65,615.235 c -4.362,8.482 -9.797,19.051 -14.691,28.568"
+     d="m 306.35396,615.235 c -4.362,8.482 -9.797,19.051 -14.691,28.568"
      id="path474"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="237.99,-258.439 230.304,-251.147 231.765,-261.641 237.99,-258.439 "
+     points="231.765,-261.641 237.99,-258.439 230.304,-251.147 "
      id="polygon476"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="315"
-     cy="-594"
+     cx="371.70395"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse481"
-     d="m 342,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="315"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 376.43,253.166 c -10.18,9.896 -23.954,23.288 -35.461,34.475"
+     d="m 429.13396,253.166 c -10.18,9.896 -23.954,23.288 -35.461,34.475"
      id="path488"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="339.405,-613.846 329.796,-609.385 334.526,-618.865 339.405,-613.846 "
+     points="334.526,-618.865 339.405,-613.846 329.796,-609.385 "
      id="polygon490"
      style="fill:#00ff00;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="387"
-     cy="-594"
+     cx="443.70395"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse495"
-     d="m 414,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="387"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <path
-     d="m 391,256.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 443.70396,256.303 c 0,7.714 0,16.985 0,25.585"
      id="path502"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="390.5,-622.104 387,-612.104 383.5,-622.104 390.5,-622.104 "
+     points="383.5,-622.104 390.5,-622.104 387,-612.104 "
      id="polygon504"
      style="fill:#00ff00;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="459"
-     cy="-594"
+     cx="515.70398"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse509"
-     d="m 486,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="459"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 463,256.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 515.70396,256.303 c 0,7.714 0,16.985 0,25.585"
      id="path516"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="462.5,-622.104 459,-612.104 455.5,-622.104 462.5,-622.104 "
+     points="455.5,-622.104 462.5,-622.104 459,-612.104 "
      id="polygon518"
      style="fill:#00ff00;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="531"
-     cy="-594"
+     cx="587.70398"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse523"
-     d="m 558,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="531"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 477.57,253.166 c 10.18,9.896 23.954,23.288 35.461,34.475"
+     d="m 530.27396,253.166 c 10.18,9.896 23.954,23.288 35.461,34.475"
      id="path530"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="511.474,-618.865 516.204,-609.385 506.595,-613.846 511.474,-618.865 "
+     points="506.595,-613.846 511.474,-618.865 516.204,-609.385 "
      id="polygon532"
      style="fill:#00ff00;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="459"
-     cy="-522"
+     cx="515.70398"
+     cy="382"
      rx="27"
      ry="18"
      id="ellipse537"
-     d="m 486,-522 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="459"
-     sodipodi:cy="-522"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <ellipse
-     cx="431"
-     cy="-450"
+     cx="487.70395"
+     cy="454"
      rx="27"
      ry="18"
      id="ellipse544"
-     d="m 458,-450 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="431"
-     sodipodi:cy="-450"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 456.364,399.589 c -3.277,8.195 -7.308,18.271 -10.982,27.456"
+     d="m 509.06796,399.589 c -3.277,8.195 -7.308,18.271 -10.982,27.456"
      id="path551"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="444.552,-475.455 437.588,-467.47 438.052,-478.055 444.552,-475.455 "
+     points="438.052,-478.055 444.552,-475.455 437.588,-467.47 "
      id="polygon553"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="402"
-     cy="-378"
+     cx="458.70395"
+     cy="526"
      rx="27"
      ry="18"
      id="ellipse558"
-     d="m 429,-378 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="402"
-     sodipodi:cy="-378"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 428.127,471.589 c -3.394,8.195 -7.569,18.271 -11.374,27.456"
+     d="m 480.83096,471.589 c -3.394,8.195 -7.569,18.271 -11.374,27.456"
      id="path565"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="415.884,-403.369 408.823,-395.47 409.417,-406.048 415.884,-403.369 "
+     points="409.417,-406.048 415.884,-403.369 408.823,-395.47 "
      id="polygon567"
      style="fill:#0000ff;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="474"
-     cy="-378"
+     cx="530.70398"
+     cy="526"
      rx="27"
      ry="18"
      id="ellipse572"
-     d="m 501,-378 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="474"
-     sodipodi:cy="-378"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 444.757,470.884 c 5.388,8.771 12.195,19.852 18.244,29.7"
+     d="m 497.46096,470.884 c 5.388,8.771 12.195,19.852 18.244,29.7"
      id="path579"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="462.029,-405.174 464.281,-394.821 456.065,-401.51 462.029,-405.174 "
+     points="456.065,-401.51 462.029,-405.174 464.281,-394.821 "
      id="polygon581"
      style="fill:#ffc0cb;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="387"
-     cy="-522"
+     cx="443.70395"
+     cy="382"
      rx="27"
      ry="18"
      id="ellipse586"
-     d="m 414,-522 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="387"
-     sodipodi:cy="-522"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 400.984,398.884 c 5.513,8.771 12.479,19.852 18.669,29.7"
+     d="m 453.68796,398.884 c 5.513,8.771 12.479,19.852 18.669,29.7"
      id="path593"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="418.697,-477.15 421.055,-466.821 412.77,-473.425 418.697,-477.15 "
+     points="412.77,-473.425 418.697,-477.15 421.055,-466.821 "
      id="polygon595"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 333.57,325.166 c 10.18,9.896 23.954,23.288 35.461,34.475"
+     d="m 386.27396,325.166 c 10.18,9.896 23.954,23.288 35.461,34.475"
      id="path600"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="367.474,-546.865 372.204,-537.385 362.595,-541.846 367.474,-546.865 "
+     points="362.595,-541.846 367.474,-546.865 372.204,-537.385 "
      id="polygon602"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 391,328.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 443.70396,328.303 c 0,7.714 0,16.985 0,25.585"
      id="path607"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#008000" />
   <polygon
-     points="390.5,-550.104 387,-540.104 383.5,-550.104 390.5,-550.104 "
+     points="383.5,-550.104 390.5,-550.104 387,-540.104 "
      id="polygon609"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 463,328.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 515.70396,328.303 c 0,7.714 0,16.985 0,25.585"
      id="path614"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#000000" />
   <polygon
-     points="462.5,-550.104 459,-540.104 455.5,-550.104 462.5,-550.104 "
+     points="455.5,-550.104 462.5,-550.104 459,-540.104 "
      id="polygon616"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 520.43,325.166 c -10.18,9.896 -23.954,23.288 -35.461,34.475"
+     d="m 573.13396,325.166 c -10.18,9.896 -23.954,23.288 -35.461,34.475"
      id="path621"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="483.405,-541.846 473.796,-537.385 478.526,-546.865 483.405,-541.846 "
+     points="478.526,-546.865 483.405,-541.846 473.796,-537.385 "
      id="polygon623"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="330"
-     cy="-306"
+     cx="386.70395"
+     cy="598"
      rx="27"
      ry="18"
      id="ellipse628"
-     d="m 357,-306 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="330"
-     sodipodi:cy="-306"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 391.43,541.166 c -10.18,9.896 -23.954,23.288 -35.461,34.475"
+     d="m 444.13396,541.166 c -10.18,9.896 -23.954,23.288 -35.461,34.475"
      id="path635"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="354.405,-325.846 344.796,-321.385 349.526,-330.865 354.405,-325.846 "
+     points="349.526,-330.865 354.405,-325.846 344.796,-321.385 "
      id="polygon637"
      style="fill:#ffc0cb;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="402"
-     cy="-306"
+     cx="458.70395"
+     cy="598"
      rx="27"
      ry="18"
      id="ellipse642"
-     d="m 429,-306 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="402"
-     sodipodi:cy="-306"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 406,544.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 458.70396,544.303 c 0,7.714 0,16.985 0,25.585"
      id="path649"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="405.5,-334.104 402,-324.104 398.5,-334.104 405.5,-334.104 "
+     points="398.5,-334.104 405.5,-334.104 402,-324.104 "
      id="polygon651"
      style="fill:#0000ff;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="474"
-     cy="-306"
+     cx="530.70398"
+     cy="598"
      rx="27"
      ry="18"
      id="ellipse656"
-     d="m 501,-306 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="474"
-     sodipodi:cy="-306"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 478,544.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 530.70396,544.303 c 0,7.714 0,16.985 0,25.585"
      id="path663"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="477.5,-334.104 474,-324.104 470.5,-334.104 477.5,-334.104 "
+     points="470.5,-334.104 477.5,-334.104 474,-324.104 "
      id="polygon665"
      style="fill:#ffc0cb;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="546"
-     cy="-306"
+     cx="602.70398"
+     cy="598"
      rx="27"
      ry="18"
      id="ellipse670"
-     d="m 573,-306 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="546"
-     sodipodi:cy="-306"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 492.57,541.166 c 10.18,9.896 23.954,23.288 35.461,34.475"
+     d="m 545.27396,541.166 c 10.18,9.896 23.954,23.288 35.461,34.475"
      id="path677"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="526.474,-330.865 531.204,-321.385 521.595,-325.846 526.474,-330.865 "
+     points="521.595,-325.846 526.474,-330.865 531.204,-321.385 "
      id="polygon679"
      style="fill:#0000ff;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="474"
-     cy="-234"
+     cx="530.70398"
+     cy="670"
      rx="27"
      ry="18"
      id="ellipse684"
-     d="m 501,-234 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="474"
-     sodipodi:cy="-234"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 469.65,687.235 c -4.362,8.482 -9.797,19.051 -14.691,28.568"
+     d="m 522.35396,687.235 c -4.362,8.482 -9.797,19.051 -14.691,28.568"
      id="path691"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="453.99,-186.439 446.304,-179.147 447.765,-189.641 453.99,-186.439 "
+     points="447.765,-189.641 453.99,-186.439 446.304,-179.147 "
      id="polygon693"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="402"
-     cy="-234"
+     cx="458.70395"
+     cy="670"
      rx="27"
      ry="18"
      id="ellipse698"
-     d="m 429,-234 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="402"
-     sodipodi:cy="-234"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 414.35,687.235 c 4.362,8.482 9.797,19.051 14.691,28.568"
+     d="m 467.05396,687.235 c 4.362,8.482 9.797,19.051 14.691,28.568"
      id="path705"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="428.235,-189.641 429.696,-179.147 422.01,-186.439 428.235,-189.641 "
+     points="422.01,-186.439 428.235,-189.641 429.696,-179.147 "
      id="polygon707"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 348.57,613.166 c 10.18,9.896 23.954,23.288 35.461,34.475"
+     d="m 401.27396,613.166 c 10.18,9.896 23.954,23.288 35.461,34.475"
      id="path712"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="382.474,-258.865 387.204,-249.385 377.595,-253.846 382.474,-258.865 "
+     points="377.595,-253.846 382.474,-258.865 387.204,-249.385 "
      id="polygon714"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 406,616.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 458.70396,616.303 c 0,7.714 0,16.985 0,25.585"
      id="path719"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="405.5,-262.104 402,-252.104 398.5,-262.104 405.5,-262.104 "
+     points="398.5,-262.104 405.5,-262.104 402,-252.104 "
      id="polygon721"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 478,616.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 530.70396,616.303 c 0,7.714 0,16.985 0,25.585"
      id="path726"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="477.5,-262.104 474,-252.104 470.5,-262.104 477.5,-262.104 "
+     points="470.5,-262.104 477.5,-262.104 474,-252.104 "
      id="polygon728"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 535.43,613.166 c -10.18,9.896 -23.954,23.288 -35.461,34.475"
+     d="m 588.13396,613.166 c -10.18,9.896 -23.954,23.288 -35.461,34.475"
      id="path733"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="498.405,-253.846 488.796,-249.385 493.526,-258.865 498.405,-253.846 "
+     points="493.526,-258.865 498.405,-253.846 488.796,-249.385 "
      id="polygon735"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="675"
-     cy="-666"
+     cx="731.70398"
+     cy="238"
      rx="27"
      ry="18"
      id="ellipse740"
-     d="m 702,-666 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="675"
-     sodipodi:cy="-666"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 706.65,183.235 c -4.362,8.482 -9.797,19.051 -14.691,28.568"
+     d="m 759.35396,183.235 c -4.362,8.482 -9.797,19.051 -14.691,28.568"
      id="path747"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#0000ff" />
   <polygon
-     points="690.99,-690.439 683.304,-683.147 684.765,-693.641 690.99,-690.439 "
+     points="684.765,-693.641 690.99,-690.439 683.304,-683.147 "
      id="polygon749"
      style="fill:#00ff00;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="747"
-     cy="-666"
+     cx="803.70398"
+     cy="238"
      rx="27"
      ry="18"
      id="ellipse754"
-     d="m 774,-666 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="747"
-     sodipodi:cy="-666"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 723.35,183.235 c 4.362,8.482 9.797,19.051 14.691,28.568"
+     d="m 776.05396,183.235 c 4.362,8.482 9.797,19.051 14.691,28.568"
      id="path761"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#ffc0cb" />
   <polygon
-     points="737.235,-693.641 738.696,-683.147 731.01,-690.439 737.235,-693.641 "
+     points="731.01,-690.439 737.235,-693.641 738.696,-683.147 "
      id="polygon763"
      style="fill:#00ff00;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="931"
-     cy="-666"
+     cx="987.70398"
+     cy="238"
      rx="29.3722"
      ry="18"
      id="ellipse768"
-     d="m 960.3722,-666 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="931"
-     sodipodi:cy="-666"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 935,184.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 987.70396,184.303 c 0,7.714 0,16.985 0,25.585"
      id="path775"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#0000ff" />
   <polygon
-     points="934.5,-694.104 931,-684.104 927.5,-694.104 934.5,-694.104 "
+     points="927.5,-694.104 934.5,-694.104 931,-684.104 "
      id="polygon777"
      style="fill:#00ff00;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="1045"
-     cy="-666"
+     cx="1101.704"
+     cy="238"
      rx="29.3722"
      ry="18"
      id="ellipse782"
-     d="m 1074.3722,-666 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1045"
-     sodipodi:cy="-666"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <path
-     d="m 954.857,179.193 c 18.116,11.124 45.097,27.691 65.533,40.242"
+     d="m 1007.561,179.193 c 18.116,11.124 45.097,27.691 65.533,40.242"
      id="path789"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#ffc0cb" />
   <polygon
-     points="1018.3,-687.503 1024.99,-679.288 1014.63,-681.538 1018.3,-687.503 "
+     points="1014.63,-681.538 1018.3,-687.503 1024.99,-679.288 "
      id="polygon791"
      style="fill:#00ff00;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="962"
-     cy="-162"
+     cx="1018.704"
+     cy="742"
      rx="27"
      ry="18"
      id="ellipse796"
-     d="m 989,-162 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="962"
-     sodipodi:cy="-162"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 942.031,750.359 c -40.796,12.525 -123.824,38.016 -170.407,52.318"
+     d="m 994.73496,750.359 c -40.796,12.525 -123.824,38.016 -170.407,52.318"
      id="path803"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="768.577,-97.9545 757.99,-98.3654 766.522,-104.646 768.577,-97.9545 "
+     points="766.522,-104.646 768.577,-97.9545 757.99,-98.3654 "
      id="polygon805"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="734"
-     cy="-162"
+     cx="790.70398"
+     cy="742"
      rx="27"
      ry="18"
      id="ellipse810"
-     d="m 761,-162 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="734"
-     sodipodi:cy="-162"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 738,760.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 790.70396,760.303 c 0,7.714 0,16.985 0,25.585"
      id="path817"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="737.5,-118.104 734,-108.104 730.5,-118.104 737.5,-118.104 "
+     points="730.5,-118.104 737.5,-118.104 734,-108.104 "
      id="polygon819"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="603"
-     cy="-594"
+     cx="659.70398"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse824"
-     d="m 630,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="603"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 664.43,253.166 c -10.18,9.896 -23.954,23.288 -35.461,34.475"
+     d="m 717.13396,253.166 c -10.18,9.896 -23.954,23.288 -35.461,34.475"
      id="path831"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="627.405,-613.846 617.796,-609.385 622.526,-618.865 627.405,-613.846 "
+     points="622.526,-618.865 627.405,-613.846 617.796,-609.385 "
      id="polygon833"
      style="fill:#00ff00;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="675"
-     cy="-594"
+     cx="731.70398"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse838"
-     d="m 702,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="675"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <path
-     d="m 679,256.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 731.70396,256.303 c 0,7.714 0,16.985 0,25.585"
      id="path845"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="678.5,-622.104 675,-612.104 671.5,-622.104 678.5,-622.104 "
+     points="671.5,-622.104 678.5,-622.104 675,-612.104 "
      id="polygon847"
      style="fill:#00ff00;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="747"
-     cy="-594"
+     cx="803.70398"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse852"
-     d="m 774,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="747"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <path
-     d="m 751,256.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 803.70396,256.303 c 0,7.714 0,16.985 0,25.585"
      id="path859"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="750.5,-622.104 747,-612.104 743.5,-622.104 750.5,-622.104 "
+     points="743.5,-622.104 750.5,-622.104 747,-612.104 "
      id="polygon861"
      style="fill:#00ff00;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="819"
-     cy="-594"
+     cx="875.70398"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse866"
-     d="m 846,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="819"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <path
-     d="m 765.57,253.166 c 10.18,9.896 23.954,23.288 35.461,34.475"
+     d="m 818.27396,253.166 c 10.18,9.896 23.954,23.288 35.461,34.475"
      id="path873"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="799.474,-618.865 804.204,-609.385 794.595,-613.846 799.474,-618.865 "
+     points="794.595,-613.846 799.474,-618.865 804.204,-609.385 "
      id="polygon875"
      style="fill:#00ff00;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="747"
-     cy="-522"
+     cx="803.70398"
+     cy="382"
      rx="27"
      ry="18"
      id="ellipse880"
-     d="m 774,-522 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="747"
-     sodipodi:cy="-522"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <ellipse
-     cx="714"
-     cy="-450"
+     cx="770.70398"
+     cy="454"
      rx="27"
      ry="18"
      id="ellipse887"
-     d="m 741,-450 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="714"
-     sodipodi:cy="-450"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 743.179,399.589 c -3.904,8.282 -8.714,18.486 -13.081,27.749"
+     d="m 795.88296,399.589 c -3.904,8.282 -8.714,18.486 -13.081,27.749"
      id="path894"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="729.194,-475.023 721.764,-467.47 722.863,-478.008 729.194,-475.023 "
+     points="722.863,-478.008 729.194,-475.023 721.764,-467.47 "
      id="polygon896"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="696"
-     cy="-378"
+     cx="752.70398"
+     cy="526"
      rx="29.3722"
      ry="18"
      id="ellipse901"
-     d="m 725.3722,-378 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="696"
-     sodipodi:cy="-378"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 713.643,471.945 c -2.004,7.794 -4.432,17.233 -6.68,25.976"
+     d="m 766.34696,471.945 c -2.004,7.794 -4.432,17.233 -6.68,25.976"
      id="path908"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="706.322,-405.089 700.442,-396.275 699.543,-406.832 706.322,-405.089 "
+     points="699.543,-406.832 706.322,-405.089 700.442,-396.275 "
      id="polygon910"
      style="fill:#0000ff;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="772"
-     cy="-378"
+     cx="828.70398"
+     cy="526"
      rx="29.3722"
      ry="18"
      id="ellipse915"
-     d="m 801.3722,-378 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="772"
-     sodipodi:cy="-378"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 730.585,470.189 c 7.571,9.138 17.368,20.962 25.924,31.287"
+     d="m 783.28896,470.189 c 7.571,9.138 17.368,20.962 25.924,31.287"
      id="path922"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="755.353,-404.577 759.038,-394.644 749.963,-400.111 755.353,-404.577 "
+     points="749.963,-400.111 755.353,-404.577 759.038,-394.644 "
      id="polygon924"
      style="fill:#ffc0cb;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="675"
-     cy="-522"
+     cx="731.70398"
+     cy="382"
      rx="27"
      ry="18"
      id="ellipse929"
-     d="m 702,-522 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="675"
-     sodipodi:cy="-522"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 688.045,399.235 c 4.775,8.57 10.737,19.271 16.082,28.865"
+     d="m 740.74896,399.235 c 4.775,8.57 10.737,19.271 16.082,28.865"
      id="path936"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="703.194,-477.586 705.004,-467.147 697.079,-474.18 703.194,-477.586 "
+     points="697.079,-474.18 703.194,-477.586 705.004,-467.147 "
      id="polygon938"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 621.57,325.166 c 10.18,9.896 23.954,23.288 35.461,34.475"
+     d="m 674.27396,325.166 c 10.18,9.896 23.954,23.288 35.461,34.475"
      id="path943"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="655.474,-546.865 660.204,-537.385 650.595,-541.846 655.474,-546.865 "
+     points="650.595,-541.846 655.474,-546.865 660.204,-537.385 "
      id="polygon945"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 679,328.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 731.70396,328.303 c 0,7.714 0,16.985 0,25.585"
      id="path950"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#008000" />
   <polygon
-     points="678.5,-550.104 675,-540.104 671.5,-550.104 678.5,-550.104 "
+     points="671.5,-550.104 678.5,-550.104 675,-540.104 "
      id="polygon952"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 751,328.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 803.70396,328.303 c 0,7.714 0,16.985 0,25.585"
      id="path957"
      inkscape:connector-curvature="0"
      style="fill:#00ff00;stroke:#000000" />
   <polygon
-     points="750.5,-550.104 747,-540.104 743.5,-550.104 750.5,-550.104 "
+     points="743.5,-550.104 750.5,-550.104 747,-540.104 "
      id="polygon959"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 808.43,325.166 c -10.18,9.896 -23.954,23.288 -35.461,34.475"
+     d="m 861.13396,325.166 c -10.18,9.896 -23.954,23.288 -35.461,34.475"
      id="path964"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="771.405,-541.846 761.796,-537.385 766.526,-546.865 771.405,-541.846 "
+     points="766.526,-546.865 771.405,-541.846 761.796,-537.385 "
      id="polygon966"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="620"
-     cy="-306"
+     cx="676.70398"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse971"
-     d="m 649.3722,-306 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="620"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 684.253,541.504 c -10.7,9.855 -25.034,23.057 -37.037,34.113"
+     d="m 736.95696,541.504 c -10.7,9.855 -25.034,23.057 -37.037,34.113"
      id="path978"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="645.454,-325.686 635.727,-321.485 640.711,-330.835 645.454,-325.686 "
+     points="640.711,-330.835 645.454,-325.686 635.727,-321.485 "
      id="polygon980"
      style="fill:#ffc0cb;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="696"
-     cy="-306"
+     cx="752.70398"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse985"
-     d="m 725.3722,-306 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="696"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 700,544.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 752.70396,544.303 c 0,7.714 0,16.985 0,25.585"
      id="path992"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="699.5,-334.104 696,-324.104 692.5,-334.104 699.5,-334.104 "
+     points="692.5,-334.104 699.5,-334.104 696,-324.104 "
      id="polygon994"
      style="fill:#0000ff;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="772"
-     cy="-306"
+     cx="828.70398"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse999"
-     d="m 801.3722,-306 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="772"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 776,544.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 828.70396,544.303 c 0,7.714 0,16.985 0,25.585"
      id="path1006"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="775.5,-334.104 772,-324.104 768.5,-334.104 775.5,-334.104 "
+     points="768.5,-334.104 775.5,-334.104 772,-324.104 "
      id="polygon1008"
      style="fill:#ffc0cb;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="848"
-     cy="-306"
+     cx="904.70398"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse1013"
-     d="m 877.3722,-306 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="848"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 791.747,541.504 c 10.7,9.855 25.034,23.057 37.037,34.113"
+     d="m 844.45096,541.504 c 10.7,9.855 25.034,23.057 37.037,34.113"
      id="path1020"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="827.289,-330.835 832.273,-321.485 822.546,-325.686 827.289,-330.835 "
+     points="822.546,-325.686 827.289,-330.835 832.273,-321.485 "
      id="polygon1022"
      style="fill:#0000ff;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="772"
-     cy="-234"
+     cx="828.70398"
+     cy="670"
      rx="27"
      ry="18"
      id="ellipse1027"
-     d="m 799,-234 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="772"
-     sodipodi:cy="-234"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 767.187,687.235 c -4.605,8.482 -10.342,19.051 -15.508,28.568"
+     d="m 819.89096,687.235 c -4.605,8.482 -10.342,19.051 -15.508,28.568"
      id="path1034"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="750.613,-186.266 742.766,-179.147 744.461,-189.606 750.613,-186.266 "
+     points="744.461,-189.606 750.613,-186.266 742.766,-179.147 "
      id="polygon1036"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="696"
-     cy="-234"
+     cx="752.70398"
+     cy="670"
      rx="29.3722"
      ry="18"
      id="ellipse1041"
-     d="m 725.3722,-234 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="696"
-     sodipodi:cy="-234"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 708.813,687.235 c 4.605,8.482 10.342,19.051 15.508,28.568"
+     d="m 761.51696,687.235 c 4.605,8.482 10.342,19.051 15.508,28.568"
      id="path1048"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="723.539,-189.606 725.234,-179.147 717.387,-186.266 723.539,-189.606 "
+     points="717.387,-186.266 723.539,-189.606 725.234,-179.147 "
      id="polygon1050"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 639.747,613.504 c 10.7,9.855 25.034,23.057 37.037,34.113"
+     d="m 692.45096,613.504 c 10.7,9.855 25.034,23.057 37.037,34.113"
      id="path1055"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="675.289,-258.835 680.273,-249.485 670.546,-253.686 675.289,-258.835 "
+     points="670.546,-253.686 675.289,-258.835 680.273,-249.485 "
      id="polygon1057"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 700,616.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 752.70396,616.303 c 0,7.714 0,16.985 0,25.585"
      id="path1062"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="699.5,-262.104 696,-252.104 692.5,-262.104 699.5,-262.104 "
+     points="692.5,-262.104 699.5,-262.104 696,-252.104 "
      id="polygon1064"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 776,616.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 828.70396,616.303 c 0,7.714 0,16.985 0,25.585"
      id="path1069"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="775.5,-262.104 772,-252.104 768.5,-262.104 775.5,-262.104 "
+     points="768.5,-262.104 775.5,-262.104 772,-252.104 "
      id="polygon1071"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 836.253,613.504 c -10.843,9.986 -25.417,23.41 -37.516,34.554"
+     d="m 888.95696,613.504 c -10.843,9.986 -25.417,23.41 -37.516,34.554"
      id="path1076"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="796.935,-253.208 787.208,-249.008 792.193,-258.357 796.935,-253.208 "
+     points="792.193,-258.357 796.935,-253.208 787.208,-249.008 "
      id="polygon1078"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="893"
-     cy="-594"
+     cx="949.70398"
+     cy="310"
      rx="29.3722"
      ry="18"
      id="ellipse1083"
-     d="m 922.3722,-594 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="893"
-     sodipodi:cy="-594"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <path
-     d="m 926.187,255.235 c -4.539,8.361 -10.178,18.749 -15.287,28.159"
+     d="m 978.89096,255.235 c -4.539,8.361 -10.178,18.749 -15.287,28.159"
      id="path1090"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="909.877,-618.752 902.03,-611.633 903.725,-622.092 909.877,-618.752 "
+     points="903.725,-622.092 909.877,-618.752 902.03,-611.633 "
      id="polygon1092"
      style="fill:#ffc0cb;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="969"
-     cy="-594"
+     cx="1025.704"
+     cy="310"
      rx="29.3722"
      ry="18"
      id="ellipse1097"
-     d="m 998.3722,-594 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="969"
-     sodipodi:cy="-594"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <path
-     d="m 943.813,255.235 c 4.539,8.361 10.178,18.749 15.287,28.159"
+     d="m 996.51696,255.235 c 4.53904,8.361 10.17804,18.749 15.28704,28.159"
      id="path1104"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="958.275,-622.092 959.97,-611.633 952.123,-618.752 958.275,-622.092 "
+     points="952.123,-618.752 958.275,-622.092 959.97,-611.633 "
      id="polygon1106"
      style="fill:#0000ff;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="1045"
-     cy="-594"
+     cx="1101.704"
+     cy="310"
      rx="29.3722"
      ry="18"
      id="ellipse1111"
-     d="m 1074.3722,-594 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1045"
-     sodipodi:cy="-594"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 1049,256.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 1101.704,256.303 c 0,7.714 0,16.985 0,25.585"
      id="path1118"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="1048.5,-622.104 1045,-612.104 1041.5,-622.104 1048.5,-622.104 "
+     points="1041.5,-622.104 1048.5,-622.104 1045,-612.104 "
      id="polygon1120"
      style="fill:#ffc0cb;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="1121"
-     cy="-594"
+     cx="1177.704"
+     cy="310"
      rx="29.3722"
      ry="18"
      id="ellipse1125"
-     d="m 1150.3722,-594 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1121"
-     sodipodi:cy="-594"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 1064.75,253.504 c 10.7,9.855 25.03,23.057 37.03,34.113"
+     d="m 1117.454,253.504 c 10.7,9.855 25.03,23.057 37.03,34.113"
      id="path1132"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="1100.29,-618.835 1105.27,-609.485 1095.55,-613.686 1100.29,-618.835 "
+     points="1095.55,-613.686 1100.29,-618.835 1105.27,-609.485 "
      id="polygon1134"
      style="fill:#0000ff;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="1045"
-     cy="-522"
+     cx="1101.704"
+     cy="382"
      rx="29.3722"
      ry="18"
      id="ellipse1139"
-     d="m 1074.3722,-522 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1045"
-     sodipodi:cy="-522"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <ellipse
-     cx="1030"
-     cy="-450"
+     cx="1086.704"
+     cy="454"
      rx="29.3722"
      ry="18"
      id="ellipse1146"
-     d="m 1059.3722,-450 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1030"
-     sodipodi:cy="-450"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 1045.37,399.945 c -1.67,7.794 -3.69,17.233 -5.57,25.976"
+     d="m 1098.074,399.945 c -1.67,7.794 -3.69,17.233 -5.57,25.976"
      id="path1153"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="1039.22,-477.32 1033.7,-468.275 1032.37,-478.787 1039.22,-477.32 "
+     points="1032.37,-478.787 1039.22,-477.32 1033.7,-468.275 "
      id="polygon1155"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="1000"
-     cy="-378"
+     cx="1056.704"
+     cy="526"
      rx="29.3722"
      ry="18"
      id="ellipse1160"
-     d="m 1029.3722,-378 c 0,9.94113 -13.1504,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1000"
-     sodipodi:cy="-378"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 1026.89,471.589 c -3.55,8.282 -7.92,18.486 -11.89,27.749"
+     d="m 1079.594,471.589 c -3.55,8.282 -7.92,18.486 -11.89,27.749"
      id="path1167"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="1014.21,-403.283 1007.06,-395.47 1007.78,-406.04 1014.21,-403.283 "
+     points="1007.78,-406.04 1014.21,-403.283 1007.06,-395.47 "
      id="polygon1169"
      style="fill:#0000ff;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="1076"
-     cy="-378"
+     cx="1132.704"
+     cy="526"
      rx="29.3722"
      ry="18"
      id="ellipse1174"
-     d="m 1105.3722,-378 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1076"
-     sodipodi:cy="-378"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 1044.44,470.884 c 5.76,8.771 13.04,19.852 19.52,29.7"
+     d="m 1097.144,470.884 c 5.76,8.771 13.04,19.852 19.52,29.7"
      id="path1181"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="1063.04,-405.1 1065.6,-394.821 1057.19,-401.256 1063.04,-405.1 "
+     points="1057.19,-401.256 1063.04,-405.1 1065.6,-394.821 "
      id="polygon1183"
      style="fill:#ffc0cb;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="969"
-     cy="-522"
+     cx="1025.704"
+     cy="382"
      rx="29.3722"
      ry="18"
      id="ellipse1188"
-     d="m 998.3722,-522 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="969"
-     sodipodi:cy="-522"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 986.236,398.189 c 8.154,9.356 18.764,21.529 27.904,32.026"
+     d="m 1038.94,398.189 c 8.154,9.356 18.764,21.529 27.904,32.026"
      id="path1195"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="1012.86,-475.998 1016.79,-466.159 1007.58,-471.399 1012.86,-475.998 "
+     points="1007.58,-471.399 1012.86,-475.998 1016.79,-466.159 "
      id="polygon1197"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 912.747,325.504 c 10.7,9.855 25.034,23.057 37.037,34.113"
+     d="m 965.45096,325.504 c 10.7,9.855 25.034,23.057 37.03704,34.113"
      id="path1202"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="948.289,-546.835 953.273,-537.485 943.546,-541.686 948.289,-546.835 "
+     points="943.546,-541.686 948.289,-546.835 953.273,-537.485 "
      id="polygon1204"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 973,328.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 1025.704,328.303 c 0,7.714 0,16.985 0,25.585"
      id="path1209"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="972.5,-550.104 969,-540.104 965.5,-550.104 972.5,-550.104 "
+     points="965.5,-550.104 972.5,-550.104 969,-540.104 "
      id="polygon1211"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 1049,328.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 1101.704,328.303 c 0,7.714 0,16.985 0,25.585"
      id="path1216"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="1048.5,-550.104 1045,-540.104 1041.5,-550.104 1048.5,-550.104 "
+     points="1041.5,-550.104 1048.5,-550.104 1045,-540.104 "
      id="polygon1218"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 1109.25,325.504 c -10.7,9.855 -25.03,23.057 -37.03,34.113"
+     d="m 1161.954,325.504 c -10.7,9.855 -25.03,23.057 -37.03,34.113"
      id="path1223"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="1070.45,-541.686 1060.73,-537.485 1065.71,-546.835 1070.45,-541.686 "
+     points="1065.71,-546.835 1070.45,-541.686 1060.73,-537.485 "
      id="polygon1225"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="924"
-     cy="-306"
+     cx="980.70398"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse1230"
-     d="m 953.3722,-306 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="924"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 988.253,541.504 c -10.7,9.855 -25.034,23.057 -37.037,34.113"
+     d="m 1040.957,541.504 c -10.7,9.855 -25.034,23.057 -37.037,34.113"
      id="path1237"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="949.454,-325.686 939.727,-321.485 944.711,-330.835 949.454,-325.686 "
+     points="944.711,-330.835 949.454,-325.686 939.727,-321.485 "
      id="polygon1239"
      style="fill:#ffc0cb;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="1000"
-     cy="-306"
+     cx="1056.704"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse1244"
-     d="m 1029.3722,-306 c 0,9.94113 -13.1504,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1000"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 1004,544.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 1056.704,544.303 c 0,7.714 0,16.985 0,25.585"
      id="path1251"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="1003.5,-334.104 1000,-324.104 996.5,-334.104 1003.5,-334.104 "
+     points="996.5,-334.104 1003.5,-334.104 1000,-324.104 "
      id="polygon1253"
      style="fill:#0000ff;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="1076"
-     cy="-306"
+     cx="1132.704"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse1258"
-     d="m 1105.3722,-306 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1076"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 1080,544.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 1132.704,544.303 c 0,7.714 0,16.985 0,25.585"
      id="path1265"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="1079.5,-334.104 1076,-324.104 1072.5,-334.104 1079.5,-334.104 "
+     points="1072.5,-334.104 1079.5,-334.104 1076,-324.104 "
      id="polygon1267"
      style="fill:#ffc0cb;stroke:#ffc0cb"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="1152"
-     cy="-306"
+     cx="1208.704"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse1272"
-     d="m 1181.3722,-306 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1152"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 1095.75,541.504 c 10.7,9.855 25.03,23.057 37.03,34.113"
+     d="m 1148.454,541.504 c 10.7,9.855 25.03,23.057 37.03,34.113"
      id="path1279"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="1131.29,-330.835 1136.27,-321.485 1126.55,-325.686 1131.29,-330.835 "
+     points="1126.55,-325.686 1131.29,-330.835 1136.27,-321.485 "
      id="polygon1281"
      style="fill:#0000ff;stroke:#0000ff"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="1076"
-     cy="-234"
+     cx="1132.704"
+     cy="670"
      rx="29.3722"
      ry="18"
      id="ellipse1286"
-     d="m 1105.3722,-234 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1076"
-     sodipodi:cy="-234"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 1060.14,683.193 c -18.34,11.26 -45.76,28.098 -66.283,40.702"
+     d="m 1112.844,683.193 c -18.34,11.26 -45.76,28.098 -66.283,40.702"
      id="path1293"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="991.603,-177.07 981.25,-174.82 987.94,-183.035 991.603,-177.07 "
+     points="987.94,-183.035 991.603,-177.07 981.25,-174.82 "
      id="polygon1295"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <ellipse
-     cx="962"
-     cy="-234"
+     cx="1018.704"
+     cy="670"
      rx="29.3722"
      ry="18"
      id="ellipse1300"
-     d="m 991.3722,-234 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="962"
-     sodipodi:cy="-234"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffff00;stroke:#000000" />
   <path
-     d="m 966,688.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 1018.704,688.303 c 0,7.714 0,16.985 0,25.585"
      id="path1307"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="965.5,-190.104 962,-180.104 958.5,-190.104 965.5,-190.104 "
+     points="958.5,-190.104 965.5,-190.104 962,-180.104 "
      id="polygon1309"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 936.813,615.235 c 4.539,8.361 10.178,18.749 15.287,28.159"
+     d="m 989.51696,615.235 c 4.539,8.361 10.178,18.749 15.28704,28.159"
      id="path1314"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="951.275,-262.092 952.97,-251.633 945.123,-258.752 951.275,-262.092 "
+     points="945.123,-258.752 951.275,-262.092 952.97,-251.633 "
      id="polygon1316"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 995.187,615.235 c -4.539,8.361 -10.178,18.749 -15.287,28.159"
+     d="m 1047.891,615.235 c -4.539,8.361 -10.178,18.749 -15.287,28.159"
      id="path1321"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="978.877,-258.752 971.03,-251.633 972.725,-262.092 978.877,-258.752 "
+     points="972.725,-262.092 978.877,-258.752 971.03,-251.633 "
      id="polygon1323"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 1080,616.303 c 0,7.714 0,16.985 0,25.585"
+     d="m 1132.704,616.303 c 0,7.714 0,16.985 0,25.585"
      id="path1328"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="1079.5,-262.104 1076,-252.104 1072.5,-262.104 1079.5,-262.104 "
+     points="1072.5,-262.104 1079.5,-262.104 1076,-252.104 "
      id="polygon1330"
      style="fill:#000000;stroke:#000000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <path
-     d="m 1140.25,613.504 c -10.7,9.855 -25.03,23.057 -37.03,34.113"
+     d="m 1192.954,613.504 c -10.7,9.855 -25.03,23.057 -37.03,34.113"
      id="path1335"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="1101.45,-253.686 1091.73,-249.485 1096.71,-258.835 1101.45,-253.686 "
+     points="1096.71,-258.835 1101.45,-253.686 1091.73,-249.485 "
      id="polygon1337"
      style="fill:#008000;stroke:#008000"
-     transform="translate(4,904)" />
+     transform="translate(56.70396,904)" />
   <text
      xml:space="preserve"
-     style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-     x="631.30518"
-     y="246.53079"
-     id="text5534"
-     transform="scale(0.8)"><tspan
+     style="font-style:normal;font-weight:normal;font-size:9.6px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.8"
+     x="557.74811"
+     y="197.22464"
+     id="text5534"><tspan
        sodipodi:role="line"
        id="tspan5536"
-       x="631.30518"
-       y="246.53079"
-       style="font-size:40px;line-height:1.25;font-family:sans-serif"> </tspan></text>
+       x="557.74811"
+       y="197.22464"
+       style="font-size:32px;line-height:1.25;font-family:sans-serif;stroke-width:0.8"> </tspan></text>
   <path
-     style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-     d="m -65.647083,415.50798 c 0,0 274.134983,43.0803 435.896623,21.00706 15.10249,-2.06082 57.75507,-0.98196 73.52474,-21.00706 13.00806,-16.51827 -12.4334,-48.34874 2.62588,-63.0212 20.06408,-19.54871 61.98359,-18.59738 84.02827,-1.31295 16.96003,13.29774 -2.78307,50.06908 14.44236,63.0212 68.66777,51.63259 206.85252,60.27317 257.33656,-14.44235 9.14789,-13.53873 11.2566,-43.63634 28.88471,-53.83062 38.28157,-22.13809 94.69293,-18.82271 132.60711,3.93883 24.20112,14.52899 17.45953,59.60146 42.01413,73.52473 19.039,10.79572 48.7957,12.65345 65.6471,-1.31294 21.3458,-17.69138 -4.2041,-63.6226 17.0682,-81.40238 35.6089,-29.76265 99.8197,20.66248 139.1718,-3.93882 36.8491,-23.03652 60.3954,-115.53887 60.3954,-115.53887"
+     style="fill:none;stroke:#000000;stroke-width:2.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 0.18629361,332.40638 c 0,0 219.30798639,34.46424 348.71729639,16.80565 12.08199,-1.64865 46.20406,-0.78557 58.81979,-16.80565 10.40645,-13.21461 -9.94672,-38.67899 2.10071,-50.41696 16.05126,-15.63896 49.58687,-14.8779 67.22261,-1.05036 13.56803,10.6382 -2.22645,40.05527 11.55389,50.41696 54.93422,41.30608 165.48202,48.21854 205.86925,-11.55388 7.31831,-10.83098 9.00528,-34.90907 23.10777,-43.06449 30.62525,-17.71047 75.75434,-15.05817 106.08569,3.15106 19.36089,11.62319 13.96762,47.68117 33.6113,58.81979 15.2312,8.63657 39.03656,10.12276 52.51768,-1.05036 17.07664,-14.1531 -3.36328,-50.89808 13.65456,-65.1219 28.48712,-23.81012 79.85576,16.52998 111.33746,-3.15106 29.4793,-18.42921 48.3163,-92.43109 48.3163,-92.43109"
      id="path29478"
      inkscape:connector-curvature="0"
-     transform="scale(0.8,0.8)"
      sodipodi:nodetypes="csaaaasaaaaaac" />
   <path
      sodipodi:nodetypes="csaaaasaaaaaac"
      inkscape:connector-curvature="0"
      id="path30000"
-     d="m -52.517666,401.20638 c 0,0 219.307986,34.46424 348.717296,16.80565 12.08199,-1.64865 46.20406,-0.78557 58.81979,-16.80565 10.40645,-13.21461 -9.94672,-38.67899 2.10071,-50.41696 16.05126,-15.63896 49.58687,-14.8779 67.22261,-1.05036 13.56803,10.6382 -2.22645,40.05527 11.55389,50.41696 54.93422,41.30608 165.48202,48.21854 205.86925,-11.55388 7.31831,-10.83098 9.00528,-34.90907 23.10777,-43.06449 30.62525,-17.71047 70.85251,-0.0411 106.08569,3.15106 16.22437,1.46995 32.03694,6.73999 48.31625,7.35248 27.71935,1.0429 55.35942,-3.71975 82.97792,-6.30213 31.56682,-2.95155 68.52533,7.63043 94.53177,-10.50353 17.98112,-12.53801 12.84972,-44.45721 29.40992,-58.81978 25.9289,-22.48801 97.6828,-32.56095 97.6828,-32.56095"
-     style="fill:none;stroke:#000000;stroke-width:2.4000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+     d="m 0.18629401,401.20638 c 0,0 219.30798599,34.46424 348.71729599,16.80565 12.08199,-1.64865 46.20406,-0.78557 58.81979,-16.80565 10.40645,-13.21461 -9.94672,-38.67899 2.10071,-50.41696 16.05126,-15.63896 49.58687,-14.8779 67.22261,-1.05036 13.56803,10.6382 -2.22645,40.05527 11.55389,50.41696 54.93422,41.30608 165.48202,48.21854 205.86925,-11.55388 7.31831,-10.83098 9.00528,-34.90907 23.10777,-43.06449 30.62525,-17.71047 70.85251,-0.0411 106.08569,3.15106 16.22437,1.46995 32.03694,6.73999 48.31625,7.35248 27.71935,1.0429 55.35942,-3.71975 82.97792,-6.30213 31.56682,-2.95155 68.52533,7.63043 94.53173,-10.50353 17.9812,-12.53801 12.8498,-44.45721 29.41,-58.81978 25.9289,-22.48801 97.6828,-32.56095 97.6828,-32.56095"
+     style="fill:none;stroke:#000000;stroke-width:2.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   <text
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-     x="1099.7198"
+     x="1152.4238"
      y="163.29948"
      id="text30002"><tspan
        sodipodi:role="line"
        id="tspan30004"
-       x="1099.7198"
+       x="1152.4238"
        y="163.29948"
        style="font-size:32px;line-height:1.25;font-family:sans-serif">ready nodes</tspan></text>
   <path
-     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     d="m 1305.064,210.68908 c 0,0 36.4763,-5.70993 52.5177,1.31294 18.9957,8.31624 34.8996,25.69342 43.327,44.64002 5.3478,12.02286 2.6259,39.38824 2.6259,39.38824"
+     style="fill:none;stroke:#000000;stroke-width:0.8px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 1096.7552,168.55126 c 0,0 29.181,-4.56794 42.0141,1.05036 15.1966,6.65299 27.9197,20.55473 34.6616,35.71201 4.2783,9.61829 2.1007,31.51059 2.1007,31.51059"
      id="path30006"
      inkscape:connector-curvature="0"
-     transform="scale(0.8,0.8)"
      sodipodi:nodetypes="caac" />
 </svg>

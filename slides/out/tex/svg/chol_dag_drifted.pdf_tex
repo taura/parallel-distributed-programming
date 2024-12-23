@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1189bp}%
+    \setlength{\unitlength}{1243.47399902bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,17 +50,17 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.76366695)%
+  \begin{picture}(1,1.00238913)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{chol_dag_drifted.pdf}}%
-    \put(0.42476379,0.59779257){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
+    \put(0.42474171,0.74667991){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{chol_dag_drifted.pdf}}%
-    \put(0.20824169,0.81301203){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\mura{work stealing}\end{tabular}}}}%
-    \put(0.06714262,-0.0281888){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} drifted\end{tabular}}}}%
+    \put(0.217705,0.95247105){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\mura{work stealing}\end{tabular}}}}%
+    \put(0.0827872,0.14812146){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} drifted\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{chol_dag_drifted.pdf}}%
-    \put(0.06714262,-0.10892891){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} would immediately precede a\end{tabular}}}}%
+    \put(0.0827872,0.0709184){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} would immediately precede a\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{chol_dag_drifted.pdf}}%
-    \put(0.07117957,-0.15199017){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}drifted node in the serial order\end{tabular}}}}%
+    \put(0.0866473,0.02974357){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}drifted node in the serial order\end{tabular}}}}%
   \end{picture}%
 \endgroup%

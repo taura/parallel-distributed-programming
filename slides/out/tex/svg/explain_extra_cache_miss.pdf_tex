@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1189bp}%
+    \setlength{\unitlength}{860.17504883bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,16 +50,16 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.76366695)%
+  \begin{picture}(1,0.89216261)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{explain_extra_cache_miss.pdf}}%
-    \put(0.42476379,0.59779257){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
+    \put(0,0.69484854){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{explain_extra_cache_miss.pdf}}%
-    \put(0.81126985,0.47964675){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$A$\end{tabular}}}}%
+    \put(0.53425838,0.53153832){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$A$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{explain_extra_cache_miss.pdf}}%
-    \put(0.99966346,0.47964675){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$B$\end{tabular}}}}%
+    \put(0.79467049,0.53153832){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$B$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{explain_extra_cache_miss.pdf}}%
-    \put(0.8650966,0.10285954){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\leq C$\end{tabular}}}}%
+    \put(0.60866184,0.0107141){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\leq C$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

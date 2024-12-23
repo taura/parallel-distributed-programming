@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1253bp}%
+    \setlength{\unitlength}{624.79998779bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,13 +50,13 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.207502)%
+  \begin{picture}(1,0.34699105)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{execution_interval_working_set_2.pdf}}%
-    \put(0.03830806,0.15961692){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}execution\end{tabular}}}}%
+    \put(0.0262484,0.14148529){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}execution\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{execution_interval_working_set_2.pdf}}%
-    \put(0.05107741,0.21069433){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}instructions\end{tabular}}}}%
+    \put(0.0518566,0.24391806){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}instructions\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{execution_interval_working_set_2.pdf}}%
   \end{picture}%
 \endgroup%

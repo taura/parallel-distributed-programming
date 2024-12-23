@@ -50,26 +50,26 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.46495946)%
+  \begin{picture}(1,0.46495942)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{gemm_analyze_loop_case_2_1.pdf}}%
-    \put(0.3735966,0.33116099){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}+=\end{tabular}}}}%
-    \put(0.25052107,0.33347113){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$n$\end{tabular}}}}%
-    \put(0.82863025,0.3442518){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C$\end{tabular}}}}%
-    \put(0.53081898,0.33347113){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$n$\end{tabular}}}}%
-    \put(0.70331,0.34425182){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$n^2$\end{tabular}}}}%
+    \put(0.3735966,0.33116097){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}+=\end{tabular}}}}%
+    \put(0.25052107,0.33347111){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$n$\end{tabular}}}}%
+    \put(0.82863025,0.34425178){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C$\end{tabular}}}}%
+    \put(0.53081898,0.33347111){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$n$\end{tabular}}}}%
+    \put(0.70331,0.3442518){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$n^2$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{gemm_analyze_loop_case_2_1.pdf}}%
-    \put(0.3735966,0.09398585){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}+=\end{tabular}}}}%
-    \put(0.25052107,0.08551527){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$n$\end{tabular}}}}%
-    \put(0.82863025,0.10707665){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\ao{\approx C}$\end{tabular}}}}%
-    \put(0.53081898,0.08551527){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$n$\end{tabular}}}}%
-    \put(0.70331,0.10707665){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$n^2$\end{tabular}}}}%
+    \put(0.3735966,0.09398583){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}+=\end{tabular}}}}%
+    \put(0.25052107,0.08551525){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$n$\end{tabular}}}}%
+    \put(0.82863025,0.10707663){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\ao{\approx C}$\end{tabular}}}}%
+    \put(0.53081898,0.08551525){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$n$\end{tabular}}}}%
+    \put(0.70331,0.10707663){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$n^2$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{gemm_analyze_loop_case_2_1.pdf}}%
-    \put(0.17615643,0.11785733){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}$\ao{a}$\end{tabular}}}}%
-    \put(0.26130176,0.13510644){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\ldots$\end{tabular}}}}%
-    \put(0.53081898,0.13510644){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\ldots$\end{tabular}}}}%
+    \put(0.17615643,0.11785732){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}$\ao{a}$\end{tabular}}}}%
+    \put(0.26130176,0.13510642){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\ldots$\end{tabular}}}}%
+    \put(0.53081898,0.13510642){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\ldots$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{gemm_analyze_loop_case_2_1.pdf}}%
-    \put(0.15459505,0.23644491){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}$\ao{\times a}$\end{tabular}}}}%
+    \put(0.15459505,0.23644489){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}$\ao{\times a}$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

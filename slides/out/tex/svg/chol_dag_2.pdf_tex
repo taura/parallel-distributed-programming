@@ -218,7 +218,7 @@
     \put(0,0){\includegraphics[width=\unitlength,page=82]{chol_dag_2.pdf}}%
     \put(0.81244743,0.19705634){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}T128\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=83]{chol_dag_2.pdf}}%
-    \put(0.42476379,0.59779257){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
+    \put(0.42476377,0.59779257){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=84]{chol_dag_2.pdf}}%
   \end{picture}%
 \endgroup%

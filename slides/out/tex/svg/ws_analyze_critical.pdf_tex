@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1253bp}%
+    \setlength{\unitlength}{259.12365723bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,20 +50,20 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.207502)%
+  \begin{picture}(1,1.97759689)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{ws_analyze_critical.pdf}}%
-    \put(0.36792039,0.15741246){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
-    \put(0.49545086,0.18196329){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt create\_task}\end{tabular}}}}%
+    \put(0,1.81102704){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
+    \put(0.61667733,1.92974329){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt create\_task}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{ws_analyze_critical.pdf}}%
-    \put(0.42138896,-0.14748602){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt create\_task}\end{tabular}}}}%
+    \put(0.25854882,0.33668156){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt create\_task}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{ws_analyze_critical.pdf}}%
-    \put(0.42777334,0.00638467){\color[rgb]{0,0,0}\rotatebox{74.646701}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}a ready path\end{tabular}}}}}%
-    \put(0.47885076,0.11300878){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt create\_task}\end{tabular}}}}%
+    \put(0.2894207,1.08072774){\color[rgb]{0,0,0}\rotatebox{74.646701}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}a ready path\end{tabular}}}}}%
+    \put(0.53640706,1.59631174){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt create\_task}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{ws_analyze_critical.pdf}}%
-    \put(0.46225085,0.04150042){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt create\_task}\end{tabular}}}}%
+    \put(0.4561377,1.25053104){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt create\_task}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{ws_analyze_critical.pdf}}%
-    \put(0.44437354,-0.17110933){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$n$\end{tabular}}}}%
+    \put(0.36969144,0.22245036){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$n$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

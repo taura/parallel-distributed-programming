@@ -5,20 +5,20 @@
 <!-- Title: G Pages: 1 -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="1189pt"
    height="908pt"
-   viewBox="0.00 0.00 1189.00 908.00"
+   viewBox="0 0 1189 908"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
-   sodipodi:docname="chol_dag_2.svg">
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="chol_dag_2.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <metadata
      id="metadata1343">
     <rdf:RDF>
@@ -27,7 +27,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -36,15 +35,15 @@
     <marker
        inkscape:stockid="Arrow1Mend"
        orient="auto"
-       refY="0.0"
-       refX="0.0"
+       refY="0"
+       refX="0"
        id="Arrow1Mend"
-       style="overflow:visible;">
+       style="overflow:visible">
       <path
          id="path5103"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
-         transform="scale(0.4) rotate(180) translate(10,0)" />
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
     </marker>
   </defs>
   <sodipodi:namedview
@@ -61,16 +60,20 @@
      id="namedview1339"
      showgrid="false"
      inkscape:zoom="1.0771336"
-     inkscape:cx="726.87818"
-     inkscape:cy="641.7712"
-     inkscape:window-x="65"
-     inkscape:window-y="24"
+     inkscape:cx="727.39352"
+     inkscape:cy="641.98164"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg2" />
+     inkscape:current-layer="svg2"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="pt" />
   <polygon
      style="fill:#ffffff;stroke:none"
      id="polygon7"
-     points="1185,-904 1185,4 -4,4 -4,4 -4,-904 "
+     points="-4,4 -4,4 -4,-904 1185,-904 1185,4 "
      transform="translate(4,904)" />
   <g
      class="node"
@@ -80,18 +83,13 @@
        id="title10">T3</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-882"
-       sodipodi:cx="567"
-       d="m 594,-882 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse12"
        ry="18"
        rx="27"
        cy="-882"
        cx="567" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text14"
        font-size="14.00"
        y="-878.29999"
@@ -105,18 +103,13 @@
        id="title17">T9</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-810"
-       sodipodi:cx="423"
-       d="m 450,-810 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse19"
        ry="18"
        rx="27"
        cy="-810"
        cx="423" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text21"
        font-size="14.00"
        y="-806.29999"
@@ -136,27 +129,21 @@
     <polygon
        style="fill:#0000ff;stroke:#0000ff"
        id="polygon28"
-       points="451.798,-828.891 454.859,-822.595 454.859,-822.595 444.335,-821.371 " />
+       points="454.859,-822.595 444.335,-821.371 451.798,-828.891 454.859,-822.595 " />
   </g>
   <ellipse
-     cx="711"
-     cy="-810"
+     cx="715"
+     cy="94"
      rx="27"
      ry="18"
      id="ellipse33"
-     d="m 738,-810 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="711"
-     sodipodi:cy="-810"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="715"
      y="97.700012"
      font-size="14.00"
      id="text35"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T73</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T73</text>
   <g
      class="edge"
      id="edge2"
@@ -171,7 +158,7 @@
     <polygon
        style="fill:#ffc0cb;stroke:#ffc0cb"
        id="polygon42"
-       points="679.141,-822.595 682.202,-828.891 682.202,-828.891 689.665,-821.371 " />
+       points="682.202,-828.891 689.665,-821.371 679.141,-822.595 682.202,-828.891 " />
   </g>
   <g
      class="node"
@@ -181,18 +168,13 @@
        id="title45">T17</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-738"
-       sodipodi:cx="207"
-       d="m 234,-738 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse47"
        ry="18"
        rx="27"
        cy="-738"
        cx="207" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text49"
        font-size="14.00"
        y="-734.29999"
@@ -212,27 +194,21 @@
     <polygon
        style="fill:#0000ff;stroke:#0000ff"
        id="polygon56"
-       points="239.153,-753.099 241.311,-746.44 241.311,-746.44 230.719,-746.687 " />
+       points="241.311,-746.44 230.719,-746.687 239.153,-753.099 241.311,-746.44 " />
   </g>
   <ellipse
-     cx="423"
-     cy="-738"
+     cx="427"
+     cy="166"
      rx="27"
      ry="18"
      id="ellipse61"
-     d="m 450,-738 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="423"
-     sodipodi:cy="-738"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="427"
      y="169.70001"
      font-size="14.00"
      id="text63"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T45</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T45</text>
   <g
      class="edge"
      id="edge6"
@@ -247,104 +223,80 @@
     <polygon
        style="fill:#ffc0cb;stroke:#ffc0cb"
        id="polygon70"
-       points="419.5,-766.104 426.5,-766.104 426.5,-766.104 423,-756.104 " />
+       points="426.5,-766.104 423,-756.104 419.5,-766.104 426.5,-766.104 " />
   </g>
   <ellipse
-     cx="711"
-     cy="-738"
+     cx="715"
+     cy="166"
      rx="27"
      ry="18"
      id="ellipse75"
-     d="m 738,-738 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="711"
-     sodipodi:cy="-738"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="715"
      y="169.70001"
      font-size="14.00"
      id="text77"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T81</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T81</text>
   <path
      d="m 715,112.303 c 0,7.714 0,16.985 0,25.585"
      id="path82"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="714.5,-766.104 711,-756.104 707.5,-766.104 714.5,-766.104 "
+     points="707.5,-766.104 714.5,-766.104 711,-756.104 "
      id="polygon84"
      style="fill:#0000ff;stroke:#0000ff"
      transform="translate(4,904)" />
   <ellipse
-     cx="931"
-     cy="-738"
+     cx="935"
+     cy="166"
      rx="29.3722"
      ry="18"
      id="ellipse89"
-     d="m 960.3722,-738 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="931"
-     sodipodi:cy="-738"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="935"
      y="169.70001"
      font-size="14.00"
      id="text91"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T109</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T109</text>
   <path
      d="m 738.963,102.624 c 38.929,12.387 116.081,36.935 161.117,51.265"
      id="path96"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="897.248,-753.412 905.716,-747.045 895.126,-746.742 897.248,-753.412 "
+     points="895.126,-746.742 897.248,-753.412 905.716,-747.045 "
      id="polygon98"
      style="fill:#ffc0cb;stroke:#ffc0cb"
      transform="translate(4,904)" />
   <ellipse
-     cx="734"
-     cy="-90"
+     cx="738"
+     cy="814"
      rx="27"
      ry="18"
      id="ellipse103"
-     d="m 761,-90 c 0,9.941125 -12.08831,18 -27,18 -14.91169,0 -27,-8.058875 -27,-18 0,-9.941125 12.08831,-18 27,-18 14.91169,0 27,8.058875 27,18 z"
-     sodipodi:cx="734"
-     sodipodi:cy="-90"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="738"
      y="817.70001"
      font-size="14.00"
      id="text105"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T5</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T5</text>
   <ellipse
-     cx="586"
-     cy="-18"
+     cx="590"
+     cy="886"
      rx="27"
      ry="18"
      id="ellipse110"
-     d="m 613,-18 c 0,9.9411255 -12.08831,18 -27,18 -14.91169,0 -27,-8.0588745 -27,-18 0,-9.941125 12.08831,-18 27,-18 14.91169,0 27,8.058875 27,18 z"
-     sodipodi:cx="586"
-     sodipodi:cy="-18"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="590"
      y="889.70001"
      font-size="14.00"
      id="text112"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T2</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T2</text>
   <g
      class="edge"
      id="edge3"
@@ -359,27 +311,21 @@
     <polygon
        style="fill:#000000;stroke:#000000"
        id="polygon119"
-       points="615.09,-36.6305 618.083,-30.3026 618.083,-30.3026 607.546,-29.1909 " />
+       points="618.083,-30.3026 607.546,-29.1909 615.09,-36.6305 618.083,-30.3026 " />
   </g>
   <ellipse
-     cx="438"
-     cy="-90"
+     cx="442"
+     cy="814"
      rx="27"
      ry="18"
      id="ellipse124"
-     d="m 465,-90 c 0,9.941125 -12.08831,18 -27,18 -14.91169,0 -27,-8.058875 -27,-18 0,-9.941125 12.08831,-18 27,-18 14.91169,0 27,8.058875 27,18 z"
-     sodipodi:cx="438"
-     sodipodi:cy="-90"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="442"
      y="817.70001"
      font-size="14.00"
      id="text126"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T8</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T8</text>
   <g
      class="edge"
      id="edge4"
@@ -394,7 +340,7 @@
     <polygon
        style="fill:#008000;stroke:#008000"
        id="polygon133"
-       points="553.917,-30.3026 556.91,-36.6305 556.91,-36.6305 564.454,-29.1909 " />
+       points="556.91,-36.6305 564.454,-29.1909 553.917,-30.3026 556.91,-36.6305 " />
   </g>
   <g
      class="node"
@@ -404,18 +350,13 @@
        id="title136">T23</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-666"
-       sodipodi:cx="99"
-       d="m 126,-666 c 0,9.94113 -12.08831,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse138"
        ry="18"
        rx="27"
        cy="-666"
        cx="99" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text140"
        font-size="14.00"
        y="-662.29999"
@@ -435,7 +376,7 @@
     <polygon
        style="fill:#0000ff;stroke:#0000ff"
        id="polygon147"
-       points="124.084,-687.429 127.892,-681.555 127.892,-681.555 117.597,-679.053 " />
+       points="127.892,-681.555 117.597,-679.053 124.084,-687.429 127.892,-681.555 " />
   </g>
   <g
      class="node"
@@ -445,18 +386,13 @@
        id="title150">T27</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-666"
-       sodipodi:cx="207"
-       d="m 234,-666 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse152"
        ry="18"
        rx="27"
        cy="-666"
        cx="207" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text154"
        font-size="14.00"
        y="-662.29999"
@@ -476,27 +412,21 @@
     <polygon
        style="fill:#ffc0cb;stroke:#ffc0cb"
        id="polygon161"
-       points="203.5,-694.104 210.5,-694.104 210.5,-694.104 207,-684.104 " />
+       points="210.5,-694.104 207,-684.104 203.5,-694.104 210.5,-694.104 " />
   </g>
   <ellipse
-     cx="387"
-     cy="-666"
+     cx="391"
+     cy="238"
      rx="27"
      ry="18"
      id="ellipse166"
-     d="m 414,-666 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="387"
-     sodipodi:cy="-666"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="391"
      y="241.70001"
      font-size="14.00"
      id="text168"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T51</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T51</text>
   <g
      class="edge"
      id="edge33"
@@ -511,27 +441,21 @@
     <polygon
        style="fill:#0000ff;stroke:#0000ff"
        id="polygon175"
-       points="396.765,-693.641 402.99,-690.439 402.99,-690.439 395.304,-683.147 " />
+       points="402.99,-690.439 395.304,-683.147 396.765,-693.641 402.99,-690.439 " />
   </g>
   <ellipse
-     cx="459"
-     cy="-666"
+     cx="463"
+     cy="238"
      rx="27"
      ry="18"
      id="ellipse180"
-     d="m 486,-666 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="459"
-     sodipodi:cy="-666"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="463"
      y="241.70001"
      font-size="14.00"
      id="text182"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T55</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T55</text>
   <g
      class="edge"
      id="edge34"
@@ -546,27 +470,21 @@
     <polygon
        style="fill:#ffc0cb;stroke:#ffc0cb"
        id="polygon189"
-       points="443.01,-690.439 449.235,-693.641 449.235,-693.641 450.696,-683.147 " />
+       points="449.235,-693.641 450.696,-683.147 443.01,-690.439 449.235,-693.641 " />
   </g>
   <ellipse
-     cx="438"
-     cy="-162"
+     cx="442"
+     cy="742"
      rx="27"
      ry="18"
      id="ellipse194"
-     d="m 465,-162 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="438"
-     sodipodi:cy="-162"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="442"
      y="745.70001"
      font-size="14.00"
      id="text196"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T12</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T12</text>
   <g
      class="edge"
      id="edge7"
@@ -581,7 +499,7 @@
     <polygon
        style="fill:#000000;stroke:#000000"
        id="polygon203"
-       points="434.5,-118.104 441.5,-118.104 441.5,-118.104 438,-108.104 " />
+       points="441.5,-118.104 438,-108.104 434.5,-118.104 441.5,-118.104 " />
   </g>
   <g
      class="node"
@@ -591,18 +509,13 @@
        id="title206">T16</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-162"
-       sodipodi:cx="222"
-       d="m 249,-162 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse208"
        ry="18"
        rx="27"
        cy="-162"
        cx="222" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text210"
        font-size="14.00"
        y="-158.3"
@@ -622,7 +535,7 @@
     <polygon
        style="fill:#008000;stroke:#008000"
        id="polygon217"
-       points="403.689,-98.4402 405.847,-105.099 405.847,-105.099 414.281,-98.6867 " />
+       points="405.847,-105.099 414.281,-98.6867 403.689,-98.4402 405.847,-105.099 " />
   </g>
   <g
      class="node"
@@ -632,18 +545,13 @@
        id="title220">T24</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-594"
-       sodipodi:cx="27"
-       d="m 54,-594 c 0,9.94113 -12.088312,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.911688,0 27,8.05887 27,18 z"
        id="ellipse222"
        ry="18"
        rx="27"
        cy="-594"
        cx="27" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text224"
        font-size="14.00"
        y="-590.29999"
@@ -663,7 +571,7 @@
     <polygon
        style="fill:#ffc0cb;stroke:#ffc0cb"
        id="polygon231"
-       points="46.5259,-618.865 51.4055,-613.846 51.4055,-613.846 41.7957,-609.385 " />
+       points="51.4055,-613.846 41.7957,-609.385 46.5259,-618.865 51.4055,-613.846 " />
   </g>
   <g
      class="node"
@@ -673,18 +581,13 @@
        id="title234">T26</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-594"
-       sodipodi:cx="99"
-       d="m 126,-594 c 0,9.94113 -12.08831,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse236"
        ry="18"
        rx="27"
        cy="-594"
        cx="99" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text238"
        font-size="14.00"
        y="-590.29999"
@@ -704,7 +607,7 @@
     <polygon
        style="fill:#0000ff;stroke:#0000ff"
        id="polygon245"
-       points="95.5001,-622.104 102.5,-622.104 102.5,-622.104 99,-612.104 " />
+       points="102.5,-622.104 99,-612.104 95.5001,-622.104 102.5,-622.104 " />
   </g>
   <g
      class="node"
@@ -714,18 +617,13 @@
        id="title248">T28</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-594"
-       sodipodi:cx="171"
-       d="m 198,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse250"
        ry="18"
        rx="27"
        cy="-594"
        cx="171" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text252"
        font-size="14.00"
        y="-590.29999"
@@ -745,7 +643,7 @@
     <polygon
        style="fill:#ffc0cb;stroke:#ffc0cb"
        id="polygon259"
-       points="180.765,-621.641 186.99,-618.439 186.99,-618.439 179.304,-611.147 " />
+       points="186.99,-618.439 179.304,-611.147 180.765,-621.641 186.99,-618.439 " />
   </g>
   <g
      class="node"
@@ -755,18 +653,13 @@
        id="title262">T30</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-594"
-       sodipodi:cx="243"
-       d="m 270,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse264"
        ry="18"
        rx="27"
        cy="-594"
        cx="243" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text266"
        font-size="14.00"
        y="-590.29999"
@@ -786,7 +679,7 @@
     <polygon
        style="fill:#0000ff;stroke:#0000ff"
        id="polygon273"
-       points="227.01,-618.439 233.235,-621.641 233.235,-621.641 234.696,-611.147 " />
+       points="233.235,-621.641 234.696,-611.147 227.01,-618.439 233.235,-621.641 " />
   </g>
   <g
      class="node"
@@ -796,18 +689,13 @@
        id="title276">T19</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-522"
-       sodipodi:cx="171"
-       d="m 198,-522 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse278"
        ry="18"
        rx="27"
        cy="-522"
        cx="171" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text280"
        font-size="14.00"
        y="-518.29999"
@@ -821,18 +709,13 @@
        id="title283">T31</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-450"
-       sodipodi:cx="135"
-       d="m 162,-450 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse285"
        ry="18"
        rx="27"
        cy="-450"
        cx="135" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text287"
        font-size="14.00"
        y="-446.29999"
@@ -852,7 +735,7 @@
     <polygon
        style="fill:#000000;stroke:#000000"
        id="polygon294"
-       points="144.765,-477.641 150.99,-474.439 150.99,-474.439 143.304,-467.147 " />
+       points="150.99,-474.439 143.304,-467.147 144.765,-477.641 150.99,-474.439 " />
   </g>
   <g
      class="node"
@@ -862,18 +745,13 @@
        id="title297">T37</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-378"
-       sodipodi:cx="114"
-       d="m 141,-378 c 0,9.94113 -12.08831,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse299"
        ry="18"
        rx="27"
        cy="-378"
        cx="114" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text301"
        font-size="14.00"
        y="-374.29999"
@@ -893,7 +771,7 @@
     <polygon
        style="fill:#0000ff;stroke:#0000ff"
        id="polygon308"
-       points="118.558,-406.373 125.263,-404.362 125.263,-404.362 119.037,-395.789 " />
+       points="125.263,-404.362 119.037,-395.789 118.558,-406.373 125.263,-404.362 " />
   </g>
   <g
      class="node"
@@ -903,18 +781,13 @@
        id="title311">T41</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-378"
-       sodipodi:cx="186"
-       d="m 213,-378 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse313"
        ry="18"
        rx="27"
        cy="-378"
        cx="186" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text315"
        font-size="14.00"
        y="-374.29999"
@@ -934,7 +807,7 @@
     <polygon
        style="fill:#ffc0cb;stroke:#ffc0cb"
        id="polygon322"
-       points="165.996,-400.513 171.653,-404.635 171.653,-404.635 174.713,-394.492 " />
+       points="171.653,-404.635 174.713,-394.492 165.996,-400.513 171.653,-404.635 " />
   </g>
   <g
      class="node"
@@ -944,18 +817,13 @@
        id="title325">T22</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-522"
-       sodipodi:cx="99"
-       d="m 126,-522 c 0,9.94113 -12.08831,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse327"
        ry="18"
        rx="27"
        cy="-522"
        cx="99" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text329"
        font-size="14.00"
        y="-518.29999"
@@ -975,7 +843,7 @@
     <polygon
        style="fill:#008000;stroke:#008000"
        id="polygon336"
-       points="119.01,-474.439 125.235,-477.641 125.235,-477.641 126.696,-467.147 " />
+       points="125.235,-477.641 126.696,-467.147 119.01,-474.439 125.235,-477.641 " />
   </g>
   <g
      class="edge"
@@ -991,7 +859,7 @@
     <polygon
        style="fill:#000000;stroke:#000000"
        id="polygon343"
-       points="74.5945,-541.846 79.4741,-546.865 79.4741,-546.865 84.2043,-537.385 " />
+       points="79.4741,-546.865 84.2043,-537.385 74.5945,-541.846 79.4741,-546.865 " />
   </g>
   <g
      class="edge"
@@ -1007,7 +875,7 @@
     <polygon
        style="fill:#008000;stroke:#008000"
        id="polygon350"
-       points="95.5001,-550.104 102.5,-550.104 102.5,-550.104 99,-540.104 " />
+       points="102.5,-550.104 99,-540.104 95.5001,-550.104 102.5,-550.104 " />
   </g>
   <g
      class="edge"
@@ -1023,7 +891,7 @@
     <polygon
        style="fill:#000000;stroke:#000000"
        id="polygon357"
-       points="167.5,-550.104 174.5,-550.104 174.5,-550.104 171,-540.104 " />
+       points="174.5,-550.104 171,-540.104 167.5,-550.104 174.5,-550.104 " />
   </g>
   <g
      class="edge"
@@ -1039,7 +907,7 @@
     <polygon
        style="fill:#008000;stroke:#008000"
        id="polygon364"
-       points="190.526,-546.865 195.405,-541.846 195.405,-541.846 185.796,-537.385 " />
+       points="195.405,-541.846 185.796,-537.385 190.526,-546.865 195.405,-541.846 " />
   </g>
   <g
      class="node"
@@ -1049,18 +917,13 @@
        id="title367">T38</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-306"
-       sodipodi:cx="42"
-       d="m 69,-306 c 0,9.94113 -12.088312,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.911688,0 27,8.05887 27,18 z"
        id="ellipse369"
        ry="18"
        rx="27"
        cy="-306"
        cx="42" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text371"
        font-size="14.00"
        y="-302.29999"
@@ -1080,7 +943,7 @@
     <polygon
        style="fill:#ffc0cb;stroke:#ffc0cb"
        id="polygon378"
-       points="61.5259,-330.865 66.4055,-325.846 66.4055,-325.846 56.7957,-321.385 " />
+       points="66.4055,-325.846 56.7957,-321.385 61.5259,-330.865 66.4055,-325.846 " />
   </g>
   <g
      class="node"
@@ -1090,18 +953,13 @@
        id="title381">T40</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-306"
-       sodipodi:cx="114"
-       d="m 141,-306 c 0,9.94113 -12.08831,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse383"
        ry="18"
        rx="27"
        cy="-306"
        cx="114" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text385"
        font-size="14.00"
        y="-302.29999"
@@ -1121,7 +979,7 @@
     <polygon
        style="fill:#0000ff;stroke:#0000ff"
        id="polygon392"
-       points="110.5,-334.104 117.5,-334.104 117.5,-334.104 114,-324.104 " />
+       points="117.5,-334.104 114,-324.104 110.5,-334.104 117.5,-334.104 " />
   </g>
   <g
      class="node"
@@ -1131,18 +989,13 @@
        id="title395">T42</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-306"
-       sodipodi:cx="186"
-       d="m 213,-306 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse397"
        ry="18"
        rx="27"
        cy="-306"
        cx="186" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text399"
        font-size="14.00"
        y="-302.29999"
@@ -1162,7 +1015,7 @@
     <polygon
        style="fill:#ffc0cb;stroke:#ffc0cb"
        id="polygon406"
-       points="182.5,-334.104 189.5,-334.104 189.5,-334.104 186,-324.104 " />
+       points="189.5,-334.104 186,-324.104 182.5,-334.104 189.5,-334.104 " />
   </g>
   <g
      class="node"
@@ -1172,18 +1025,13 @@
        id="title409">T44</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-306"
-       sodipodi:cx="258"
-       d="m 285,-306 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse411"
        ry="18"
        rx="27"
        cy="-306"
        cx="258" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text413"
        font-size="14.00"
        y="-302.29999"
@@ -1203,7 +1051,7 @@
     <polygon
        style="fill:#0000ff;stroke:#0000ff"
        id="polygon420"
-       points="233.595,-325.846 238.474,-330.865 238.474,-330.865 243.204,-321.385 " />
+       points="238.474,-330.865 243.204,-321.385 233.595,-325.846 238.474,-330.865 " />
   </g>
   <g
      class="node"
@@ -1213,18 +1061,13 @@
        id="title423">T33</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-234"
-       sodipodi:cx="222"
-       d="m 249,-234 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse425"
        ry="18"
        rx="27"
        cy="-234"
        cx="222" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text427"
        font-size="14.00"
        y="-230.3"
@@ -1244,7 +1087,7 @@
     <polygon
        style="fill:#000000;stroke:#000000"
        id="polygon434"
-       points="218.5,-190.104 225.5,-190.104 225.5,-190.104 222,-180.104 " />
+       points="225.5,-190.104 222,-180.104 218.5,-190.104 225.5,-190.104 " />
   </g>
   <g
      class="node"
@@ -1254,18 +1097,13 @@
        id="title437">T36</title>
     <ellipse
        style="fill:#ffff00;stroke:#000000"
-       sodipodi:ry="18"
-       sodipodi:rx="27"
-       sodipodi:cy="-234"
-       sodipodi:cx="114"
-       d="m 141,-234 c 0,9.94113 -12.08831,18 -27,18 -14.911688,0 -27,-8.05887 -27,-18 0,-9.94113 12.088312,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
        id="ellipse439"
        ry="18"
        rx="27"
        cy="-234"
        cx="114" />
     <text
-       style="font-size:14px;text-anchor:middle;font-family:'Times,serif'"
+       style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle"
        id="text441"
        font-size="14.00"
        y="-230.3"
@@ -1285,7 +1123,7 @@
     <polygon
        style="fill:#008000;stroke:#008000"
        id="polygon448"
-       points="193.108,-177.555 196.916,-183.429 196.916,-183.429 203.403,-175.053 " />
+       points="196.916,-183.429 203.403,-175.053 193.108,-177.555 196.916,-183.429 " />
   </g>
   <g
      class="edge"
@@ -1301,7 +1139,7 @@
     <polygon
        style="fill:#000000;stroke:#000000"
        id="polygon455"
-       points="89.5945,-253.846 94.4741,-258.865 94.4741,-258.865 99.2043,-249.385 " />
+       points="94.4741,-258.865 99.2043,-249.385 89.5945,-253.846 94.4741,-258.865 " />
   </g>
   <g
      class="edge"
@@ -1317,7 +1155,7 @@
     <polygon
        style="fill:#008000;stroke:#008000"
        id="polygon462"
-       points="110.5,-262.104 117.5,-262.104 117.5,-262.104 114,-252.104 " />
+       points="117.5,-262.104 114,-252.104 110.5,-262.104 117.5,-262.104 " />
   </g>
   <g
      class="edge"
@@ -1333,7 +1171,7 @@
     <polygon
        style="fill:#000000;stroke:#000000"
        id="polygon469"
-       points="206.01,-258.439 212.235,-261.641 212.235,-261.641 213.696,-251.147 " />
+       points="212.235,-261.641 213.696,-251.147 206.01,-258.439 212.235,-261.641 " />
   </g>
   <g
      class="edge"
@@ -1349,27 +1187,21 @@
     <polygon
        style="fill:#008000;stroke:#008000"
        id="polygon476"
-       points="231.765,-261.641 237.99,-258.439 237.99,-258.439 230.304,-251.147 " />
+       points="237.99,-258.439 230.304,-251.147 231.765,-261.641 237.99,-258.439 " />
   </g>
   <ellipse
-     cx="315"
-     cy="-594"
+     cx="319"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse481"
-     d="m 342,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="315"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="319"
      y="313.70001"
      font-size="14.00"
      id="text483"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T52</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T52</text>
   <g
      class="edge"
      id="edge37"
@@ -1384,27 +1216,21 @@
     <polygon
        style="fill:#ffc0cb;stroke:#ffc0cb"
        id="polygon490"
-       points="334.526,-618.865 339.405,-613.846 339.405,-613.846 329.796,-609.385 " />
+       points="339.405,-613.846 329.796,-609.385 334.526,-618.865 339.405,-613.846 " />
   </g>
   <ellipse
-     cx="387"
-     cy="-594"
+     cx="391"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse495"
-     d="m 414,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="387"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="391"
      y="313.70001"
      font-size="14.00"
      id="text497"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T54</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T54</text>
   <g
      class="edge"
      id="edge38"
@@ -1419,27 +1245,21 @@
     <polygon
        style="fill:#0000ff;stroke:#0000ff"
        id="polygon504"
-       points="383.5,-622.104 390.5,-622.104 390.5,-622.104 387,-612.104 " />
+       points="390.5,-622.104 387,-612.104 383.5,-622.104 390.5,-622.104 " />
   </g>
   <ellipse
-     cx="459"
-     cy="-594"
+     cx="463"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse509"
-     d="m 486,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="459"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="463"
      y="313.70001"
      font-size="14.00"
      id="text511"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T56</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T56</text>
   <g
      class="edge"
      id="edge41"
@@ -1454,27 +1274,21 @@
     <polygon
        style="fill:#ffc0cb;stroke:#ffc0cb"
        id="polygon518"
-       points="455.5,-622.104 462.5,-622.104 462.5,-622.104 459,-612.104 " />
+       points="462.5,-622.104 459,-612.104 455.5,-622.104 462.5,-622.104 " />
   </g>
   <ellipse
-     cx="531"
-     cy="-594"
+     cx="535"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse523"
-     d="m 558,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="531"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="535"
      y="313.70001"
      font-size="14.00"
      id="text525"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T58</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T58</text>
   <g
      class="edge"
      id="edge42"
@@ -1489,46 +1303,34 @@
     <polygon
        style="fill:#0000ff;stroke:#0000ff"
        id="polygon532"
-       points="506.595,-613.846 511.474,-618.865 511.474,-618.865 516.204,-609.385 " />
+       points="511.474,-618.865 516.204,-609.385 506.595,-613.846 511.474,-618.865 " />
   </g>
   <ellipse
-     cx="459"
-     cy="-522"
+     cx="463"
+     cy="382"
      rx="27"
      ry="18"
      id="ellipse537"
-     d="m 486,-522 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="459"
-     sodipodi:cy="-522"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="463"
      y="385.70001"
      font-size="14.00"
      id="text539"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T47</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T47</text>
   <ellipse
-     cx="431"
-     cy="-450"
+     cx="435"
+     cy="454"
      rx="27"
      ry="18"
      id="ellipse544"
-     d="m 458,-450 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="431"
-     sodipodi:cy="-450"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="435"
      y="457.70001"
      font-size="14.00"
      id="text546"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T59</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T59</text>
   <g
      class="edge"
      id="edge35"
@@ -1543,27 +1345,21 @@
     <polygon
        style="fill:#000000;stroke:#000000"
        id="polygon553"
-       points="438.052,-478.055 444.552,-475.455 444.552,-475.455 437.588,-467.47 " />
+       points="444.552,-475.455 437.588,-467.47 438.052,-478.055 444.552,-475.455 " />
   </g>
   <ellipse
-     cx="402"
-     cy="-378"
+     cx="406"
+     cy="526"
      rx="27"
      ry="18"
      id="ellipse558"
-     d="m 429,-378 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="402"
-     sodipodi:cy="-378"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="406"
      y="529.70001"
      font-size="14.00"
      id="text560"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T65</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T65</text>
   <g
      class="edge"
      id="edge45"
@@ -1578,27 +1374,21 @@
     <polygon
        style="fill:#0000ff;stroke:#0000ff"
        id="polygon567"
-       points="409.417,-406.048 415.884,-403.369 415.884,-403.369 408.823,-395.47 " />
+       points="415.884,-403.369 408.823,-395.47 409.417,-406.048 415.884,-403.369 " />
   </g>
   <ellipse
-     cx="474"
-     cy="-378"
+     cx="478"
+     cy="526"
      rx="27"
      ry="18"
      id="ellipse572"
-     d="m 501,-378 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="474"
-     sodipodi:cy="-378"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="478"
      y="529.70001"
      font-size="14.00"
      id="text574"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T69</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T69</text>
   <g
      class="edge"
      id="edge46"
@@ -1613,27 +1403,21 @@
     <polygon
        style="fill:#ffc0cb;stroke:#ffc0cb"
        id="polygon581"
-       points="456.065,-401.51 462.029,-405.174 462.029,-405.174 464.281,-394.821 " />
+       points="462.029,-405.174 464.281,-394.821 456.065,-401.51 462.029,-405.174 " />
   </g>
   <ellipse
-     cx="387"
-     cy="-522"
+     cx="391"
+     cy="382"
      rx="27"
      ry="18"
      id="ellipse586"
-     d="m 414,-522 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="387"
-     sodipodi:cy="-522"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="391"
      y="385.70001"
      font-size="14.00"
      id="text588"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T50</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T50</text>
   <g
      class="edge"
      id="edge36"
@@ -1648,7 +1432,7 @@
     <polygon
        style="fill:#008000;stroke:#008000"
        id="polygon595"
-       points="412.77,-473.425 418.697,-477.15 418.697,-477.15 421.055,-466.821 " />
+       points="418.697,-477.15 421.055,-466.821 412.77,-473.425 418.697,-477.15 " />
   </g>
   <g
      class="edge"
@@ -1664,7 +1448,7 @@
     <polygon
        style="fill:#000000;stroke:#000000"
        id="polygon602"
-       points="362.595,-541.846 367.474,-546.865 367.474,-546.865 372.204,-537.385 " />
+       points="367.474,-546.865 372.204,-537.385 362.595,-541.846 367.474,-546.865 " />
   </g>
   <g
      class="edge"
@@ -1680,7 +1464,7 @@
     <polygon
        style="fill:#008000;stroke:#008000"
        id="polygon609"
-       points="383.5,-550.104 390.5,-550.104 390.5,-550.104 387,-540.104 " />
+       points="390.5,-550.104 387,-540.104 383.5,-550.104 390.5,-550.104 " />
   </g>
   <g
      class="edge"
@@ -1696,7 +1480,7 @@
     <polygon
        style="fill:#000000;stroke:#000000"
        id="polygon616"
-       points="455.5,-550.104 462.5,-550.104 462.5,-550.104 459,-540.104 " />
+       points="462.5,-550.104 459,-540.104 455.5,-550.104 462.5,-550.104 " />
   </g>
   <g
      class="edge"
@@ -1712,27 +1496,21 @@
     <polygon
        style="fill:#008000;stroke:#008000"
        id="polygon623"
-       points="478.526,-546.865 483.405,-541.846 483.405,-541.846 473.796,-537.385 " />
+       points="483.405,-541.846 473.796,-537.385 478.526,-546.865 483.405,-541.846 " />
   </g>
   <ellipse
-     cx="330"
-     cy="-306"
+     cx="334"
+     cy="598"
      rx="27"
      ry="18"
      id="ellipse628"
-     d="m 357,-306 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="330"
-     sodipodi:cy="-306"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="334"
      y="601.70001"
      font-size="14.00"
      id="text630"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T66</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T66</text>
   <g
      class="edge"
      id="edge49"
@@ -1747,27 +1525,21 @@
     <polygon
        style="fill:#ffc0cb;stroke:#ffc0cb"
        id="polygon637"
-       points="349.526,-330.865 354.405,-325.846 354.405,-325.846 344.796,-321.385 " />
+       points="354.405,-325.846 344.796,-321.385 349.526,-330.865 354.405,-325.846 " />
   </g>
   <ellipse
-     cx="402"
-     cy="-306"
+     cx="406"
+     cy="598"
      rx="27"
      ry="18"
      id="ellipse642"
-     d="m 429,-306 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="402"
-     sodipodi:cy="-306"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="406"
      y="601.70001"
      font-size="14.00"
      id="text644"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T68</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T68</text>
   <g
      class="edge"
      id="edge50"
@@ -1782,27 +1554,21 @@
     <polygon
        style="fill:#0000ff;stroke:#0000ff"
        id="polygon651"
-       points="398.5,-334.104 405.5,-334.104 405.5,-334.104 402,-324.104 " />
+       points="405.5,-334.104 402,-324.104 398.5,-334.104 405.5,-334.104 " />
   </g>
   <ellipse
-     cx="474"
-     cy="-306"
+     cx="478"
+     cy="598"
      rx="27"
      ry="18"
      id="ellipse656"
-     d="m 501,-306 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="474"
-     sodipodi:cy="-306"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="478"
      y="601.70001"
      font-size="14.00"
      id="text658"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T70</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T70</text>
   <g
      class="edge"
      id="edge53"
@@ -1817,27 +1583,21 @@
     <polygon
        style="fill:#ffc0cb;stroke:#ffc0cb"
        id="polygon665"
-       points="470.5,-334.104 477.5,-334.104 477.5,-334.104 474,-324.104 " />
+       points="477.5,-334.104 474,-324.104 470.5,-334.104 477.5,-334.104 " />
   </g>
   <ellipse
-     cx="546"
-     cy="-306"
+     cx="550"
+     cy="598"
      rx="27"
      ry="18"
      id="ellipse670"
-     d="m 573,-306 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="546"
-     sodipodi:cy="-306"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="550"
      y="601.70001"
      font-size="14.00"
      id="text672"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T72</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T72</text>
   <g
      class="edge"
      id="edge54"
@@ -1852,27 +1612,21 @@
     <polygon
        style="fill:#0000ff;stroke:#0000ff"
        id="polygon679"
-       points="521.595,-325.846 526.474,-330.865 526.474,-330.865 531.204,-321.385 " />
+       points="526.474,-330.865 531.204,-321.385 521.595,-325.846 526.474,-330.865 " />
   </g>
   <ellipse
-     cx="474"
-     cy="-234"
+     cx="478"
+     cy="670"
      rx="27"
      ry="18"
      id="ellipse684"
-     d="m 501,-234 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="474"
-     sodipodi:cy="-234"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="478"
      y="673.70001"
      font-size="14.00"
      id="text686"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T61</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T61</text>
   <g
      class="edge"
      id="edge47"
@@ -1887,27 +1641,21 @@
     <polygon
        style="fill:#000000;stroke:#000000"
        id="polygon693"
-       points="447.765,-189.641 453.99,-186.439 453.99,-186.439 446.304,-179.147 " />
+       points="453.99,-186.439 446.304,-179.147 447.765,-189.641 453.99,-186.439 " />
   </g>
   <ellipse
-     cx="402"
-     cy="-234"
+     cx="406"
+     cy="670"
      rx="27"
      ry="18"
      id="ellipse698"
-     d="m 429,-234 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="402"
-     sodipodi:cy="-234"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ffff;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ffff;stroke:#000000" />
   <text
      x="406"
      y="673.70001"
      font-size="14.00"
      id="text700"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T64</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T64</text>
   <g
      class="edge"
      id="edge48"
@@ -1922,7 +1670,7 @@
     <polygon
        style="fill:#008000;stroke:#008000"
        id="polygon707"
-       points="422.01,-186.439 428.235,-189.641 428.235,-189.641 429.696,-179.147 " />
+       points="428.235,-189.641 429.696,-179.147 422.01,-186.439 428.235,-189.641 " />
   </g>
   <g
      class="edge"
@@ -1938,7 +1686,7 @@
     <polygon
        style="fill:#000000;stroke:#000000"
        id="polygon714"
-       points="377.595,-253.846 382.474,-258.865 382.474,-258.865 387.204,-249.385 " />
+       points="382.474,-258.865 387.204,-249.385 377.595,-253.846 382.474,-258.865 " />
   </g>
   <g
      class="edge"
@@ -1954,7 +1702,7 @@
     <polygon
        style="fill:#008000;stroke:#008000"
        id="polygon721"
-       points="398.5,-262.104 405.5,-262.104 405.5,-262.104 402,-252.104 " />
+       points="405.5,-262.104 402,-252.104 398.5,-262.104 405.5,-262.104 " />
   </g>
   <g
      class="edge"
@@ -1970,7 +1718,7 @@
     <polygon
        style="fill:#000000;stroke:#000000"
        id="polygon728"
-       points="470.5,-262.104 477.5,-262.104 477.5,-262.104 474,-252.104 " />
+       points="477.5,-262.104 474,-252.104 470.5,-262.104 477.5,-262.104 " />
   </g>
   <g
      class="edge"
@@ -1986,430 +1734,340 @@
     <polygon
        style="fill:#008000;stroke:#008000"
        id="polygon735"
-       points="493.526,-258.865 498.405,-253.846 498.405,-253.846 488.796,-249.385 " />
+       points="498.405,-253.846 488.796,-249.385 493.526,-258.865 498.405,-253.846 " />
   </g>
   <ellipse
-     cx="675"
-     cy="-666"
+     cx="679"
+     cy="238"
      rx="27"
      ry="18"
      id="ellipse740"
-     d="m 702,-666 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="675"
-     sodipodi:cy="-666"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="679"
      y="241.70001"
      font-size="14.00"
      id="text742"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T87</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T87</text>
   <path
      d="m 706.65,183.235 c -4.362,8.482 -9.797,19.051 -14.691,28.568"
      id="path747"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="690.99,-690.439 683.304,-683.147 684.765,-693.641 690.99,-690.439 "
+     points="684.765,-693.641 690.99,-690.439 683.304,-683.147 "
      id="polygon749"
      style="fill:#0000ff;stroke:#0000ff"
      transform="translate(4,904)" />
   <ellipse
-     cx="747"
-     cy="-666"
+     cx="751"
+     cy="238"
      rx="27"
      ry="18"
      id="ellipse754"
-     d="m 774,-666 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="747"
-     sodipodi:cy="-666"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="751"
      y="241.70001"
      font-size="14.00"
      id="text756"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T91</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T91</text>
   <path
      d="m 723.35,183.235 c 4.362,8.482 9.797,19.051 14.691,28.568"
      id="path761"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="737.235,-693.641 738.696,-683.147 731.01,-690.439 737.235,-693.641 "
+     points="731.01,-690.439 737.235,-693.641 738.696,-683.147 "
      id="polygon763"
      style="fill:#ffc0cb;stroke:#ffc0cb"
      transform="translate(4,904)" />
   <ellipse
-     cx="931"
-     cy="-666"
+     cx="935"
+     cy="238"
      rx="29.3722"
      ry="18"
      id="ellipse768"
-     d="m 960.3722,-666 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="931"
-     sodipodi:cy="-666"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="935"
      y="241.70001"
      font-size="14.00"
      id="text770"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T115</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T115</text>
   <path
      d="m 935,184.303 c 0,7.714 0,16.985 0,25.585"
      id="path775"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="934.5,-694.104 931,-684.104 927.5,-694.104 934.5,-694.104 "
+     points="927.5,-694.104 934.5,-694.104 931,-684.104 "
      id="polygon777"
      style="fill:#0000ff;stroke:#0000ff"
      transform="translate(4,904)" />
   <ellipse
-     cx="1045"
-     cy="-666"
+     cx="1049"
+     cy="238"
      rx="29.3722"
      ry="18"
      id="ellipse782"
-     d="m 1074.3722,-666 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1045"
-     sodipodi:cy="-666"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="1049"
      y="241.70001"
      font-size="14.00"
      id="text784"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T119</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T119</text>
   <path
      d="m 954.857,179.193 c 18.116,11.124 45.097,27.691 65.533,40.242"
      id="path789"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="1018.3,-687.503 1024.99,-679.288 1014.63,-681.538 1018.3,-687.503 "
+     points="1014.63,-681.538 1018.3,-687.503 1024.99,-679.288 "
      id="polygon791"
      style="fill:#ffc0cb;stroke:#ffc0cb"
      transform="translate(4,904)" />
   <ellipse
-     cx="962"
-     cy="-162"
+     cx="966"
+     cy="742"
      rx="27"
      ry="18"
      id="ellipse796"
-     d="m 989,-162 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="962"
-     sodipodi:cy="-162"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="966"
      y="745.70001"
      font-size="14.00"
      id="text798"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T76</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T76</text>
   <path
      d="m 942.031,750.359 c -40.796,12.525 -123.824,38.016 -170.407,52.318"
      id="path803"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="768.577,-97.9545 757.99,-98.3654 766.522,-104.646 768.577,-97.9545 "
+     points="766.522,-104.646 768.577,-97.9545 757.99,-98.3654 "
      id="polygon805"
      style="fill:#000000;stroke:#000000"
      transform="translate(4,904)" />
   <ellipse
-     cx="734"
-     cy="-162"
+     cx="738"
+     cy="742"
      rx="27"
      ry="18"
      id="ellipse810"
-     d="m 761,-162 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="734"
-     sodipodi:cy="-162"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="738"
      y="745.70001"
      font-size="14.00"
      id="text812"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T80</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T80</text>
   <path
      d="m 738,760.303 c 0,7.714 0,16.985 0,25.585"
      id="path817"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="737.5,-118.104 734,-108.104 730.5,-118.104 737.5,-118.104 "
+     points="730.5,-118.104 737.5,-118.104 734,-108.104 "
      id="polygon819"
      style="fill:#008000;stroke:#008000"
      transform="translate(4,904)" />
   <ellipse
-     cx="603"
-     cy="-594"
+     cx="607"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse824"
-     d="m 630,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="603"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="607"
      y="313.70001"
      font-size="14.00"
      id="text826"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T88</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T88</text>
   <path
      d="m 664.43,253.166 c -10.18,9.896 -23.954,23.288 -35.461,34.475"
      id="path831"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="627.405,-613.846 617.796,-609.385 622.526,-618.865 627.405,-613.846 "
+     points="622.526,-618.865 627.405,-613.846 617.796,-609.385 "
      id="polygon833"
      style="fill:#ffc0cb;stroke:#ffc0cb"
      transform="translate(4,904)" />
   <ellipse
-     cx="675"
-     cy="-594"
+     cx="679"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse838"
-     d="m 702,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="675"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="679"
      y="313.70001"
      font-size="14.00"
      id="text840"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T90</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T90</text>
   <path
      d="m 679,256.303 c 0,7.714 0,16.985 0,25.585"
      id="path845"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="678.5,-622.104 675,-612.104 671.5,-622.104 678.5,-622.104 "
+     points="671.5,-622.104 678.5,-622.104 675,-612.104 "
      id="polygon847"
      style="fill:#0000ff;stroke:#0000ff"
      transform="translate(4,904)" />
   <ellipse
-     cx="747"
-     cy="-594"
+     cx="751"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse852"
-     d="m 774,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="747"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="751"
      y="313.70001"
      font-size="14.00"
      id="text854"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T92</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T92</text>
   <path
      d="m 751,256.303 c 0,7.714 0,16.985 0,25.585"
      id="path859"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="750.5,-622.104 747,-612.104 743.5,-622.104 750.5,-622.104 "
+     points="743.5,-622.104 750.5,-622.104 747,-612.104 "
      id="polygon861"
      style="fill:#ffc0cb;stroke:#ffc0cb"
      transform="translate(4,904)" />
   <ellipse
-     cx="819"
-     cy="-594"
+     cx="823"
+     cy="310"
      rx="27"
      ry="18"
      id="ellipse866"
-     d="m 846,-594 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="819"
-     sodipodi:cy="-594"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="823"
      y="313.70001"
      font-size="14.00"
      id="text868"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T94</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T94</text>
   <path
      d="m 765.57,253.166 c 10.18,9.896 23.954,23.288 35.461,34.475"
      id="path873"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="799.474,-618.865 804.204,-609.385 794.595,-613.846 799.474,-618.865 "
+     points="794.595,-613.846 799.474,-618.865 804.204,-609.385 "
      id="polygon875"
      style="fill:#0000ff;stroke:#0000ff"
      transform="translate(4,904)" />
   <ellipse
-     cx="747"
-     cy="-522"
+     cx="751"
+     cy="382"
      rx="27"
      ry="18"
      id="ellipse880"
-     d="m 774,-522 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="747"
-     sodipodi:cy="-522"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="751"
      y="385.70001"
      font-size="14.00"
      id="text882"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T83</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T83</text>
   <ellipse
-     cx="714"
-     cy="-450"
+     cx="718"
+     cy="454"
      rx="27"
      ry="18"
      id="ellipse887"
-     d="m 741,-450 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="714"
-     sodipodi:cy="-450"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="718"
      y="457.70001"
      font-size="14.00"
      id="text889"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T95</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T95</text>
   <path
      d="m 743.179,399.589 c -3.904,8.282 -8.714,18.486 -13.081,27.749"
      id="path894"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="729.194,-475.023 721.764,-467.47 722.863,-478.008 729.194,-475.023 "
+     points="722.863,-478.008 729.194,-475.023 721.764,-467.47 "
      id="polygon896"
      style="fill:#000000;stroke:#000000"
      transform="translate(4,904)" />
   <ellipse
-     cx="696"
-     cy="-378"
+     cx="700"
+     cy="526"
      rx="29.3722"
      ry="18"
      id="ellipse901"
-     d="m 725.3722,-378 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="696"
-     sodipodi:cy="-378"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="700"
      y="529.70001"
      font-size="14.00"
      id="text903"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T101</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T101</text>
   <path
      d="m 713.643,471.945 c -2.004,7.794 -4.432,17.233 -6.68,25.976"
      id="path908"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="706.322,-405.089 700.442,-396.275 699.543,-406.832 706.322,-405.089 "
+     points="699.543,-406.832 706.322,-405.089 700.442,-396.275 "
      id="polygon910"
      style="fill:#0000ff;stroke:#0000ff"
      transform="translate(4,904)" />
   <ellipse
-     cx="772"
-     cy="-378"
+     cx="776"
+     cy="526"
      rx="29.3722"
      ry="18"
      id="ellipse915"
-     d="m 801.3722,-378 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="772"
-     sodipodi:cy="-378"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="776"
      y="529.70001"
      font-size="14.00"
      id="text917"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T105</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T105</text>
   <path
      d="m 730.585,470.189 c 7.571,9.138 17.368,20.962 25.924,31.287"
      id="path922"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="755.353,-404.577 759.038,-394.644 749.963,-400.111 755.353,-404.577 "
+     points="749.963,-400.111 755.353,-404.577 759.038,-394.644 "
      id="polygon924"
      style="fill:#ffc0cb;stroke:#ffc0cb"
      transform="translate(4,904)" />
   <ellipse
-     cx="675"
-     cy="-522"
+     cx="679"
+     cy="382"
      rx="27"
      ry="18"
      id="ellipse929"
-     d="m 702,-522 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="675"
-     sodipodi:cy="-522"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="679"
      y="385.70001"
      font-size="14.00"
      id="text931"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T86</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T86</text>
   <path
      d="m 688.045,399.235 c 4.775,8.57 10.737,19.271 16.082,28.865"
      id="path936"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="703.194,-477.586 705.004,-467.147 697.079,-474.18 703.194,-477.586 "
+     points="697.079,-474.18 703.194,-477.586 705.004,-467.147 "
      id="polygon938"
      style="fill:#008000;stroke:#008000"
      transform="translate(4,904)" />
@@ -2419,7 +2077,7 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="655.474,-546.865 660.204,-537.385 650.595,-541.846 655.474,-546.865 "
+     points="650.595,-541.846 655.474,-546.865 660.204,-537.385 "
      id="polygon945"
      style="fill:#000000;stroke:#000000"
      transform="translate(4,904)" />
@@ -2429,7 +2087,7 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="678.5,-550.104 675,-540.104 671.5,-550.104 678.5,-550.104 "
+     points="671.5,-550.104 678.5,-550.104 675,-540.104 "
      id="polygon952"
      style="fill:#008000;stroke:#008000"
      transform="translate(4,904)" />
@@ -2439,7 +2097,7 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="750.5,-550.104 747,-540.104 743.5,-550.104 750.5,-550.104 "
+     points="743.5,-550.104 750.5,-550.104 747,-540.104 "
      id="polygon959"
      style="fill:#000000;stroke:#000000"
      transform="translate(4,904)" />
@@ -2449,181 +2107,145 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="771.405,-541.846 761.796,-537.385 766.526,-546.865 771.405,-541.846 "
+     points="766.526,-546.865 771.405,-541.846 761.796,-537.385 "
      id="polygon966"
      style="fill:#008000;stroke:#008000"
      transform="translate(4,904)" />
   <ellipse
-     cx="620"
-     cy="-306"
+     cx="624"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse971"
-     d="m 649.3722,-306 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="620"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="624"
      y="601.70001"
      font-size="14.00"
      id="text973"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T102</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T102</text>
   <path
      d="m 684.253,541.504 c -10.7,9.855 -25.034,23.057 -37.037,34.113"
      id="path978"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="645.454,-325.686 635.727,-321.485 640.711,-330.835 645.454,-325.686 "
+     points="640.711,-330.835 645.454,-325.686 635.727,-321.485 "
      id="polygon980"
      style="fill:#ffc0cb;stroke:#ffc0cb"
      transform="translate(4,904)" />
   <ellipse
-     cx="696"
-     cy="-306"
+     cx="700"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse985"
-     d="m 725.3722,-306 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="696"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="700"
      y="601.70001"
      font-size="14.00"
      id="text987"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T104</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T104</text>
   <path
      d="m 700,544.303 c 0,7.714 0,16.985 0,25.585"
      id="path992"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="699.5,-334.104 696,-324.104 692.5,-334.104 699.5,-334.104 "
+     points="692.5,-334.104 699.5,-334.104 696,-324.104 "
      id="polygon994"
      style="fill:#0000ff;stroke:#0000ff"
      transform="translate(4,904)" />
   <ellipse
-     cx="772"
-     cy="-306"
+     cx="776"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse999"
-     d="m 801.3722,-306 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="772"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="776"
      y="601.70001"
      font-size="14.00"
      id="text1001"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T106</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T106</text>
   <path
      d="m 776,544.303 c 0,7.714 0,16.985 0,25.585"
      id="path1006"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="775.5,-334.104 772,-324.104 768.5,-334.104 775.5,-334.104 "
+     points="768.5,-334.104 775.5,-334.104 772,-324.104 "
      id="polygon1008"
      style="fill:#ffc0cb;stroke:#ffc0cb"
      transform="translate(4,904)" />
   <ellipse
-     cx="848"
-     cy="-306"
+     cx="852"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse1013"
-     d="m 877.3722,-306 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="848"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="852"
      y="601.70001"
      font-size="14.00"
      id="text1015"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T108</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T108</text>
   <path
      d="m 791.747,541.504 c 10.7,9.855 25.034,23.057 37.037,34.113"
      id="path1020"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="827.289,-330.835 832.273,-321.485 822.546,-325.686 827.289,-330.835 "
+     points="822.546,-325.686 827.289,-330.835 832.273,-321.485 "
      id="polygon1022"
      style="fill:#0000ff;stroke:#0000ff"
      transform="translate(4,904)" />
   <ellipse
-     cx="772"
-     cy="-234"
+     cx="776"
+     cy="670"
      rx="27"
      ry="18"
      id="ellipse1027"
-     d="m 799,-234 c 0,9.94113 -12.08831,18 -27,18 -14.91169,0 -27,-8.05887 -27,-18 0,-9.94113 12.08831,-18 27,-18 14.91169,0 27,8.05887 27,18 z"
-     sodipodi:cx="772"
-     sodipodi:cy="-234"
-     sodipodi:rx="27"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="776"
      y="673.70001"
      font-size="14.00"
      id="text1029"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T97</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T97</text>
   <path
      d="m 767.187,687.235 c -4.605,8.482 -10.342,19.051 -15.508,28.568"
      id="path1034"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="750.613,-186.266 742.766,-179.147 744.461,-189.606 750.613,-186.266 "
+     points="744.461,-189.606 750.613,-186.266 742.766,-179.147 "
      id="polygon1036"
      style="fill:#000000;stroke:#000000"
      transform="translate(4,904)" />
   <ellipse
-     cx="696"
-     cy="-234"
+     cx="700"
+     cy="670"
      rx="29.3722"
      ry="18"
      id="ellipse1041"
-     d="m 725.3722,-234 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="696"
-     sodipodi:cy="-234"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#00ff00;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#00ff00;stroke:#000000" />
   <text
      x="700"
      y="673.70001"
      font-size="14.00"
      id="text1043"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T100</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T100</text>
   <path
      d="m 708.813,687.235 c 4.605,8.482 10.342,19.051 15.508,28.568"
      id="path1048"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="723.539,-189.606 725.234,-179.147 717.387,-186.266 723.539,-189.606 "
+     points="717.387,-186.266 723.539,-189.606 725.234,-179.147 "
      id="polygon1050"
      style="fill:#008000;stroke:#008000"
      transform="translate(4,904)" />
@@ -2633,7 +2255,7 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="675.289,-258.835 680.273,-249.485 670.546,-253.686 675.289,-258.835 "
+     points="670.546,-253.686 675.289,-258.835 680.273,-249.485 "
      id="polygon1057"
      style="fill:#000000;stroke:#000000"
      transform="translate(4,904)" />
@@ -2643,7 +2265,7 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="699.5,-262.104 696,-252.104 692.5,-262.104 699.5,-262.104 "
+     points="692.5,-262.104 699.5,-262.104 696,-252.104 "
      id="polygon1064"
      style="fill:#008000;stroke:#008000"
      transform="translate(4,904)" />
@@ -2653,7 +2275,7 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="775.5,-262.104 772,-252.104 768.5,-262.104 775.5,-262.104 "
+     points="768.5,-262.104 775.5,-262.104 772,-252.104 "
      id="polygon1071"
      style="fill:#000000;stroke:#000000"
      transform="translate(4,904)" />
@@ -2663,258 +2285,204 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="796.935,-253.208 787.208,-249.008 792.193,-258.357 796.935,-253.208 "
+     points="792.193,-258.357 796.935,-253.208 787.208,-249.008 "
      id="polygon1078"
      style="fill:#008000;stroke:#008000"
      transform="translate(4,904)" />
   <ellipse
-     cx="893"
-     cy="-594"
+     cx="897"
+     cy="310"
      rx="29.3722"
      ry="18"
      id="ellipse1083"
-     d="m 922.3722,-594 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="893"
-     sodipodi:cy="-594"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="897"
      y="313.70001"
      font-size="14.00"
      id="text1085"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T116</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T116</text>
   <path
      d="m 926.187,255.235 c -4.539,8.361 -10.178,18.749 -15.287,28.159"
      id="path1090"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="909.877,-618.752 902.03,-611.633 903.725,-622.092 909.877,-618.752 "
+     points="903.725,-622.092 909.877,-618.752 902.03,-611.633 "
      id="polygon1092"
      style="fill:#ffc0cb;stroke:#ffc0cb"
      transform="translate(4,904)" />
   <ellipse
-     cx="969"
-     cy="-594"
+     cx="973"
+     cy="310"
      rx="29.3722"
      ry="18"
      id="ellipse1097"
-     d="m 998.3722,-594 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="969"
-     sodipodi:cy="-594"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="973"
      y="313.70001"
      font-size="14.00"
      id="text1099"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T118</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T118</text>
   <path
      d="m 943.813,255.235 c 4.539,8.361 10.178,18.749 15.287,28.159"
      id="path1104"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="958.275,-622.092 959.97,-611.633 952.123,-618.752 958.275,-622.092 "
+     points="952.123,-618.752 958.275,-622.092 959.97,-611.633 "
      id="polygon1106"
      style="fill:#0000ff;stroke:#0000ff"
      transform="translate(4,904)" />
   <ellipse
-     cx="1045"
-     cy="-594"
+     cx="1049"
+     cy="310"
      rx="29.3722"
      ry="18"
      id="ellipse1111"
-     d="m 1074.3722,-594 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1045"
-     sodipodi:cy="-594"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="1049"
      y="313.70001"
      font-size="14.00"
      id="text1113"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T120</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T120</text>
   <path
      d="m 1049,256.303 c 0,7.714 0,16.985 0,25.585"
      id="path1118"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="1048.5,-622.104 1045,-612.104 1041.5,-622.104 1048.5,-622.104 "
+     points="1041.5,-622.104 1048.5,-622.104 1045,-612.104 "
      id="polygon1120"
      style="fill:#ffc0cb;stroke:#ffc0cb"
      transform="translate(4,904)" />
   <ellipse
-     cx="1121"
-     cy="-594"
+     cx="1125"
+     cy="310"
      rx="29.3722"
      ry="18"
      id="ellipse1125"
-     d="m 1150.3722,-594 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1121"
-     sodipodi:cy="-594"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="1125"
      y="313.70001"
      font-size="14.00"
      id="text1127"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T122</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T122</text>
   <path
      d="m 1064.75,253.504 c 10.7,9.855 25.03,23.057 37.03,34.113"
      id="path1132"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="1100.29,-618.835 1105.27,-609.485 1095.55,-613.686 1100.29,-618.835 "
+     points="1095.55,-613.686 1100.29,-618.835 1105.27,-609.485 "
      id="polygon1134"
      style="fill:#0000ff;stroke:#0000ff"
      transform="translate(4,904)" />
   <ellipse
-     cx="1045"
-     cy="-522"
+     cx="1049"
+     cy="382"
      rx="29.3722"
      ry="18"
      id="ellipse1139"
-     d="m 1074.3722,-522 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1045"
-     sodipodi:cy="-522"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="1049"
      y="385.70001"
      font-size="14.00"
      id="text1141"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T111</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T111</text>
   <ellipse
-     cx="1030"
-     cy="-450"
+     cx="1034"
+     cy="454"
      rx="29.3722"
      ry="18"
      id="ellipse1146"
-     d="m 1059.3722,-450 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1030"
-     sodipodi:cy="-450"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="1034"
      y="457.70001"
      font-size="14.00"
      id="text1148"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T123</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T123</text>
   <path
      d="m 1045.37,399.945 c -1.67,7.794 -3.69,17.233 -5.57,25.976"
      id="path1153"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="1039.22,-477.32 1033.7,-468.275 1032.37,-478.787 1039.22,-477.32 "
+     points="1032.37,-478.787 1039.22,-477.32 1033.7,-468.275 "
      id="polygon1155"
      style="fill:#000000;stroke:#000000"
      transform="translate(4,904)" />
   <ellipse
-     cx="1000"
-     cy="-378"
+     cx="1004"
+     cy="526"
      rx="29.3722"
      ry="18"
      id="ellipse1160"
-     d="m 1029.3722,-378 c 0,9.94113 -13.1504,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1000"
-     sodipodi:cy="-378"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="1004"
      y="529.70001"
      font-size="14.00"
      id="text1162"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T129</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T129</text>
   <path
      d="m 1026.89,471.589 c -3.55,8.282 -7.92,18.486 -11.89,27.749"
      id="path1167"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="1014.21,-403.283 1007.06,-395.47 1007.78,-406.04 1014.21,-403.283 "
+     points="1007.78,-406.04 1014.21,-403.283 1007.06,-395.47 "
      id="polygon1169"
      style="fill:#0000ff;stroke:#0000ff"
      transform="translate(4,904)" />
   <ellipse
-     cx="1076"
-     cy="-378"
+     cx="1080"
+     cy="526"
      rx="29.3722"
      ry="18"
      id="ellipse1174"
-     d="m 1105.3722,-378 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1076"
-     sodipodi:cy="-378"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="1080"
      y="529.70001"
      font-size="14.00"
      id="text1176"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T133</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T133</text>
   <path
      d="m 1044.44,470.884 c 5.76,8.771 13.04,19.852 19.52,29.7"
      id="path1181"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="1063.04,-405.1 1065.6,-394.821 1057.19,-401.256 1063.04,-405.1 "
+     points="1057.19,-401.256 1063.04,-405.1 1065.6,-394.821 "
      id="polygon1183"
      style="fill:#ffc0cb;stroke:#ffc0cb"
      transform="translate(4,904)" />
   <ellipse
-     cx="969"
-     cy="-522"
+     cx="973"
+     cy="382"
      rx="29.3722"
      ry="18"
      id="ellipse1188"
-     d="m 998.3722,-522 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="969"
-     sodipodi:cy="-522"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="973"
      y="385.70001"
      font-size="14.00"
      id="text1190"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T114</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T114</text>
   <path
      d="m 986.236,398.189 c 8.154,9.356 18.764,21.529 27.904,32.026"
      id="path1195"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="1012.86,-475.998 1016.79,-466.159 1007.58,-471.399 1012.86,-475.998 "
+     points="1007.58,-471.399 1012.86,-475.998 1016.79,-466.159 "
      id="polygon1197"
      style="fill:#008000;stroke:#008000"
      transform="translate(4,904)" />
@@ -2924,7 +2492,7 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="948.289,-546.835 953.273,-537.485 943.546,-541.686 948.289,-546.835 "
+     points="943.546,-541.686 948.289,-546.835 953.273,-537.485 "
      id="polygon1204"
      style="fill:#000000;stroke:#000000"
      transform="translate(4,904)" />
@@ -2934,7 +2502,7 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="972.5,-550.104 969,-540.104 965.5,-550.104 972.5,-550.104 "
+     points="965.5,-550.104 972.5,-550.104 969,-540.104 "
      id="polygon1211"
      style="fill:#008000;stroke:#008000"
      transform="translate(4,904)" />
@@ -2944,7 +2512,7 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="1048.5,-550.104 1045,-540.104 1041.5,-550.104 1048.5,-550.104 "
+     points="1041.5,-550.104 1048.5,-550.104 1045,-540.104 "
      id="polygon1218"
      style="fill:#000000;stroke:#000000"
      transform="translate(4,904)" />
@@ -2954,181 +2522,145 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="1070.45,-541.686 1060.73,-537.485 1065.71,-546.835 1070.45,-541.686 "
+     points="1065.71,-546.835 1070.45,-541.686 1060.73,-537.485 "
      id="polygon1225"
      style="fill:#008000;stroke:#008000"
      transform="translate(4,904)" />
   <ellipse
-     cx="924"
-     cy="-306"
+     cx="928"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse1230"
-     d="m 953.3722,-306 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="924"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="928"
      y="601.70001"
      font-size="14.00"
      id="text1232"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T130</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T130</text>
   <path
      d="m 988.253,541.504 c -10.7,9.855 -25.034,23.057 -37.037,34.113"
      id="path1237"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="949.454,-325.686 939.727,-321.485 944.711,-330.835 949.454,-325.686 "
+     points="944.711,-330.835 949.454,-325.686 939.727,-321.485 "
      id="polygon1239"
      style="fill:#ffc0cb;stroke:#ffc0cb"
      transform="translate(4,904)" />
   <ellipse
-     cx="1000"
-     cy="-306"
+     cx="1004"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse1244"
-     d="m 1029.3722,-306 c 0,9.94113 -13.1504,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1000"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="1004"
      y="601.70001"
      font-size="14.00"
      id="text1246"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T132</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T132</text>
   <path
      d="m 1004,544.303 c 0,7.714 0,16.985 0,25.585"
      id="path1251"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="1003.5,-334.104 1000,-324.104 996.5,-334.104 1003.5,-334.104 "
+     points="996.5,-334.104 1003.5,-334.104 1000,-324.104 "
      id="polygon1253"
      style="fill:#0000ff;stroke:#0000ff"
      transform="translate(4,904)" />
   <ellipse
-     cx="1076"
-     cy="-306"
+     cx="1080"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse1258"
-     d="m 1105.3722,-306 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1076"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="1080"
      y="601.70001"
      font-size="14.00"
      id="text1260"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T134</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T134</text>
   <path
      d="m 1080,544.303 c 0,7.714 0,16.985 0,25.585"
      id="path1265"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#ffc0cb" />
   <polygon
-     points="1079.5,-334.104 1076,-324.104 1072.5,-334.104 1079.5,-334.104 "
+     points="1072.5,-334.104 1079.5,-334.104 1076,-324.104 "
      id="polygon1267"
      style="fill:#ffc0cb;stroke:#ffc0cb"
      transform="translate(4,904)" />
   <ellipse
-     cx="1152"
-     cy="-306"
+     cx="1156"
+     cy="598"
      rx="29.3722"
      ry="18"
      id="ellipse1272"
-     d="m 1181.3722,-306 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1152"
-     sodipodi:cy="-306"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="1156"
      y="601.70001"
      font-size="14.00"
      id="text1274"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T136</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T136</text>
   <path
      d="m 1095.75,541.504 c 10.7,9.855 25.03,23.057 37.03,34.113"
      id="path1279"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#0000ff" />
   <polygon
-     points="1131.29,-330.835 1136.27,-321.485 1126.55,-325.686 1131.29,-330.835 "
+     points="1126.55,-325.686 1131.29,-330.835 1136.27,-321.485 "
      id="polygon1281"
      style="fill:#0000ff;stroke:#0000ff"
      transform="translate(4,904)" />
   <ellipse
-     cx="1076"
-     cy="-234"
+     cx="1080"
+     cy="670"
      rx="29.3722"
      ry="18"
      id="ellipse1286"
-     d="m 1105.3722,-234 c 0,9.94113 -13.1504,18 -29.3722,18 -16.2218,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.1504,-18 29.3722,-18 16.2218,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="1076"
-     sodipodi:cy="-234"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="1080"
      y="673.70001"
      font-size="14.00"
      id="text1288"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T125</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T125</text>
   <path
      d="m 1060.14,683.193 c -18.34,11.26 -45.76,28.098 -66.283,40.702"
      id="path1293"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="991.603,-177.07 981.25,-174.82 987.94,-183.035 991.603,-177.07 "
+     points="987.94,-183.035 991.603,-177.07 981.25,-174.82 "
      id="polygon1295"
      style="fill:#000000;stroke:#000000"
      transform="translate(4,904)" />
   <ellipse
-     cx="962"
-     cy="-234"
+     cx="966"
+     cy="670"
      rx="29.3722"
      ry="18"
      id="ellipse1300"
-     d="m 991.3722,-234 c 0,9.94113 -13.15038,18 -29.3722,18 -16.22182,0 -29.3722,-8.05887 -29.3722,-18 0,-9.94113 13.15038,-18 29.3722,-18 16.22182,0 29.3722,8.05887 29.3722,18 z"
-     sodipodi:cx="962"
-     sodipodi:cy="-234"
-     sodipodi:rx="29.3722"
-     sodipodi:ry="18"
-     style="fill:#ffd5d5;stroke:#000000"
-     transform="translate(4,904)" />
+     style="fill:#ffd5d5;stroke:#000000" />
   <text
      x="966"
      y="673.70001"
      font-size="14.00"
      id="text1302"
-     style="font-size:14px;text-anchor:middle;font-family:'Times,serif'">T128</text>
+     style="font-size:14px;line-height:0%;font-family:'\'Times', 'serif\'';text-anchor:middle">T128</text>
   <path
      d="m 966,688.303 c 0,7.714 0,16.985 0,25.585"
      id="path1307"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="965.5,-190.104 962,-180.104 958.5,-190.104 965.5,-190.104 "
+     points="958.5,-190.104 965.5,-190.104 962,-180.104 "
      id="polygon1309"
      style="fill:#008000;stroke:#008000"
      transform="translate(4,904)" />
@@ -3138,7 +2670,7 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="951.275,-262.092 952.97,-251.633 945.123,-258.752 951.275,-262.092 "
+     points="945.123,-258.752 951.275,-262.092 952.97,-251.633 "
      id="polygon1316"
      style="fill:#000000;stroke:#000000"
      transform="translate(4,904)" />
@@ -3148,7 +2680,7 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="978.877,-258.752 971.03,-251.633 972.725,-262.092 978.877,-258.752 "
+     points="972.725,-262.092 978.877,-258.752 971.03,-251.633 "
      id="polygon1323"
      style="fill:#008000;stroke:#008000"
      transform="translate(4,904)" />
@@ -3158,7 +2690,7 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000" />
   <polygon
-     points="1079.5,-262.104 1076,-252.104 1072.5,-262.104 1079.5,-262.104 "
+     points="1072.5,-262.104 1079.5,-262.104 1076,-252.104 "
      id="polygon1330"
      style="fill:#000000;stroke:#000000"
      transform="translate(4,904)" />
@@ -3168,60 +2700,47 @@
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#008000" />
   <polygon
-     points="1101.45,-253.686 1091.73,-249.485 1096.71,-258.835 1101.45,-253.686 "
+     points="1096.71,-258.835 1101.45,-253.686 1091.73,-249.485 "
      id="polygon1337"
      style="fill:#008000;stroke:#008000"
      transform="translate(4,904)" />
   <text
      xml:space="preserve"
-     style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-     x="631.30518"
-     y="246.53079"
-     id="text5534"
-     sodipodi:linespacing="125%"
-     transform="scale(0.8,0.8)"><tspan
+     style="font-style:normal;font-weight:normal;font-size:9.6px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.8"
+     x="505.04413"
+     y="197.22464"
+     id="text5534"><tspan
        sodipodi:role="line"
        id="tspan5536"
-       x="631.30518"
-       y="246.53079" /></text>
-  <path
-     sodipodi:type="arc"
-     style="fill:none;stroke:#ff00ff;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       x="505.04413"
+       y="197.22464"
+       style="font-size:32px;line-height:1.25;font-family:sans-serif;stroke-width:0.8"> </tspan></text>
+  <ellipse
+     style="fill:none;stroke:#ff00ff;stroke-width:1.6;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
      id="path6544"
-     sodipodi:cx="207.03096"
-     sodipodi:cy="577.50183"
-     sodipodi:rx="200.53224"
-     sodipodi:ry="413.59775"
-     d="m 407.5632,577.50183 a 200.53224,413.59775 0 1 1 -401.0644817,0 200.53224,413.59775 0 1 1 401.0644817,0 z"
-     transform="matrix(0.8,0,0,0.8,-16,0)" />
-  <path
-     transform="matrix(0.79983182,0,0,0.86905426,272.03482,-11.28455)"
-     d="m 407.5632,577.50183 a 200.53224,413.59775 0 1 1 -401.0644817,0 200.53224,413.59775 0 1 1 401.0644817,0 z"
-     sodipodi:ry="413.59775"
-     sodipodi:rx="200.53224"
-     sodipodi:cy="577.50183"
-     sodipodi:cx="207.03096"
+     cx="149.62477"
+     cy="462.00146"
+     rx="160.4258"
+     ry="330.8782" />
+  <ellipse
      id="path6546"
-     style="fill:none;stroke:#ff00ff;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-     sodipodi:type="arc" />
-  <path
-     sodipodi:type="arc"
-     style="fill:none;stroke:#ff00ff;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     style="fill:none;stroke:#ff00ff;stroke-width:1.66745;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     cx="437.62476"
+     cy="490.59589"
+     rx="160.39207"
+     ry="359.43887" />
+  <ellipse
+     style="fill:none;stroke:#ff00ff;stroke-width:1.66745;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
      id="path6548"
-     sodipodi:cx="207.03096"
-     sodipodi:cy="577.50183"
-     sodipodi:rx="200.53224"
-     sodipodi:ry="413.59775"
-     d="m 407.5632,577.50183 a 200.53224,413.59775 0 1 1 -401.0644817,0 200.53224,413.59775 0 1 1 401.0644817,0 z"
-     transform="matrix(0.79983182,0,0,0.86905426,560.03482,-91.28455)" />
-  <path
-     transform="matrix(0.79983182,0,0,0.86905426,848.03482,-43.28455)"
-     d="m 407.5632,577.50183 a 200.53224,413.59775 0 1 1 -401.0644817,0 200.53224,413.59775 0 1 1 401.0644817,0 z"
-     sodipodi:ry="413.59775"
-     sodipodi:rx="200.53224"
-     sodipodi:cy="577.50183"
-     sodipodi:cx="207.03096"
+     cx="725.62476"
+     cy="410.59589"
+     rx="160.39207"
+     ry="359.43887" />
+  <ellipse
      id="path6550"
-     style="fill:none;stroke:#ff00ff;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-     sodipodi:type="arc" />
+     style="fill:none;stroke:#ff00ff;stroke-width:1.66745;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     cx="1013.6248"
+     cy="458.59589"
+     rx="160.39207"
+     ry="359.43887" />
 </svg>

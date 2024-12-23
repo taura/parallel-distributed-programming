@@ -21,7 +21,6 @@ export PATH=/usr/local/cuda/bin:$PATH
 <!--- md --->
 * Check if it works
   * make sure the full path of nvcc is shown as `/usr/local/...`, not `/opt/nvidia/...`
-* We do not recommend nvc/nvc++ for this exercise, but you might give them a try if you like
 <!--- end md --->
 
 <!--- code w kernel=bash --->
@@ -46,6 +45,8 @@ export LD_LIBRARY_PATH=/home/share/llvm/lib:/home/share/llvm/lib/x86_64-unknown-
 
 <!--- md --->
 Check if it works (check if full paths of gcc/g++ are shown)
+
+* <font color="red">For reasons I describe below, I do not recommend clang++ for the exercise in this notebook</font>
 <!--- end md --->
 
 <!--- code w kernel=bash --->
@@ -106,7 +107,7 @@ so we call this kind of code _pointer chasing_ code, although we do not explicit
 
 <!--- code w kernel=python --->
 %%writefile main.cc
-<!--- exec-include ./mk_version.py -DVER=\"omp\" -DDBG=0 nb/source/pd07_mem/include/main.cc --->
+<!--- exec-include ./mk_version.py -DVER=\"omp\" -DDBG=0 nb/source/pd07_mem_ext/include/main.cc --->
 <!--- end code --->
 
 <!--- md --->
@@ -115,7 +116,7 @@ so we call this kind of code _pointer chasing_ code, although we do not explicit
 
 <!--- code w kernel=python --->
 %%writefile latency.cc
-<!--- exec-include ./mk_version.py -DVER=\"omp\" -DDBG=0 nb/source/pd07_mem/include/latency.cc --->
+<!--- exec-include ./mk_version.py -DVER=\"omp\" -DDBG=0 nb/source/pd07_mem_ext/include/latency.cc --->
 <!--- end code --->
 
 <!--- md --->
@@ -123,8 +124,8 @@ so we call this kind of code _pointer chasing_ code, although we do not explicit
 <!--- end md --->
 
 <!--- code w kernel=bash points=1 --->
-clang++ -DDBG=0 -Wall -O3 -mavx512f -mfma -fopenmp -fopenmp-targets=nvptx64 -o latency latency.cc main.cc
-#nvc++   -Wall -O3 -mavx512f -mfma -mp=gpu -cuda -o latency latency.cc main.cc
+#clang++ -DDBG=0 -Wall -O3 -mavx512f -mfma -fopenmp -fopenmp-targets=nvptx64 -o latency latency.cc main.cc
+nvc++   -Wall -mavx512f -mfma -mp=gpu -cuda -o latency latency.cc main.cc
 <!--- end code --->
 
 <!--- md --->
@@ -331,7 +332,7 @@ for (i = 0; i < n; i++) {
 
 <!--- code w kernel=python --->
 %%writefile latency_ilp.cc
-<!--- exec-include ./mk_version.py -DVER=\"omp_ilp\" -DDBG=0 nb/source/pd07_mem/include/latency.cc --->
+<!--- exec-include ./mk_version.py -DVER=\"omp_ilp\" -DDBG=0 nb/source/pd07_mem_ext/include/latency.cc --->
 <!--- end code --->
 
 <!--- md --->
@@ -343,12 +344,12 @@ for (i = 0; i < n; i++) {
 
 <!--- code w kernel=python --->
 %%writefile latency_ilp_c.cc
-<!--- exec-include ./mk_version.py -DVER=\"omp_ilp_c\" -DDBG=0 nb/source/pd07_mem/include/latency.cc --->
+<!--- exec-include ./mk_version.py -DVER=\"omp_ilp_c\" -DDBG=0 nb/source/pd07_mem_ext/include/latency.cc --->
 <!--- end code --->
 
 <!--- code w kernel=bash points=1 --->
-clang++ -DDBG=0 -Wall -O3 -mavx512f -mfma -fopenmp -fopenmp-targets=nvptx64 -o latency_ilp_c latency_ilp_c.cc main.cc
-#nvc++   -Wall -O3 -mavx512f -mfma -mp=gpu -cuda -o latency_ilp_c latency_ilp_c.cc main.cc
+#clang++ -DDBG=0 -Wall -O3 -mavx512f -mfma -fopenmp -fopenmp-targets=nvptx64 -o latency_ilp_c latency_ilp_c.cc main.cc
+nvc++   -Wall -mavx512f -mfma -mp=gpu -cuda -o latency_ilp_c latency_ilp_c.cc main.cc
 <!--- end code --->
 
 <!--- md --->
@@ -418,7 +419,7 @@ n=$((1 << 27))
 
 for C in 1 2 3 4 6 8 10 12 14 16 ; do
     echo "==== C=${C} ===="
-    echo ./latency_ilp_c --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --n-conc-cycles ${C}
+    ./latency_ilp_c --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --n-conc-cycles ${C}
 done | tee cpu_bw.txt
 echo "done"
 <!--- end code --->
@@ -430,7 +431,6 @@ vis_mem.vis_bw(["cpu_bw.txt"])
 
 <!--- md --->
 ## Plotting C vs. Bandwidth (GPU)
-<!--- end md --->
 
 * Let's see whether a similar thing happens on the GPU
 * Set the value of `C` to 1, 2, 3, ... and see the effect
@@ -446,8 +446,33 @@ export C=1
 ./latency_ilp_c --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --n-conc-cycles ${C}
 <!--- end code --->
 
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=MANDATORY
+export OMP_NUM_TEAMS=1
+export OMP_NUM_THREADS=1
+m=$((1 << 24))
+n=$((1 << 27))
+
+for C in 1 2 3 4 6 8 10 12 14 16 ; do
+    echo "==== C=${C} ===="
+    ./latency_ilp_c --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --n-conc-cycles ${C}
+done | tee gpu_bw.txt
+echo "done"
+<!--- end code --->
+
+<!--- code w kernel=python --->
+import vis_mem
+vis_mem.vis_bw(["gpu_bw.txt"])
+<!--- end code --->
+
+<!--- code w kernel=python --->
+import vis_mem
+vis_mem.vis_bw(["cpu_bw.txt", "gpu_bw.txt"])
+<!--- end code --->
+
+
 <!--- md --->
-## Traversing Multiple Pointer Chains by Multiple Threads on GPU
+## Traversing Multiple Pointer Chains by Multiple Threads on GPU (OpenMP)
 <!--- end md --->
 
 <!--- md --->
@@ -468,4 +493,168 @@ export OMP_NUM_THREADS=${C}
 
 <!--- md --->
 * Increase C to 32, 64, ... (a multiple of 32) and see how far you can go
+
+* Let's visualize how the bandwidth increases with the number of threads
 <!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=MANDATORY
+export OMP_NUM_TEAMS=1
+m=$((1 << 24))
+n=$((1 << 27))
+
+for C in 32 64 96 128 192 256 384 512 768 1024 ; do
+    echo "==== C=${C} ===="
+    OMP_NUM_THREADS=${C} ./latency --n-elements ${m} --min-accesses ${n} --n-cycles ${C}
+done | tee gpu_bw_threads.txt
+echo "done"
+<!--- end code --->
+
+<!--- code w kernel=python --->
+import vis_mem
+vis_mem.vis_bw_threads(["gpu_bw_threads.txt"])
+<!--- end code --->
+
+<!--- md --->
+* <font color="red">NOTE:</font> I found a number of issues and mysteries with `clang++` and `nvc++` in this experiment
+* `clang++`
+  * performance is very poor (the bandwidth does not increase almost at all when increasing the number of threads)
+  * I haven't had the time to look into it
+* `nvc++`
+  * bandwidth scales much better than clang++
+  * but when I give `-O2` option or above in the command line, the compilation succeeds but when executing the commnad, it fails with the following error
+
+```
+$ ./latency --n-elements 16777216 --min-accesses 134217728 --n-cycles 32
+n_elements : 16777216
+sz : 134217728 bytes
+n_cycles : 32
+len_cycle : 524288
+n_accesses_per_cycle : 4194304
+total_accesses : 134217728
+n_conc_cycles : 1
+coalese_size : 1
+seed : 123456789012345
+Module function not found, error 500
+Accelerator Fatal Error: Failed to find device function 'nvkernel__Z6cyclesPlllS_llllPi_F1L83_2'! File was compiled with: -gpu=cc80
+Rebuild this file with -gpu=cc80 to use NVIDIA Tesla GPU 0
+ File: /home/pd/parallel-distributed-programming/jupyter/nb/source/pd07_mem_ext/include/ver/main_omp.cc
+ Function: _Z11make_cyclesPlS_lllll:101
+ Line: 101
+```
+
+* The best workaround for now is to **use nvc++ with `-O1` or below**
+* Or use CUDA, which I demonstarte below
+<!--- end md --->
+
+<!--- md --->
+## Traversing Multiple Pointer Chains by Multiple Threads on GPU (CUDA)
+
+* This would be unnecessary if OpenMP result were more clear-cut
+
+* The main file
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile main_cuda.cc
+<!--- exec-include ./mk_version.py -DVER=\"cuda\" -DDBG=0 nb/source/pd07_mem_ext/include/main.cc --->
+<!--- end code --->
+
+<!--- md --->
+* The core part of the program that accesses the array
+<!--- end md --->
+
+<!--- code w kernel=python --->
+%%writefile latency_cuda.cc
+<!--- exec-include ./mk_version.py -DVER=\"cuda\" -DDBG=0 nb/source/pd07_mem_ext/include/latency.cc --->
+<!--- end code --->
+
+<!--- md --->
+* Compile them together
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+nvcc -DDBG=0 -O4 -x cu -o latency_cuda latency_cuda.cc main_cuda.cc
+<!--- end code --->
+
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=MANDATORY
+export OMP_NUM_TEAMS=1
+m=$((1 << 24))
+n=$((1 << 27))
+
+for C in 32 64 96 128 192 256 384 512 768 1024 ; do
+    echo "==== C=${C} ===="
+    OMP_NUM_THREADS=${C} ./latency_cuda --n-elements ${m} --min-accesses ${n} --n-cycles ${C}
+done | tee gpu_bw_threads.txt
+echo "done"
+<!--- end code --->
+
+<!--- md --->
+* Visualize
+<!--- end md --->
+
+<!--- code w kernel=python --->
+import vis_mem
+vis_mem.vis_bw_threads(["gpu_bw_threads.txt"])
+<!--- end code --->
+
+<!--- md --->
+## Coalesing Global Memory Accesses
+
+* In NVIDIA GPUs, global memory accesses get faster when all threads witin a warp access a consecutive addresses
+* This is the case, for example, when thread 0 in a warp accesses a[0], thread 1 a[1], threads 2 a[2], and so on (contiguous accesses)
+* This is not the case, on the other hand, when thread 0 accesses a[0], thread 1 a[50], thread 2 a[28], and so on (non-contiguous or scattered accesses)
+* This is natural if you consider all threads within a warp execute the same instruction and the processor has a cache line larger than a single word; if those threads access a contiguous addresses, data are in a single or a small number of cache lines that are brought to the processor with a single memory transaction
+  * In NVIDIA GPU, it is called _coalesing_
+* The experiment above was performing scattered accesses; different chains connect totally unrelated elements
+* We can arrange chains in such a way that a certain number of ($= D$) chains starting from a consecutive location always point to a consecutive location to see the effect of coalesing
+* Here is an example of two coalesed chains (i.e., $D = 2$)
+
+<img src="svg/latency_measurement_L3.svg" />
+
+<!--- end md --->
+
+<!--- md --->
+* You can specify `--coalese-size` option to set the number of consecutive elements that are always coalesed
+* For example, the above picture can be realized by `--n-cycles 2 --coalese-size 2`
+* Change the coalese size ($D$) in the command below and see what happens
+* Note: $D$ must divide $C$, so when $C = 64$, you can set $D$ only to a power of two up to 64
+
+* For clearer result, I am using CUDA program, but you can get a similar result with OpenMP, as long as it is compiled by nvc++, not clang++
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=MANDATORY
+export OMP_NUM_TEAMS=1
+export m=$((1 << 24))
+export n=$((1 << 27))
+export C=64
+export D=1
+export OMP_NUM_THREADS=${C}
+./latency_cuda --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --coalese-size ${D}
+<!--- end code --->
+
+<!--- md --->
+* Let's visualize it
+<!--- end md --->
+
+<!--- code w kernel=bash points=1 --->
+export OMP_TARGET_OFFLOAD=MANDATORY
+export OMP_NUM_TEAMS=1
+m=$((1 << 24))
+n=$((1 << 27))
+
+for D in 1 2 8 32; do
+    for C in 32 64 96 128 192 256 384 512 768 1024 ; do
+        echo "==== C=${C} ===="
+        OMP_NUM_THREADS=${C} ./latency_cuda --n-elements ${m} --min-accesses ${n} --n-cycles ${C} --coalese-size ${D}
+    done | tee gpu_bw_threads_coalese_${D}.txt
+done
+<!--- end code --->
+
+<!--- code w kernel=python --->
+import vis_mem
+vis_mem.vis_bw_threads([f"gpu_bw_threads_coalese_{D}.txt" for D in [1,2,8,32]])
+<!--- end code --->
+

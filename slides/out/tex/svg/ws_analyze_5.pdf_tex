@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1253bp}%
+    \setlength{\unitlength}{332.20535278bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,22 +50,22 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.207502)%
+  \begin{picture}(1,1.01383071)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0.36792039,0.15741246){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
+    \put(0,0.88872078){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{ws_analyze_5.pdf}}%
-    \put(0.48842768,0.13918595){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt create\_task}\end{tabular}}}}%
-    \put(0.46288897,0.08810856){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt create\_task}\end{tabular}}}}%
-    \put(0.49225842,0.0025539){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt wait\_tasks}\end{tabular}}}}%
-    \put(0.55865922,-0.02426179){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt wait\_tasks}\end{tabular}}}}%
+    \put(0.45452499,0.81997468){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt create\_task}\end{tabular}}}}%
+    \put(0.35819901,0.62732285){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt create\_task}\end{tabular}}}}%
+    \put(0.46897367,0.30463094){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt wait\_tasks}\end{tabular}}}}%
+    \put(0.71942176,0.20348852){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt wait\_tasks}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{ws_analyze_5.pdf}}%
-    \put(0.45522708,0.12386272){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}(A)\end{tabular}}}}%
-    \put(0.47438141,0.07023142){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}(B)\end{tabular}}}}%
-    \put(0.47438141,-0.01915405){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}(C)\end{tabular}}}}%
-    \put(0.48715076,-0.04980052){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}(D)\end{tabular}}}}%
+    \put(0.32930019,0.76217909){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}(A)\end{tabular}}}}%
+    \put(0.40154579,0.55989451){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}(B)\end{tabular}}}}%
+    \put(0.40154579,0.22275369){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}(C)\end{tabular}}}}%
+    \put(0.44970877,0.10716247){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}(D)\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{ws_analyze_5.pdf}}%
-    \put(0.55008195,0.10488641){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$x$\end{tabular}}}}%
-    \put(0.48625496,0.05253205){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$y$\end{tabular}}}}%
+    \put(0.68707034,0.69060495){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$x$\end{tabular}}}}%
+    \put(0.44633003,0.49313669){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$y$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

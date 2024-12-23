@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1253bp}%
+    \setlength{\unitlength}{405.61224365bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,16 +50,16 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.207502)%
+  \begin{picture}(1,0.54885915)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0.36792039,0.15741246){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
+    \put(1,0.33456043){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l} \end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{ws_analyze_basic.pdf}}%
-    \put(0.18515563,0.11492418){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$T_1$\end{tabular}}}}%
-    \put(0.1660016,0.21707901){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}steal attempts\end{tabular}}}}%
+    \put(0.43541092,0.20330745){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$T_1$\end{tabular}}}}%
+    \put(0.37624111,0.51887978){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}steal attempts\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{ws_analyze_basic.pdf}}%
-    \put(0.0434158,0.12769354){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$P$\end{tabular}}}}%
-    \put(0.18515563,0.05107741){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$T_P$\end{tabular}}}}%
+    \put(-0.00244569,0.24275399){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$P$\end{tabular}}}}%
+    \put(0.43541092,0.00607474){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$T_P$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{ws_analyze_basic.pdf}}%
   \end{picture}%
 \endgroup%

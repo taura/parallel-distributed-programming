@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1253bp}%
+    \setlength{\unitlength}{662.99481201bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,23 +50,23 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.207502)%
+  \begin{picture}(1,0.31272268)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{ws_create_1.pdf}}%
-    \put(0.23744563,0.01221675){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$W_0$\end{tabular}}}}%
+    \put(0.17058892,0.04658828){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$W_0$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{ws_create_1.pdf}}%
-    \put(0.3012924,0.01221675){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$W_1$\end{tabular}}}}%
-    \put(0.36513917,0.01221675){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$W_2$\end{tabular}}}}%
+    \put(0.29125351,0.04658828){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$W_1$\end{tabular}}}}%
+    \put(0.41191812,0.04658828){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$W_2$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{ws_create_1.pdf}}%
-    \put(0.5566795,0.01221675){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$W_{n-1}$\end{tabular}}}}%
-    \put(0.45452467,0.01221675){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\cdots$\end{tabular}}}}%
-    \put(0.45452467,0.06329416){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\cdots$\end{tabular}}}}%
-    \put(0.173213,0.09917079){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}top\end{tabular}}}}%
-    \put(0.19534738,0.02510849){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}bottom\end{tabular}}}}%
+    \put(0.77391195,0.04658828){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$W_{n-1}$\end{tabular}}}}%
+    \put(0.5808486,0.04658828){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\cdots$\end{tabular}}}}%
+    \put(0.5808486,0.14311997){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\cdots$\end{tabular}}}}%
+    \put(0.04919508,0.21092352){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}top\end{tabular}}}}%
+    \put(0.09102704,0.0709525){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{0}\smash{\begin{tabular}[t]{r}bottom\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{ws_create_1.pdf}}%
-    \put(0.30001546,0.07734046){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$S$\end{tabular}}}}%
-    \put(0.30048126,0.05946334){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$P$\end{tabular}}}}%
+    \put(0.28884021,0.16966617){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$S$\end{tabular}}}}%
+    \put(0.28972053,0.13588005){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$P$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{ws_create_1.pdf}}%
   \end{picture}%
 \endgroup%

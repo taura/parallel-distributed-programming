@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1464.72650483bp}%
+    \setlength{\unitlength}{1350.02188615bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,18 +50,18 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.4096328)%
+  \begin{picture}(1,0.41665991)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{gemm_analyze_loop_case_4.pdf}}%
-    \put(0.34123018,0.33172943){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}+=\end{tabular}}}}%
-    \put(0.76323609,0.32368304){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C$\end{tabular}}}}%
+    \put(0.36551905,0.33213749){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}+=\end{tabular}}}}%
+    \put(0.82338069,0.32340743){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\leq C$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{gemm_analyze_loop_case_4.pdf}}%
-    \put(0.34123018,0.1064314){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}+=\end{tabular}}}}%
-    \put(0.48287865,0.08814413){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$c$\end{tabular}}}}%
-    \put(0.76323609,0.09838495){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\ao{\approx C}$\end{tabular}}}}%
+    \put(0.36551905,0.08769701){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}+=\end{tabular}}}}%
+    \put(0.51920268,0.06785595){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$c$\end{tabular}}}}%
+    \put(0.82338069,0.07896689){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\ao{\approx C}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{gemm_analyze_loop_case_4.pdf}}%
-    \put(0.05276422,0.19055232){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\times c$\end{tabular}}}}%
+    \put(0.05254358,0.17896526){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}$\times c$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{gemm_analyze_loop_case_4.pdf}}%
   \end{picture}%
 \endgroup%
