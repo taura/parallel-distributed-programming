@@ -3,7 +3,7 @@
 
 <svg
    width="112.7125mm"
-   height="65.033386mm"
+   height="65.033394mm"
    id="svg2"
    version="1.1"
    xmlns="http://www.w3.org/2000/svg"
@@ -21,13 +21,12 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
      id="layer1"
-     transform="translate(40.500001,-16.862183)">
+     transform="translate(40.500002,-16.862182)">
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1.03156;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect7928"

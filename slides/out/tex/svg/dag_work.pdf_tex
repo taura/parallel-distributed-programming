@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{134bp}%
+    \setlength{\unitlength}{317.83666992bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,22 +50,22 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,2.20895522)%
+  \begin{picture}(1,0.93129594)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{dag_work.pdf}}%
-    \put(0.5,1.88283584){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}A\end{tabular}}}}%
+    \put(0.51126298,0.79380395){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}A\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{dag_work.pdf}}%
-    \put(0.23134328,0.94253734){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}B\end{tabular}}}}%
+    \put(0.39799726,0.39737392){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}B\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{dag_work.pdf}}%
-    \put(0.76865672,0.94253734){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}C\end{tabular}}}}%
+    \put(0.6245287,0.39737392){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}C\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{dag_work.pdf}}%
-    \put(0.5,0.13656717){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}D\end{tabular}}}}%
+    \put(0.51126298,0.05757674){\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}D\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{dag_work.pdf}}%
-    \put(0.92720715,1.60451559){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}create task\end{tabular}}}}%
-    \put(1.18989461,0.72093383){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}wait\end{tabular}}}}%
+    \put(0.6913736,0.67646407){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}create task\end{tabular}}}}%
+    \put(0.80212268,0.30394584){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}wait\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{dag_work.pdf}}%
-    \put(-0.72055316,0.52988923){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}end task\end{tabular}}}}%
+    \put(-0.00332246,0.2234014){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}end task\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{dag_work.pdf}}%
   \end{picture}%
 \endgroup%

@@ -60,7 +60,7 @@
     \put(0,0){\includegraphics[width=\unitlength,page=2]{chol_at_work_5.pdf}}%
     \put(0.03638042,0.57020628){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}recursion\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{chol_at_work_5.pdf}}%
-    \put(0.09943982,0.36647591){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$L_{11}$\end{tabular}}}}%
+    \put(0.09943982,0.3664759){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$L_{11}$\end{tabular}}}}%
     \put(0.32742381,0.57020628){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}triangular solve\end{tabular}}}}%
     \put(0.03638042,0.03662673){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}transpose\end{tabular}}}}%
     \put(0.32742381,0.23065566){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}matrix multiply\end{tabular}}}}%

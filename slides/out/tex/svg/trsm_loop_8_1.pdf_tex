@@ -55,6 +55,6 @@
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{trsm_loop_8_1.pdf}}%
     \put(0.90254045,0.34973688){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$k$\end{tabular}}}}%
-    \put(0.26404281,0.0070139){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$k$\end{tabular}}}}%
+    \put(0.2640428,0.0070139){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$k$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{595.27559055bp}%
+    \setlength{\unitlength}{328.99502491bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,21 +50,21 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,1.41428571)%
+  \begin{picture}(1,0.5841309)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{trsm_at_work_2.pdf}}%
-    \put(0.12347864,1.04866377){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$M$\end{tabular}}}}%
-    \put(0.35026436,1.04866377){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$N$\end{tabular}}}}%
-    \put(0.45105805,1.22505266){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$M$\end{tabular}}}}%
-    \put(-0.05291021,1.22505266){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$M$\end{tabular}}}}%
+    \put(0.3163269,0.00264441){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$M$\end{tabular}}}}%
+    \put(0.72666745,0.00264441){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$N$\end{tabular}}}}%
+    \put(0.9090411,0.32179817){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$M$\end{tabular}}}}%
+    \put(-0.00282679,0.32179817){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$M$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{trsm_at_work_2.pdf}}%
-    \put(0.03780404,1.26285027){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$L_{11}$\end{tabular}}}}%
-    \put(0.03780404,1.16205662){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$L_{21}$\end{tabular}}}}%
-    \put(0.1637961,1.16205662){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$L_{22}$\end{tabular}}}}%
-    \put(0.32506594,1.15197726){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$B_2$\end{tabular}}}}%
+    \put(0.16130936,0.39018826){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$L_{11}$\end{tabular}}}}%
+    \put(0.16130936,0.20781468){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$L_{21}$\end{tabular}}}}%
+    \put(0.38927633,0.20781468){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$L_{22}$\end{tabular}}}}%
+    \put(0.68107406,0.18957732){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$B_2$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{trsm_at_work_2.pdf}}%
-    \put(0.32506594,1.27796932){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$B_1$\end{tabular}}}}%
-    \put(0.30786185,1.33898698){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{recursion}\end{tabular}}}}%
+    \put(0.68107406,0.4175443){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$B_1$\end{tabular}}}}%
+    \put(0.64994538,0.52794816){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{recursion}\end{tabular}}}}%
   \end{picture}%
 \endgroup%

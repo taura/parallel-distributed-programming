@@ -13,10 +13,10 @@ bibtex := biber
 run_bibtex_and_latex_twice:=n
 
 # tex files
-tex := $(wildcard memory.tex)
+tex := $(wildcard divide_and_conquer.tex)
 # svg files
 svg_svg :=
-svg_svg += svg/diagram_multicore.svg
+svg_svg += $(wildcard svg/gemm*.svg)
 # svg_svg += $(wildcard svg/hierarchy.svg)
 # svg_svg += $(wildcard svg/diagram_multisocket.svg)
 

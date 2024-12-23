@@ -5,20 +5,20 @@
 <!-- Title: %3 Pages: 1 -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="134pt"
+   width="317.83667pt"
    height="296pt"
-   viewBox="0.00 0.00 134.00 296.00"
+   viewBox="0 0 317.83667 296"
    id="svg2"
    version="1.1"
-   inkscape:version="0.91 r13725"
-   sodipodi:docname="dag_work.svg">
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="dag_work.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <metadata
      id="metadata69">
     <rdf:RDF>
@@ -27,7 +27,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -48,26 +47,32 @@
      showgrid="true"
      inkscape:snap-global="true"
      inkscape:zoom="0.91190877"
-     inkscape:cx="91.135512"
-     inkscape:cy="185"
-     inkscape:window-x="75"
-     inkscape:window-y="24"
+     inkscape:cx="219.32018"
+     inkscape:cy="185.32556"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg2">
+     inkscape:current-layer="svg2"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="pt">
     <inkscape:grid
        type="xygrid"
-       id="grid3056" />
+       id="grid3056"
+       originx="95.498123"
+       originy="0" />
   </sodipodi:namedview>
   <g
      id="graph0"
      class="graph"
-     transform="scale(1 1) rotate(0) translate(4 292)">
+     transform="translate(99.498123,292)">
     <title
        id="title5">%3</title>
     <polygon
-       fill="white"
+       fill="#ffffff"
        stroke="none"
-       points="-4,4 -4,-292 130,-292 130,4 -4,4"
+       points="130,-292 130,4 -4,4 -4,-292 "
        id="polygon7" />
     <!-- A -->
     <g
@@ -77,16 +82,17 @@
          id="title10">A</title>
       <polygon
          fill="none"
-         stroke="black"
-         points="90,-288 36,-288 36,-216 90,-216 90,-288"
+         stroke="#000000"
+         points="36,-216 90,-216 90,-288 36,-288 "
          id="polygon12" />
       <text
          text-anchor="middle"
          x="63"
          y="-248.3"
-         font-family="Times,serif"
-         font-size="14.00"
-         id="text14">A</text>
+         font-family="Times, serif"
+         font-size="14px"
+         id="text14"
+         style="line-height:0%">A</text>
     </g>
     <!-- B -->
     <g
@@ -96,16 +102,17 @@
          id="title17">B</title>
       <polygon
          fill="none"
-         stroke="black"
-         points="54,-180 0,-180 0,-72 54,-72 54,-180"
+         stroke="#000000"
+         points="0,-72 54,-72 54,-180 0,-180 "
          id="polygon19" />
       <text
          text-anchor="middle"
          x="27"
          y="-122.3"
-         font-family="Times,serif"
-         font-size="14.00"
-         id="text21">B</text>
+         font-family="Times, serif"
+         font-size="14px"
+         id="text21"
+         style="line-height:0%">B</text>
     </g>
     <!-- A&#45;&gt;B -->
     <g
@@ -115,13 +122,13 @@
          id="title24">A-&gt;B</title>
       <path
          fill="none"
-         stroke="black"
-         d="M52.7801,-215.798C50.4292,-207.701 47.859,-198.848 45.2811,-189.968"
+         stroke="#000000"
+         d="m 52.7801,-215.798 c -2.3509,8.097 -4.9211,16.95 -7.499,25.83"
          id="path26" />
       <polygon
-         fill="black"
-         stroke="black"
-         points="48.6403,-188.985 42.4909,-180.357 41.9178,-190.937 48.6403,-188.985"
+         fill="#000000"
+         stroke="#000000"
+         points="41.9178,-190.937 48.6403,-188.985 42.4909,-180.357 "
          id="polygon28" />
     </g>
     <!-- C -->
@@ -132,16 +139,17 @@
          id="title31">C</title>
       <polygon
          fill="none"
-         stroke="black"
-         points="126,-155 72,-155 72,-97 126,-97 126,-155"
+         stroke="#000000"
+         points="72,-97 126,-97 126,-155 72,-155 "
          id="polygon33" />
       <text
          text-anchor="middle"
          x="99"
          y="-122.3"
-         font-family="Times,serif"
-         font-size="14.00"
-         id="text35">C</text>
+         font-family="Times, serif"
+         font-size="14px"
+         id="text35"
+         style="line-height:0%">C</text>
     </g>
     <!-- A&#45;&gt;C -->
     <g
@@ -151,13 +159,13 @@
          id="title38">A-&gt;C</title>
       <path
          fill="none"
-         stroke="black"
-         d="M73.2199,-215.798C77.8334,-199.907 83.2913,-181.108 87.9946,-164.907"
+         stroke="#000000"
+         d="m 73.2199,-215.798 c 4.6135,15.891 10.0714,34.69 14.7747,50.891"
          id="path40" />
       <polygon
-         fill="black"
-         stroke="black"
-         points="91.3844,-165.785 90.8113,-155.205 84.662,-163.833 91.3844,-165.785"
+         fill="#000000"
+         stroke="#000000"
+         points="84.662,-163.833 91.3844,-165.785 90.8113,-155.205 "
          id="polygon42" />
     </g>
     <!-- D -->
@@ -168,16 +176,17 @@
          id="title45">D</title>
       <polygon
          fill="none"
-         stroke="black"
-         points="90,-36 36,-36 36,-0 90,-0 90,-36"
+         stroke="#000000"
+         points="36,0 90,0 90,-36 36,-36 "
          id="polygon47" />
       <text
          text-anchor="middle"
          x="63"
          y="-14.3"
-         font-family="Times,serif"
-         font-size="14.00"
-         id="text49">D</text>
+         font-family="Times, serif"
+         font-size="14px"
+         id="text49"
+         style="line-height:0%">D</text>
     </g>
     <!-- B&#45;&gt;D -->
     <g
@@ -187,13 +196,13 @@
          id="title52">B-&gt;D</title>
       <path
          fill="none"
-         stroke="black"
-         d="M45.1055,-71.6895C48.1247,-62.7995 51.14,-53.9211 53.8115,-46.055"
+         stroke="#000000"
+         d="m 45.1055,-71.6895 c 3.0192,8.89 6.0345,17.7684 8.706,25.6345"
          id="path54" />
       <polygon
-         fill="black"
-         stroke="black"
-         points="57.1951,-46.9757 57.0969,-36.3813 50.5669,-44.7246 57.1951,-46.9757"
+         fill="#000000"
+         stroke="#000000"
+         points="50.5669,-44.7246 57.1951,-46.9757 57.0969,-36.3813 "
          id="polygon56" />
     </g>
     <!-- C&#45;&gt;D -->
@@ -204,107 +213,103 @@
          id="title59">C-&gt;D</title>
       <path
          fill="none"
-         stroke="black"
-         d="M89.4472,-96.8722C84.0817,-81.0739 77.4212,-61.4625 72.1267,-45.873"
+         stroke="#000000"
+         d="m 89.4472,-96.8722 c -5.3655,15.7983 -12.026,35.4097 -17.3205,50.9992"
          id="path61" />
       <polygon
-         fill="black"
-         stroke="black"
-         points="75.402,-44.633 68.872,-36.2897 68.7738,-46.8841 75.402,-44.633"
+         fill="#000000"
+         stroke="#000000"
+         points="68.7738,-46.8841 75.402,-44.633 68.872,-36.2897 "
          id="polygon63" />
     </g>
   </g>
   <text
      xml:space="preserve"
-     style="font-size:32px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-     x="124.24576"
+     style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="219.74388"
      y="80.994911"
-     id="text3048"
-     sodipodi:linespacing="125%"><tspan
+     id="text3048"><tspan
        sodipodi:role="line"
        id="tspan3050"
-       x="124.24576"
+       x="219.74388"
        y="80.994911"
-       style="font-size:19.20000076px">create task</tspan></text>
+       style="font-size:19.2px;line-height:1.25;font-family:sans-serif">create task</tspan></text>
   <text
-     sodipodi:linespacing="125%"
      id="text3052"
      y="199.39487"
-     x="159.44588"
-     style="font-size:32px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+     x="254.944"
+     style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
      xml:space="preserve"><tspan
-       style="font-size:19.20000076px"
+       style="font-size:19.2px;line-height:1.25;font-family:sans-serif"
        y="199.39487"
-       x="159.44588"
+       x="254.944"
        id="tspan3054"
        sodipodi:role="line">wait</tspan></text>
   <path
-     style="fill:none;stroke:#0000ff;stroke-width:0.80000000999999998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:0.80000000000000004, 0.80000000000000004;stroke-dashoffset:0"
-     d="m 96,74.4 20,0"
+     style="fill:none;stroke:#0000ff;stroke-width:0.8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.8, 0.8;stroke-dashoffset:0;stroke-opacity:1"
+     d="m 191.49812,74.4 h 20"
      id="path3058"
      inkscape:connector-curvature="0" />
   <path
      inkscape:connector-curvature="0"
      id="path3828"
-     d="m 131.2,194.4 20,0"
-     style="fill:none;stroke:#0000ff;stroke-width:0.80000000999999998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:0.80000000000000004, 0.80000000000000004;stroke-dashoffset:0" />
+     d="m 226.69812,194.4 h 20"
+     style="fill:none;stroke:#0000ff;stroke-width:0.8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.8, 0.8;stroke-dashoffset:0;stroke-opacity:1" />
   <path
-     style="fill:none;stroke:#0000ff;stroke-width:0.80000000999999998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:0.80000000000000004, 0.80000000000000004;stroke-dashoffset:0"
-     d="m -17.6,218.4 20,0"
+     style="fill:none;stroke:#0000ff;stroke-width:0.8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.8, 0.8;stroke-dashoffset:0;stroke-opacity:1"
+     d="m 77.898123,218.4 h 20"
      id="path3830"
      inkscape:connector-curvature="0" />
   <text
      xml:space="preserve"
-     style="font-size:32px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-     x="-96.554123"
+     style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="-1.056"
      y="224.99484"
-     id="text3832"
-     sodipodi:linespacing="125%"><tspan
+     id="text3832"><tspan
        sodipodi:role="line"
        id="tspan3834"
-       x="-96.554123"
+       x="-1.056"
        y="224.99484"
-       style="font-size:19.20000076px">end task</tspan></text>
+       style="font-size:19.2px;line-height:1.25;font-family:sans-serif">end task</tspan></text>
   <rect
-     style="fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:0.80000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:0.8, 0.8;stroke-dashoffset:0"
+     style="fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:0.8;stroke-miterlimit:4;stroke-dasharray:0.8, 0.8;stroke-dashoffset:0;stroke-opacity:1"
      id="rect3836"
      width="56"
      height="4"
-     x="38.400002"
+     x="133.89812"
      y="72" />
   <rect
      y="191.99997"
-     x="75.199966"
+     x="170.69809"
      height="4"
      width="56"
      id="rect3838"
-     style="fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:0.80000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:0.8, 0.8;stroke-dashoffset:0" />
+     style="fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:0.8;stroke-miterlimit:4;stroke-dasharray:0.8, 0.8;stroke-dashoffset:0;stroke-opacity:1" />
   <rect
      y="216"
-     x="3.2000022"
+     x="98.698128"
      height="4"
      width="56"
      id="rect3840"
-     style="fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:0.80000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:0.8, 0.8;stroke-dashoffset:0" />
+     style="fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:0.8;stroke-miterlimit:4;stroke-dasharray:0.8, 0.8;stroke-dashoffset:0;stroke-opacity:1" />
   <path
-     style="fill:none;stroke:#ff0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-     d="m 40,5 0,90"
+     style="fill:none;stroke:#ff0000;stroke-width:3.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 127.49812,4 V 76"
      id="path3861"
-     inkscape:connector-curvature="0"
-     transform="scale(0.8,0.8)" />
+     inkscape:connector-curvature="0" />
   <path
      inkscape:connector-curvature="0"
      id="path3863"
-     d="m -3.2,111.98723 0,107.42554"
-     style="fill:none;stroke:#ff0000;stroke-width:3.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+     d="M 92.298123,111.98723 V 219.41277"
+     style="fill:none;stroke:#ff0000;stroke-width:3.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   <path
      inkscape:connector-curvature="0"
      id="path3865"
-     d="m 32,254.46614 0,38.9762"
-     style="fill:none;stroke:#ff0000;stroke-width:3.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+     d="m 127.49812,254.46614 v 38.9762"
+     style="fill:none;stroke:#ff0000;stroke-width:3.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   <path
      inkscape:connector-curvature="0"
      id="path4185"
-     d="m 70.4,138.4 0,57.96351"
-     style="fill:none;stroke:#ff0000;stroke-width:2.87118435;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+     d="m 165.89812,138.4 v 57.96351"
+     style="fill:none;stroke:#ff0000;stroke-width:2.87118;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
 </svg>
