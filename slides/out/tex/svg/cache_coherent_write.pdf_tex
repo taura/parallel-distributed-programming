@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{595.27559055bp}%
+    \setlength{\unitlength}{1201.02738027bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,24 +50,24 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,1.41428571)%
+  \begin{picture}(1,0.56205041)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{cache_coherent_write.pdf}}%
-    \put(1.01424842,1.04050826){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{memory}\\\textbf{controller}\end{tabular}}}}%
+    \put(0.65300012,0.42639903){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{memory}\\\textbf{controller}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{cache_coherent_write.pdf}}%
-    \put(1.31702394,1.02867339){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{L3 cache}\end{tabular}}}}%
+    \put(0.80306736,0.42053322){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{L3 cache}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{cache_coherent_write.pdf}}%
-    \put(0.9402805,1.13913218){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{hardware thread}\\\textbf{(virtual core, CPU)}\end{tabular}}}}%
-    \put(1.01622092,1.270302){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{(physical) core}\end{tabular}}}}%
+    \put(0.61633876,0.47528086){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{hardware thread}\\\textbf{(virtual core, CPU)}\end{tabular}}}}%
+    \put(0.65397776,0.5402937){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{(physical) core}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{cache_coherent_write.pdf}}%
-    \put(1.28546424,1.10668491){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{L2 cache}\end{tabular}}}}%
+    \put(0.78742516,0.45919874){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{L2 cache}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{cache_coherent_write.pdf}}%
-    \put(1.30617526,1.12739594){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{L1 cache}\end{tabular}}}}%
+    \put(0.79769034,0.46946393){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{L1 cache}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{cache_coherent_write.pdf}}%
-    \put(1.25094586,1.2979167){\color[rgb]{1,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{chip (socket, node, CPU)}\end{tabular}}}}%
+    \put(0.77031652,0.55398061){\color[rgb]{1,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{chip (socket, node, CPU)}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{cache_coherent_write.pdf}}%
-    \put(0.76792005,0.73320307){\color[rgb]{0,0.50196078,1}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{interconnect}\end{tabular}}}}%
+    \put(0.53091025,0.2740867){\color[rgb]{0,0.50196078,1}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\textbf{interconnect}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{cache_coherent_write.pdf}}%
   \end{picture}%
 \endgroup%

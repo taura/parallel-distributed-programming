@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1253bp}%
+    \setlength{\unitlength}{722.484375bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,25 +50,25 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.207502)%
+  \begin{picture}(1,0.36763338)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{measure_comm.pdf}}%
-    \put(0.20923458,0.12040302){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
+    \put(0.49344709,0.22483184){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{measure_comm.pdf}}%
-    \put(0.20923458,0.05655626){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
+    \put(0.49344709,0.11410283){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{measure_comm.pdf}}%
-    \put(0.15898019,0.18424979){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i+1$\end{tabular}}}}%
-    \put(0.29639415,0.12040302){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt while (x <= i) ;}\end{tabular}}}}%
+    \put(0.40629123,0.33556089){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i+1$\end{tabular}}}}%
+    \put(0.64460737,0.22483184){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt while (x <= i) ;}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{measure_comm.pdf}}%
-    \put(0.26113502,0.18424979){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i+1$\end{tabular}}}}%
-    \put(0.17593325,0.13317237){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt x}\end{tabular}}}}%
-    \put(0.17593325,0.06932561){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt y}\end{tabular}}}}%
+    \put(0.58345769,0.33556089){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i+1$\end{tabular}}}}%
+    \put(0.43569281,0.24697766){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt x}\end{tabular}}}}%
+    \put(0.43569281,0.13624864){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt y}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{measure_comm.pdf}}%
-    \put(0.29639415,0.06932561){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt y = i + 1;}\end{tabular}}}}%
-    \put(-0.0109183,0.12040302){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt x = i + 1;}\end{tabular}}}}%
-    \put(-0.07760825,0.06932561){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt while (y <= i) ;}\end{tabular}}}}%
-    \put(0.15898019,-0.00729051){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i+1$\end{tabular}}}}%
-    \put(0.26113502,-0.00729051){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i+1$\end{tabular}}}}%
+    \put(0.64460737,0.13624864){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt y = i + 1;}\end{tabular}}}}%
+    \put(0.11163736,0.22483186){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt x = i + 1;}\end{tabular}}}}%
+    \put(-0.00402258,0.13624864){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}{\tt while (y <= i) ;}\end{tabular}}}}%
+    \put(0.40629123,0.00337378){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i+1$\end{tabular}}}}%
+    \put(0.58345769,0.00337378){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$i+1$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
