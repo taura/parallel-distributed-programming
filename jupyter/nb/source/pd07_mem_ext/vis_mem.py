@@ -71,5 +71,25 @@ def vis_bw(files_txt):
     plt.legend()
     plt.show()
 
+def vis_bw_threads(files_txt):
+    for a_txt in files_txt:
+        dics = parse(a_txt)
+        dics = sorted(dics, key=lambda d: d["n_cycles"])
+        coaleses = sorted(list(set(d["coalese_size"] for d in dics)))
+        for coalese in coaleses:
+            dics_c = [d for d in dics if d["coalese_size"] == coalese]
+            X = [d["n_cycles"] for d in dics_c]
+            Y = [d["bw"] for d in dics_c]
+            plt.plot(X, Y, marker="*", label=f"{a_txt} coalese={coalese}")
+            if 0:
+                plt.plot(X, [Y[0] * x / X[0] for x in X],
+                         label=f"{a_txt} coalese={coalese} ideal")
+    plt.xlabel("number of chains (= cuda threads)")
+    plt.ylabel("bandwidth (GB/sec)")
+    plt.ylim(0)
+    plt.legend()
+    plt.show()
+    
 # vis_latency(["include/a.txt", "include/a.txt"])
-#vis_bw(["b.txt"])
+# vis_bw(["b.txt"])
+# vis_bw_threads(["include/cuda.txt", "include/clang.txt"])

@@ -6,30 +6,8 @@
 #include <string.h>
 #include <time.h>
 /*** if "cuda" in VER */
-void check_cuda_api_(cudaError_t e,
-                     const char * msg, const char * file, int line) {
-  if (e) {
-    fprintf(stderr, "%s:%d:error: %s %s\n",
-            file, line, msg, cudaGetErrorString(e));
-    exit(1);
-  }
-}
-
-#define check_cuda_api(e) check_cuda_api_(e, #e, __FILE__, __LINE__)
-
-void check_cuda_launch_(const char * msg, const char * file, int line) {
-  cudaDeviceSynchronize();
-  cudaError_t e = cudaGetLastError();
-  if (e) {
-    fprintf(stderr, "%s:%d:error: %s %s\n",
-            file, line, msg, cudaGetErrorString(e));
-    exit(1);
-  }
-}
-
-#define check_cuda_launch(exp) do { exp; check_cuda_launch_(#exp, __FILE__, __LINE__); } while (0)
-/*** endif */
-/*** if "omp" in VER */
+#include "cuda_util.h"
+/*** elif "omp" in VER */
 #if __NVCOMPILER                // NVIDIA nvc++
 #else  // Clang
 #define __host__
@@ -149,17 +127,10 @@ void make_cycle(long * a, long * seq,
 }
 
 /*** if "cuda" in VER */
-__device__ long thread_index() {
-  return (long)blockIdx.x * (long)blockDim.x + (long)threadIdx.x;
-}
-__device__ long n_threads() {
-  return (long)gridDim.x * (long)blockDim.x;
-}
-
 __global__
 void make_cycles_g(long * a, long * seq, long n_cycles, long len_cycle) {
-  long nthreads = n_threads();
-  for (long idx = thread_index(); idx < n_cycles; idx += nthreads) {
+  long nthreads = get_n_threads();
+  for (long idx = get_thread_index(); idx < n_cycles; idx += nthreads) {
     make_cycle(a, seq, idx, n_cycles, len_cycle);
   }
 }
@@ -181,7 +152,7 @@ void make_cycles(long * a, long * seq, long m,
 /* defined in a separate file (latency.cc or latency_ilp.cc) */
 void cycles(long * a, long m, long n, long * end, long n_cycles,
             long n_conc_cycles,
-            long n_teams, long n_threads_per_team);
+            long n_teams, long n_threads_per_team, int * thread_idx);
 
 struct opts {
   /* number of elements */
@@ -333,9 +304,10 @@ int main(int argc, char ** argv) {
   printf("make_cycles_total : %f sec\n", dt0);
   printf("make_cycles_per_elem : %.1f nsec\n", 1.0e9 * dt0 / m);
   long * end = alloc_dev<long>(n_cycles);
+  int * thread_idx = alloc_dev<int>(n_cycles);
   double t2 = cur_time();
   cycles(a, m, n, end, n_cycles, n_conc_cycles,
-         n_teams, n_threads_per_team);
+         n_teams, n_threads_per_team, thread_idx);
   double t3 = cur_time();
   double dt1 = t3 - t2;
   long bytes = sizeof(long) * n * n_cycles;
@@ -349,6 +321,11 @@ int main(int argc, char ** argv) {
     assert(end[idx] == seq[(idx + n * n_cycles) % m]);
   }
   printf("OK\n");
+#if 0
+  for (long idx = 0; idx < n_cycles; idx++) {
+    printf("idx = %ld by thread %d\n", idx, thread_idx[idx]);
+  }
+#endif
   dealloc_dev(seq);
   dealloc_dev(end);
   dealloc_dev(a);
