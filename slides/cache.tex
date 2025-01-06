@@ -864,10 +864,9 @@ for (ii = 0; ii < n; ii += l)
   \item performs \ao{$l^3$} FMAs and
   \item touches \ao{$3l^2$} distinct words,
   \end{itemize}
-
-\item<2-> so, the traffic of the entire computation
-
-\[ \leq 3l^2 \cdot \left(\frac{n}{l}\right)^3 = \frac{3}{l}n^3 = \frac{3}{\sqrt{C}}n^3 \]
+\item<2-> with the assumption that $l^2 + 2l \leq C$, this block misses each element only once
+  
+\item<3-> therefore, the traffic of the entire computation $R(n)$ satisfies
 
 \end{itemize}
 \end{column}
@@ -887,6 +886,14 @@ for (ii = 0; ii < n; ii += l)
 \end{lstlisting}
 \end{column}
 \end{columns}
+
+\begin{itemize}
+\item<3->[]
+  \[ R(n) \leq 3l^2 \cdot \left(\frac{n}{l}\right)^3 = \frac{3}{l}n^3 \approx \frac{3}{\sqrt{C}}n^3  \]
+  (the last $\approx$ holds when choosing the maximum $l$ satisfying the above)
+\end{itemize}
+
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%% 
