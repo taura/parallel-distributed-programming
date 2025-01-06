@@ -419,6 +419,7 @@ for (i = 0; i < n; i++) {
   }
 }
 \end{lstlisting}
+\item perform \ao{$n^3$} FMAs on \ao{$3n^2$} words
 \item key question:
   \ao{\emph{which iteration fits in the cache?}}
 \end{itemize}
@@ -474,10 +475,10 @@ $K$ iteration & $3$          \\\hline
 \begin{columns}
   \begin{column}{0.5\textwidth}
     \begin{itemize}
-    \item<2-> Case 1: the three matrices all fit in the cache ($3n^2 \leq C$)
-    \item<3-> Case 2: a single $i$ iteration ($\approx$ \ao{a matrix}) fits in the cache
+    \item<2-> Case 1: working set of \ao{the entire $I$-loop} fits in the cache ($3n^2 \leq C$)
+    \item<3-> Case 2: working set of \ao{a single $I$-iteration ($=$ $J$-loop)} fits in the cache
       ($2n+n^2 \leq C$)
-    \item<4-> Case 3: a single $j$ iteration ($\approx$ \ao{two vectors}) fits in the cache
+    \item<4-> Case 3: working set of \ao{a single $J$-iteration ($=$ $K$-loop)} fits in the cache
       ($1+2n \leq C$)
     \item<5-> Case 4: none of the above ($1+2n > C$)
     \end{itemize}
@@ -495,8 +496,8 @@ $K$ iteration & $3$          \\\hline
 \end{columns}
 
 \begin{itemize}
-  \item[]
-    Goal: for each case, bound from the above $R(n)$,
+  \item<6->[]
+    Goal: for each case, bound $R(n)$ from the above,
     the traffic between memory and cache for $n \times n$ matrix-multiply
 \end{itemize}
 
@@ -524,7 +525,7 @@ $K$ iteration & $3$          \\\hline
 \end{columns}
 
 \begin{itemize}
-\item [] 
+\item 
 \ao{interpretation:} each element of $A$, $B$, and $C$ are reused $n$ times
 \end{itemize}
 \end{frame}
@@ -533,17 +534,15 @@ $K$ iteration & $3$          \\\hline
 %%%%%%%%%%%%%%%%% 
 \begin{frame}[fragile]
 \frametitle{Case 2 ($2n + n^2 \leq C$)}
+\begin{itemize}
+\item the maximum number of $I$-iterations whose working set fit in the cache is:
+\end{itemize}
 \begin{columns}
   \begin{column}{0.5\textwidth}
 \begin{itemize}
-\item the maximum number of $i$-iterations
-  that fit in the cache is:
+\item []      
 \[ a \approx \frac{C - n^2}{2n} \]
-\item each such set of iterations transfer $\leq C$ words, so
-\[ R(n) \leq \frac{n}{a} C 
-= \frac{n}{a} (n^2 + 2an)
-= \ao{\left(\frac{1}{a}+\frac{2}{n}\right)} n^3
-\]
+\item in $a$ iterations, each element misses only once, so
 \end{itemize}
 \end{column}
 
@@ -558,27 +557,31 @@ $K$ iteration & $3$          \\\hline
 
 \begin{itemize}
 \item []
+\[ R(n) \leq 
+= \frac{n}{a} (n^2 + 2an)
+= \ao{\left(\frac{1}{a}+\frac{2}{n}\right)} n^3
+\]
+\item
 \ao{interpretation:} each element of $B$ is reused $a$ times in the cache;
-each element in $A$ or $C$ many ($\propto n$) times 
+each element in $A$ or $C$ $n$ times 
 \end{itemize}
 \end{frame}
-
-
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}[fragile]
 \frametitle{A Remark}
+\begin{itemize}
+\item for a particular access pattern of the
+  matrix multiplication,
+  a better bound can be obtained
+\end{itemize}
 \begin{columns}
   \begin{column}{0.5\textwidth}
     \begin{itemize}
-    \item for a particular access pattern of the
-      matrix multiplication,
-      a better bound can be obtained
-    \item as we know all elements of $B$ are accessed in each $i$-iteration,
+    \item as we know all elements of $B$ are accessed in the same order in
+      each $I$-iteration,
       $B$ stays in the cache for any number of $a$ iterations
-    \item so, in this case too,
-      \[ R(n) \leq 3n^2 = \frac{3}{n} \cdot n^3 \]
-\end{itemize}
+    \end{itemize}
 \end{column}
 
 \begin{column}{0.5\textwidth}
@@ -589,6 +592,12 @@ each element in $A$ or $C$ many ($\propto n$) times
 \end{itemize}
 \end{column}
 \end{columns}
+
+\begin{itemize}
+\item so, in this case too, each element misses only once throughout the entire computation
+  \[ \therefore R(n) \leq 3n^2 = \frac{3}{n} \cdot n^3 \]
+\item note that this analysis is specific to matrix-matrix multiplication
+\end{itemize}
 
 \end{frame}
 
@@ -602,9 +611,8 @@ each element in $A$ or $C$ many ($\propto n$) times
 \item the maximum number of $j$-iterations
   that fit in the cache is:
 \[ b \approx \frac{C - n}{n + 1} \]
-\item each such set of iterations transfer $\leq C$ words, so
-\[ R(n) \leq \frac{n^2}{b} C 
-= \frac{n^2}{b} (n + b(n + 1))
+\item in $b$ iterations, each element misses only once, so
+\[ R(n) \leq \frac{n^2}{b} (n + b(n + 1))
 = \ao{\left(\frac{1}{b} + 1 + \frac{1}{n} \right)} n^3
 \]
 \end{itemize}
@@ -634,8 +642,7 @@ each clement in $C$ many ($\propto n$) times
 \begin{itemize}
 \item a similar argument shows that an entire row of $A$ stays in the cache
   for any number of $b$ iterations
-\item therefore
-  \[ R(n) \leq (2n + n^2) n = n^3 + 2n^2 \]
+\item so each element misses only once in the entire $J$-loop (an iteration of the $I$-loop)
 \end{itemize}
   \end{column}
 
@@ -646,6 +653,7 @@ each clement in $C$ many ($\propto n$) times
 \end{itemize}
 \end{column}
 \end{columns}
+  \[ \therefore R(n) \leq (2n + n^2) n = n^3 + 2n^2 \]
 \end{frame}
 
 %%%%%%%%%%%%%%%%% 
@@ -654,11 +662,11 @@ each clement in $C$ many ($\propto n$) times
 \begin{columns}
   \begin{column}{0.5\textwidth}
 \begin{itemize}
-\item the maximum number of $k$-iterations
+\item the maximum number of $K$-iterations
   that fit in the cache is:
 \[ c \approx \frac{C - 1}{2} \]
-\item each such set of iterations transfer $\leq C$ words, so
-\[ R(n) \leq \frac{n^3}{c} C 
+\item in each $c$ iterations, each element misses only once, so
+\[ R(n) \leq \frac{n^3}{c} (2c + 1)
 = \ao{\left(2 + \frac{1}{c}\right)} n^3
 \]
 \end{itemize}
@@ -687,7 +695,7 @@ reused $c$ times
 \begin{itemize}
 \item similarly, the element of $C$ stays in the cache for any number of
   $c$ iterations
-\item so
+\item so, each element misses only once in the entire $k$-loop (an iteration of the $j$-loop)
 \[ R(n) \leq (2n + 1) n^2 = 2n^3 + n^2 \]
 \end{itemize}
   \end{column}
@@ -745,16 +753,39 @@ $1 + 2n > C$      & $n^2 + 2n^3$ & $\approx 1/2$ \\\hline
 \end{itemize}
 \end{frame}
 
-
 %%%%%%%%%%%%%%%%% 
 \begin{frame}
-\frametitle{So how to improve it?}
+\frametitle{Can we do better for large matrices?}
+\begin{itemize}
+\item so far, we've discussed the traffic of the straightforward triply-nested loop
+\item its conclusion can be summarized as
+\begin{itemize}
+  \item if a single matrix is larger than $B$,
+    access to $B$ almost induces a cache miss
+\item can we do better for large matrices?    
+\end{itemize}
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{|l|c|c|}\hline
+condition         & $R(n)$       & $n^3/R(n)$ \\\hline
+$2n + n^2 \leq C$ & $3n^2$       & $n/3$ \\
+$1 + 2n \leq C$   & $2n^2 + n^3$ & $\approx 1$ \\ 
+$1 + 2n > C$      & $n^2 + 2n^3$ & $\approx 1/2$ \\\hline
+\end{tabular}
+\end{center}
+\end{frame}
+  
+%%%%%%%%%%%%%%%%% 
+\begin{frame}
+\frametitle{A general strategy}
 \begin{itemize}
 \item<1-> in general, the traffic increases when 
   \ao{\emph{the same amount of computation has a large working set}}
-\item<2-> to reduce the traffic, you arrange the computation
-  \ao{\emph (order subcomputations)} so that
-  \ao{\emph{you do a lot of computation on the same amount of data}}
+\item<2-> assuming the entire computaiton you want to perform is given/fixed,
+  to reduce the traffic, you arrange \ao{\it order} subcomputations
+  so that \ao{\emph{each subcomputation does a lot of computation
+    on the same amount of data}}
 \item<3-> the notion is so important that it is variously called
   \begin{itemize}
   \item \ao{compute/data ratio,}
@@ -805,8 +836,8 @@ l = @$\sqrt{C} - {\rm small\;constant}$@;
 for (ii = 0; ii < n; ii += l)
  for (jj = 0; jj < n; jj += l)
   for (kk = 0; kk < n; kk += l)
-   @\ao{\em /* block below misses each */}@
-   @\ao{\em /* element at most once */}@
+   @\ao{\em /* block below misses each}@
+   @\ao{\em    element at most once */}@
    @\ao{\tt for (i = ii; i < ii + l; i++)}@
     @\ao{\tt for (j = jj; j < jj + l; j++)}@
      @\ao{\tt for (k = kk; k < kk + l; k++)}@
@@ -847,8 +878,8 @@ l = @$\sqrt{C} - {\rm small\;constant}$@;
 for (ii = 0; ii < n; ii += l)
  for (jj = 0; jj < n; jj += l)
   for (kk = 0; kk < n; kk += l)
-   @\ao{\em /* block below misses each */}@
-   @\ao{\em /* element at most once */}@
+   @\ao{\em /* block below misses each}@
+   @\ao{\em   element at most once */}@
    @\ao{\tt for (i = ii; i < ii + l; i++)}@
     @\ao{\tt for (j = jj; j < jj + l; j++)}@
      @\ao{\tt for (k = kk; k < kk + l; k++)}@
