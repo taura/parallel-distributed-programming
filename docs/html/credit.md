@@ -13,10 +13,6 @@
 
 * Define a problem you want to get high performance for and apply what you have learned in the class to achieve high performance. The problem may be one that arises in your research or one that interests you. It must be one for which you have a good prospect for applying parallelization or vectorization. Think of good parallel algorithms to get good performance. Apply multicore parallelization, GPU parallelization and/or vectorization, understand what is the maximum performance achievable, and investigate how close your implementation is.
 
-  * Describe your application or a high-level goal
-  * Describe what it does in terms of computation
-  * Describe how you are going to apply parallelization/vectorization or other things to make it more high-performance
-
 # How to Choose the Problem
 
 * You are encouraged to seek a problem that is relevant to your research or that you are highly interested in
@@ -57,6 +53,11 @@
 * You have to find the most time-consuming part(s) of the code through actual measurements by yourself (you can ask ChatGPT which part is likely to be most time-consuming, but you must witness it by yourself, through real experiments)
 * You have to analyze the machine code of the time-consuming part(s) by actually generating assembly code and seeing them by yourself
 * You have to do other necessary analysis to reason about the performance of the code by yourself (ChatGPT won't be able to do it anyways, but just in case you might consider asking it something like "Please reason about the performance of this code", it would respond to you with full of hullcinations)
+
+# What Must Be in the Abstract
+
+* A brief description of the problem you are going to work on
+* A prospect of performance optimizations (vectorization, parallelizations, ILP, etc.) you are going to apply
 
 # What Must Be in the Report
 
