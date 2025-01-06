@@ -5,11 +5,10 @@
 1. participate in in-class exercises (evaluated based on submissions to reflections)
 1. submit programming exercise assignments (`pd01_omp` and `pd30_mlp`)
 1. write and submit a final report (term paper).
-    * abstract deadline: Jan 18th (Sat)
-    * final deadline: February 4th (Tue)
-    * The final report
+    * Abstract deadline: <font color="red">Jan 18th (Sat) 23:55</font>
+    * Final report deadline: <font color="red">February 4th (Tue) 23:55</font>
 
-# The Final Report
+# Spec
 
 * Define a problem you want to get high performance for and apply what you have learned in the class to achieve high performance. The problem may be one that arises in your research or one that interests you. It must be one for which you have a good prospect for applying parallelization or vectorization. Think of good parallel algorithms to get good performance. Apply multicore parallelization, GPU parallelization and/or vectorization, understand what is the maximum performance achievable, and investigate how close your implementation is.
 
@@ -59,6 +58,10 @@
 * A brief description of the problem you are going to work on
 * A prospect of performance optimizations (vectorization, parallelizations, ILP, etc.) you are going to apply
 
+# How to Submit the Abstract
+
+* Just send the brief descriptions through UTOL assignment (<font color="blue">"Final Report Abstract"</font>)
+
 # What Must Be in the Report
 
 * Description of the problem
@@ -72,6 +75,10 @@
 
 # How to Submit the Report
 
+* As in other assignments, the body of the work should be sent through Jupyter and a note should be dropped in UTOL
+
+Details:
+
 * I provided you with an almost empty Jupyter notebook, `pd31_final`, just as a uniform means to submit your work
 * You can write your report in the Jupyter notebook just as you have done for `pd30_mlp`, or put a separate PDF file under the `pd31_final` directory; you can mix the two
 * You should put all your code under the same `pd31_final` directory
@@ -79,6 +86,6 @@
 * To submit your work, press the `submit` button in the Jupyter, which sends your report (notebook or PDF) and code (everything under `pd3_final`, for that matter)
   * the directory should not contain a big file, which may cause a submission error
   * if the big file is an essential part of your work you cannot get rid of, put it elsewhere (e.g., Google drive or OneDrive) and make a link to it
-* After submitting the work in Jupyter, drop a note for the UTOL assignment ("Final Report") saying you have submitted your work (as you have done for earlier assignments)
+* After submitting the work in Jupyter, drop a note for the UTOL assignment (<font color="blue">"Final Report"</font>) saying you have submitted your work (as you have done for earlier assignments)
 
 
