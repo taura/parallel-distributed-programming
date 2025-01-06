@@ -63,7 +63,22 @@
 
 * Description of the problem
 * Description of the basic algorithm (why it solves the problem it is supposed to solve)
+* The code that solves the problem
+* Reproducing instructions (instructions for compiling and running your code so that I can reproduce it)
 * Description of performance optimization you applied (parallelization, vectorization, etc.)
 * Experimental results that show your implementation is correct
 * Experimental results that show the performance of your code
-* Analysis of performance (in the manner you did it for pd30_mlp exercise)
+* Analysis of performance (in the manner you did it for `pd30_mlp` exercise)
+
+# How to Submit the Report
+
+* I provided you with an almost empty Jupyter notebook, `pd31_final`, just as a uniform means to submit your work
+* You can write your report in the Jupyter notebook just as you have done for `pd30_mlp`, or put a separate PDF file under the `pd31_final` directory; you can mix the two
+* You should put all your code under the same `pd31_final` directory
+* It is recommended to write the reproducing instructions directly in the Jupyter notebook as a bash code cell, so that I can easily compile and run your code, but if you have an issue with composing Jupyter notebook, you can write it in the PDF file
+* To submit your work, press the `submit` button in the Jupyter, which sends your report (notebook or PDF) and code (everything under `pd3_final`, for that matter)
+  * the directory should not contain a big file, which may cause a submission error
+  * if the big file is an essential part of your work you cannot get rid of, put it elsewhere (e.g., Google drive or OneDrive) and make a link to it
+* After submitting the work in Jupyter, drop a note for the UTOL assignment ("Final Report") saying you have submitted your work (as you have done for earlier assignments)
+
+
