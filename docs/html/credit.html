@@ -1,0 +1,132 @@
+<p><link rel="stylesheet" href="../scripts/style.css"></p>
+<h1 class="unnumbered" id="how-to-get-credit">How to Get Credit</h1>
+<ol type="1">
+<li>participate in in-class exercises (evaluated based on submissions to
+reflections)</li>
+<li>submit programming exercise assignments (<code>pd01_omp</code> and
+<code>pd30_mlp</code>)</li>
+<li>write and submit a final report (term paper).
+<ul>
+<li>abstract deadline: Jan 18th (Sat)</li>
+<li>final deadline: February 4th (Tue)</li>
+<li>The final report</li>
+</ul></li>
+</ol>
+<h1 data-number="1" id="the-final-report"><span
+class="header-section-number">1</span> The Final Report</h1>
+<ul>
+<li><p>Define a problem you want to get high performance for and apply
+what you have learned in the class to achieve high performance. The
+problem may be one that arises in your research or one that interests
+you. It must be one for which you have a good prospect for applying
+parallelization or vectorization. Think of good parallel algorithms to
+get good performance. Apply multicore parallelization, GPU
+parallelization and/or vectorization, understand what is the maximum
+performance achievable, and investigate how close your implementation
+is.</p>
+<ul>
+<li>Describe your application or a high-level goal</li>
+<li>Describe what it does in terms of computation</li>
+<li>Describe how you are going to apply parallelization/vectorization or
+other things to make it more high-performance</li>
+</ul></li>
+</ul>
+<h1 data-number="2" id="how-to-choose-the-problem"><span
+class="header-section-number">2</span> How to Choose the Problem</h1>
+<ul>
+<li>You are encouraged to seek a problem that is relevant to your
+research or that you are highly interested in</li>
+<li>That said, if you have no idea what problem you want to work on,
+here are some suggestions</li>
+<li>Simulation
+<ul>
+<li>Solve a Poisson equation with Finite Diffence Method</li>
+<li>Solve a Poisson equation with Finite Element Method</li>
+<li>Solve a Schrödinger equation with Density Functional Theory</li>
+</ul></li>
+<li>Big Data Processing
+<ul>
+<li>Build Suffix Array for large text or Gnome sequence</li>
+</ul></li>
+<li>Machine Learning
+<ul>
+<li>Train MLP</li>
+<li>Train a Convolutional Neural Network</li>
+<li>Train a Transformer</li>
+</ul></li>
+<li>Either way, you are encouraged to use this opportunity to
+<em>understand</em> the algorithms/computational methods you have been
+treating as blackbox</li>
+</ul>
+<h1 data-number="3" id="rules-about-the-use-of-genai-e.g.-chatgpt"><span
+class="header-section-number">3</span> Rules about the Use of GenAI
+(e.g., ChatGPT)</h1>
+<ul>
+<li>You can ask AI to get suggestions
+<ul>
+<li>e.g., “can you suggest me a computational method for solving
+XYZ?”</li>
+</ul></li>
+<li>You can also ask AI to generate a baseline code for the problem you
+chose
+<ul>
+<li>e.g., “can you show me a sequential Python (C++) code for
+constructing Suffix Array?”</li>
+<li>e.g., “can you show me a sequential Python (C++) code for GPT”</li>
+</ul></li>
+<li><font color="blue"><em>As a matter of fact, it is instructive to use
+AI to obtain the simple baseline code you can easily understand and get
+started with</em></font></li>
+</ul>
+<h1 data-number="4"
+id="rules-about-the-use-of-high-level-libraries-and-languages"><span
+class="header-section-number">4</span> Rules about the Use of
+(High-Level) Libraries and Languages</h1>
+<ul>
+<li>General rule is that you are not allowed to use libraries that solve
+a significant part of the problem on your behalf</li>
+<li>For example, you are not allowed to use <code>torch</code> to train
+MLP, as it does most important components (e.g., matrix multiplication,
+backpropagation, and parameter updates) on your behalf</li>
+<li>Along the same line, you cannot use high performance library for
+matrix-matrix multipliocation (e.g., BLAS) or a linear equation solver
+(PETSc)</li>
+<li>Comparing your implementation with one of those libraries is
+encouraged</li>
+<li>Using languages other than C/C++ is discouraged but allowed, as long
+as you can analyze the performance in the machine code level, which is
+difficut in scripting languages such as Python</li>
+<li>You are generally advised to work on a simple baseline code written
+in low-level languages, for which performance analysis at machine code
+level is relatively simple</li>
+</ul>
+<h1 data-number="5" id="what-you-have-to-do-yourself"><span
+class="header-section-number">5</span> What You Have to Do Yourself</h1>
+<ul>
+<li>You have to apply parallelization, vectorization, and other
+code-level optimizations by yourself</li>
+<li>You have to find the most time-consuming part(s) of the code through
+actual measurements by yourself (you can ask ChatGPT which part is
+likely to be most time-consuming, but you must witness it by yourself,
+through real experiments)</li>
+<li>You have to analyze the machine code of the time-consuming part(s)
+by actually generating assembly code and seeing them by yourself</li>
+<li>You have to do other necessary analysis to reason about the
+performance of the code by yourself (ChatGPT won’t be able to do it
+anyways, but just in case you might consider asking it something like
+“Please reason about the performance of this code”, it would respond to
+you with full of hullcinations)</li>
+</ul>
+<h1 data-number="6" id="what-must-be-in-the-report"><span
+class="header-section-number">6</span> What Must Be in the Report</h1>
+<ul>
+<li>Description of the problem</li>
+<li>Description of the basic algorithm (why it solves the problem it is
+supposed to solve)</li>
+<li>Description of performance optimization you applied
+(parallelization, vectorization, etc.)</li>
+<li>Experimental results that show your implementation is correct</li>
+<li>Experimental results that show the performance of your code</li>
+<li>Analysis of performance (in the manner you did it for pd30_mlp
+exercise)</li>
+</ul>
