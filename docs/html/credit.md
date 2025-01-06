@@ -36,6 +36,7 @@
   * e.g., "can you show me a sequential Python (C++) code for constructing Suffix Array?"
   * e.g., "can you show me a sequential Python (C++) code for GPT"
 * <font color="blue">_As a matter of fact, it is instructive to use AI to obtain the simple baseline code you can easily understand and get started with_</font>
+* Clearly indicate in your report which part is helped by AI
   
 # Rules about the Use of (High-Level) Libraries and Languages
 
@@ -72,6 +73,7 @@
 * Experimental results that show your implementation is correct
 * Experimental results that show the performance of your code
 * Analysis of performance (in the manner you did it for `pd30_mlp` exercise)
+* A brief description about the part(s) of your work significantly helped by generative AIs including the name of the service (e.g., ChatGPT 4o, Github Copilot, etc.) and model
 
 # How to Submit the Report
 
