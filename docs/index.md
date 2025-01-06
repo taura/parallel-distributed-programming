@@ -4,6 +4,9 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Jan. 06, 2024)</font> Plan for Jan. 06
+  * [Analyzing Data Access of Algorithms and How to Make Them Cache-Friendly](slides/cache.pdf)
+* <font color=blue>(Posted: Jan. 06, 2024)</font> Details about [how to get credit](html/credit.html) are released
 * <font color=blue>(Posted: Dec. 23, 2024)</font> Plan for Dec. 23
   * [What You Must Know about Memory, Caches, and Shared Memory](slides/memory.pdf)
   * pd07\_mem\_ext (an extended version of pd07\_mem)
@@ -99,14 +102,7 @@
 
 # How to get the credit
 
-1. participate in in-class exercise (some may be group work)
-1. submit programming exercise assignments
-1. write and submit a final report (term paper).
-    * abstract deadline: (late December or early January)
-    * final deadline: (February, a few weeks after the course)
-    * options for the final report (details will be announced later)
-      1. parallelize/optimize a common predefined problem
-      1. solve your problem
+* <font color="blue">Jan. 6</font> Details released in [a separage page](html/credit.html)
 
 # Topics covered
 
