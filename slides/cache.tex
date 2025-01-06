@@ -420,7 +420,7 @@ for (i = 0; i < n; i++) {
 }
 \end{lstlisting}
 \item key question:
-  \ao{\emph{which iteration fits the cache?}}
+  \ao{\emph{which iteration fits in the cache?}}
 \end{itemize}
 \end{column}
 
@@ -493,6 +493,13 @@ $K$ iteration & $3$          \\\hline
     \end{itemize}
   \end{column}
 \end{columns}
+
+\begin{itemize}
+  \item[]
+    Goal: for each case, bound from the above $R(n)$,
+    the traffic between memory and cache for $n \times n$ matrix-multiply
+\end{itemize}
+
 \end{frame}
 
 
@@ -504,7 +511,6 @@ $K$ iteration & $3$          \\\hline
 \begin{itemize}
 \item trivially, each element misses the cache only once. thus,
   \[ R(n) \leq 3n^2 = \ao{\frac{3}{n}} \cdot n^3 \]
-($R(n)$ : the traffic between memory and cache)
 \end{itemize}
 \end{column}
 
@@ -569,11 +575,9 @@ each element in $A$ or $C$ many ($\propto n$) times
       matrix multiplication,
       a better bound can be obtained
     \item as we know all elements of $B$ are accessed in each $i$-iteration,
-      they all stay in the cache
-    \item so
-      \[ R(n) \leq \ao{1} \cdot n^2 + \frac{n}{a} (2an)
-        = \frac{3}{n} \cdot n^3
-      \]
+      $B$ stays in the cache for any number of $a$ iterations
+    \item so, in this case too,
+      \[ R(n) \leq 3n^2 = \frac{3}{n} \cdot n^3 \]
 \end{itemize}
 \end{column}
 
@@ -624,6 +628,28 @@ each clement in $C$ many ($\propto n$) times
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}
+\frametitle{A Remark}
+\begin{columns}
+  \begin{column}{0.5\textwidth}
+\begin{itemize}
+\item a similar argument shows that an entire row of $A$ stays in the cache
+  for any number of $b$ iterations
+\item therefore
+  \[ R(n) \leq (2n + n^2) n = n^3 + 2n^2 \]
+\end{itemize}
+  \end{column}
+
+  \begin{column}{0.5\textwidth}
+    \begin{itemize}
+    \item []
+{\tiny\def\svgwidth{0.9\textwidth}\input{out/tex/svg/gemm_analyze_loop_case_3.pdf_tex}}
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%% 
+\begin{frame}
 \frametitle{Case 4 ($1 + 2n > C$)}
 \begin{columns}
   \begin{column}{0.5\textwidth}
@@ -655,17 +681,65 @@ reused $c$ times
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}
+\frametitle{A Remark}
+\begin{columns}
+  \begin{column}{0.5\textwidth}
+\begin{itemize}
+\item similarly, the element of $C$ stays in the cache for any number of
+  $c$ iterations
+\item so
+\[ R(n) \leq (2n + 1) n^2 = 2n^3 + n^2 \]
+\end{itemize}
+  \end{column}
+
+  \begin{column}{0.5\textwidth}
+    \begin{itemize}
+    \item []
+{\tiny\def\svgwidth{0.9\textwidth}\input{out/tex/svg/gemm_analyze_loop_case_4.pdf_tex}}
+\end{itemize}
+\end{column}
+\end{columns}
+
+\begin{itemize}
+\item []
+\ao{interpretation:} each element of $B$ or $A$ never reused; each element of $C$
+reused $n$ times
+\end{itemize}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%% 
+%% \begin{frame}
+%% \frametitle{Summary}
+%% \begin{itemize}
+%% \item summarize $R(n)/n^3$, words/FMA ($\propto$ BYTES/FLOPS),
+%%   the number of misses per multiply-add ($0 \sim 3$)
+%% \item []
+%% \begin{center}
+%% \begin{tabular}{|l|c|c|}\hline
+%% condition         & $R(n)/n^3$                      & range      \\\hline
+%% $3n^2 \leq C$     & $\frac{3}{n}$                   & $\sim 0$   \\
+%% $2n + n^2 \leq C$ & $\frac{1}{a} + \frac{2}{n}$     & $0 \sim 1$ \\
+%% $1 + 2n \leq C$   & $\frac{1}{b} + 1 + \frac{1}{n}$ & $1 \sim 2$ \\ 
+%% $1 + 2n > C$      & $2 + \frac{1}{c}$               & $2 \sim 3$ \\\hline
+%% \end{tabular}
+%% \end{center}
+%% \end{itemize}
+%% \end{frame}
+
+%%%%%%%%%%%%%%%%% 
+\begin{frame}
 \frametitle{Summary}
 \begin{itemize}
-\item summarize $R(n)/n^3$, the number of misses per multiply-add ($0 \sim 3$)
+\item $n^3 / R(n)$ or the number of FMAs per memory accesses (cache miss)
 \item []
 \begin{center}
 \begin{tabular}{|l|c|c|}\hline
-condition         & $R(n)/n^3$                      & range      \\\hline
-$3n^2 \leq C$     & $\frac{3}{n}$                   & $\sim 0$   \\
-$2n + n^2 \leq C$ & $\frac{1}{a} + \frac{2}{n}$     & $0 \sim 1$ \\
-$1 + 2n \leq C$   & $\frac{1}{b} + 1 + \frac{1}{n}$ & $1 \sim 2$ \\ 
-$1 + 2n > C$      & $2 + \frac{1}{c}$               & $2 \sim 3$ \\\hline
+condition         & $R(n)$       & $n^3/R(n)$ \\\hline
+$2n + n^2 \leq C$ & $3n^2$       & $n/3$ \\
+$1 + 2n \leq C$   & $2n^2 + n^3$ & $\approx 1$ \\ 
+$1 + 2n > C$      & $n^2 + 2n^3$ & $\approx 1/2$ \\\hline
 \end{tabular}
 \end{center}
 \end{itemize}
@@ -695,24 +769,24 @@ $1 + 2n > C$      & $2 + \frac{1}{c}$               & $2 \sim 3$ \\\hline
 
 
 %%%%%%%%%%%%%%%%% 
-\begin{frame}
-\frametitle{The straightforward loop in light of compute intensity}
+%% \begin{frame}
+%% \frametitle{The straightforward loop in light of compute intensity}
 
-\begin{center}
-\begin{tabular}{|l|c|c|c|}\hline
-level         & flops  & working set size & ratio    \\\hline
-$I$ loop      & $2n^3$ & $3n^2$           & $2/3n$   \\  
-$J$ loop      & $2n^2$ & $2n + n^2$       & $\sim \aka{2}$ \\  
-$K$ loop      & $2n$   & $1 + 2n$         & $\sim \aka{1}$ \\
-$K$ iteration & 2      & $3$              & $\aka{2/3}$    \\\hline
-\end{tabular}
-\end{center}
+%% \begin{center}
+%% \begin{tabular}{|l|c|c|c|}\hline
+%% level         & flops  & working set size & ratio    \\\hline
+%% $I$ loop      & $2n^3$ & $3n^2$           & $2/3n$   \\  
+%% $J$ loop      & $2n^2$ & $2n + n^2$       & $\sim \aka{2}$ \\  
+%% $K$ loop      & $2n$   & $1 + 2n$         & $\sim \aka{1}$ \\
+%% $K$ iteration & 2      & $3$              & $\aka{2/3}$    \\\hline
+%% \end{tabular}
+%% \end{center}
 
-\begin{itemize}
-\item the outermost loop has an $O(n)$ compute intensity
-\item yet each iteration of which has only an $O(1)$ compute intensity
-\end{itemize}
-\end{frame}
+%% \begin{itemize}
+%% \item the outermost loop has an $O(n)$ compute intensity
+%% \item yet each iteration of which has only an $O(1)$ compute intensity
+%% \end{itemize}
+%% \end{frame}
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}[fragile]
@@ -720,26 +794,27 @@ $K$ iteration & 2      & $3$              & $\aka{2/3}$    \\\hline
 
 \begin{itemize}
 \item for matrix multiplication, let $l$ be the maximum number
-that satisfies $3l^2 \leq C$ (i.e., \ao{$l \approx \sqrt{C/3}$}) and form
+that satisfies $2l + l^2\leq C$ (i.e., \ao{$l \approx \sqrt{C}$}) and form
 a subcomputation that performs a $(l \times l)$ matrix multiplication
 
 \item ignoring remainder iterations, it looks like:
 \begin{columns}
-\begin{column}{0.55\textwidth}
+\begin{column}{0.5\textwidth}
 \begin{lstlisting}
-l = @$\sqrt{C/3}$@;
+l = @$\sqrt{C} - {\rm small\;constant}$@;
 for (ii = 0; ii < n; ii += l)
  for (jj = 0; jj < n; jj += l)
   for (kk = 0; kk < n; kk += l)
-   @\ao{\em /* working set fits in the cache below */}@
+   @\ao{\em /* block below misses each */}@
+   @\ao{\em /* element at most once */}@
    @\ao{\tt for (i = ii; i < ii + l; i++)}@
     @\ao{\tt for (j = jj; j < jj + l; j++)}@
      @\ao{\tt for (k = kk; k < kk + l; k++)}@
        @\ao{\tt A(i,j) += B(i,k) * C(k,j);}@
 \end{lstlisting}
 \end{column}
-\begin{column}{0.45\textwidth}
-\def\svgwidth{0.9\textwidth}
+\begin{column}{0.5\textwidth}
+\def\svgwidth{1.0\textwidth}
 {\tiny\input{out/tex/svg/gemm_analyze_loop_blocking.pdf_tex}}
 \end{column}
 \end{columns}
@@ -749,36 +824,31 @@ for (ii = 0; ii < n; ii += l)
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}[fragile]
-\frametitle{Cache blocking (tiling)}
-\begin{itemize}
-\item<1-> each subcomputation:
-  \begin{itemize}
-  \item performs \ao{$2l^3$} flops and
-  \item touches \ao{$3l^2$} distinct words
-  \end{itemize}
-\item<2-> it thus has the compute intensity:
-\end{itemize}
-
+  \frametitle{Cache blocking (tiling)}
 \begin{columns}
-\begin{column}{0.45\textwidth}
+\begin{column}{0.55\textwidth}
 \begin{itemize}
-\item<2->[]
-\[ \frac{2l^3}{3l^2} = \frac{2}{3}l \approx \ao{\frac{2}{3}\sqrt{\frac{C}{3}}} \]
+\item<1-> each block:
+  \begin{itemize}
+  \item performs \ao{$l^3$} FMAs and
+  \item touches \ao{$3l^2$} distinct words,
+  \end{itemize}
 
-\item<3-> or, the traffic is
+\item<2-> so, the traffic of the entire computation
 
-\[ C \cdot \left(\frac{n}{l}\right)^3 = \frac{3\sqrt{3}}{\sqrt{C}}n^3 \]
+\[ \leq 3l^2 \cdot \left(\frac{n}{l}\right)^3 = \frac{3}{l}n^3 = \frac{3}{\sqrt{C}}n^3 \]
 
 \end{itemize}
 \end{column}
 
-\begin{column}{0.55\textwidth}
+\begin{column}{0.45\textwidth}
 \begin{lstlisting}
-l = @$\sqrt{C/3}$@;
+l = @$\sqrt{C} - {\rm small\;constant}$@;
 for (ii = 0; ii < n; ii += l)
  for (jj = 0; jj < n; jj += l)
   for (kk = 0; kk < n; kk += l)
-   @\ao{\em /* working set fits in the cache below */}@
+   @\ao{\em /* block below misses each */}@
+   @\ao{\em /* element at most once */}@
    @\ao{\tt for (i = ii; i < ii + l; i++)}@
     @\ao{\tt for (j = jj; j < jj + l; j++)}@
      @\ao{\tt for (k = kk; k < kk + l; k++)}@
@@ -789,17 +859,44 @@ for (ii = 0; ii < n; ii += l)
 \end{frame}
 
 %%%%%%%%%%%%%%%%% 
+%% \begin{frame}[fragile]
+%% \frametitle{Effect of cache blocking}
+
+%% \begin{center}
+%% \begin{tabular}{|l|c|c|}\hline
+%% condition         & $R(n)/n^3$                      & range      \\\hline
+%% $3n^2 \leq C$     & ${\displaystyle\frac{3}{n}}$    & $\sim 0$   \\\hline
+%% $2n + n^2 \leq C$ & ${\displaystyle\frac{1}{a} + \frac{2}{n}}$     & $0 \sim 1$ \\\hline
+%% $1 + 2n \leq C$   & ${\displaystyle\frac{1}{b} + 1 + \frac{1}{n}}$ & $1 \sim 2$ \\ \hline
+%% $1 + 2n > C$      & ${\displaystyle2 + \frac{1}{c}}$               & $2 \sim 3$ \\\hline
+%% blocking          & \ao{${\displaystyle\frac{3\sqrt{3}}{\sqrt{C}}}$} & below \\\hline
+%% \end{tabular}
+%% \end{center}
+
+%% \begin{itemize}
+%% \item assume a word $=$ 4 bytes ({\tt float})
+%% \begin{center}
+%%   \begin{tabular}{|l|r|r|r|}\hline
+%% bytes & $C$ & $l$ & $R(n)/n^3$ \\\hline
+%% 32K   & 8K  & 52  & \ao{0.72}  \\
+%% 256K  & 64K & 147 & \ao{0.43}  \\
+%% 3MB   & 768K & 886 & \ao{0.0059} \\\hline
+%% \end{tabular}
+%% \end{center}
+%% \end{itemize}
+%% \end{frame}
+
+%%%%%%%%%%%%%%%%% 
 \begin{frame}[fragile]
 \frametitle{Effect of cache blocking}
 
 \begin{center}
 \begin{tabular}{|l|c|c|}\hline
-condition         & $R(n)/n^3$                      & range      \\\hline
-$3n^2 \leq C$     & ${\displaystyle\frac{3}{n}}$    & $\sim 0$   \\\hline
-$2n + n^2 \leq C$ & ${\displaystyle\frac{1}{a} + \frac{2}{n}}$     & $0 \sim 1$ \\\hline
-$1 + 2n \leq C$   & ${\displaystyle\frac{1}{b} + 1 + \frac{1}{n}}$ & $1 \sim 2$ \\ \hline
-$1 + 2n > C$      & ${\displaystyle2 + \frac{1}{c}}$               & $2 \sim 3$ \\\hline
-blocking          & \ao{${\displaystyle\frac{3\sqrt{3}}{\sqrt{C}}}$} & below \\\hline
+condition         & $R(n)$       & $n^3/R(n)$  \\\hline
+$2n + n^2 \leq C$ & $3n^2$       & $n/3$       \\\hline
+$1 + 2n \leq C$   & $2n^2 + n^3$ & $\sim 1$    \\ \hline
+$1 + 2n > C$      & $n^2 + 2n^3$ & $\sim 1/2$   \\\hline
+blocking          & ${\displaystyle \frac{3}{\sqrt{C}}} n^3$ & ${\displaystyle \frac{\sqrt{C}}{3}}$ \\\hline
 \end{tabular}
 \end{center}
 
@@ -807,22 +904,23 @@ blocking          & \ao{${\displaystyle\frac{3\sqrt{3}}{\sqrt{C}}}$} & below \\\
 \item assume a word $=$ 4 bytes ({\tt float})
 \begin{center}
   \begin{tabular}{|l|r|r|r|}\hline
-bytes & $C$ & $l$ & $R(n)/n^3$ \\\hline
-32K   & 8K  & 52  & \ao{0.72}  \\
-256K  & 64K & 147 & \ao{0.43}  \\
-3MB   & 768K & 886 & \ao{0.0059} \\\hline
+bytes & $C$ & $l$ & $n^3/R(n)$ \\\hline
+32K   & 8K  & $\approx$ 90.50  & \ao{30.16}  \\
+256K  & 64K & $\approx$ 256 & \ao{85.33}  \\
+3MB   & 768K & $\approx$ 886 & \ao{295.60} \\\hline
 \end{tabular}
 \end{center}
 \end{itemize}
 \end{frame}
 
+
 %%%%%%%%%%%%%%%%% 
 \begin{frame}
 \frametitle{Recursive blocking}
 \begin{itemize}
-\item the tiling technique just mentioned targets a cache
-  of a particular size ($=$ level)
-\item need to do this at all levels (12 deep nested loop)?
+\item the tiling technique just mentioned needs to determine $l$ 
+  for a particular size ($=$ level)
+\item it may have to do this at all levels (12 deep nested loop)?
 \item we also (for the sake of simplicity) assumed all matrices are square
 \item for generality, portability, simplicity, \ao{recursive blocking} may apply
 \end{itemize}
@@ -1069,6 +1167,8 @@ recursive & ${\displaystyle\frac{6\sqrt{3}}{\sqrt{C}}}$ & ${\displaystyle\frac{6
 \end{frame}
 \fi
 
+
+\iffalse
 %%%%%%%%%%%%%%%%%
 \section{Tools to measure cache/memory traffic}
 %%%%%%%%%%%%%%%%% 
@@ -1389,6 +1489,7 @@ int main() {
 (size, line size, associativity, etc.)
 \end{itemize}
 \end{frame}
+\fi
 
 %=================================
 \iffalse
@@ -1908,6 +2009,7 @@ L3 & 1048576 & 65536 \\\hline
 \end{column}
 \end{columns}
 \end{frame}
+\end{document}
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}
