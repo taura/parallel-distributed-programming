@@ -2,15 +2,22 @@
 #* Final Report
 <!--- end md --->
 
-<!--- md --->
+<!--- md w --->
+
+Enter your name and student ID.
+
+ * Name:
+ * Student ID:
+
+<!--- end md --->
+
+<!--- md w --->
 
 * See the [instruction](https://taura.github.io/parallel-distributed-programming/html/credit.html) and do your work
 * You can write your report either as a notebook (by adding cells below) or as a separate PDF under this directory
-* Make sure the directory contains the code
-* Make sure the report contains the reproducing instruction
+* Make sure this directory (`pd31_final`) contains the code
+* Make sure the report contains the reproducing instruction to compile and run the code
 * Read the above [instruction](https://taura.github.io/parallel-distributed-programming/html/credit.html) page carefully and follow all other instructions
-
-
 
 <!--- end md --->
 
