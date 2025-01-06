@@ -5,8 +5,8 @@
 1. participate in in-class exercises (evaluated based on submissions to reflections)
 1. submit programming exercise assignments (`pd01_omp` and `pd30_mlp`)
 1. write and submit a final report (term paper).
-    * Abstract deadline: <font color="red">Jan 18th (Sat) 23:55</font>
-    * Final report deadline: <font color="red">February 4th (Tue) 23:55</font>
+    * Abstract deadline: <font color="red">Jan 18th (Sat) 23:59</font>
+    * Final report deadline: <font color="red">February 4th (Tue) 23:59</font>
 
 # Spec
 
