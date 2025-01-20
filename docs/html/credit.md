@@ -63,6 +63,51 @@
 
 * Just send the brief descriptions through UTOL assignment (<font color="blue">"Final Report Abstract"</font>)
 
+* Thank you for sending your abstracts!
+  * Broyden–Fletcher–Goldfarb–Shanno (BFGS) Quasi-Newton method
+  * Convolutional Neural Network
+  * Convolutional Neural Network
+  * Convolutional Neural Network
+  * Convolutional Neural Network
+  * Convolutional Neural Network
+  * Convolution Neural Network
+  * Convolution Neural Network
+  * Fast Fourier Transform
+  * Fast Fourier Transform
+  * Fast Fourier Transform
+  * Floyd Warshall algorithm
+  * Fluid dynamics using Position-Based Fluids (PBF)
+  * Inverse Kinematics Problems
+  * jbonsai (speech synthesis)
+  * lattice-based cryptography
+  * Multilayer Perceptron
+  * Multilayer Perceptron
+  * Multilayer Perceptron
+  * Multilayer Perceptron
+  * Neural network to classify handwritten digits from the MNIST dataset
+  * Optimizing a neural network for the MNIST dataset
+  * Optimizing Training of YOLO-Nano Object Detector
+  * Parallel Procedural Terrain Generation
+  * Path tracing
+  * Poisson equation with Finite Difference Method
+  * Ray tracing
+  * Ray tracing
+  * Ray tracing
+  * Schrödinger equation with Density Functional Theory
+  * Simulating air traffic control
+  * Solid mechanics problem using the finite element method
+  * Solve a Poisson equation with Finite Element Method
+  * Stable Fluids (fluid simulation)
+  * Stroke optimization algorithm ?
+  * Suffix Array
+  * Suffix array construction
+  * Suffix array construction
+  * Transformer
+  * UNet
+  * Vision Transformer
+  * Vision Transformer
+
+
 # What Must Be in the Report
 
 * Description of the problem

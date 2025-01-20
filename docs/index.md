@@ -4,6 +4,8 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Jan. 20, 2024)</font> Plan for Jan. 20
+  * [Divide and Conquer](slides/divide_and_conquer.pdf)
 * <font color=blue>(Posted: Jan. 06, 2024)</font> Plan for Jan. 06
   * [Analyzing Data Access of Algorithms and How to Make Them Cache-Friendly](slides/cache.pdf)
 * <font color=blue>(Posted: Jan. 06, 2024)</font> Details about [how to get credit](html/credit.html) are released
