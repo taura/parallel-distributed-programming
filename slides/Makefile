@@ -16,7 +16,7 @@ run_bibtex_and_latex_twice:=n
 tex := $(wildcard divi*.tex)
 # svg files
 svg_svg :=
-svg_svg += $(wildcard svg/kdtree_at_work_*.svg)
+svg_svg += $(wildcard svg/kdtree_partition_par*.svg)
 # svg_svg += $(wildcard svg/hierarchy.svg)
 # svg_svg += $(wildcard svg/diagram_multisocket.svg)
 

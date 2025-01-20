@@ -1404,8 +1404,74 @@ C_{\mbox{\scriptsize build}}(n) \in \Theta(n).
 \def\svgwidth{0.7\textwidth}
 \input{out/tex/svg/kdtree_partition.pdf_tex}
 \end{center}
+\end{frame}
 
 
+%%%%%%%%%%%%%%%%% 
+\begin{frame}
+\frametitle{How to parallelize partition?}
+\begin{itemize}
+\item it is a challenging exercise
+\item divide-and-conquer helps again!
+\item<1-> to partition an entire array $P[0:n]$ \ldots
+  \begin{enumerate}
+  \item<2-> partition $P[0:n/2]$ and $P[n/2:n]$ \ldots
+  \item<3-> they need to be given
+    \begin{itemize}
+    \item<4-> a separate destination array (say $Q$)
+    \item<5-> indexes to specify the part of $P$ to partition
+    \item<6-> indexes to specify where to store left/right elements to
+    \end{itemize}
+  \end{enumerate}
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%% 
+\begin{frame}[fragile]
+  \frametitle{How to parallelize partition?}
+  \begin{itemize}
+  \item []
+\begin{lstlisting}
+/* partition P[i:j], by putting
+  -         P0 -> Q[l:]; and
+  - {piv} + P1 -> Q[g:] */
+void partition(P, Q, i, j, piv, l, g) {
+  if (j - i < threshold) { partition_seq(P, Q, i, j, piv, l, g); }
+  else {
+    long h = (i + j) / 2;
+    /* count the number of elements in P0 and P1 in the left half of P */
+    long dl, dg = count(P, i, h, piv);
+    create_task partition(A, B, i, h, piv, l,      g);
+                partition(A, B, h, j, piv, l + dl, g + dg);
+    wait;
+  }
+}      
+\end{lstlisting}
+\end{itemize}
+
+\begin{center}
+\def\svgwidth{0.7\textwidth}
+\only<1>{\input{out/tex/svg/kdtree_partition_par.pdf_tex}}%
+\only<2>{\input{out/tex/svg/kdtree_partition_par_x.pdf_tex}}%
+\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%% 
+\begin{frame}[fragile]
+  \frametitle{Critical Path of {\tt partition}}
+  \begin{itemize}
+  \item [] let $C_{\mbox{\scriptsize partition}}(n)$ be the maximum critical path length for partitioning $\leq n$ elements
+\[ 
+\begin{array}{l}
+  C_{\mbox{\scriptsize partition}}(n) \leq C_{\mbox{\scriptsize count}}(n/2) +
+  C_{\mbox{\scriptsize partition}}(n/2) 
+\end{array}
+\]
+\item {\tt count} can be easily parallelized (critical path $\in O(\log n)$)
+\item it is now easy to see 
+  \[ C_{\mbox{\scriptsize partition}}(n) \in \log^2 n \]
+  \end{itemize}
 \end{frame}
 
 
