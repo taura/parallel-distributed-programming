@@ -13,6 +13,9 @@
 \newcommand{\divequal}{\mbox{\tt\ /= }}
 \newcommand{\plusplus}{\mbox{\tt\ ++ }}
 
+%\usepackage{transparent}
+\newcommand\transparent[1]{}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% themes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -267,7 +270,7 @@ Divide and conquer \ldots
 \begin{frame}
 \frametitle{$k$-d tree construction}
 \begin{columns}
-\begin{column}{0.6\textwidth}
+\begin{column}{0.65\textwidth}
 \begin{itemize}
 \item Input: 
   \begin{itemize}
@@ -278,18 +281,18 @@ Divide and conquer \ldots
   \begin{itemize}
   \item \ao{$t$}: a $k$-d tree for $P$
   \end{itemize}
-\item Properties of $k$-d trees
-  \begin{itemize}
-  \item<2-> a leaf has $\leq c$ points
-  \item<3-> an internal node has one point of its own plus one or two children
-  \item<3-> an internal node is split into two subspaces through its point
-  \item<4-> axis along which to split nodes are chosen cyclically 
-    (first along $x$-axis, then along $y$-axis, and so on)
-  \end{itemize}
+\item Properties $t$ must satisfy
+  \begin{enumerate}
+  \item<2-> each leaf has $\leq c$ points
+  \item<3-> each internal node has one point of its own plus one or two children
+  \item<3-> each internal node is split into two subspaces by a line passing through its point
+  \item<4-> axis to split a node perpendicular to is chosen alternately
+    (first the $x$-axis, then the $y$-axis, and so on)
+  \end{enumerate}
 \end{itemize}
 \end{column}
 
-\begin{column}{0.4\textwidth}
+\begin{column}{0.35\textwidth}
 \def\svgwidth{0.6\textwidth}
 \only<1>{\input{out/tex/svg/kdtree_leaf0.pdf_tex}}%
 \only<2->{Leaf: 
@@ -337,7 +340,7 @@ insert(n, p) {
     add(n->P, p);
   } else if (|n->P| + 1 == threshold) {
     /* n was leaf and now borns children */
-    s = @\mura{\tt find\_median}@(n->P, n->depth % D);
+    s = @\mura{\tt find\_pivot}@(n->P, n->depth % D);
     R0,R1 = @\mura{\tt split\_rect}@(n->R, n->depth % D, s.pos[n->depth % D]);
     P0,P1 = @\mura{\tt partition}@(n->P, n->depth % D, s.pos[n->depth % D]);
     /* n becomes an internal node */
@@ -368,20 +371,20 @@ build(P, R) {
 \begin{frame}
 \frametitle{divide and conquer method}
 \begin{columns}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.55\textwidth}
 \begin{itemize}
 \item<1-> to build a tree for a rectangle $R$ and points $P$ in $R$,
-\item<2-> choose a point $p \in P$ through which to split $R$, and
-\item<3-> partition $P$ into $P_0 + \{ p \} + P_1$
+\item<2-> choose a ``pivot'' $p \in P$ through which to split $R$, and
+\item<3-> partition $P$ into $P_0 + \{ p \} + P_1$ where,
   \begin{itemize}
-  \item let's say we split along $x$-axis. then
+  \item if we split perpendicular to the $x$-axis,
   \item $P_0$ : points whose $x$ coodinate $<$ $p$'s
   \item $P_1$ : points whose $x$ coodinate $\geq$ $p$'s (except $p$)
   \end{itemize}
 \end{itemize}
 \end{column}
   
-\begin{column}{0.5\textwidth}
+\begin{column}{0.45\textwidth}
 \begin{center}
 \def\svgwidth{\columnwidth}
 \only<1>{\input{out/tex/svg/kdtree_at_work_0.pdf_tex}}%
@@ -389,9 +392,7 @@ build(P, R) {
 \only<3>{\input{out/tex/svg/kdtree_at_work_2.pdf_tex}}
 \end{center}
 \end{column}
-
 \end{columns}
-
 \end{frame}
 
 %%%%%%%%%%%%%%%%% 
@@ -411,11 +412,11 @@ build(P, R) {
     return make_leaf(P, R, depth);
   } else {
     /* find a point whose coordinate to split is near the median */
-    s = @\mura{\tt find\_median}@(P, depth % D);
+    p = @\mura{\tt find\_pivot}@(P, depth % D);
     /* split R into two sub-rectangles */
-    R0,R1 = @\mura{\tt split\_rect}@(R, depth % D, s.pos[depth % D]);
+    R0,R1 = @\mura{\tt split\_rect}@(R, depth % D, p.pos[depth % D]);
     /* partition P by their coodinate lower/higher than p's coordinate */
-    P0,P1 = @\mura{\tt partition}@(P - { p }, depth % D, s.pos[depth % D]);
+    P0,P1 = @\mura{\tt partition}@(P - { p }, depth % D, p.pos[depth % D]);
     /* build a tree for each rectangle */
     n0 = @\ao{\tt build}@(P0, R0, depth + 1);
     n1 = @\ao{\tt build}@(P1, R1, depth + 1);
@@ -433,7 +434,7 @@ build(P, R) {
 \frametitle{Notes on subprocedures}
 
 \begin{itemize}
-\item $s = $ \mura{\tt find\_median}($P$, $d$)
+\item $p = $ \mura{\tt find\_pivot}($P$, $d$)
   \begin{itemize}
   \item find a point $\in P$ whose $d$th coordinate
     is (close to) the median value among all points in $P$
@@ -502,9 +503,9 @@ build(P, R, depth) {
   } else if (|P| <= threshold) {
     return make_leaf(P, R, depth);
   } else {
-    s = find_median(P, depth % D);
-    R0,R1 = split_rect(R, depth % D, s.pos[depth % D]);
-    P0,P1 = partition(P - { p }, depth % D, s.pos[depth % D]);
+    p = find_pivot(P, depth % D);
+    R0,R1 = split_rect(R, depth % D, p.pos[depth % D]);
+    P0,P1 = partition(P - { p }, depth % D, p.pos[depth % D]);
 @\ao{\texttt{\#pragma omp task shared(n0)}}@
     n0 = build(P0, R0, depth + 1);
 @\ao{\texttt{\#pragma omp task shared(n1)}}@
@@ -514,7 +515,7 @@ build(P, R, depth) {
   }
 }
 \end{lstlisting}
-\item do you want to parallelize it with only parallel loops?
+\item cumbersome to parallelize with only parallel loops
 \end{itemize}
 \end{frame}
 
@@ -562,9 +563,9 @@ build(P, R, depth) {
   } else if (|P| <= threshold) {
     return make_leaf(P, R, depth);
   } else {
-    s = find_median(P, depth % D);
-    R0,R1 = split_rect(R, depth % D, s.pos[depth % D]);
-    P0,P1 = partition(P - { p }, depth % D, s.pos[depth % D]);
+    p = find_pivot(P, depth % D);
+    R0,R1 = split_rect(R, depth % D, p.pos[depth % D]);
+    P0,P1 = partition(P - { p }, depth % D, p.pos[depth % D]);
     @\ao{\texttt{tbb::task\_group tg}}@;
     @\ao{\texttt{tg.run([\&] \{}}@ n0 = build(P0, R0, depth + 1); @\ao{\texttt \})}@;
     n1 = build(P1, R1, depth + 1);
@@ -1118,47 +1119,19 @@ Consider the execution time with $P$ processors ($T_P$)
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}
-  \frametitle{Another way to remember the theorem}
-  \begin{itemize}
-  \item assume a simpler caase
-    in which the entire computation (which amounts to $T_1$)
-    consists of two parts,
-    \begin{enumerate}
-    \item one completely serial
-      (which amounts to $T_\infty$), and
-    \item the other completely parallelizable
-      (which amounts to $(T_1 - T_\infty)$)
-    \end{enumerate}
-  \begin{center}
-    \def\svgwidth{0.7\columnwidth}
-    {\scriptsize\input{out/tex/svg/amdahl.pdf_tex}}
-  \end{center}
-  \item trivially, any greedy scheduler achieves
-    \[ T_P \leq \frac{T_1 - T_\infty}{P} + T_\infty \]
-    \begin{itemize}
-    \item many people remember this as {\it Amdahl's law}
-    \end{itemize}
-  \item the greedy scheduler theorem states that the same inequality
-    holds more generally, for {\it any} computational DAG
-  \end{itemize}
-\end{frame}
-
-  
-%%%%%%%%%%%%%%%%% 
-\begin{frame}
 \frametitle{Takeaway message}
 
 \begin{quote}
-{\Large Suffer from low parallelism?
+{\Large Suffer from low speedup?
 $\Rightarrow$
-\ao{try to shorten its critical path}}
+\ao{try to shorten the critical path}}
 \end{quote}
 
 {\small
 \begin{quote}
-in contrast, people are tempted to get more speedup 
-by creating \aka{more and more tasks}; 
-they are useless unless doing so shortens the 
+people are tempted to think
+creating \aka{more and more tasks} is the way; 
+they are useless, if it does not shorten the 
 critical path
 \end{quote}}
 
@@ -1166,12 +1139,58 @@ critical path
 \def\svgwidth{0.6\textwidth}
 {\scriptsize \input{out/tex/svg/why_cp3.pdf_tex}}
 \end{center}
-
 \end{frame}
 
+%%%%%%%%%%%%%%%%% 
+\begin{frame}
+  \frametitle{A special case (1) --- Amdahl's law}
+  \begin{itemize}
+  \item assume the entire computation ($T_1$)
+    consists of two parts,
+    \begin{enumerate}
+    \item one completely serial
+      ($T_\infty$), and
+    \item the other completely parallelizable
+      ($T_1 - T_\infty$)
+    \end{enumerate}
+  \begin{center}
+    \def\svgwidth{0.7\columnwidth}
+    {\scriptsize\input{out/tex/svg/amdahl.pdf_tex}}
+  \end{center}
+  \item Amdahl's law states $T_p \geq T_\infty$, which is trivial
+  \item it is also trivial to observe that {\it any} greedy scheduler achieves
+    \[ T_P \leq \frac{T_1 - T_\infty}{P} + T_\infty, \]
+    which coincides with what the greedy scheduler theorem says
+    (for more general cases)
+  \item takeaway: want to get a good speedup? $\Rightarrow$ minimize $T_\infty$, or the work not parallelized
+  \end{itemize}
+\end{frame}
 
+%%%%%%%%%%%%%%%%% 
+\begin{frame}
+  \frametitle{A special case (2) --- ``bag of tasks''}
+  \begin{itemize}
+  \item assume we have a set of $n$ indepent (serial) tasks whose runtimes are
+    $t_1, t_2, \cdots , t_n$
 
+    \begin{center}
+      \def\svgwidth{0.5\columnwidth}
+      \input{out/tex/svg/bag_of_tasks.pdf_tex}  
+\end{center}
 
+  \item consider a dynamic greedy scheduler in which each core repeats
+    fetching a task at a time and executing it
+  \item then
+    \begin{itemize}
+    \item $T_1 = t_1 + t_2 + \cdots + t_n$
+    \item $T_\infty = \max(t_1, t_2, \cdots , t_n)$
+    \end{itemize}
+  \item takeaway : you want to get a good speedup? $\Rightarrow$ shorten
+    $\max(t_1, t_2, \cdots , t_n)$,
+    or the execution time of the \ao{\it longest} task
+  \end{itemize}
+
+\end{frame}
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}
@@ -1258,9 +1277,9 @@ build(P, R, depth) {
   } else if (|P| <= threshold) {
     return make_leaf(P, R, depth);
   } else {
-    s = find_median(P, depth % D);
-    R0,R1 = split_rect(R, depth % D, s.pos[depth % D]);
-    P0,P1 = partition(P - { p }, depth % D, s.pos[depth % D]);
+    p = find_pivot(P, depth % D);
+    R0,R1 = split_rect(R, depth % D, p.pos[depth % D]);
+    P0,P1 = partition(P - { p }, depth % D, p.pos[depth % D]);
     n0 = @\ao{\tt create\_task build}@(P0, R0, depth + 1);
     n1 = @\ao{\tt build}@(P1, R1, depth + 1);
     wait();
@@ -1287,11 +1306,11 @@ W_{\mbox{\scriptsize build}}(n)
 \begin{frame}
 \frametitle{Remark}
 \begin{itemize}
-\item the argument above is crude, as $n$
+\item the argument above is crude and optimistic, as $n$
   points are not always split into two sets of
   equal sizes
 
-\item yet, the $\Theta(n \log n)$ result is valid, as
+\item omitting math again, the $\Theta(n \log n)$ result is valid as
   long as a split is guaranteed to be ``never too
   unbalanced'' (i.e., there is a constant $\alpha
   < $, s.t. each child gets $\leq \alpha n$
@@ -1311,9 +1330,9 @@ W_{\mbox{\scriptsize build}}(n)
   } else if (|P| <= threshold) {
     return make_leaf(P, R, depth);
   } else {
-    s = find_median(P, depth % D);
-    R0,R1 = split_rect(R, depth % D, s.pos[depth % D]);
-    P0,P1 = partition(P - { p }, depth % D, s.pos[depth % D]);
+    p = find_pivot(P, depth % D);
+    R0,R1 = split_rect(R, depth % D, p.pos[depth % D]);
+    P0,P1 = partition(P - { p }, depth % D, p.pos[depth % D]);
     n0 = @\ao{\tt create\_task build}@(P0, R0, depth + 1);
     n1 = @\ao{\tt build}@(P1, R1, depth + 1);
     wait();
