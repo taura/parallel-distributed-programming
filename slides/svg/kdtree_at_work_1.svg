@@ -6,7 +6,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   sodipodi:docname="kdtree_at_work_1.svg"
+   sodipodi:docname="kdtree_at_work_12.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -79,13 +79,13 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1458"
-     inkscape:window-height="780"
+     inkscape:window-width="2248"
+     inkscape:window-height="1464"
      id="namedview758"
      showgrid="false"
-     inkscape:zoom="0.60882671"
-     inkscape:cx="489.46604"
-     inkscape:cy="133.04278"
+     inkscape:zoom="1.722022"
+     inkscape:cx="491.86364"
+     inkscape:cy="328.68338"
      inkscape:window-x="26"
      inkscape:window-y="23"
      inkscape:window-maximized="0"
@@ -114,7 +114,8 @@
      r="4"
      stroke="none"
      fill="#ff0000"
-     id="circle6" />
+     id="circle6"
+     style="fill:#ff0000" />
   <rect
      x="109.26273"
      y="21.531105"
@@ -130,7 +131,7 @@
      stroke="none"
      fill="red"
      id="circle10"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="197.26273"
      cy="114.53111"
@@ -138,7 +139,7 @@
      stroke="none"
      fill="red"
      id="circle14"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="117.26273"
      cy="29.531105"
@@ -146,7 +147,7 @@
      stroke="none"
      fill="red"
      id="circle18"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="137.26273"
      cy="85.531105"
@@ -154,7 +155,7 @@
      stroke="none"
      fill="red"
      id="circle20"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="161.26273"
      cy="124.53111"
@@ -162,7 +163,7 @@
      stroke="none"
      fill="red"
      id="circle22"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="127.26273"
      cy="123.53111"
@@ -170,7 +171,7 @@
      stroke="none"
      fill="red"
      id="circle24"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="193.26273"
      cy="147.5311"
@@ -178,7 +179,7 @@
      stroke="none"
      fill="red"
      id="circle26"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="189.26273"
      cy="95.531105"
@@ -186,7 +187,7 @@
      stroke="none"
      fill="red"
      id="circle28"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="170.26273"
      cy="109.53111"
@@ -194,7 +195,7 @@
      stroke="none"
      fill="red"
      id="circle30"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="140.26273"
      cy="23.531105"
@@ -202,7 +203,7 @@
      stroke="none"
      fill="red"
      id="circle32"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="163.26273"
      cy="108.53111"
@@ -210,7 +211,7 @@
      stroke="none"
      fill="red"
      id="circle34"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="178.26273"
      cy="76.531105"
@@ -218,7 +219,7 @@
      stroke="none"
      fill="red"
      id="circle36"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="339.26273"
      cy="69.531105"
@@ -226,7 +227,7 @@
      stroke="none"
      fill="red"
      id="circle40"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="282.26273"
      cy="58.531105"
@@ -234,7 +235,7 @@
      stroke="none"
      fill="red"
      id="circle44"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="223.26273"
      cy="69.531105"
@@ -242,7 +243,7 @@
      stroke="none"
      fill="red"
      id="circle48"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="256.26273"
      cy="65.531105"
@@ -250,7 +251,7 @@
      stroke="none"
      fill="red"
      id="circle50"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="221.26273"
      cy="24.531105"
@@ -258,7 +259,7 @@
      stroke="none"
      fill="red"
      id="circle52"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="266.26273"
      cy="38.531105"
@@ -266,7 +267,7 @@
      stroke="none"
      fill="red"
      id="circle54"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="225.26273"
      cy="35.531105"
@@ -274,7 +275,7 @@
      stroke="none"
      fill="red"
      id="circle56"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="253.26273"
      cy="67.531105"
@@ -282,7 +283,7 @@
      stroke="none"
      fill="red"
      id="circle58"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="345.26273"
      cy="26.531105"
@@ -290,7 +291,7 @@
      stroke="none"
      fill="red"
      id="circle62"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="302.26273"
      cy="29.531105"
@@ -298,7 +299,7 @@
      stroke="none"
      fill="red"
      id="circle64"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="312.26273"
      cy="24.531105"
@@ -306,7 +307,7 @@
      stroke="none"
      fill="red"
      id="circle66"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="284.26273"
      cy="58.531105"
@@ -314,7 +315,7 @@
      stroke="none"
      fill="red"
      id="circle68"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="342.26273"
      cy="61.531105"
@@ -322,7 +323,7 @@
      stroke="none"
      fill="red"
      id="circle70"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="317.26273"
      cy="49.531105"
@@ -330,7 +331,7 @@
      stroke="none"
      fill="red"
      id="circle72"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="287.26273"
      cy="98.531105"
@@ -338,7 +339,7 @@
      stroke="none"
      fill="red"
      id="circle78"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="209.26273"
      cy="88.531105"
@@ -346,7 +347,7 @@
      stroke="none"
      fill="red"
      id="circle82"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="219.26273"
      cy="103.53111"
@@ -354,7 +355,7 @@
      stroke="none"
      fill="red"
      id="circle84"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="228.26273"
      cy="106.53111"
@@ -362,7 +363,7 @@
      stroke="none"
      fill="red"
      id="circle86"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="252.26273"
      cy="97.531105"
@@ -370,7 +371,7 @@
      stroke="none"
      fill="red"
      id="circle88"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="261.26273"
      cy="140.5311"
@@ -378,7 +379,7 @@
      stroke="none"
      fill="red"
      id="circle90"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="335.26273"
      cy="73.531105"
@@ -386,7 +387,7 @@
      stroke="none"
      fill="red"
      id="circle94"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="348.26273"
      cy="82.531105"
@@ -394,7 +395,7 @@
      stroke="none"
      fill="red"
      id="circle96"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="320.26273"
      cy="76.531105"
@@ -402,7 +403,7 @@
      stroke="none"
      fill="red"
      id="circle98"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="353.26273"
      cy="129.5311"
@@ -410,7 +411,7 @@
      stroke="none"
      fill="red"
      id="circle100"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="296.26273"
      cy="90.531105"
@@ -418,7 +419,7 @@
      stroke="none"
      fill="red"
      id="circle104"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="328.26273"
      cy="140.5311"
@@ -426,7 +427,7 @@
      stroke="none"
      fill="red"
      id="circle106"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="358.26273"
      cy="86.531105"
@@ -434,7 +435,7 @@
      stroke="none"
      fill="red"
      id="circle110"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="145.26273"
      cy="490.5311"
@@ -442,7 +443,7 @@
      stroke="none"
      fill="red"
      id="circle114"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="128.26273"
      cy="436.5311"
@@ -450,7 +451,7 @@
      stroke="none"
      fill="red"
      id="circle118"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="135.26273"
      cy="384.5311"
@@ -458,7 +459,7 @@
      stroke="none"
      fill="red"
      id="circle122"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="133.26273"
      cy="422.5311"
@@ -466,7 +467,7 @@
      stroke="none"
      fill="red"
      id="circle126"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="115.26273"
      cy="280.5311"
@@ -474,7 +475,7 @@
      stroke="none"
      fill="red"
      id="circle128"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="121.26273"
      cy="282.5311"
@@ -482,7 +483,7 @@
      stroke="none"
      fill="red"
      id="circle130"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="123.26273"
      cy="329.5311"
@@ -490,7 +491,7 @@
      stroke="none"
      fill="red"
      id="circle132"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="121.26273"
      cy="279.5311"
@@ -498,7 +499,7 @@
      stroke="none"
      fill="red"
      id="circle134"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="116.26273"
      cy="378.5311"
@@ -506,7 +507,7 @@
      stroke="none"
      fill="red"
      id="circle136"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="117.26273"
      cy="275.5311"
@@ -514,7 +515,7 @@
      stroke="none"
      fill="red"
      id="circle138"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="120.26273"
      cy="382.5311"
@@ -522,7 +523,7 @@
      stroke="none"
      fill="red"
      id="circle140"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="127.26273"
      cy="276.5311"
@@ -530,7 +531,7 @@
      stroke="none"
      fill="red"
      id="circle142"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="117.26273"
      cy="210.5311"
@@ -538,7 +539,7 @@
      stroke="none"
      fill="red"
      id="circle144"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="144.26273"
      cy="427.5311"
@@ -546,7 +547,7 @@
      stroke="none"
      fill="red"
      id="circle148"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="137.26273"
      cy="284.5311"
@@ -554,7 +555,7 @@
      stroke="none"
      fill="red"
      id="circle150"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="115.26273"
      cy="444.5311"
@@ -562,7 +563,7 @@
      stroke="none"
      fill="red"
      id="circle154"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="112.26273"
      cy="503.5311"
@@ -570,7 +571,7 @@
      stroke="none"
      fill="red"
      id="circle156"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="112.26273"
      cy="519.53113"
@@ -578,7 +579,7 @@
      stroke="none"
      fill="red"
      id="circle158"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="119.26273"
      cy="451.5311"
@@ -586,7 +587,7 @@
      stroke="none"
      fill="red"
      id="circle160"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="120.26273"
      cy="475.5311"
@@ -594,7 +595,7 @@
      stroke="none"
      fill="red"
      id="circle162"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="112.26273"
      cy="458.5311"
@@ -602,7 +603,7 @@
      stroke="none"
      fill="red"
      id="circle164"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="167.26273"
      cy="398.5311"
@@ -610,7 +611,7 @@
      stroke="none"
      fill="red"
      id="circle168"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="317.26273"
      cy="387.5311"
@@ -618,7 +619,7 @@
      stroke="none"
      fill="red"
      id="circle172"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="192.26273"
      cy="307.5311"
@@ -626,7 +627,7 @@
      stroke="none"
      fill="red"
      id="circle176"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="199.26273"
      cy="183.5311"
@@ -634,7 +635,7 @@
      stroke="none"
      fill="red"
      id="circle180"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="176.26273"
      cy="205.5311"
@@ -642,7 +643,7 @@
      stroke="none"
      fill="red"
      id="circle184"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="169.26273"
      cy="265.5311"
@@ -650,7 +651,7 @@
      stroke="none"
      fill="red"
      id="circle186"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="190.26273"
      cy="213.5311"
@@ -658,7 +659,7 @@
      stroke="none"
      fill="red"
      id="circle188"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="164.26273"
      cy="239.5311"
@@ -666,7 +667,7 @@
      stroke="none"
      fill="red"
      id="circle190"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="193.26273"
      cy="218.5311"
@@ -674,7 +675,7 @@
      stroke="none"
      fill="red"
      id="circle192"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="199.26273"
      cy="261.5311"
@@ -682,7 +683,7 @@
      stroke="none"
      fill="red"
      id="circle194"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="194.26273"
      cy="230.5311"
@@ -690,7 +691,7 @@
      stroke="none"
      fill="red"
      id="circle196"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="202.26273"
      cy="236.5311"
@@ -698,7 +699,7 @@
      stroke="none"
      fill="red"
      id="circle200"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="222.26273"
      cy="186.5311"
@@ -706,7 +707,7 @@
      stroke="none"
      fill="red"
      id="circle204"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="202.26273"
      cy="165.5311"
@@ -714,7 +715,7 @@
      stroke="none"
      fill="red"
      id="circle206"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="253.26273"
      cy="167.5311"
@@ -722,7 +723,7 @@
      stroke="none"
      fill="red"
      id="circle208"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="262.26273"
      cy="222.5311"
@@ -730,7 +731,7 @@
      stroke="none"
      fill="red"
      id="circle210"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="247.26273"
      cy="169.5311"
@@ -738,7 +739,7 @@
      stroke="none"
      fill="red"
      id="circle212"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="297.26273"
      cy="175.5311"
@@ -746,7 +747,7 @@
      stroke="none"
      fill="red"
      id="circle214"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="309.26273"
      cy="218.5311"
@@ -754,7 +755,7 @@
      stroke="none"
      fill="red"
      id="circle216"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="243.26273"
      cy="228.5311"
@@ -762,7 +763,7 @@
      stroke="none"
      fill="red"
      id="circle218"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="303.26273"
      cy="177.5311"
@@ -770,7 +771,7 @@
      stroke="none"
      fill="red"
      id="circle220"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="213.26273"
      cy="175.5311"
@@ -778,7 +779,7 @@
      stroke="none"
      fill="red"
      id="circle222"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="244.26273"
      cy="241.5311"
@@ -786,7 +787,7 @@
      stroke="none"
      fill="red"
      id="circle226"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="254.26273"
      cy="296.5311"
@@ -794,7 +795,7 @@
      stroke="none"
      fill="red"
      id="circle228"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="301.26273"
      cy="292.5311"
@@ -802,7 +803,7 @@
      stroke="none"
      fill="red"
      id="circle230"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="244.26273"
      cy="256.5311"
@@ -810,7 +811,7 @@
      stroke="none"
      fill="red"
      id="circle232"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="269.26273"
      cy="264.5311"
@@ -818,7 +819,7 @@
      stroke="none"
      fill="red"
      id="circle234"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="262.26273"
      cy="338.5311"
@@ -826,7 +827,7 @@
      stroke="none"
      fill="red"
      id="circle238"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="237.26273"
      cy="323.5311"
@@ -834,7 +835,7 @@
      stroke="none"
      fill="red"
      id="circle242"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="162.26273"
      cy="346.5311"
@@ -842,7 +843,7 @@
      stroke="none"
      fill="red"
      id="circle244"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="232.26273"
      cy="367.5311"
@@ -850,7 +851,7 @@
      stroke="none"
      fill="red"
      id="circle246"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="243.26273"
      cy="387.5311"
@@ -858,7 +859,7 @@
      stroke="none"
      fill="red"
      id="circle248"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="220.26273"
      cy="395.5311"
@@ -866,7 +867,7 @@
      stroke="none"
      fill="red"
      id="circle250"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="287.26273"
      cy="377.5311"
@@ -874,7 +875,7 @@
      stroke="none"
      fill="red"
      id="circle254"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="308.26273"
      cy="345.5311"
@@ -882,7 +883,7 @@
      stroke="none"
      fill="red"
      id="circle256"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="288.26273"
      cy="361.5311"
@@ -890,7 +891,7 @@
      stroke="none"
      fill="red"
      id="circle258"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="270.26273"
      cy="313.5311"
@@ -898,7 +899,7 @@
      stroke="none"
      fill="red"
      id="circle260"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="281.26273"
      cy="315.5311"
@@ -906,7 +907,7 @@
      stroke="none"
      fill="red"
      id="circle262"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="268.26273"
      cy="355.5311"
@@ -914,7 +915,7 @@
      stroke="none"
      fill="red"
      id="circle264"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="265.26273"
      cy="347.5311"
@@ -922,7 +923,7 @@
      stroke="none"
      fill="red"
      id="circle266"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="336.26273"
      cy="310.5311"
@@ -930,7 +931,7 @@
      stroke="none"
      fill="red"
      id="circle270"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="364.26273"
      cy="243.5311"
@@ -938,7 +939,7 @@
      stroke="none"
      fill="red"
      id="circle274"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="367.26273"
      cy="214.5311"
@@ -946,7 +947,7 @@
      stroke="none"
      fill="red"
      id="circle278"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="330.26273"
      cy="248.5311"
@@ -954,7 +955,7 @@
      stroke="none"
      fill="red"
      id="circle280"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="354.26273"
      cy="294.5311"
@@ -962,7 +963,7 @@
      stroke="none"
      fill="red"
      id="circle282"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="341.26273"
      cy="208.5311"
@@ -970,7 +971,7 @@
      stroke="none"
      fill="red"
      id="circle284"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="362.26273"
      cy="285.5311"
@@ -978,7 +979,7 @@
      stroke="none"
      fill="red"
      id="circle286"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="336.26273"
      cy="315.5311"
@@ -986,7 +987,7 @@
      stroke="none"
      fill="red"
      id="circle290"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="335.26273"
      cy="326.5311"
@@ -994,7 +995,7 @@
      stroke="none"
      fill="red"
      id="circle292"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="346.26273"
      cy="316.5311"
@@ -1002,7 +1003,7 @@
      stroke="none"
      fill="red"
      id="circle294"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="358.26273"
      cy="322.5311"
@@ -1010,7 +1011,7 @@
      stroke="none"
      fill="red"
      id="circle296"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="196.26273"
      cy="514.53113"
@@ -1018,7 +1019,7 @@
      stroke="none"
      fill="red"
      id="circle300"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="160.26273"
      cy="508.5311"
@@ -1026,7 +1027,7 @@
      stroke="none"
      fill="red"
      id="circle304"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="177.26273"
      cy="512.53113"
@@ -1034,7 +1035,7 @@
      stroke="none"
      fill="red"
      id="circle306"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="183.26273"
      cy="421.5311"
@@ -1042,7 +1043,7 @@
      stroke="none"
      fill="red"
      id="circle308"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="170.26273"
      cy="418.5311"
@@ -1050,7 +1051,7 @@
      stroke="none"
      fill="red"
      id="circle310"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="166.26273"
      cy="467.5311"
@@ -1058,7 +1059,7 @@
      stroke="none"
      fill="red"
      id="circle312"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="254.26273"
      cy="448.5311"
@@ -1066,7 +1067,7 @@
      stroke="none"
      fill="red"
      id="circle320"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="253.26273"
      cy="411.5311"
@@ -1074,7 +1075,7 @@
      stroke="none"
      fill="red"
      id="circle324"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="212.26273"
      cy="432.5311"
@@ -1082,7 +1083,7 @@
      stroke="none"
      fill="red"
      id="circle326"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="246.26273"
      cy="459.5311"
@@ -1090,7 +1091,7 @@
      stroke="none"
      fill="red"
      id="circle328"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="238.26273"
      cy="449.5311"
@@ -1098,7 +1099,7 @@
      stroke="none"
      fill="red"
      id="circle330"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="240.26273"
      cy="431.5311"
@@ -1106,7 +1107,7 @@
      stroke="none"
      fill="red"
      id="circle332"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="245.26273"
      cy="459.5311"
@@ -1114,7 +1115,7 @@
      stroke="none"
      fill="red"
      id="circle334"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="326.26273"
      cy="431.5311"
@@ -1122,7 +1123,7 @@
      stroke="none"
      fill="red"
      id="circle338"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="351.26273"
      cy="406.5311"
@@ -1130,7 +1131,7 @@
      stroke="none"
      fill="red"
      id="circle340"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="289.26273"
      cy="458.5311"
@@ -1138,7 +1139,7 @@
      stroke="none"
      fill="red"
      id="circle342"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="321.26273"
      cy="448.5311"
@@ -1146,7 +1147,7 @@
      stroke="none"
      fill="red"
      id="circle344"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="268.26273"
      cy="403.5311"
@@ -1154,7 +1155,7 @@
      stroke="none"
      fill="red"
      id="circle346"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="257.26273"
      cy="456.5311"
@@ -1162,7 +1163,7 @@
      stroke="none"
      fill="red"
      id="circle348"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="262.26273"
      cy="427.5311"
@@ -1170,7 +1171,7 @@
      stroke="none"
      fill="red"
      id="circle350"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="315.26273"
      cy="463.5311"
@@ -1178,7 +1179,7 @@
      stroke="none"
      fill="red"
      id="circle352"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="352.26273"
      cy="476.5311"
@@ -1186,7 +1187,7 @@
      stroke="none"
      fill="red"
      id="circle358"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="248.26273"
      cy="516.53113"
@@ -1194,7 +1195,7 @@
      stroke="none"
      fill="red"
      id="circle360"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="266.26273"
      cy="504.5311"
@@ -1202,7 +1203,7 @@
      stroke="none"
      fill="red"
      id="circle362"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="359.26273"
      cy="470.5311"
@@ -1210,7 +1211,7 @@
      stroke="none"
      fill="red"
      id="circle364"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="241.26273"
      cy="495.5311"
@@ -1218,7 +1219,7 @@
      stroke="none"
      fill="red"
      id="circle366"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <circle
      cx="278.26273"
      cy="515.53113"
@@ -1226,7 +1227,7 @@
      stroke="none"
      fill="red"
      id="circle370"
-     style="fill:#0000ff" />
+     style="fill:#4d4d4d" />
   <rect
      x="380.26273"
      y="21.531105"
@@ -1242,7 +1243,7 @@
      stroke="none"
      fill="red"
      id="circle374"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="535.26276"
      cy="150.5311"
@@ -1250,7 +1251,7 @@
      stroke="none"
      fill="red"
      id="circle378"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="406.26273"
      cy="139.5311"
@@ -1258,7 +1259,7 @@
      stroke="none"
      fill="red"
      id="circle382"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="468.26273"
      cy="75.531105"
@@ -1266,7 +1267,7 @@
      stroke="none"
      fill="red"
      id="circle386"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="458.26273"
      cy="101.53111"
@@ -1274,7 +1275,7 @@
      stroke="none"
      fill="red"
      id="circle390"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="392.26273"
      cy="44.531105"
@@ -1282,7 +1283,7 @@
      stroke="none"
      fill="red"
      id="circle394"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="393.26273"
      cy="53.531105"
@@ -1290,7 +1291,7 @@
      stroke="none"
      fill="red"
      id="circle396"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="393.26273"
      cy="37.531105"
@@ -1298,7 +1299,7 @@
      stroke="none"
      fill="red"
      id="circle398"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="391.26273"
      cy="83.531105"
@@ -1306,7 +1307,7 @@
      stroke="none"
      fill="red"
      id="circle400"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="449.26273"
      cy="115.53111"
@@ -1314,7 +1315,7 @@
      stroke="none"
      fill="red"
      id="circle404"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="463.26273"
      cy="124.53111"
@@ -1322,7 +1323,7 @@
      stroke="none"
      fill="red"
      id="circle406"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="409.26273"
      cy="118.53111"
@@ -1330,7 +1331,7 @@
      stroke="none"
      fill="red"
      id="circle408"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="413.26273"
      cy="109.53111"
@@ -1338,7 +1339,7 @@
      stroke="none"
      fill="red"
      id="circle412"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="467.26273"
      cy="131.5311"
@@ -1346,7 +1347,7 @@
      stroke="none"
      fill="red"
      id="circle414"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="495.26273"
      cy="35.531105"
@@ -1354,7 +1355,7 @@
      stroke="none"
      fill="red"
      id="circle418"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="491.26273"
      cy="77.531105"
@@ -1362,7 +1363,7 @@
      stroke="none"
      fill="red"
      id="circle420"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="495.26273"
      cy="109.53111"
@@ -1370,7 +1371,7 @@
      stroke="none"
      fill="red"
      id="circle422"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="512.26276"
      cy="29.531105"
@@ -1378,7 +1379,7 @@
      stroke="none"
      fill="red"
      id="circle424"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="470.26273"
      cy="133.5311"
@@ -1386,7 +1387,7 @@
      stroke="none"
      fill="red"
      id="circle426"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="502.26273"
      cy="53.531105"
@@ -1394,7 +1395,7 @@
      stroke="none"
      fill="red"
      id="circle428"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="531.26276"
      cy="44.531105"
@@ -1402,7 +1403,7 @@
      stroke="none"
      fill="red"
      id="circle430"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="496.26273"
      cy="97.531105"
@@ -1410,7 +1411,7 @@
      stroke="none"
      fill="red"
      id="circle432"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="504.26273"
      cy="57.531105"
@@ -1418,7 +1419,7 @@
      stroke="none"
      fill="red"
      id="circle434"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="501.26273"
      cy="131.5311"
@@ -1426,7 +1427,7 @@
      stroke="none"
      fill="red"
      id="circle436"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="482.26273"
      cy="152.5311"
@@ -1434,7 +1435,7 @@
      stroke="none"
      fill="red"
      id="circle440"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="529.26276"
      cy="146.5311"
@@ -1442,7 +1443,7 @@
      stroke="none"
      fill="red"
      id="circle442"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="529.26276"
      cy="151.5311"
@@ -1450,7 +1451,7 @@
      stroke="none"
      fill="red"
      id="circle444"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="502.26273"
      cy="143.5311"
@@ -1458,7 +1459,7 @@
      stroke="none"
      fill="red"
      id="circle446"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="448.26273"
      cy="142.5311"
@@ -1466,7 +1467,7 @@
      stroke="none"
      fill="red"
      id="circle448"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="583.26276"
      cy="55.531105"
@@ -1474,7 +1475,7 @@
      stroke="none"
      fill="red"
      id="circle452"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="585.26276"
      cy="24.531105"
@@ -1482,7 +1483,7 @@
      stroke="none"
      fill="red"
      id="circle456"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="535.26276"
      cy="27.531105"
@@ -1490,7 +1491,7 @@
      stroke="none"
      fill="red"
      id="circle458"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="560.26276"
      cy="52.531105"
@@ -1498,7 +1499,7 @@
      stroke="none"
      fill="red"
      id="circle460"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="546.26276"
      cy="54.531105"
@@ -1506,7 +1507,7 @@
      stroke="none"
      fill="red"
      id="circle462"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="556.26276"
      cy="35.531105"
@@ -1514,7 +1515,7 @@
      stroke="none"
      fill="red"
      id="circle464"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="544.26276"
      cy="52.531105"
@@ -1522,7 +1523,7 @@
      stroke="none"
      fill="red"
      id="circle466"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="568.26276"
      cy="22.531105"
@@ -1530,7 +1531,7 @@
      stroke="none"
      fill="red"
      id="circle468"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="593.26276"
      cy="51.531105"
@@ -1538,7 +1539,7 @@
      stroke="none"
      fill="red"
      id="circle470"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="565.26276"
      cy="134.5311"
@@ -1546,7 +1547,7 @@
      stroke="none"
      fill="red"
      id="circle474"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="538.26276"
      cy="95.531105"
@@ -1554,7 +1555,7 @@
      stroke="none"
      fill="red"
      id="circle478"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="551.26276"
      cy="75.531105"
@@ -1562,7 +1563,7 @@
      stroke="none"
      fill="red"
      id="circle480"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="555.26276"
      cy="87.531105"
@@ -1570,7 +1571,7 @@
      stroke="none"
      fill="red"
      id="circle482"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="563.26276"
      cy="81.531105"
@@ -1578,7 +1579,7 @@
      stroke="none"
      fill="red"
      id="circle484"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="536.26276"
      cy="118.53111"
@@ -1586,7 +1587,7 @@
      stroke="none"
      fill="red"
      id="circle486"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="593.26276"
      cy="78.531105"
@@ -1594,7 +1595,7 @@
      stroke="none"
      fill="red"
      id="circle490"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="608.26276"
      cy="107.53111"
@@ -1602,7 +1603,7 @@
      stroke="none"
      fill="red"
      id="circle492"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="603.26276"
      cy="69.531105"
@@ -1610,7 +1611,7 @@
      stroke="none"
      fill="red"
      id="circle494"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="571.26276"
      cy="154.5311"
@@ -1618,7 +1619,7 @@
      stroke="none"
      fill="red"
      id="circle496"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="587.26276"
      cy="132.5311"
@@ -1626,7 +1627,7 @@
      stroke="none"
      fill="red"
      id="circle498"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="520.26276"
      cy="445.5311"
@@ -1634,7 +1635,7 @@
      stroke="none"
      fill="red"
      id="circle502"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="466.26273"
      cy="354.5311"
@@ -1642,7 +1643,7 @@
      stroke="none"
      fill="red"
      id="circle506"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="407.26273"
      cy="249.5311"
@@ -1650,7 +1651,7 @@
      stroke="none"
      fill="red"
      id="circle510"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="396.26273"
      cy="259.5311"
@@ -1658,7 +1659,7 @@
      stroke="none"
      fill="red"
      id="circle514"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="404.26273"
      cy="247.5311"
@@ -1666,7 +1667,7 @@
      stroke="none"
      fill="red"
      id="circle518"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="407.26273"
      cy="287.5311"
@@ -1674,7 +1675,7 @@
      stroke="none"
      fill="red"
      id="circle526"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="421.26273"
      cy="200.5311"
@@ -1682,7 +1683,7 @@
      stroke="none"
      fill="red"
      id="circle530"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="512.26276"
      cy="198.5311"
@@ -1690,7 +1691,7 @@
      stroke="none"
      fill="red"
      id="circle534"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="464.26273"
      cy="197.5311"
@@ -1698,7 +1699,7 @@
      stroke="none"
      fill="red"
      id="circle536"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="432.26273"
      cy="170.5311"
@@ -1706,7 +1707,7 @@
      stroke="none"
      fill="red"
      id="circle538"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="445.26273"
      cy="173.5311"
@@ -1714,7 +1715,7 @@
      stroke="none"
      fill="red"
      id="circle540"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="460.26273"
      cy="190.5311"
@@ -1722,7 +1723,7 @@
      stroke="none"
      fill="red"
      id="circle542"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="446.26273"
      cy="177.5311"
@@ -1730,7 +1731,7 @@
      stroke="none"
      fill="red"
      id="circle544"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="459.26273"
      cy="345.5311"
@@ -1738,7 +1739,7 @@
      stroke="none"
      fill="red"
      id="circle548"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="443.26273"
      cy="339.5311"
@@ -1746,7 +1747,7 @@
      stroke="none"
      fill="red"
      id="circle552"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="422.26273"
      cy="297.5311"
@@ -1754,7 +1755,7 @@
      stroke="none"
      fill="red"
      id="circle554"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="451.26273"
      cy="327.5311"
@@ -1762,7 +1763,7 @@
      stroke="none"
      fill="red"
      id="circle556"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="423.26273"
      cy="228.5311"
@@ -1770,7 +1771,7 @@
      stroke="none"
      fill="red"
      id="circle558"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="418.26273"
      cy="302.5311"
@@ -1778,7 +1779,7 @@
      stroke="none"
      fill="red"
      id="circle560"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="440.26273"
      cy="212.5311"
@@ -1786,7 +1787,7 @@
      stroke="none"
      fill="red"
      id="circle562"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="413.26273"
      cy="278.5311"
@@ -1794,7 +1795,7 @@
      stroke="none"
      fill="red"
      id="circle564"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="441.26273"
      cy="222.5311"
@@ -1802,7 +1803,7 @@
      stroke="none"
      fill="red"
      id="circle566"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="409.26273"
      cy="306.5311"
@@ -1810,7 +1811,7 @@
      stroke="none"
      fill="red"
      id="circle568"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="408.26273"
      cy="221.5311"
@@ -1818,7 +1819,7 @@
      stroke="none"
      fill="red"
      id="circle570"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="488.26273"
      cy="288.5311"
@@ -1826,7 +1827,7 @@
      stroke="none"
      fill="red"
      id="circle574"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="472.26273"
      cy="312.5311"
@@ -1834,7 +1835,7 @@
      stroke="none"
      fill="red"
      id="circle576"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="492.26273"
      cy="300.5311"
@@ -1842,7 +1843,7 @@
      stroke="none"
      fill="red"
      id="circle578"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="470.26273"
      cy="302.5311"
@@ -1850,7 +1851,7 @@
      stroke="none"
      fill="red"
      id="circle580"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="512.26276"
      cy="269.5311"
@@ -1858,7 +1859,7 @@
      stroke="none"
      fill="red"
      id="circle582"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="490.26273"
      cy="341.5311"
@@ -1866,7 +1867,7 @@
      stroke="none"
      fill="red"
      id="circle584"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="495.26273"
      cy="352.5311"
@@ -1874,7 +1875,7 @@
      stroke="none"
      fill="red"
      id="circle586"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="447.26273"
      cy="500.5311"
@@ -1882,7 +1883,7 @@
      stroke="none"
      fill="red"
      id="circle590"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="442.26273"
      cy="461.5311"
@@ -1890,7 +1891,7 @@
      stroke="none"
      fill="red"
      id="circle594"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="435.26273"
      cy="381.5311"
@@ -1898,7 +1899,7 @@
      stroke="none"
      fill="red"
      id="circle600"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="444.26273"
      cy="366.5311"
@@ -1906,7 +1907,7 @@
      stroke="none"
      fill="red"
      id="circle602"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="413.26273"
      cy="419.5311"
@@ -1914,7 +1915,7 @@
      stroke="none"
      fill="red"
      id="circle604"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="433.26273"
      cy="437.5311"
@@ -1922,7 +1923,7 @@
      stroke="none"
      fill="red"
      id="circle606"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="411.26273"
      cy="421.5311"
@@ -1930,7 +1931,7 @@
      stroke="none"
      fill="red"
      id="circle608"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="414.26273"
      cy="389.5311"
@@ -1938,7 +1939,7 @@
      stroke="none"
      fill="red"
      id="circle610"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="443.26273"
      cy="490.5311"
@@ -1946,7 +1947,7 @@
      stroke="none"
      fill="red"
      id="circle616"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="437.26273"
      cy="473.5311"
@@ -1954,7 +1955,7 @@
      stroke="none"
      fill="red"
      id="circle618"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="439.26273"
      cy="499.5311"
@@ -1962,7 +1963,7 @@
      stroke="none"
      fill="red"
      id="circle620"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="427.26273"
      cy="475.5311"
@@ -1970,7 +1971,7 @@
      stroke="none"
      fill="red"
      id="circle624"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="439.26273"
      cy="462.5311"
@@ -1978,7 +1979,7 @@
      stroke="none"
      fill="red"
      id="circle626"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="499.26273"
      cy="475.5311"
@@ -1986,7 +1987,7 @@
      stroke="none"
      fill="red"
      id="circle632"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="494.26273"
      cy="457.5311"
@@ -1994,7 +1995,7 @@
      stroke="none"
      fill="red"
      id="circle636"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="518.26276"
      cy="403.5311"
@@ -2002,7 +2003,7 @@
      stroke="none"
      fill="red"
      id="circle638"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="507.26273"
      cy="356.5311"
@@ -2010,7 +2011,7 @@
      stroke="none"
      fill="red"
      id="circle640"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="470.26273"
      cy="403.5311"
@@ -2018,7 +2019,7 @@
      stroke="none"
      fill="red"
      id="circle642"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="484.26273"
      cy="430.5311"
@@ -2026,7 +2027,7 @@
      stroke="none"
      fill="red"
      id="circle644"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="501.26273"
      cy="474.5311"
@@ -2034,7 +2035,7 @@
      stroke="none"
      fill="red"
      id="circle646"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="483.26273"
      cy="426.5311"
@@ -2042,7 +2043,7 @@
      stroke="none"
      fill="red"
      id="circle648"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="504.26273"
      cy="493.5311"
@@ -2050,7 +2051,7 @@
      stroke="none"
      fill="red"
      id="circle652"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="488.26273"
      cy="479.5311"
@@ -2058,7 +2059,7 @@
      stroke="none"
      fill="red"
      id="circle654"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="515.26276"
      cy="520.53113"
@@ -2066,7 +2067,7 @@
      stroke="none"
      fill="red"
      id="circle656"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="510.26273"
      cy="499.5311"
@@ -2074,7 +2075,7 @@
      stroke="none"
      fill="red"
      id="circle658"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="592.26276"
      cy="302.5311"
@@ -2082,7 +2083,7 @@
      stroke="none"
      fill="red"
      id="circle662"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="545.26276"
      cy="256.5311"
@@ -2090,7 +2091,7 @@
      stroke="none"
      fill="red"
      id="circle666"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="541.26276"
      cy="218.5311"
@@ -2098,7 +2099,7 @@
      stroke="none"
      fill="red"
      id="circle670"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="539.26276"
      cy="166.5311"
@@ -2106,7 +2107,7 @@
      stroke="none"
      fill="red"
      id="circle672"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="534.26276"
      cy="239.5311"
@@ -2114,7 +2115,7 @@
      stroke="none"
      fill="red"
      id="circle674"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="527.26276"
      cy="239.5311"
@@ -2122,7 +2123,7 @@
      stroke="none"
      fill="red"
      id="circle676"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="531.26276"
      cy="271.5311"
@@ -2130,7 +2131,7 @@
      stroke="none"
      fill="red"
      id="circle678"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="597.26276"
      cy="268.5311"
@@ -2138,7 +2139,7 @@
      stroke="none"
      fill="red"
      id="circle682"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="547.26276"
      cy="239.5311"
@@ -2146,7 +2147,7 @@
      stroke="none"
      fill="red"
      id="circle684"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="603.26276"
      cy="292.5311"
@@ -2154,7 +2155,7 @@
      stroke="none"
      fill="red"
      id="circle686"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="608.26276"
      cy="185.5311"
@@ -2162,7 +2163,7 @@
      stroke="none"
      fill="red"
      id="circle688"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="608.26276"
      cy="162.5311"
@@ -2170,7 +2171,7 @@
      stroke="none"
      fill="red"
      id="circle690"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="577.26276"
      cy="498.5311"
@@ -2178,7 +2179,7 @@
      stroke="none"
      fill="red"
      id="circle694"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="552.26276"
      cy="383.5311"
@@ -2186,7 +2187,7 @@
      stroke="none"
      fill="red"
      id="circle698"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="571.26276"
      cy="325.5311"
@@ -2194,7 +2195,7 @@
      stroke="none"
      fill="red"
      id="circle702"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="562.26276"
      cy="382.5311"
@@ -2202,7 +2203,7 @@
      stroke="none"
      fill="red"
      id="circle704"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="565.26276"
      cy="356.5311"
@@ -2210,7 +2211,7 @@
      stroke="none"
      fill="red"
      id="circle706"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="561.26276"
      cy="376.5311"
@@ -2218,7 +2219,7 @@
      stroke="none"
      fill="red"
      id="circle708"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="541.26276"
      cy="308.5311"
@@ -2226,7 +2227,7 @@
      stroke="none"
      fill="red"
      id="circle710"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="543.26276"
      cy="302.5311"
@@ -2234,7 +2235,7 @@
      stroke="none"
      fill="red"
      id="circle712"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="527.26276"
      cy="342.5311"
@@ -2242,7 +2243,7 @@
      stroke="none"
      fill="red"
      id="circle714"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="542.26276"
      cy="360.5311"
@@ -2250,7 +2251,7 @@
      stroke="none"
      fill="red"
      id="circle716"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="539.26276"
      cy="342.5311"
@@ -2258,7 +2259,7 @@
      stroke="none"
      fill="red"
      id="circle718"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="564.26276"
      cy="456.5311"
@@ -2266,7 +2267,7 @@
      stroke="none"
      fill="red"
      id="circle722"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="558.26276"
      cy="405.5311"
@@ -2274,7 +2275,7 @@
      stroke="none"
      fill="red"
      id="circle724"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="533.26276"
      cy="470.5311"
@@ -2282,7 +2283,7 @@
      stroke="none"
      fill="red"
      id="circle726"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="526.26276"
      cy="395.5311"
@@ -2290,7 +2291,7 @@
      stroke="none"
      fill="red"
      id="circle728"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="560.26276"
      cy="471.5311"
@@ -2298,7 +2299,7 @@
      stroke="none"
      fill="red"
      id="circle730"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="539.26276"
      cy="429.5311"
@@ -2306,7 +2307,7 @@
      stroke="none"
      fill="red"
      id="circle732"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="573.26276"
      cy="505.5311"
@@ -2314,7 +2315,7 @@
      stroke="none"
      fill="red"
      id="circle734"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="560.26276"
      cy="485.5311"
@@ -2322,7 +2323,7 @@
      stroke="none"
      fill="red"
      id="circle736"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="538.26276"
      cy="441.5311"
@@ -2330,7 +2331,7 @@
      stroke="none"
      fill="red"
      id="circle738"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="585.26276"
      cy="363.5311"
@@ -2338,7 +2339,7 @@
      stroke="none"
      fill="red"
      id="circle742"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="581.26276"
      cy="404.5311"
@@ -2346,7 +2347,7 @@
      stroke="none"
      fill="red"
      id="circle744"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="598.26276"
      cy="422.5311"
@@ -2354,7 +2355,7 @@
      stroke="none"
      fill="red"
      id="circle746"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="583.26276"
      cy="316.5311"
@@ -2362,7 +2363,7 @@
      stroke="none"
      fill="red"
      id="circle748"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="594.26276"
      cy="336.5311"
@@ -2370,7 +2371,7 @@
      stroke="none"
      fill="red"
      id="circle750"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="606.26276"
      cy="467.5311"
@@ -2378,7 +2379,7 @@
      stroke="none"
      fill="red"
      id="circle752"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="597.26276"
      cy="354.5311"
@@ -2386,7 +2387,7 @@
      stroke="none"
      fill="red"
      id="circle754"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
      cx="605.26276"
      cy="403.5311"
@@ -2394,9 +2395,9 @@
      stroke="none"
      fill="red"
      id="circle756"
-     style="fill:#00ff00" />
+     style="fill:#4d4d4d" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4898"
      r="4"
      cy="595.53113"
@@ -2406,9 +2407,9 @@
      cy="595.53113"
      r="4"
      id="circle4900"
-     style="fill:#0000ff;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4902"
      r="4"
      cy="595.53113"
@@ -2418,9 +2419,9 @@
      cy="595.53113"
      r="4"
      id="circle4904"
-     style="fill:#0000ff;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4906"
      r="4"
      cy="595.53113"
@@ -2430,15 +2431,15 @@
      cy="595.53113"
      r="4"
      id="circle4908"
-     style="fill:#0000ff;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
      cx="241.26273"
      cy="595.53113"
      r="4"
      id="circle4910"
-     style="fill:#0000ff;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4912"
      r="4"
      cy="595.53113"
@@ -2448,9 +2449,9 @@
      cy="595.53113"
      r="4"
      id="circle4914"
-     style="fill:#0000ff;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4916"
      r="4"
      cy="595.53113"
@@ -2460,9 +2461,9 @@
      cy="595.53113"
      r="4"
      id="circle4918"
-     style="fill:#0000ff;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4920"
      r="4"
      cy="595.53113"
@@ -2472,9 +2473,9 @@
      cy="595.53113"
      r="4"
      id="circle4922"
-     style="fill:#0000ff;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4924"
      r="4"
      cy="595.53113"
@@ -2484,9 +2485,9 @@
      cy="595.53113"
      r="4"
      id="circle4926"
-     style="fill:#0000ff;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4928"
      r="4"
      cy="595.53113"
@@ -2496,15 +2497,15 @@
      cy="595.53113"
      r="4"
      id="circle4930"
-     style="fill:#0000ff;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4932"
      r="4"
      cy="595.53113"
      cx="461.26273" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4934"
      r="4"
      cy="595.53113"
@@ -2514,9 +2515,9 @@
      cy="595.53113"
      r="4"
      id="circle4936"
-     style="fill:#0000ff;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4938"
      r="4"
      cy="595.53113"
@@ -2526,9 +2527,9 @@
      cy="595.53113"
      r="4"
      id="circle4940"
-     style="fill:#0000ff;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#00ff00;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4942"
      r="4"
      cy="595.53113"
@@ -2538,15 +2539,15 @@
      cy="595.53113"
      r="4"
      id="circle4944"
-     style="fill:#0000ff;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
      cx="131.26273"
      cy="595.53113"
      r="4"
      id="circle4946"
-     style="fill:#0000ff;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#00ff00;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4948"
      r="4"
      cy="595.53113"
@@ -2556,9 +2557,9 @@
      cy="595.53113"
      r="4"
      id="circle4950"
-     style="fill:#0000ff;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#00ff00;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4952"
      r="4"
      cy="595.53113"
@@ -2570,13 +2571,13 @@
      id="circle4954"
      style="fill:#ff0000;stroke:none" />
   <circle
-     style="fill:#00ff00;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4956"
      r="4"
      cy="595.53113"
      cx="231.26273" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4958"
      r="4"
      cy="595.53113"
@@ -2586,9 +2587,9 @@
      cy="595.53113"
      r="4"
      id="circle4960"
-     style="fill:#00ff00;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#00ff00;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4962"
      r="4"
      cy="595.53113"
@@ -2598,9 +2599,9 @@
      cy="595.53113"
      r="4"
      id="circle4964"
-     style="fill:#00ff00;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4966"
      r="4"
      cy="595.53113"
@@ -2610,9 +2611,9 @@
      cy="595.53113"
      r="4"
      id="circle4968"
-     style="fill:#00ff00;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4970"
      r="4"
      cy="595.53113"
@@ -2622,9 +2623,9 @@
      cy="595.53113"
      r="4"
      id="circle4972"
-     style="fill:#00ff00;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4974"
      r="4"
      cy="595.53113"
@@ -2634,9 +2635,9 @@
      cy="595.53113"
      r="4"
      id="circle4976"
-     style="fill:#00ff00;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#00ff00;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4978"
      r="4"
      cy="595.53113"
@@ -2646,15 +2647,15 @@
      cy="595.53113"
      r="4"
      id="circle4980"
-     style="fill:#00ff00;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
      cx="491.26273"
      cy="595.53113"
      r="4"
      id="circle4982"
-     style="fill:#0000ff;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4984"
      r="4"
      cy="595.53113"
@@ -2664,9 +2665,9 @@
      cy="595.53113"
      r="4"
      id="circle4986"
-     style="fill:#00ff00;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#00ff00;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4988"
      r="4"
      cy="595.53113"
@@ -2676,9 +2677,9 @@
      cy="595.53113"
      r="4"
      id="circle4990"
-     style="fill:#00ff00;stroke:none" />
+     style="fill:#4d4d4d;stroke:none" />
   <circle
-     style="fill:#0000ff;stroke:none"
+     style="fill:#4d4d4d;stroke:none"
      id="circle4992"
      r="4"
      cy="595.53113"

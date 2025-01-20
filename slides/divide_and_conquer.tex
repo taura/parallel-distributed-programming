@@ -149,10 +149,10 @@ escapechar=\@,
 \frametitle{Goals}
 learn:
 \begin{itemize}
-\item the power of divide and conquer paradigm,
-  combined with task parallelism, with concrete examples,
+\item the power of divide and conquer paradigm
 
-\item how to write task parallel programs (OpenMP task)
+\item how to write and parallelize
+  divide and conquer algorithms with task parallelism
 
 \item and how to reason about the speedup
   of task parallel programs
@@ -219,7 +219,7 @@ Divide and conquer \ldots
 \item is often easy to \ao{\em parallelize}, once
   you have a recursive formulation
   and a parallel programming language that
-  support it (\ao{\em task parallelism})
+  supports it (\ao{\em task parallelism})
 
 \item often has a good \ao{\em locality} of
   reference, both in serial and parallel execution
@@ -254,9 +254,9 @@ Divide and conquer \ldots
 \frametitle{$k$-d tree}
 \begin{itemize}
 \item A data structure to hierarchically organize
-  points (to facilitate ``nearest neighbor'' or ``proxymity'' searches)
-  (usually in 2D or 3D space)
-\item Each node represents a rectangle region
+  points to facilitate ``nearest neighbor'' or ``proxymity'' searches,
+  usually in 2D or 3D space
+\item Each node represents a rectangular region
 \end{itemize}
 
 \begin{center}
@@ -389,7 +389,8 @@ build(P, R) {
 \def\svgwidth{\columnwidth}
 \only<1>{\input{out/tex/svg/kdtree_at_work_0.pdf_tex}}%
 \only<2>{\input{out/tex/svg/kdtree_at_work_1.pdf_tex}}%
-\only<3>{\input{out/tex/svg/kdtree_at_work_2.pdf_tex}}
+\only<3>{\input{out/tex/svg/kdtree_at_work_2.pdf_tex}}%
+\only<4>{\input{out/tex/svg/kdtree_at_work_3.pdf_tex}}
 \end{center}
 \end{column}
 \end{columns}
