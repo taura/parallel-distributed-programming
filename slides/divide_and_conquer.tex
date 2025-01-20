@@ -519,6 +519,23 @@ build(P, R, depth) {
 \end{itemize}
 \end{frame}
 
+
+%%%%%%%%%%%%%%%%% 
+\begin{frame}
+\frametitle{Note: tasks and GPU}
+\begin{itemize}
+\item task parallelism (e.g., OpenMP {\tt \#pragma omp task}) is a great tool to implement divide-and-conquer, \ao{on CPUs}
+\item \aka{on GPUs}, the implementation status is unclear and far from done
+  \begin{itemize}
+  \item NVIDIA HPC SDK (nvc/nvc++) : not supported at all (writing {\tt task} pragmas within {\tt target} region results in compile-time error
+  \item LLVM (clang/clang++) : compilation succeeds (at least for simple programs), but how tasks are distributed across CUDA-threads or SMs is uncertain
+  \end{itemize}
+\item there are inherent challenges around mapping dynamically created tasks onto the SIMT execution model of GPUs
+\item never expect it ``just works'' (more bruntly, avoid it altogether, at least for now)
+\end{itemize}
+\end{frame}
+
+
 \iffalse
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \subsection{Intel TBB}
