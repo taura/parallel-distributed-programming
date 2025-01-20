@@ -860,11 +860,11 @@ main() {
 \begin{itemize}
 \item a node $=$ an interval of computation 
 free of task parallel primitives
-\begin{itemize}
-\item i.e. a node {\em starts} and {\em ends} 
-  by a task parallel primitive
-\item we assume a single node is executed non-preemptively
-\end{itemize}
+% \begin{itemize}
+% \item i.e. a node {\em starts} and {\em ends} 
+%   by a task parallel primitive
+% \item we assume a single node is executed non-preemptively
+% \end{itemize}
 
 \item an edge $=$ a dependency between two nodes, of three types:
   \begin{itemize}
@@ -879,7 +879,7 @@ free of task parallel primitives
 \begin{lstlisting}
 main() {
   A();
-  create_task B();
+  create task for B();
   C();
   wait(); // wait for B
   D();
@@ -899,9 +899,8 @@ main() {
 \begin{columns}[t]
 \begin{column}{0.65\textwidth}
 \begin{itemize}
-\item Consider each node is augmented with a time
-  for a processor to execute it 
-  (\ao{\em the node's execution time})
+\item Consider each node is augmented with the time
+  it takes for a processor to execute it (\ao{\em the node's execution time})
 
 \item Define {\em the length of a path} to be the
   sum of execution time of the nodes on the path
@@ -920,7 +919,7 @@ Given a computational DAG,
 \begin{quote}
 \ao{critical path length 
   = the length of the longest 
-  paths from the start node to the end node in the DAG}
+  path from the start node to the end node in the DAG}
 \end{quote}
 
 (we often say {\em critical path} to in fact mean its length)
@@ -1033,8 +1032,8 @@ Given a computational DAG,
   \begin{itemize}
   \item you have $P$ processors
   \item they are \ao{\em greedy}, in the sense that 
-    a processor is \ao{\em always busy} on a task whenever 
-    there is \ao{\em any} runnable task in the entire system
+    a processor is \ao{\em always busy} on a node whenever 
+    there is \ao{\em any runnable} node (a node whose predecessors have finished) in the entire system
   \item an execution time of a node does not depend on
     which processor executed it
   \end{itemize}
@@ -1093,7 +1092,7 @@ The Parallel Evaluation of General Arithmetic Expressions.
 
 %%%%%%%%%%%%%%%%% 
 \begin{frame}
-\frametitle{A few facts to remember about $T_1$ and $T_\infty$}
+\frametitle{A few facts that help you understand it}
 Consider the execution time with $P$ processors ($T_P$)
 \begin{itemize}
 \item there are two obvious {\it lower bounds}
@@ -1102,10 +1101,10 @@ Consider the execution time with $P$ processors ($T_P$)
   \item \ao{$T_P \geq T_\infty$}
   \end{itemize}
   or more simply,
-\[ \ao{T_P \geq \max(\frac{T_1}{P}, T_\infty)} \]
+\[ \ao{T_P \geq \max\left(\frac{T_1}{P}, T_\infty\right)} \]
 
 \item what a greedy scheduler achieves is
-  \[ \ao{T_P \leq \mbox{sum}(\frac{T_1}{P}, T_\infty)} \]
+  \[ \ao{T_P \leq \mbox{sum}\left(\frac{T_1}{P}, T_\infty\right)} \]
 \item two memorable facts
   \begin{itemize}
   \item {\it ``the sum of two lower bounds is an upper bound''}
@@ -1149,7 +1148,7 @@ $\Rightarrow$
 \begin{quote}
 people are tempted to think
 creating \aka{more and more tasks} is the way; 
-they are useless, if it does not shorten the 
+they are useless, unless it shortens the 
 critical path
 \end{quote}}
 
@@ -1188,7 +1187,7 @@ critical path
 \begin{frame}
   \frametitle{A special case (2) --- ``bag of tasks''}
   \begin{itemize}
-  \item assume we have a set of $n$ indepent (serial) tasks whose runtimes are
+  \item assume we have a set of $n$ indepedent tasks whose runtimes are
     $t_1, t_2, \cdots , t_n$
 
     \begin{center}
@@ -1225,7 +1224,6 @@ $T_\infty$ is:
     independent from the scheduler}
   \begin{itemize}
   \item not something that depends on schedulers
-    (cf. the number of tasks)
   \end{itemize}
 
 \item connected to execution time with $P$
@@ -1233,7 +1231,7 @@ $T_\infty$ is:
   + T_\infty$})
 
 \item \ao{easy to estimate/calculate}
-  (like the ordinary time complexity of serial programs)
+  (like the ordinary time complexity of serial programs, as we will see below)
 \end{itemize}
 
 \end{frame}
