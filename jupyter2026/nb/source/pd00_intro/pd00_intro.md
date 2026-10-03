@@ -1,0 +1,108 @@
+#* Parallel and Distributed Programming Hands-on Environment
+
+<!--- md w --->
+
+Enter your name and student ID.
+
+ * Name:
+ * Student ID:
+
+<!--- end md --->
+
+# How this notebook works
+
+## Cell
+
+* A textbox like below is called a "cell"
+* Press SHIFT+ENTER to execute it
+
+## Python program cells
+
+<!--- code w kernel=python --->
+def f(x):
+    return x + 1
+
+f(3)
+<!--- end code --->
+
+* while a cell is executing, `[*]` is shown on the left, which turns into a number like `[2]`
+* remember that you cannot execute other cells while `[*]` is shown
+* execute the cell below and observe `[*]`
+
+<!--- code w kernel=python --->
+import time
+time.sleep(5.0)
+<!--- end code --->
+
+* you should be able to stop an executing cell by ■ button at top of the tab, but do not expect it to work reliably
+* if it doesn't work, **reset kernel** by going to menu and selecting Kernel -&gt; Restart Kernel
+* even more powerful method to reset everything is to **restart the server** by going to menu and selecting File -&gt; Hub Control Panel -&gt; Stop Server -&gt; Start Server
+* execute the cell below and stop it before it finishes by ■ button
+* also try to reset kernel and restart server
+
+<!--- code w kernel=python --->
+import time
+time.sleep(10.0)
+<!--- end code --->
+
+## Cells starting with `%%writefile`
+
+* Pressing SHIFT + Enter on cells that begin with `%%writefile filename` save the contents of the cell into the specified file
+* They look like Python cells, but they typically contain C programs which are then compiled and executed by bash cells
+
+<!--- code w kernel=python --->
+%%writefile hello.c
+/* a C cell */
+#include <stdio.h>
+int main() {
+    printf("hello\n");
+    return 0;
+}
+<!--- end code --->
+
+## bash cells
+
+* The cell below is bash, in which you can execute Linux commands
+* There seems a bug that misses outputs.  Repeat executing several times when the output is suspicious.
+
+<!--- code w kernel=python --->
+%%bash
+
+# if the result is not displayed, execute it again
+pwd
+<!--- end code --->
+
+<!--- code w kernel=python --->
+%%bash
+ls
+<!--- end code --->
+
+<!--- code w kernel=python --->
+%%bash
+gcc hello.c -o hello
+./hello
+<!--- end code --->
+
+## text (markdown)
+
+* there are cells for ordinary texts (markdown format), not code
+
+<!--- md w --->
+* double-click this cell and edit
+  * after done, press SHIFT-ENTER to save
+<!--- end md --->
+
+# Jupyter Terminals
+
+* A typical Jupyter environment executes programs of a programming language.  There is, however, an environment to execute arbitrary commands (terminal)
+* click the "+" icon right below the menu to show the launcher page
+* select "Terminal" to open the command line terminal
+* some circumstances in which you want to use it
+  * you browse a man page
+  * use kill command to terminate a program that does not stop with ■ button
+
+# Login with SSH
+
+* to do them, however, you probably want to master SSH login described below instead
+* you don't have to do this immediately, but need it in later assignments
+* see [How to access Jupyter environment](https://taura.github.io/operating-systems/html/jupyter.html?lang=en) for how to set up SSH
