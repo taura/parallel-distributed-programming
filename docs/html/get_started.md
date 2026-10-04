@@ -204,3 +204,15 @@ taulec$ mount-miyabi -u   # unmount
 
 [![overview](svg/fetch_assignment.svg){width=400pt}](svg/fetch_assignment.svg) 
 
+## (Optional) Directly SSH Miyabi from Your PC
+
+- In this course, the canonical way to access Miyabi is via Jupyter on taulec
+- That is, you sign in Jupyter on taulec using Google account and then SSH Miyabi from taulec
+- The reasons for doing so are
+  - We want to use Jupyter for giving exercise materials 
+  - We want to use coding agent AI on taulec, which is not allowed to run on Miyabi
+- However, the main work of editing, compiling, and running programs can be done by directly logging into Miyabi and it is simpler if you have no issues in character-based user interface (CUI)
+- If you are such a type,
+  - Register your SSH public key corresponding to the private key on your local PC via [Miyabi User Portal](https://miyabi-www.jcahpc.jp/login)
+  - Just remember that files you fetched in Jupyter are in `/work/gt81/share/home/$USER/notebooks/pd`; do your work there
+

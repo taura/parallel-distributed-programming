@@ -5,11 +5,8 @@
 # What's new (in the newest-first order)
 
 * <font color=blue>(Posted: Sep. 28, 2026)</font> 
-  * Go to the [UTOL course page](https://utol.ecc.u-tokyo.ac.jp/lms/course?idnumber=2026_4884_4840-1004_01) and submit "Assignment 0: send info to issue your account for exercise environment"
-  * If you cannot see the assignment, self-register for the course by pressing the "register a course" button ([UTOL Manual for Students](https://utol.ecc.u-tokyo.ac.jp/common/manual/download?file=1) p.37)
-  * In case you cannot see the course page above, use "Search Course" with:
-    * Keyword: parallel and distributed programming
-	* Term: All
+  * This course uses Miyabi supercomputer and Jupyter server
+  * To receive account and set up things, see the page [Getting Started with the Course Environment](html/get_started.html)
 * <font color=blue>(Posted: Sep. 28, 2026)</font> The site is up!
 
 # Slides
