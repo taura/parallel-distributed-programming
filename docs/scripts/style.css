@@ -70,9 +70,11 @@ p {
   font-size   : 12pt;
   font-family : serif;
   border-color     : #99A1AA;
+  margin      : 15pt;
 }
 
 pre {
   background-color:#efe;
+  margin      : 20pt;
 }
 

@@ -1,0 +1,325 @@
+<p><link rel="stylesheet" href="../scripts/style.css"></p>
+<h1 id="getting-started-with-the-course-environment">Getting Started
+with the Course Environment</h1>
+<h2 id="overview-of-the-environment">Overview of the Environment</h2>
+<ul>
+<li><a href="https://taulec.zapto.org:8000/" target="_blank"
+rel="noopener">taulec</a> server</li>
+<li><a href="https://miyabi-www.jcahpc.jp/" target="_blank"
+rel="noopener">Miyabi</a> supercomputer (<a
+href="https://www.cc.u-tokyo.ac.jp/en/supercomputer/miyabi/system.php"
+target="_blank" rel="noopener">sytem overview</a>)</li>
+<li>AI
+<ul>
+<li><a href="https://taulec.zapto.org:3000/" target="_blank"
+rel="noopener">Open WebUI Chat</a></li>
+<li>Coding agent (OpenCode)</li>
+</ul></li>
+</ul>
+<p><a href="svg/overview.svg" target="_blank" rel="noopener"><img
+src="svg/overview.svg" style="width:400pt" alt="overview" /></a></p>
+<ul>
+<li>Miyabi is where you are supposed to do most of your programming
+work</li>
+<li>You use taulec server to
+<ul>
+<li>receive exercise materials,</li>
+<li>edit, compile, and run the program,</li>
+<li>use AI for help (Jupyter AI, OpenCode, and Open WebUI), and</li>
+<li>submit assignments</li>
+</ul></li>
+<li>We might also use taulec server for programming exercise when Miyabi
+is unavailable (or too crowded)</li>
+<li>Below, I walk you through procedures to set the environment ready
+for you</li>
+<li>If you are reading this page before the first lecture (2026-10-05
+16:50) starts, I am encouraged to finish what you can do now before the
+class</li>
+</ul>
+<h2 id="receive-you-accounts">Receive You Accounts</h2>
+<ul>
+<li>Go to <a
+href="https://utol.ecc.u-tokyo.ac.jp/lms/course?idnumber=2026_4884_4840-1004_01&amp;_cid=84201a98-6b6b-438b-a052-1ee1a651ee9c"
+target="_blank" rel="noopener">UTOL course page</a> and submit the
+assignment “Assignment 0: send info to issue your account for exercise
+environment”
+<ul>
+<li>If you cannot see the course page, register yourself in UTOL</li>
+<li>Note: self-register in UTOL does not enroll you to the course for
+credit, which must be separately done in <a
+href="https://utas.adm.u-tokyo.ac.jp/" target="_blank"
+rel="noopener">UTAS</a> when you decide to do so</li>
+<li>Enter your UTokyo Google account (xxxx@g.ecc.u-tokyo.ac.jp) and
+submit</li>
+</ul></li>
+<li>Then get feedback from the instructor for it, which gives you
+<ul>
+<li><strong>A:</strong> user name on Miyabi and Miyabi User Portal</li>
+<li><strong>B:</strong> password for Miyabi User Portal</li>
+</ul></li>
+<li>At this point, you are given access to
+<ul>
+<li><a href="https://taulec.zapto.org:8000/" target="_blank"
+rel="noopener">Jupyter server on taulec</a>, with your UTokyo Google
+account (xxxx@g.ecc.u-tokyo.ac.jp)
+<ul>
+<li>Jupyter AI you can call from within Jupyter (OpenCode)</li>
+<li>OpenCode coding agent you can call outside Jupyter</li>
+</ul></li>
+<li><a href="https://taulec.zapto.org:3000/" target="_blank"
+rel="noopener">AI Chat on taulec</a>, with the same Google account</li>
+<li><a href="https://miyabi-www.jcahpc.jp/" target="_blank"
+rel="noopener">Miyabi User Portal</a> (not the machine itself), with
+<strong>A</strong> and <strong>B</strong></li>
+</ul></li>
+<li>To finish the set up, you need to
+<ul>
+<li>generate SSH key on taulec</li>
+<li>register the SSH public key for Miyabi</li>
+<li>Note: SSH is a secure remote shell commonly used to login remote
+servers</li>
+</ul></li>
+</ul>
+<p>Exact procedures are described below. Be patient!</p>
+<h2 id="taulec-jupyter-server">taulec Jupyter server</h2>
+<ul>
+<li>Open <a href="https://taulec.zapto.org:8000/" target="_blank"
+rel="noopener">https://taulec.zapto.org:8000/</a></li>
+<li>When asked to sign in, sign in with UTokyo Google account
+(xxx@g.ecc.u-tokyo.ac.jp)</li>
+</ul>
+<p><a href="svg/jupyter_login.svg" target="_blank" rel="noopener"><img
+src="svg/jupyter_login.svg" style="width:400pt"
+alt="overview" /></a></p>
+<ul>
+<li>In the launcher page, launch “Terminal” and play with it</li>
+</ul>
+<p><a href="svg/jupyter_terminal.svg" target="_blank"
+rel="noopener"><img src="svg/jupyter_terminal.svg" style="width:400pt"
+alt="overview" /></a></p>
+<h2 id="ai-chat-for-questions-and-conversations">AI Chat for Questions
+and Conversations</h2>
+<ul>
+<li>Open <a href="https://taulec.zapto.org:3000/" target="_blank"
+rel="noopener">https://taulec.zapto.org:3000/</a></li>
+<li>When asked to sign in, sign in with UTokyo Google account
+(xxx@g.ecc.u-tokyo.ac.jp)</li>
+<li>Choose a model from the model chooser in the lower right corner of
+the chat box and say anything (e.g., hello)</li>
+</ul>
+<p><a href="svg/open_webui.svg" target="_blank" rel="noopener"><img
+src="svg/open_webui.svg" style="width:400pt" alt="overview" /></a></p>
+<ul>
+<li>TODO: mention models; make all models work</li>
+</ul>
+<h2 id="miyabi-supercomputer">Miyabi Supercomputer</h2>
+<p>Now move on to Miyabi, the main environment for learning parallel
+programming</p>
+<ul>
+<li>The set up procedure is a bit complex, so read them carefully</li>
+<li>Steps you must go through until you are able to use Miyabi are</li>
+</ul>
+<ol type="1">
+<li>Install Authenticator App on Your Phone (if you haven’t)</li>
+<li>Open Miyabi User Portal, setting up multifactor authentication and
+changing the password along the way</li>
+<li>Generate SSH key on taulec</li>
+<li>Register the generated SSH public key to the Miyabi user portal</li>
+<li>SSH Miyabi from taulec, setting up multifactor authentication along
+the way</li>
+</ol>
+<h3 id="install-authenticator-app-on-your-phone-if-you-havent">Install
+Authenticator App on Your Phone (if you haven’t)</h3>
+<ul>
+<li>Both Miyabi User Portal and Miyabi supercomputer itself require
+multifactor authentication</li>
+<li>You can use the same authenticator app you are using for UTokyo
+Account (e.g., Microsoft Authenticator)
+<ul>
+<li><a
+href="https://play.google.com/store/apps/details?id=com.azure.authenticator&amp;hl=en"
+target="_blank" rel="noopener">Android</a></li>
+<li><a
+href="https://apps.apple.com/us/app/microsoft-authenticator/id983156458"
+target="_blank" rel="noopener">iPhone</a></li>
+</ul></li>
+<li>Install it before you proceed in case you haven’t</li>
+</ul>
+<h3 id="open-miyabi-portal">Open Miyabi Portal</h3>
+<ul>
+<li>Have your phone with authenticator app (see above) installed ready
+with you</li>
+<li>Log in <a href="https://miyabi-www.jcahpc.jp/login" target="_blank"
+rel="noopener">Miyabi User Portal</a>
+<ul>
+<li>use (A) the user name (t8….) and (B) password you received from UTOL
+feedback</li>
+</ul></li>
+<li>You will be asked to scan QR code with your authenticator app, so
+scan it with the authenticator app</li>
+<li>Open the entry just created in the app (named
+<code>t81xxx@miyabi</code>) and show the 6-digit verification code;
+enter the code on the page</li>
+</ul>
+<p><a href="svg/miyabi_portal_login.svg" target="_blank"
+rel="noopener"><img src="svg/miyabi_portal_login.svg"
+style="width:400pt" alt="overview" /></a></p>
+<ul>
+<li>You will then be asked to change the password; I recommend to use a
+random password generator like <code>pwgen</code>
+(<code>pwgen -y 16 1</code>). It is available in taulec (open “Terminal”
+in the launcher page)</li>
+</ul>
+<p><a href="svg/miyabi_portal_pw_change.svg" target="_blank"
+rel="noopener"><img src="svg/miyabi_portal_pw_change.svg"
+style="width:400pt" alt="overview" /></a></p>
+<ul>
+<li>You are asked to enter the 6 digit code every time you login the
+portal</li>
+</ul>
+<h3 id="generate-ssh-key-on-taulec">Generate SSH key on taulec</h3>
+<ul>
+<li>From <a href="https://taulec.zapto.org:8000/" target="_blank"
+rel="noopener">Jupyter on taulec</a>, launch “Terminal”</li>
+</ul>
+<p><a href="svg/jupyter_terminal.svg" target="_blank"
+rel="noopener"><img src="svg/jupyter_terminal.svg" style="width:400pt"
+alt="overview" /></a></p>
+<ul>
+<li>Generate an SSH keypair <code>~/.ssh/id_ed25519</code> and
+<code>~/.ssh/id_ed25519.pub</code> by the following command</li>
+</ul>
+<pre><code>taulec$ ssh-keygen</code></pre>
+<ul>
+<li>You are asked to set a passphrase to encrypt the private key; do not
+leave it empty.</li>
+<li>Display the public key and copy the whole line to the clipboard</li>
+</ul>
+<pre><code>taulec$ cat ~/.ssh/*.pub
+ssh-ed25519 AAAA...................T0kEO t81xxx@taulec</code></pre>
+<ul>
+<li>On Miyabi User Portal, click “SSH Public key” on the left menu</li>
+<li>Paste the public key string (copied above) into the box</li>
+</ul>
+<p><a href="svg/miyabi_register_key.svg" target="_blank"
+rel="noopener"><img src="svg/miyabi_register_key.svg"
+style="width:400pt" alt="overview" /></a></p>
+<h3 id="ssh-miyabi-from-taulec">SSH Miyabi from taulec</h3>
+<ul>
+<li>Now you should be able to SSH Miyabi from taulec</li>
+<li>From <a href="https://taulec.zapto.org:8000/" target="_blank"
+rel="noopener">Jupyter on taulec</a>, launch “Terminal” and execute the
+following</li>
+</ul>
+<pre><code>taulec$ ssh miyabig</code></pre>
+<ul>
+<li>On the first login, it displays a QR code with ASCII art you are
+asked to scan</li>
+<li>Open the authenticator app and scan it</li>
+<li>Open the entry just created in the app (named
+<code>t81xxx@miyabi-g?</code>) and show the 6-digit verification code;
+enter the code the the terminal</li>
+</ul>
+<p><a href="svg/miyabi_ssh_qr.svg" target="_blank" rel="noopener"><img
+src="svg/miyabi_ssh_qr.svg" style="width:400pt"
+alt="overview" /></a></p>
+<ul>
+<li>If your phone does not recognize the QR code, it is probably because
+of wrong fonts; your OS uses a font that shows the code not as a square
+but as a tall rectangle; let me know if that happens</li>
+<li>Once you succeed, log out and ssh again; this time, you will
+<em>not</em> be asked to enter the verfication code</li>
+<li>The reason is the configuration below, which skips verification code
+for the next six hours</li>
+</ul>
+<h3 id="fyi-under-the-hood-.sshconfig">FYI: Under the Hood:
+<code>~/.ssh/config</code></h3>
+<ul>
+<li>By default, every time you SSH Miyabi, you are asked to enter
+6-digit code</li>
+<li>It is very inconvenient, so <code>taulec</code> has been configured
+for you</li>
+<li>It is in <code>~/.ssh/config</code>; you will find something like
+this</li>
+</ul>
+<pre><code>Host miyabig
+    HostName miyabi-g.jcahpc.jp
+    User t81xxx
+    ControlMaster auto
+    ControlPath ~/.ssh/cm_%r@%h:%p
+    ControlPersist 6h
+    ServerAliveInterval 60</code></pre>
+<ul>
+<li><code>miyabig</code> serves as the alias for
+<code>miyabi-g.jcahpc.jp</code></li>
+<li><code>User t81xxx</code> allows you to omit user name
+(<code>t81xxx@</code>)</li>
+<li>The three lines that follow (<code>ControlXXXX ...</code>) together
+allow you to reuse an authenticated session from taulec to miyabi, so
+you do not have to enter verification code every time</li>
+</ul>
+<h2 id="final-steps-fetching-exercise-material">Final Steps: Fetching
+Exercise Material</h2>
+<h3 id="mounting-miyabi-file-system-on-taulec">Mounting Miyabi File
+System on taulec</h3>
+<ul>
+<li>taulec and Miyabi are two separate machines with separate user set
+and file system</li>
+<li>To seamlessly make files on Miyabi from taulec, we use
+<code>sshfs</code></li>
+<li>This is the state we are headed</li>
+</ul>
+<p><a href="svg/overview.svg" target="_blank" rel="noopener"><img
+src="svg/overview.svg" style="width:400pt" alt="overview" /></a></p>
+<ul>
+<li>From <a href="https://taulec.zapto.org:8000/" target="_blank"
+rel="noopener">Jupyter on taulec</a>, launch “Terminal” and execute the
+following (repalce t81xxx with your user name on Miyabi)</li>
+</ul>
+<pre><code>taulec$ ls ~/miyabi     # miyabi is an empty directory
+taulec$ sshfs miyabig:/work/gt81/share/home/t81xxx ~/miyabi
+taulec$ df
+  ...
+miyabig:/work/gt81/share/home/t81149 10865838112000 3914807077240 6841070095012  37% /home/pd0/miyabi</code></pre>
+<ul>
+<li>The <code>sshfs</code> command “mounts”
+<code>/work/gt81/share/home/t81xxx</code> directory on
+<code>miyabig</code> to <code>~/miyabi</code> on taulec, meaning that
+the former directory is now visiable as the latter
+<ul>
+<li>On taulec, every access to any file under <code>~/miyabi</code>
+directory actually accesses Miyabi</li>
+<li>Note also that <code>~/notebooks/pd</code> is a symlink to
+<code>~/miyabig/notebooks/pd</code></li>
+<li>Therefore, every access to any file under
+<code>~/notebooks/pd</code> directory actually accesses Miyabi</li>
+</ul></li>
+<li>The <code>df</code> commands shows the status of mount. If the line
+like
+<code>miyabig:/work/gt81/share/home/t81xxx ... /home/u26xxx/miyabi</code>
+appears, your directory is mounted</li>
+<li>When you do your exercise, make sure your <code>~/miyabi</code>
+directory is mounted</li>
+<li>Since the above <code>sshfs</code> command is too long and difficult
+to remember to type every time, there is <code>mount-miyabi</code>
+command for it</li>
+</ul>
+<pre><code>taulec$ mount-miyabi      # mount
+taulec$ mount-miyabi -u   # unmount</code></pre>
+<h3 id="finally-fetch-an-exercise-and-start-playing">(Finally!) Fetch an
+Exercise and Start Playing!</h3>
+<ul>
+<li>From menu, Nbgrader -&gt; Assignment List</li>
+<li>Select <code>pd</code> from the drop down menu next to “Released,
+downloaded, and submitted assignments for course:”</li>
+</ul>
+<p><a href="svg/select_course.svg" target="_blank" rel="noopener"><img
+src="svg/select_course.svg" style="width:400pt"
+alt="overview" /></a></p>
+<ul>
+<li>Fetch an assignment from “Released assignments”</li>
+<li>Open the notebook and start working on it!</li>
+</ul>
+<p><a href="svg/fetch_assignment.svg" target="_blank"
+rel="noopener"><img src="svg/fetch_assignment.svg" style="width:400pt"
+alt="overview" /></a></p>
