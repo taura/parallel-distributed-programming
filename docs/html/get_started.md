@@ -28,6 +28,7 @@
   - If you cannot see the course page, register yourself in UTOL
   - Note: self-register in UTOL does not enroll you to the course for credit, which must be separately done in [UTAS](https://utas.adm.u-tokyo.ac.jp/) when you decide to do so
   - Enter your UTokyo Google account (xxxx@g.ecc.u-tokyo.ac.jp) and submit
+	- I've received from a few of you addresses not exactly in this domain (@g.ecc.u-tokyo.ac.jp); please resubmit it if possible.  If it's not possible, please let me know in the UTOL messsage
 - Then get feedback from the instructor for it, which gives you
   - **A:** user name on Miyabi and Miyabi User Portal
   - **B:** password for Miyabi User Portal
