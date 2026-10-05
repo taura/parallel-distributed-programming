@@ -66,8 +66,6 @@ Exact procedures are described below. Be patient!
 
 [![overview](svg/open_webui.svg){width=400pt}](svg/open_webui.svg)
 
-- TODO: mention models; make all models work
-
 ## Miyabi Supercomputer
 
 Now move on to Miyabi, the main environment for learning parallel programming
