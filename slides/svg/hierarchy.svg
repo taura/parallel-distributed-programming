@@ -2,11 +2,11 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="79.265137mm"
+   width="78.347923mm"
    height="40.115604mm"
    id="svg2"
    version="1.1"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
    sodipodi:docname="hierarchy.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -4971,15 +4971,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8118013"
-     inkscape:cx="112.02783"
+     inkscape:cx="113.98387"
      inkscape:cy="4.0899049"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
      showguides="false"
      inkscape:snap-global="true"
-     inkscape:window-width="2160"
-     inkscape:window-height="1305"
+     inkscape:window-width="3765"
+     inkscape:window-height="2132"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -4993,10 +4993,11 @@
     <inkscape:grid
        type="xygrid"
        id="grid2985"
-       originx="-153.95999"
-       originy="-879.50002"
+       originx="-151.94437"
+       originy="-879.5"
        spacingx="1"
-       spacingy="1" />
+       spacingy="1"
+       units="px" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -5013,7 +5014,7 @@
      inkscape:label="レイヤー 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-153.95999,-21.244149)">
+     transform="translate(-151.94437,-21.244149)">
     <path
        style="fill:#fff6d5;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 350,172.36218 275,22.362183 200,172.36218 Z"
@@ -5117,7 +5118,7 @@
          x="197.13187"
          y="111.18176"
          id="tspan9331"
-         style="font-size:16px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';text-align:end;text-anchor:end">x2-64</tspan></text>
+         style="font-size:16px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';text-align:end;text-anchor:end">x2-100</tspan></text>
     <text
        id="text9333"
        y="141.18176"
@@ -5132,25 +5133,18 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:bold;line-height:0%;font-family:sans-serif;-inkscape-font-specification:'Sans Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="360.48227"
-       y="150.31804"
+       x="355"
+       y="146.74416"
        id="text134648"><tspan
          sodipodi:role="line"
-         x="360.48227"
-         y="150.31804"
+         x="355"
+         y="146.74416"
          style="font-weight:bold;font-size:16px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'"
-         id="tspan134652">SIMD (x8-32)</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="225.94026"
-       y="315.2912"
-       id="text134656"
-       transform="rotate(-28.887574)"><tspan
+         id="tspan134652">SIMD (x8-32)</tspan><tspan
          sodipodi:role="line"
-         id="tspan134658"
-         x="225.94026"
-         y="315.2912"
-         style="font-size:25px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'">\huge{\}}</tspan></text>
+         x="355"
+         y="166.74416"
+         style="font-weight:bold;font-size:16px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'"
+         id="tspan1">ILP</tspan></text>
   </g>
 </svg>
