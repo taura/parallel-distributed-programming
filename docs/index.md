@@ -9,6 +9,7 @@
   * [Introduction](slides/intro.pdf)
   * Receive your account during the class
   * Follow [Getting Started with the Course Environment](html/get_started.html), until you successfully fetch the first notebook (`pd00_intro`)!
+  * Do not forget to submit a short reflection every week (posted on UTOL every week)
 * <font color=blue>(Posted: Sep. 28, 2026)</font> 
   * This course uses Miyabi supercomputer and Jupyter server
   * To receive account and set up things, see the page [Getting Started with the Course Environment](html/get_started.html)
