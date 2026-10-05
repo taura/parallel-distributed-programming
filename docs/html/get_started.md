@@ -4,9 +4,10 @@
 
 ## Overview of the Environment
 
-- [taulec](https://taulec.zapto.org:8000/) server
+- [taulec](https://taulec.zapto.org:8000/) Jupyter server
 - [Miyabi](https://miyabi-www.jcahpc.jp/)  supercomputer ([sytem overview](https://www.cc.u-tokyo.ac.jp/en/supercomputer/miyabi/system.php))
 - AI
+  - Jupyter AI available in the Jupyter server
   - [Open WebUI Chat](https://taulec.zapto.org:3000/)
   - Coding agent (OpenCode)
 

@@ -398,6 +398,40 @@ then restart the kernel (Kernel > Restart Kernel).
 run `mount-miyabi` in a terminal as it says; it logs you in to Miyabi again (asking for the passphrase and the verification code) and re-mounts `~/miyabi` if needed
 * Notebooks you "Fetch" are set to use the "Python (Miyabi G)" kernel, so they run on Miyabi when opened
 
+
+# AI Use in This Course
+
+## Open WebUI Chat
+
+- [Open WebUI Chat](https://taulec.zapto.org:3000/)
+  - I am having issues connecting recent OpenAI models (GPT-6) to it; they are disabled for now and will be made available once the issues are resolved
+
+## Jupyter AI in the Jupyter server
+
+- Click the AI icon on the left
+- If it is not selected yet, choose "OpenCode" from the dropdown (persona chooser) in the lower left corner
+- Choose a model from the dropdown next to the persona chooser
+  - select one whose name begins with "LiteLLM (taulec)"
+- Ask anything!
+- See the [Jupyter AI home](https://github.com/jupyterlab/jupyter-ai) for how to use it
+
+## Coding agent (OpenCode)
+
+- The standalone CLI of OpenCode is also available if you like
+- In a Jupyter terminal, just run `opencode`, already on your `PATH`
+- It is installed in `~share/jupyter_tools/singleuser/oc/inst`, and your configuration is in `~/.config/opencode/opencode.jsonc`
+- When you log in to taulec with ssh, add `~share/jupyter_tools/singleuser/oc/inst/bin` to your `PATH` first
+- This is basically the same OpenCode used by Jupyter AI, with the same set of models available
+
+## AI Usage Rules in this Course
+
+- It is totally OK, and encouraged, to ask AI general questions to deepen your understanding of the topics of this course
+- For questions about this course, you are encouraged to use only the AI tools provided above, not other tools
+- You may ask AI to generate "baseline code" for your project: plain, simple code without parallelization or SIMD/ILP/... optimizations
+  - Its purpose is to let you get started on the main topic of the project quickly, without being held back by the amount of code needed for the baseline, and to focus more on things that would otherwise be hard to focus on
+- It is _not_ OK to ask AI to produce something that leaves little room for your own work (e.g., to generate code with all the parallelization and optimizations already in place, or to write a report based on it)
+
+
 # (Optional) SSH from your PC to Miyabi
 
 * You may prefer logging in to Miyabi from your PC and working on files directly, without going through Jupyter (e.g., when you edit files with VS Code)
