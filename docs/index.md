@@ -4,6 +4,14 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Oct. 19, 2026)</font> Today's plan
+  * [OpenMP](slides/openmp.pdf)
+  * Jupyter `pd01_omp`
+  * Jupyter `pd02_app` (Making YOUR\_APP from scratch)
+* <font color=blue>(Posted: Oct. 19, 2026)</font> Assignments
+  * Assignment 1: `pd01_omp`, due Oct 31
+  * Assignment 2: `pd02_app`, due Oct 31
+
 * <font color=blue>(Posted: Oct. 05, 2026)</font> Today's plan
   * See the page [Getting Started with the Course Environment](html/get_started.html) and submit "Assignment 0"
   * [Introduction](slides/intro.pdf)
