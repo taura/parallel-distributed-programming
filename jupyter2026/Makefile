@@ -4,6 +4,7 @@ md_files :=
 #md_files += $(wildcard nb/source/foo/*.md)
 #md_files += $(wildcard nb/source/pd00_intro/*.md)
 md_files += $(wildcard nb/source/pd01_omp/pd??_**.md)
+md_files += $(wildcard nb/source/pd02_app/pd??_**.md)
 # md_files += pd02_cuda
 # md_files += pd03_omp_gpu
 # md_files += pd04_simd_high_level
@@ -16,8 +17,9 @@ md_files += $(wildcard nb/source/pd01_omp/pd??_**.md)
 
 aux_files := 
 aux_files += $(wildcard nb/source/pd00_intro/svg/*.svg)
+aux_files += $(wildcard nb/source/pd02_app/code/problem.md)
 aux_files += $(wildcard nb/source/*/AGENTS.md)
-aux_files += $(wildcard nb/source/*/ask.chat)
+aux_files += $(wildcard nb/source/*/*.chat)
 # aux_files += $(wildcard nb/source/pd01_omp/sched_vis.py)
 
 EVAL=$(eval $(1))
