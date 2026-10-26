@@ -4,6 +4,13 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Oct. 26, 2026)</font> Today's plan
+  * [CUDA](slides/cuda.pdf)
+  * Jupyter `pd04_cuda`
+
+* <font color=blue>(Posted: Oct. 26, 2026)</font> 
+  * Released "C++ primer" notebook `pd03_cpp` for those of you who are new to C++
+
 * <font color=blue>(Posted: Oct. 19, 2026)</font> Today's plan
   * [OpenMP](slides/openmp.pdf)
   * Jupyter `pd01_omp`
