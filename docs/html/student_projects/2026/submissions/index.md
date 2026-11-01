@@ -6,7 +6,7 @@
 - Groups below are a rough clustering by application area, made only to help you browse; they are **not** teams / 下の分類は閲覧用の大まかなもので，チーム分けではありません
 - "Lang" = language `problem.md` is written in (EN/JA) / problem.md の記述言語
 
-- Take survey on making teams at https://forms.gle/HTLtmzxbp76omQuq8 by 2026/11/07 (Sat) 
+- Take [this survey on making teams](https://forms.gle/HTLtmzxbp76omQuq8) by 2026/11/07 (Sat) and don't forget to report it to UTOL
 
 
 ## Computer graphics: ray tracing / path tracing / rendering (コンピュータグラフィクス)
