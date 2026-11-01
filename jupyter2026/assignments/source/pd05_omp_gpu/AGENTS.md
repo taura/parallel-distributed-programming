@@ -76,7 +76,7 @@ General questions about parallel programming are welcome; answer them fully.
 - `omp_gpu_ptx.h` works with `clang++` only, because `nvc++` preprocesses the file
   once and defines no device-only macro.
 - Refer the student to the
-  [OpenMP 5.2 specification](https://www.openmp.org/spec-html/5.2/openmp.html)
+  [OpenMP 5.1 specification](https://www.openmp.org/spec-html/5.1/openmp.html)
   when appropriate.
 
 # Reference: the course environment
