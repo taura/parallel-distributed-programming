@@ -4,6 +4,10 @@
 
 # What's new (in the newest-first order)
 
+
+https://taura.github.io/parallel-distributed-programming/html/student_projects/2026/submissions/
+
+
 * <font color=blue>(Posted: Oct. 26, 2026)</font> Today's plan
   * [CUDA](slides/cuda.pdf)
   * Jupyter `pd04_cuda`
