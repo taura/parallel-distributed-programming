@@ -1,0 +1,59 @@
+<h1
+id="clustering-routed-sparse-attention-serial-baseline">Clustering-Routed
+Sparse Attention (Serial Baseline)</h1>
+<h2 id="problem">Problem</h2>
+<p>Dense attention compares every Query with all earlier Keys, requiring
+about N²/2 comparisons for N tokens. Here, k-means routes each Query to
+a cluster, and attention reads only earlier Keys in that cluster. The
+idea is inspired by the clustering-based sparse attention of the Routing
+Transformer.</p>
+<p>The program generates a sequence with topics of unequal frequency and
+noisy, overlapping feature vectors. Each Value contains a topic label
+and a numerical payload. Topic imbalance is important for performance:
+if one cluster collects many tokens, its Queries do much more work than
+those in small clusters. Noise changes cluster assignments, attention
+work, and retrieval quality. This is a synthetic information-retrieval
+experiment, not a pretrained language model.</p>
+<h2 id="how-the-baseline-code-works">How the baseline code works</h2>
+<p><code>cluster_attention.cc</code> runs Lloyd’s k-means on a separate
+calibration sequence, then processes the target sequence in
+mini-batches. Centers stay fixed while a batch is routed and attended
+to; the batch updates centers only after attention, so routing cannot
+use future target tokens. Previous Key assignments remain fixed.</p>
+<p>For each Query, the program gathers earlier Keys in its cluster and
+computes scaled dot-product attention over their Values. It uses tiled
+online softmax, storing no N×N score matrix. Queries without an earlier
+Key in their cluster are omitted from retrieval accuracy. A dense run
+uses the same attention calculation but considers all earlier Keys. The
+program reports k-means/routing/attention times, numbers of sparse and
+dense comparisons, retrieval accuracy and its evaluated-Query count, and
+error against a separate two-pass softmax calculation.</p>
+<p>In the notebook’s compile cell, after the provided module setup:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">clang</span>++ <span class="at">-O3</span> <span class="at">-Wall</span> <span class="at">-Wextra</span> <span class="at">-std</span><span class="op">=</span>c++17 cluster_attention.cc <span class="at">-o</span> cluster_attention</span></code></pre></div>
+<p>In its <code>%%sub</code> run cell:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./cluster_attention</span> 4096 32 8 12 64 1 42 1 256 0.9 1.3</span></code></pre></div>
+<p>Arguments:
+<code>tokens dim clusters iterations tile passes seed compare_dense batch noise skew</code>
+(all optional). <code>compare_dense=0</code> skips the expensive dense
+run. Increase <code>tokens</code> to scale the workload; vary
+<code>skew</code> and <code>noise</code> to examine how input
+distribution changes cluster sizes, work balance, and accuracy. Check
+the runtime on Miyabi before choosing large inputs.</p>
+<h2 id="where-is-parallelism">Where is parallelism?</h2>
+<ul>
+<li>k-means assignments and Query computations can run independently
+across tokens. Centroid updates scatter each vector into label-indexed
+sums and counts, then reduce those accumulators within the batch before
+processing the next one. Parallel updates need to handle irregular
+writes and possible contention on popular clusters.</li>
+<li>Routing performs label-dependent writes, and sparse attention
+follows irregular Key/Value indices. CPU threads or GPU work groups
+could process Queries in parallel, but uneven cluster sizes cause load
+imbalance.</li>
+<li>With roughly balanced clusters, sparse attention examines about
+N²/(2C) pairs rather than N²/2. Skewed clusters increase the pair count
+and create long-running Queries. Tiled softmax also requires combining
+partial results across tiles.</li>
+</ul>

@@ -1,0 +1,151 @@
+<ul>
+<li><em>this is an example file you should finish</em></li>
+<li>write problem description, how the algorithm/baseline code works,
+and where you think you can apply parallel computing</li>
+<li>if you are looking at this file from Jupyter, you can see the
+preview by right-clicking on the cell and “Show Markdown Preview”</li>
+</ul>
+<h1 id="making-a-historical-portfolio-search-tool-from-scratch">Making a
+Historical Portfolio Search Tool from scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>How can we compare different ways of distributing a fixed investment
+budget among stocks? This program searches many candidate portfolios and
+reports several configurations that perform well on a historical
+training period. A portfolio lists stock names and the fraction of the
+budget assigned to each stock.</p>
+<p>The application is an educational tool for studying the tradeoff
+between historical return and variability, and whether performance
+carries over to a later period. It does not predict prices or guarantee
+future returns. The search is approximate: the reported portfolios are
+the best distinct candidates encountered, not proven global optima.</p>
+<p>All weights are nonnegative, sum to 100%, and have a resolution of
+0.1%. The model assumes fractional shares and daily rebalancing to fixed
+target weights, with no transaction costs, taxes, borrowing, or short
+selling. Real input should contain consistently adjusted closing prices
+on common trading dates. Historical stock selection can introduce
+survivorship bias, which this program does not correct.</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p><code>portfolio.cc</code> is a complete serial C++17 implementation
+using only standard library headers. It has no external dependencies and
+includes a synthetic dataset so it can run immediately without
+downloading market data. Synthetic results are explicitly labeled and
+are not evidence of investment performance.</p>
+<ol type="1">
+<li>Read a price table, or generate 757 synthetic price observations for
+six assets using a fixed data-generation seed. Synthetic assets share a
+random market component and have individual random components.</li>
+<li>Compute simple daily returns,
+<code>r[t][i] = price[t+1][i] / price[t][i] - 1</code>. Split these
+returns chronologically into training and test periods (70% / 30% by
+default). The first test return starts at the last training price; no
+daily return appears in both periods.</li>
+<li>For each candidate, randomly choose the number of holdings,
+uniformly between one and the configured maximum, then shuffle the asset
+indices to choose a subset. Randomly choose distinct cuts among integers
+1 through 999. The gaps between sorted cuts and endpoints 0 and 1000
+give positive integer allocations totaling 1000. Thus weights have
+exactly 0.1% resolution. Conditional on the chosen number of holdings
+and subset, positive integer allocations are sampled uniformly;
+portfolios across all possible holding counts are not equally
+likely.</li>
+<li>For each training day, compute the daily-rebalanced portfolio return
+<code>R[t] = sum_i weight[i] * r[t][i]</code>. Compute the daily sample
+mean and sample variance using an online update. Annualized arithmetic
+mean return is <code>252 * mean</code>; annualized volatility is
+<code>sqrt(252 * sample_variance)</code>. The ranking score is
+<code>(annualized_mean - annual_risk_free_rate) / annualized_volatility</code>,
+a conventional annualized Sharpe estimate assuming 252 trading days.
+Effectively zero-volatility candidates are assigned a lowest-priority
+internal score and displayed as <code>NA</code>.</li>
+<li>Keep up to K distinct candidates ordered by training score. Ties use
+the candidate generation index. Evaluate those same weights on the
+untouched test returns after search completes; test results never
+influence ranking. Report compounded total return as
+<code>product_t(1 + R[t]) - 1</code>, along with the other metrics. The
+CSV has separate training and test rows and decimal weights; console
+weights are percentages.</li>
+</ol>
+<p>The baseline evaluates returns directly rather than precomputing a
+covariance matrix. This keeps the daily-rebalancing interpretation
+explicit and provides substantial, scalable numerical work. For M
+candidates, T training days, and at most H holdings among N assets, the
+main cost is approximately
+<code>O(M * (N + H log H + T*H + 1000))</code>, plus maintenance of the
+small top-K list. Price/return storage is <code>O(TotalDays*N)</code>
+and candidate storage is <code>O(K*N)</code>.</p>
+<h2 id="build-and-run">Build and run</h2>
+<p>From the directory containing the source:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">c++</span> <span class="at">-O3</span> <span class="at">-std</span><span class="op">=</span>c++17 <span class="at">-Wall</span> <span class="at">-Wextra</span> <span class="at">-pedantic</span> portfolio.cc <span class="at">-o</span> portfolio</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./portfolio</span> <span class="at">--demo</span> <span class="at">--samples</span> 20000 <span class="at">--top</span> 10 <span class="at">--output</span> portfolios.csv</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">./portfolio</span> <span class="at">--input</span> prices.csv <span class="at">--samples</span> 100000 <span class="at">--max-holdings</span> 20 <span class="at">--seed</span> 12345 <span class="at">--output</span> portfolios.csv</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">./portfolio</span> <span class="at">--help</span></span></code></pre></div>
+<p>Use the course’s compiler/module setup on Miyabi, then run the same
+build and execution commands in the required notebook cells. Compilation
+and execution on Miyabi must be confirmed separately.</p>
+<p>The default run uses synthetic data. Options are
+<code>--input</code>, <code>--demo</code>, <code>--samples</code>,
+<code>--top</code>, <code>--max-holdings</code>, <code>--seed</code>,
+<code>--train-fraction</code>, <code>--risk-free</code>, and
+<code>--output</code>. The risk-free rate is an annual decimal (for
+example, <code>0.02</code>). Increase <code>--samples</code> to increase
+runtime; more assets, more training days, and more holdings also
+increase the work. Measure runtime on the target machine instead of
+assuming a particular duration. The printed search time excludes input
+preparation, final test evaluation, and output.</p>
+<p>Input CSV format:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode csv"><code class="sourceCode csv"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Date,STOCK_A<span class="va">,</span>STOCK_B</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>2023-01-03,100.0<span class="va">,</span>80.0</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>2023-01-04,101.0<span class="va">,</span>79.5</span></code></pre></div>
+<p>This short snippet only illustrates the format; a run requires at
+least 21 price rows, and at least two returns per split. Supply one row
+per common trading day, with strictly increasing ISO
+<code>YYYY-MM-DD</code> dates, unique stock names, and positive finite
+prices. Missing values and quoted CSV input fields are unsupported and
+must be cleaned before use. Stock names must not contain commas. The
+program validates column counts, date ordering, numeric values, and
+split sizes.</p>
+<h2 id="checking-the-results">Checking the results</h2>
+<ul>
+<li>Every reported allocation must be nonnegative, use integer multiples
+of 0.001, and sum to one.</li>
+<li>With the same executable, input, options, and seed, the result CSV
+is reproducible. Standard library random distributions can differ across
+compiler/library implementations, so cross-platform bitwise identity is
+not promised.</li>
+<li>A one-stock input must produce a 100% allocation to that stock, with
+daily returns equal to the stock’s returns. Fewer than K results are
+valid if fewer distinct portfolios were encountered.</li>
+<li>Identical asset price series must produce identical portfolio
+performance regardless of allocation, apart from floating-point
+roundoff.</li>
+<li>Constant prices must produce zero total return and volatility, with
+Sharpe displayed as <code>NA</code>.</li>
+<li>Training scores in the output must be nonincreasing. Test results
+can be worse than training results; this is an informative outcome
+rather than a program error.</li>
+</ul>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<p>Candidate evaluations are independent once the shared return table is
+prepared. A future multicore implementation can distribute candidate IDs
+among workers. Each worker can generate and evaluate candidates,
+maintain a local top-K list, and then merge those lists with duplicate
+removal. Random-number generation must be private to workers; seeding by
+candidate ID is one way to make the candidate set independent of
+scheduling. The current serial version uses one random-number stream, so
+adopting such a scheme would also require updating the serial reference
+for a fair comparison.</p>
+<p>Daily portfolio dot products offer SIMD opportunities. A GPU
+implementation can evaluate many candidates or candidate/day pairs
+concurrently, followed by reductions for statistics and selection. The
+final test evaluations can also run independently. Random generation,
+reductions, memory layout, and top-K merging require explicit work;
+adding a pragma alone is insufficient.</p>
+<p>Useful performance experiments include varying candidate count, asset
+count, holding count, and history length; measuring time spent in
+generation versus evaluation; and studying return-table layout and cache
+reuse. Any optimized version should preserve the portfolio constraints
+and compare numerical results against the serial reference with a
+floating-point tolerance.</p>

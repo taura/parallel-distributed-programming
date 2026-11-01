@@ -1,0 +1,12 @@
+samples=1400
+steps=90
+iterations=7
+seed=42
+initial_cost=59957.684042
+best_cost=32.014211
+final_goal_distance=0.000731
+minimum_obstacle_clearance=0.279030
+collision_steps=0
+computation_seconds=0.323704
+visualized_iterations=7
+visualized_trajectories=9800

@@ -1,0 +1,84 @@
+<h1
+id="making-a-tiny-gpt-style-character-language-model-from-scratch">Making
+a Tiny GPT-style Character Language Model from Scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>I want a serial baseline for “LLM training from scratch” that can run
+in a few minutes and can later be parallelized on multicore CPU and
+GPU.</p>
+<p>The task is next-character prediction on text. Given a sequence of
+bytes <code>x[0], x[1], ..., x[L-1]</code>, the model predicts
+<code>x[1], x[2], ..., x[L]</code>. Training minimizes cross-entropy
+loss.</p>
+<p>I use byte-level tokens (vocabulary size 256), so no external
+tokenizer or dictionary is needed. The input text is read from a local
+file by command-line option (for example
+<code>../harrypotter.txt</code>), or a built-in tiny fallback text.</p>
+<p>The baseline should:</p>
+<ul>
+<li>be self-contained C++17 and use only the standard library,</li>
+<li>be deterministic with a fixed random seed,</li>
+<li>expose problem size and runtime knobs via command-line options,</li>
+<li>print training/validation loss, perplexity, and elapsed time.</li>
+</ul>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p>File: <code>code/app.cc</code></p>
+<p>Model structure (small GPT-style block):</p>
+<ol type="1">
+<li>token embedding <code>E[token] -&gt; R^D</code></li>
+<li>linear projections to query/key/value (<code>Wq</code>,
+<code>Wk</code>, <code>Wv</code>)</li>
+<li>causal self-attention over positions <code>0..t</code></li>
+<li>output projection <code>Wo</code></li>
+<li>vocabulary projection <code>Wout</code> to logits over 256 byte
+tokens</li>
+<li>softmax + cross-entropy loss</li>
+</ol>
+<p>Training:</p>
+<ul>
+<li>optimizer: plain SGD</li>
+<li>gradients: manual backpropagation through all operations</li>
+<li>batching: <code>batch_size</code> random subsequences per step</li>
+<li>split: first 90% train, last 10% validation</li>
+<li>metrics printed every <code>print_every</code> steps:
+<ul>
+<li><code>train_loss</code>, <code>valid_loss</code></li>
+<li><code>train_ppl = exp(train_loss)</code>,
+<code>valid_ppl = exp(valid_loss)</code></li>
+<li>elapsed seconds</li>
+</ul></li>
+</ul>
+<p>Main command-line parameters:</p>
+<ul>
+<li><code>--data PATH</code></li>
+<li><code>--steps N</code></li>
+<li><code>--seq-len N</code></li>
+<li><code>--d-model N</code></li>
+<li><code>--batch-size N</code></li>
+<li><code>--lr X</code></li>
+<li><code>--seed N</code></li>
+</ul>
+<p>This makes runtime tunable from seconds to several minutes by
+adjusting <code>steps</code>, <code>seq-len</code>,
+<code>d-model</code>, and <code>batch-size</code>.</p>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<p>This baseline is intentionally serial, but it has many parallel
+opportunities:</p>
+<ul>
+<li>matrix/vector loops in Q/K/V projections,</li>
+<li>attention score computation for each <code>(t, j)</code> pair,</li>
+<li>softmax and loss over vocabulary,</li>
+<li>gradient calculations for all parameters,</li>
+<li>independent sequences inside each training batch.</li>
+</ul>
+<p>Potential mapping later:</p>
+<ul>
+<li>multicore CPU: parallelize loops over time positions, vocabulary,
+and batch,</li>
+<li>GPU: map matrix/attention/softmax kernels to many threads,</li>
+<li>SIMD: vectorize dot products and projection loops,</li>
+<li>cache optimization: improve data layout and loop ordering for
+locality.</li>
+</ul>
+<p>Likely performance limits to analyze later include memory bandwidth,
+reduction overhead (softmax/dot products), and arithmetic intensity.</p>

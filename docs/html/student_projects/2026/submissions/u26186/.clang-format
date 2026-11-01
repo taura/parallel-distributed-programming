@@ -1,0 +1,6 @@
+BasedOnStyle: Google
+IndentWidth: 2
+IndentAccessModifiers: true
+AccessModifierOffset: 0
+ColumnLimit: 160
+AllowShortBlocksOnASingleLine: Always

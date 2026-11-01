@@ -1,0 +1,82 @@
+<h1 id="sampling-based-model-predictive-control">Sampling-based Model
+Predictive Control</h1>
+<h2 id="problem">Problem</h2>
+<p>I implement a serial baseline of Model Predictive Path Integral
+control (MPPI) for a simple pendulum. The model can be changed, but I
+use a pendulum as a baseline. The pendulum starts from the hanging-down
+position and the controller must swing it up and stabilize it near the
+upright position.</p>
+<figure>
+<img src="pendulum.jpeg" alt="Pendulum" />
+<figcaption aria-hidden="true">Pendulum</figcaption>
+</figure>
+<p>At each control step, MPPI samples many random control sequences,
+simulates the pendulum forward for each sequence, computes a trajectory
+cost, and updates the nominal control sequence by a cost-weighted
+average of sampled noise. <img src="mppi.png" alt="MPPI" /> This is a
+realistic robotics control workload with many repeated simulations,
+which makes it a good target for later parallelization.</p>
+<h2 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h2>
+<p>The implementation is in <code>mppi.cpp</code> and uses only standard
+C++17. A more detailed explanation of the algorithm can be found <a
+href="https://acdslab.github.io/mppi-generic-website/docs/mppi.html"
+target="_blank" rel="noopener">here</a>. I have also tried to comment as
+much as I can in the code file itself.</p>
+<ul>
+<li>Pendulum dynamics (assume mass = length = 1):
+<ul>
+<li>state: angle <code>th</code> and angular velocity <code>thd</code>.
+<code>th = 0</code> when upright, and <code>pi</code> when hanging
+down</li>
+<li>control: torque <code>u</code> clipped to
+<code>[-UMAX, UMAX]</code></li>
+<li>timestep: <code>DT = 0.02</code></li>
+<li>update:
+<ul>
+<li><code>thd += (g*sin(th) - damp*thd + u) * DT</code></li>
+<li><code>th  += thd * DT</code></li>
+</ul></li>
+</ul></li>
+<li>Cost:
+<ul>
+<li>stage cost: <code>(1 - cos(th)) + 0.01*thd^2 + 0.001*u^2</code></li>
+<li>terminal cost: <code>10*(1 - cos(th)) + 0.1*thd^2</code></li>
+</ul></li>
+<li>MPPI loop (receding horizon):
+<ol type="1">
+<li>For each sample <code>k = 0..K-1</code>, draw Gaussian noise over
+horizon <code>T</code>, apply perturbed controls, and accumulate total
+cost.</li>
+<li>Convert costs to normalized exponential weights using temperature
+<code>lambda</code>.</li>
+<li>For each horizon time <code>t</code>, compute weighted average noise
+and add it to nominal control <code>U[t]</code>.</li>
+<li>Apply only the first control to the real system, shift
+<code>U</code> left by one step, and repeat.</li>
+</ol></li>
+</ul>
+<p>Command-line parameters: <code>K T steps lambda sigma</code>. Default
+values are <code>K=4096</code>, <code>T=100</code>,
+<code>steps=600</code>, <code>lambda=1.0</code>,
+<code>sigma=1.0</code>.</p>
+<p>The code prints periodic diagnostics (<code>theta</code>,
+<code>omega</code>, min sampled cost, effective sample size), final
+success/failure, and elapsed computation time.</p>
+<h2 id="where-is-parallelism">Where is parallelism</h2>
+<p>The biggest parallel region is the rollout loop over sampled
+trajectories (<code>k</code>). Each sample is independent during
+simulation and cost accumulation. &lt;!– - Multicore CPU: - parallelize
+the loop over <code>k</code> - each thread computes local costs (and
+local weighted sums for control update), then reduce - GPU: - one thread
+(or warp) per trajectory rollout - evaluate dynamics and costs in
+parallel for all samples - then perform reductions for weights and
+weighted noise sums</p>
+<p>Potential speedup limits: - memory bandwidth for storing noise/cost
+arrays - reduction overhead for normalization and weighted averaging -
+serial dependence across outer control steps (<code>steps</code> loop is
+receding-horizon and must stay ordered)</p>
+<p>Correctness checks: - final state near upright (<code>|theta|</code>
+small, <code>|omega|</code> small) - stable behavior across multiple
+runs with fixed seed - trend of decreasing minimum sampled cost during
+swing-up</p>

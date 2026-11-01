@@ -1,0 +1,114 @@
+<h1 id="monte-carlo-trajectory-optimization-for-a-mobile-robot">Monte
+Carlo Trajectory Optimization for a Mobile Robot</h1>
+<h2 id="problem-and-motivation">1. Problem and motivation</h2>
+<p>A wheeled robot must travel from a start pose to a goal in a bounded
+2D environment with circular obstacles. The problem is to find a
+collision-free trajectory that reaches the goal efficiently while
+keeping steering inputs reasonably smooth. This simplified task is
+relevant to local motion planning in mobile robotics and autonomous
+driving.</p>
+<h2 id="mathematical-model">2. Mathematical model</h2>
+<p>The robot has planar state <code>(x, y, theta)</code> and follows a
+unicycle model with forward velocity <code>v</code> and angular velocity
+<code>omega</code>:</p>
+<ul>
+<li><code>dx/dt = v cos(theta)</code></li>
+<li><code>dy/dt = v sin(theta)</code></li>
+<li><code>dtheta/dt = omega</code></li>
+</ul>
+<p>We approximate the motion using a fixed time step
+<code>dt = 0.14 s</code> and midpoint integration. A nominal heading
+controller points toward the goal, and the optimizer adds a smooth,
+sampled angular correction. An input trajectory is represented by 12
+steering-correction values interpolated across the time horizon.
+Velocity and steering rate have upper bounds.</p>
+<h2 id="serial-baseline-algorithm">3. Serial baseline algorithm</h2>
+<p>This implementation uses the <strong>Cross-Entropy Method
+(CEM)</strong>, a form of population-based Monte Carlo optimization:</p>
+<ol type="1">
+<li>Initialize a Gaussian sampling distribution over the 12
+steering-correction parameters.</li>
+<li>Sample <code>N</code> candidate control trajectories
+(independently).</li>
+<li>Simulate each candidate over <code>H</code> steps using the robot
+model.</li>
+<li>Evaluate a cost combining goal progress, final goal distance,
+steering effort, proximity to obstacles, and large penalties for actual
+collisions or crossing the map boundary.</li>
+<li>Keep the best 10% of candidates and update the Gaussian mean and
+standard deviation.</li>
+<li>Repeat for a specified number of optimization iterations and return
+the lowest-cost trajectory observed.</li>
+</ol>
+<p>This is a simple <strong>serial C++17 baseline</strong>, not a GPU
+implementation and not the full Model Predictive Path Integral (MPPI)
+controller. It uses no external C++ libraries.</p>
+<h2 id="inputs-and-outputs">4. Inputs and outputs</h2>
+<p>Build with the standard GCC compiler:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="at">-std</span><span class="op">=</span>c++17 <span class="at">-O3</span> <span class="at">-Wall</span> <span class="at">-Wextra</span> main.cpp <span class="at">-o</span> trajectory</span></code></pre></div>
+<p>Example run (in the <code>code/</code> directory):</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./trajectory</span> <span class="at">--samples</span> 1400 <span class="at">--steps</span> 90 <span class="at">--iterations</span> 7 <span class="at">--seed</span> 42 <span class="at">--output</span> trajectory.ppm</span></code></pre></div>
+<p>Runtime options:</p>
+<ul>
+<li><code>--samples N</code>: sampled trajectories per optimization
+iteration (default <code>1400</code>)</li>
+<li><code>--steps H</code>: motion-integration steps per trajectory
+(default <code>90</code>)</li>
+<li><code>--iterations K</code>: CEM optimization iterations (default
+<code>7</code>)</li>
+<li><code>--seed S</code>: deterministic random seed (default
+<code>42</code>)</li>
+<li><code>--output FILE.ppm</code>: PPM image path (default
+<code>trajectory.ppm</code>)</li>
+</ul>
+<p>Outputs are:</p>
+<ul>
+<li><code>trajectory.ppm</code>: static 2D image showing ALL candidate
+trajectories from every CEM iteration with a light-to-dark blue color
+gradient and a numeric iteration legend, plus the green selected path
+and obstacles</li>
+<li><code>best_trajectory.csv</code>: selected path with time, position
+and heading</li>
+<li><code>summary.txt</code>: best cost, terminal error, obstacle
+clearance, collision step count, execution time, and visualized
+iteration/trajectory counts</li>
+</ul>
+<p>Convert the PPM to PNG using the provided notebook command,
+<code>convert code/trajectory.ppm code/trajectory.png</code>.</p>
+<h2 id="validation">5. Validation</h2>
+<p>For the default seed and parameters, the generated outputs can be
+checked by:</p>
+<ul>
+<li>ensuring the minimum obstacle clearance is positive and the number
+of collision steps is zero;</li>
+<li>checking that the selected trajectory ends near the target
+location;</li>
+<li>comparing the cost of the selected trajectory with the nominal
+non-optimized trajectory;</li>
+<li>viewing the resulting static 2D image and checking that the green
+best trajectory avoids the red circular obstacles and their safety
+margins.</li>
+</ul>
+<p>Obstacle clearance is measured from the robot boundary to the
+physical obstacle boundary; positive clearance indicates separation at
+the sampled trajectory states. This discrete check does not guarantee
+continuous-time safety between integration steps.</p>
+<p>The visualization shows <strong>all</strong> Monte Carlo candidate
+trajectories, using lighter blue for earlier iterations and darker blue
+for later iterations. A numeric color legend maps colors to iteration
+numbers. It also shows a <strong>green</strong> selected best
+trajectory, <strong>red</strong> physical obstacles,
+<strong>orange</strong> inflated exclusion boundaries, a
+<strong>blue</strong> start marker and a <strong>yellow</strong> goal
+marker.</p>
+<h2 id="parallelization-opportunity">6. Parallelization opportunity</h2>
+<p>The dominant computation is evaluating independent candidate
+trajectories. During each CEM iteration, different candidates can be
+simulated and scored in parallel using <strong>OpenMP</strong> on CPU
+cores or <strong>CUDA</strong> on GPU threads. The small
+distribution-update step is a reduction over the elite samples. Larger
+values of <code>--samples</code>, <code>--steps</code>, and
+<code>--iterations</code> scale the workload and will allow performance
+and speedup experiments in later course assignments.</p>

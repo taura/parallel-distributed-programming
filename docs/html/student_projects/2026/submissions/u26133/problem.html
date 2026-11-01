@@ -1,0 +1,98 @@
+<h1 id="making-ray-tracing-from-scratch">Making Ray Tracing from
+Scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>This project builds a baseline renderer for <strong>ray
+tracing</strong> in C++17. The program generates a synthetic 3D scene
+(many spheres with different materials), traces rays from a virtual
+camera, and outputs a rendered image as a PPM file.</p>
+<p>Why this problem is interesting:</p>
+<ul>
+<li>It is realistic: ray tracing is a core algorithm in graphics and
+visualization.</li>
+<li>It has rich computation: each pixel needs many stochastic samples
+and recursive light transport.</li>
+<li>It is easy to scale runtime using parameters like image size,
+samples per pixel, and maximum bounce depth.</li>
+<li>It provides meaningful/verifiable outputs:
+<ul>
+<li>the generated image should look visually plausible,</li>
+<li>average luminance and a checksum are printed for reproducibility
+checks.</li>
+</ul></li>
+</ul>
+<p>The baseline is intentionally serial and simple so it can be
+parallelized later in the course.</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p><code>raytrace.cpp</code> implements a small serial path tracer:</p>
+<ol type="1">
+<li><strong>Scene generation</strong>
+<ul>
+<li>Create a ground sphere and a few large spheres.</li>
+<li>Add many small random spheres (<code>--small-spheres</code>) with
+Lambertian, metal, or dielectric materials.</li>
+<li>Use a fixed seed (<code>--seed</code>) for deterministic scene and
+sampling.</li>
+</ul></li>
+<li><strong>Camera and rays</strong>
+<ul>
+<li>Use a pinhole camera with configurable image resolution
+(<code>--width</code>, <code>--height</code>).</li>
+<li>For each pixel, cast multiple jittered primary rays
+(<code>--spp</code>) for anti-aliasing.</li>
+</ul></li>
+<li><strong>Ray-object intersection</strong>
+<ul>
+<li>Intersect rays with all spheres.</li>
+<li>Keep the nearest valid hit in <code>(t_min, t_max)</code>.</li>
+</ul></li>
+<li><strong>Material scattering (path tracing loop)</strong>
+<ul>
+<li><strong>Lambertian</strong>: random diffuse bounce.</li>
+<li><strong>Metal</strong>: reflected direction with fuzz.</li>
+<li><strong>Dielectric</strong>: reflection/refraction using Schlick
+approximation.</li>
+<li>Iterate up to <code>--max-depth</code> bounces.</li>
+</ul></li>
+<li><strong>Accumulation and output</strong>
+<ul>
+<li>Average samples for each pixel.</li>
+<li>Apply gamma correction (<code>sqrt</code>) and store RGB bytes.</li>
+<li>Save image in PPM P6 format (<code>--output</code>).</li>
+<li>Print timing (<code>render_ms</code>) for the main render loop.</li>
+<li>Print <code>avg_luminance</code> and <code>checksum</code> for
+informal correctness/reproducibility checks.</li>
+</ul></li>
+</ol>
+<p>Example compile and run:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clang</span>++ <span class="at">-O3</span> <span class="at">-Wall</span> <span class="at">-std</span><span class="op">=</span>c++17 raytrace.cpp <span class="at">-o</span> raytrace</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./raytrace</span> <span class="at">--width</span> 960 <span class="at">--height</span> 540 <span class="at">--spp</span> 64 <span class="at">--max-depth</span> 12 <span class="at">--small-spheres</span> 120 <span class="at">--seed</span> 12345 <span class="at">--output</span> raytrace.ppm</span></code></pre></div>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<p>This application has ample parallelism.</p>
+<ul>
+<li><strong>Across pixels (embarrassingly parallel):</strong> each pixel
+is independent in the baseline implementation.</li>
+<li><strong>Across samples in each pixel:</strong> <code>spp</code> rays
+per pixel are independent and can be reduced into one color.</li>
+<li><strong>Across rays/bounces on GPU:</strong> many rays can be traced
+concurrently with SIMT execution.</li>
+</ul>
+<p>Expected multicore/GPU approach (later assignments):</p>
+<ul>
+<li>Multicore CPU: parallelize the outer loops over image
+rows/pixels.</li>
+<li>GPU: map one thread (or one warp strategy) per pixel/sample and
+optimize memory access.</li>
+</ul>
+<p>Possible speedup limits:</p>
+<ul>
+<li>Load imbalance from variable path lengths (some rays terminate
+quickly, others bounce more).</li>
+<li>Branch divergence from different materials and random control
+flow.</li>
+<li>Memory bandwidth/cache behavior when reading scene objects
+repeatedly.</li>
+<li>RNG cost and synchronization/overhead if work granularity is too
+fine.</li>
+</ul>

@@ -1,0 +1,67 @@
+<h1
+id="making-ckks-style-ntt-polynomial-multiplication-from-scratch">Making
+CKKS-style NTT Polynomial Multiplication from Scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>I implement a serial baseline for polynomial multiplication in (_q[X]
+/ (X^N + 1)), which is the core operation used by CKKS homomorphic
+encryption.</p>
+<p>In CKKS, ciphertext and key operations repeatedly multiply
+polynomials modulo several NTT-friendly primes (RNS representation).
+This baseline models that by computing the same negacyclic polynomial
+product for multiple moduli.</p>
+<p>The goal of this assignment is not full CKKS, but a realistic core
+kernel that is performance-critical and has clear parallelization
+opportunities.</p>
+<h1 id="how-the-baseline-code-works">How the baseline code works</h1>
+<p>File: <code>code/ckks_ntt_baseline.cc</code></p>
+<ol type="1">
+<li><p>Parse command-line parameters:</p>
+<ul>
+<li><code>--logn</code> so that (N = 2^{})</li>
+<li><code>--mods</code> number of RNS moduli</li>
+<li><code>--reps</code> repetition count for timing</li>
+<li><code>--seed</code> deterministic random seed</li>
+<li><code>--verify-coeffs</code> number of coefficients checked by a
+slow reference</li>
+</ul></li>
+<li><p>Choose built-in NTT primes (q) such that ((q-1)) is divisible by
+(2N), then build one NTT context per modulus.</p></li>
+<li><p>For each modulus, generate random polynomials <code>a</code> and
+<code>b</code>.</p></li>
+<li><p>Compute negacyclic product with NTT:</p>
+<ul>
+<li>twist by powers of a primitive (2N)-th root</li>
+<li>forward NTT of size (N)</li>
+<li>pointwise multiply</li>
+<li>inverse NTT</li>
+<li>untwist</li>
+</ul></li>
+<li><p>Time the main loop (<code>reps</code> times over all moduli)
+using <code>std::chrono::steady_clock</code>.</p></li>
+<li><p>Verify correctness by comparing the first
+<code>verify-coeffs</code> coefficients with a direct (O(N^2))
+negacyclic formula (for one modulus), and print:</p>
+<ul>
+<li>elapsed compute time</li>
+<li>mismatch count</li>
+<li>checksum for reproducibility</li>
+</ul></li>
+</ol>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<ul>
+<li><strong>Across moduli (RNS):</strong> each modulus is independent
+and can run in parallel.</li>
+<li><strong>Across NTT stages:</strong> Within each NTT stage,
+independent butterfly operations can be executed in parallel. However
+synchronization is required between consecutive stages.</li>
+<li><strong>Across coefficients:</strong> pointwise multiplication is
+embarrassingly parallel.</li>
+<li><strong>Across repeated multiplications
+(<code>--reps</code>):</strong> repetitions can be batched.</li>
+</ul>
+<p>Potential limits to speedup:</p>
+<ul>
+<li>memory bandwidth / cache behavior at large (N)</li>
+<li>synchronization between NTT stages</li>
+<li>load imbalance when modulus count is small</li>
+</ul>

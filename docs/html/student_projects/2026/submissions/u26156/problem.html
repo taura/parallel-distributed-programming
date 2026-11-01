@@ -1,0 +1,166 @@
+<h1 id="european-call-option-pricing-by-monte-carlo-simulation">European
+Call Option Pricing by Monte Carlo Simulation</h1>
+<h2 id="problem-and-model">Problem and model</h2>
+<p>A <strong>European call option</strong> gives its owner the right to
+buy a stock on a fixed future date for a fixed <strong>strike
+price</strong>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>.
+If the stock price on that date is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>S</mi><mi>T</mi></msub><annotation encoding="application/x-tex">S_T</annotation></semantics></math>,
+the option pays
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">max</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>S</mi><mi>T</mi></msub><mo>−</mo><mi>K</mi><mo>,</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\max(S_T-K,0)</annotation></semantics></math>.
+We want its value today under a simple mathematical model, not a
+prediction of the actual stock price.</p>
+<p>We assume no dividends, a constant interest rate
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math>,
+and constant <strong>volatility</strong>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>σ</mi><annotation encoding="application/x-tex">\sigma</annotation></semantics></math>
+(how much the stock price can vary). Starting from today’s price
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>S</mi><mn>0</mn></msub><annotation encoding="application/x-tex">S_0</annotation></semantics></math>,
+we draw a standard normal random number
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Z</mi><annotation encoding="application/x-tex">Z</annotation></semantics></math>
+(from a bell-shaped distribution) and generate only the price at
+expiration,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>
+years from now:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>T</mi></msub><mo>=</mo><msub><mi>S</mi><mn>0</mn></msub><mrow><mi mathvariant="normal">exp</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo>−</mo><msup><mi>σ</mi><mn>2</mn></msup><mi>/</mi><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mi>T</mi><mo>+</mo><mi>σ</mi><msqrt><mi>T</mi></msqrt><mspace width="0.167em"></mspace><mi>Z</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">S_T=S_0\exp\left((r-\sigma^2/2)T+\sigma\sqrt{T}\,Z\right).</annotation></semantics></math></p>
+<p>This is a <strong>risk-neutral</strong> model: it uses the interest
+rate for valuation rather than a forecast of the stock’s growth. Each
+trial gives a <em>discounted payoff</em>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>=</mo><msup><mi>e</mi><mrow><mi>−</mi><mi>r</mi><mi>T</mi></mrow></msup><mrow><mi mathvariant="normal">max</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>S</mi><mi>T</mi></msub><mo>−</mo><mi>K</mi><mo>,</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Y=e^{-rT}\max(S_T-K,0)</annotation></semantics></math>;
+discounting converts a future payment into its value today. The option
+price is the expected (average) value of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Y</mi><annotation encoding="application/x-tex">Y</annotation></semantics></math>
+in this model. Intermediate stock prices are unnecessary.</p>
+<h2 id="serial-algorithm">Serial algorithm</h2>
+<p><code>main.cpp</code> makes
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
+independent <strong>Monte Carlo trials</strong> (random samples of
+possible outcomes). It generates
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Z</mi><annotation encoding="application/x-tex">Z</annotation></semantics></math>,
+calculates
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>S</mi><mi>T</mi></msub><annotation encoding="application/x-tex">S_T</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Y</mi><annotation encoding="application/x-tex">Y</annotation></semantics></math>,
+and updates the mean and sample variance. <strong>Welford’s
+method</strong> performs these updates without storing every trial. The
+standard-library <code>std::mt19937_64</code> and
+<code>std::normal_distribution</code> generate the random values from a
+chosen seed. Results can differ between C++ standard-library
+implementations.</p>
+<p>The mean estimates the option price. The <strong>standard
+error</strong> estimates the uncertainty of this mean from a finite
+number of trials. The program reports an approximate 95% confidence
+interval, estimate
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>±</mi><mn>1.96</mn></mrow><annotation encoding="application/x-tex">\pm 1.96</annotation></semantics></math>
+standard errors; a single interval need not contain the true model
+price. It also computes the <strong>Black–Scholes price</strong>, an
+analytic value for the same model, using standard C++ math functions. At
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">T=0</annotation></semantics></math>
+or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\sigma=0</annotation></semantics></math>,
+the payoff is known without random sampling and is computed
+directly.</p>
+<h2 id="build-and-run-on-miyabi">Build and run on Miyabi</h2>
+<p>Arguments are <code>N S0 K T r sigma seed</code>, in that order; omit
+trailing arguments to use defaults
+<code>1000000 100 100 1 0.05 0.2 42</code>. The program requires
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>≥</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">N\ge2</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>0</mn></msub><mo>,</mo><mi>K</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">S_0,K&gt;0</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>,</mo><mi>σ</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">T,\sigma\ge0</annotation></semantics></math>;
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math>
+may be negative. Non-finite values and calculations that overflow are
+rejected.</p>
+<p>In the assignment notebook’s Miyabi G kernel, build and check the
+program with:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%%bash</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="kw">&amp;&amp;</span> <span class="ex">module</span> load nvidia/25.9 cuda/12.9 <span class="kw">&amp;&amp;</span> <span class="va">PATH</span><span class="op">=</span>/work/gt81/share/env/llvm/bin:<span class="va">$PATH</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">clang</span>++ <span class="at">-O3</span> <span class="at">-Wall</span> <span class="at">-std</span><span class="op">=</span>c++17 main.cpp <span class="at">-o</span> app</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./app</span> <span class="at">--self-test</span></span></code></pre></div>
+<p>Run <code>%load_ext miyabi</code> in a separate cell first. Then use
+a compute-node job for the main benchmark:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%%sub</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">./app</span> 500000000 100 100 1 0.05 0.2 42</span></code></pre></div>
+<p>The program prints a short result and timing summary. It appends a
+full row to <code>code/results.csv</code> when run from
+<code>code</code>, including inputs, seed, estimate, standard error,
+interval, analytic price, loop time, throughput, and a UTC timestamp.
+Use <code>--log FILE</code> before the arguments to choose another CSV
+file. The measured time covers the Monte Carlo loop, not startup,
+writing the log, or job waiting time. Run jobs that share the log
+sequentially; record compiler and node settings separately.</p>
+<h2 id="checks-and-measured-results">Checks and measured results</h2>
+<p>The built-in self-test checks simple payoffs, the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">T=0</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\sigma=0</annotation></semantics></math>
+cases, a known mean and sample variance, and a Black–Scholes value of
+about <strong>10.4506</strong>. The notebook records
+<code>self-test: PASS</code> on Miyabi.</p>
+<p>The following Miyabi measurements use
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>0</mn></msub><mo>=</mo><mi>K</mi><mo>=</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">S_0=K=100</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">T=1</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mn>0.05</mn></mrow><annotation encoding="application/x-tex">r=0.05</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>=</mo><mn>0.2</mn></mrow><annotation encoding="application/x-tex">\sigma=0.2</annotation></semantics></math>,
+and seed 42. The analytic price is <strong>10.45058357</strong>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Trials
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math></th>
+<th style="text-align: right;">Estimated price</th>
+<th style="text-align: right;">Standard error</th>
+<th style="text-align: right;">Computation time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">10,000,000</td>
+<td style="text-align: right;">10.45010109</td>
+<td style="text-align: right;">0.00465545</td>
+<td style="text-align: right;">2.384 s and 2.373 s</td>
+</tr>
+<tr>
+<td style="text-align: right;">100,000,000</td>
+<td style="text-align: right;">10.44941074</td>
+<td style="text-align: right;">0.00147180</td>
+<td style="text-align: right;">23.742 s</td>
+</tr>
+<tr>
+<td style="text-align: right;">500,000,000</td>
+<td style="text-align: right;">10.45008717</td>
+<td style="text-align: right;">0.00065823</td>
+<td style="text-align: right;">117.670 s</td>
+</tr>
+</tbody>
+</table>
+<p>Five times as many trials (100 million to 500 million) took about
+<strong>4.96 times</strong> as long; the standard error fell by about
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>5</mn></msqrt><annotation encoding="application/x-tex">\sqrt5</annotation></semantics></math>,
+as expected. Throughput was around <strong>4.2 million
+trials/s</strong>. This makes 500 million trials a useful, roughly
+two-minute serial baseline and 100 million a shorter comparison case.
+All three intervals contained the analytic price, but that alone does
+not prove correctness. Runs with the same seed share initial random
+samples, so their estimates are not independent; the absolute error need
+not decrease for every larger
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>.</p>
+<h2 id="future-parallel-work">Future parallel work</h2>
+<p>Trials can be divided among CPU cores or GPU workers. Each worker
+could collect its own statistics and combine them at the end, provided
+the random-number streams do not repeat the same samples. Compare serial
+and parallel times using <strong>the same inputs and trial
+count</strong>, and repeat runs to assess timing variation. Later,
+independent seeds can test statistical variation; different strikes such
+as
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><mn>80</mn></mrow><annotation encoding="application/x-tex">K=80</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><mn>120</mn></mrow><annotation encoding="application/x-tex">K=120</annotation></semantics></math>
+can test other payoff patterns. Those cases have <strong>not</strong>
+been measured here. Neither parallel execution nor variance-reduction
+methods are implemented in this baseline.</p>

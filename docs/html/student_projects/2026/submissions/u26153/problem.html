@@ -1,0 +1,49 @@
+<ul>
+<li><em>this is an example file you should finish</em></li>
+<li>write problem description, how the algorithm/baseline code works,
+and where you think you can apply parallel computing</li>
+<li>if you are looking at this file from Jupyter, you can see the
+preview by right-clicking on the cell and “Show Markdown Preview”</li>
+</ul>
+<h1 id="making-ray-tracing-algorithm-from-scratch">Making ray tracing
+algorithm from scratch</h1>
+<h2 id="problem">Problem</h2>
+<p>Render a two-dimensional image of a three-dimensional scene from a
+virtual camera. For each pixel, the renderer must find the first surface
+hit by a ray and estimate its color from reflected or scattered light.
+This example scene contains a red metal sphere, flat gray terrain, and a
+sky gradient. It produces a 2000 × 1000 pixel, 24-bit BMP image.</p>
+<p>The work is computationally expensive: 16 samples per pixel produce
+32 million primary rays, and a ray may generate further rays when it
+hits a surface. The current implementation is a single-threaded baseline
+for exploring parallel computing.</p>
+<h2 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h2>
+<ol type="1">
+<li><p><a href="src/main.cpp" target="_blank"
+rel="noopener">main.cpp</a> creates the scene and loops over every
+pixel. For each of its 16 samples, it adds a random offset within the
+pixel and asks the camera in <a href="src/ray.h" target="_blank"
+rel="noopener">ray.h</a> for a ray. This sampling helps smooth object
+edges and diffuse lighting.</p></li>
+<li><p><a href="src/scene.h" target="_blank"
+rel="noopener">Scene::render</a> tests the ray against every registered
+<a href="src/shape.h" target="_blank" rel="noopener">Shape</a>, keeps
+the closest valid hit, and calls the surface’s <a href="src/material.h"
+target="_blank" rel="noopener">Material</a>. The terrain is a horizontal
+plane with a gray Lambertian material that scatters rays in random
+directions. The sphere has a red Metal material with zero fuzz, so it
+reflects rays in the mirror direction.</p></li>
+<li><p>The renderer recursively traces each scattered ray and multiplies
+the returned color by the material’s color.</p></li>
+<li><p><a href="src/main.cpp" target="_blank"
+rel="noopener">main.cpp</a> averages the 16 colors for each pixel. <a
+href="src/bitmap.h" target="_blank" rel="noopener">bitmap.h</a> clamps
+the result to 8-bit RGB values and writes <code>render.bmp</code> as an
+uncompressed 24-bit BMP with BGR pixel order and padded rows.</p></li>
+</ol>
+<h2 id="where-is-parallelism">Where is parallelism</h2>
+<p>The baseline currently renders pixels one after another. Different
+pixels do not depend on one another, so rows or rectangular tiles are
+the main units of work to distribute across CPU threads or GPU workers.
+The 16 samples within a pixel are also independent.</p>

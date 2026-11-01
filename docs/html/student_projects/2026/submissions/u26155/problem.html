@@ -1,0 +1,16 @@
+<h1 id="target-application-ray-tracing">Target Application: Ray
+Tracing</h1>
+<h2 id="problem">Problem</h2>
+<p>レイトレーシングは、仮想のカメラから放たれた光線（レイ）が3D空間内のオブジェクト（球体やポリゴンなど）とどのように交差するかを計算し、現実世界に近い高品質な画像を生成するレンダリング手法である。計算コストが非常に高いものの、ピクセルごとの計算が完全に独立しているという特徴があります。</p>
+<h2 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h2>
+<p>このベースラインコード（<code>raytracer.cc</code>）は、外部ライブラリを一切使用せず、C++の標準機能のみで記述されたシンプルなシリアル実行のレイトレーサーである。
+- <strong>データ出力</strong>:
+画像の検証を容易にするため、単純なテキストベースのPPM（Portable
+Pixmap）フォーマットで出力する。 - <strong>処理の流れ</strong>:
+<code>WIDTH</code> × <code>HEIGHT</code>
+の二重ループを用いて、画面上の各ピクセルに対して光線を飛ばし、空間上に配置された球体との交差判定（2次方程式の解）を行っている。</p>
+<h2 id="where-is-parallelism">Where is parallelism</h2>
+<ul>
+<li>ピクセルごとの色計算（ループ内の処理）にはデータ依存関係がないため、将来的にOpenMPによるマルチコア化や、CUDA等を用いたGPU並列化を適用することで、劇的な実行時間の短縮が期待できる。</li>
+</ul>

@@ -1,0 +1,122 @@
+<h1 id="making-2d-lidar-occupancy-grid-mapping-from-scratch">Making 2D
+LiDAR Occupancy Grid Mapping from scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>I implement a serial baseline for a robotics mapping task: building a
+2D occupancy grid map from many LiDAR scans.</p>
+<p>The map is a grid of cells. Each cell stores how likely it is
+occupied by an obstacle. The robot moves along a trajectory and takes
+scans with many beams. Each beam says either:</p>
+<ul>
+<li>a hit occurred at some distance (there is likely an obstacle there),
+or</li>
+<li>no hit until max range (the beam path is likely free space).</li>
+</ul>
+<p>This is a realistic robotics workload because mapping is used in
+mobile robot navigation and autonomous systems, and ray casting + grid
+updates are computationally heavy.</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p>Source file: <code>raycast_mapping.cc</code></p>
+<ol type="1">
+<li><strong>Create a synthetic world</strong>
+<ul>
+<li>Build a binary ground-truth occupancy map (<code>true_occ</code>)
+with wall boundaries and random rectangular obstacles.</li>
+<li>Use a fixed random seed for deterministic behavior.</li>
+</ul></li>
+<li><strong>Create robot trajectory</strong>
+<ul>
+<li>Generate <code>scans</code> robot poses on a circle
+(<code>path_radius</code>) around the map center.</li>
+</ul></li>
+<li><strong>Simulate LiDAR measurement (ray casting)</strong>
+<ul>
+<li>For each pose and each of <code>beams</code> directions, run DDA
+grid traversal until:
+<ul>
+<li>a true obstacle is hit, or</li>
+<li><code>max_range</code> is reached.</li>
+</ul></li>
+<li>The hit distance is the synthetic LiDAR range.</li>
+</ul></li>
+<li><strong>Integrate into estimated occupancy map</strong>
+<ul>
+<li>Maintain a log-odds grid (<code>est_logodds</code>).</li>
+<li>Along beam path before the hit: apply negative update (free-space
+evidence).</li>
+<li>At hit cell: apply positive update (occupied evidence).</li>
+<li>Clamp log-odds values to keep them bounded.</li>
+</ul></li>
+<li><strong>Report runtime and quality indicators</strong>
+<ul>
+<li>Print <code>main_compute_seconds</code> for the mapping loop.</li>
+<li>Compare estimated occupied cells vs ground truth and print
+occupied-cell IoU.</li>
+<li>Print a checksum for reproducibility.</li>
+<li>Optionally write PPM image (<code>--out-ppm</code>) for visual
+inspection.</li>
+</ul></li>
+</ol>
+<p>Compile and run example:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clang</span>++ <span class="at">-O3</span> <span class="at">-Wall</span> <span class="at">-std</span><span class="op">=</span>c++17 raycast_mapping.cc <span class="at">-o</span> raycast_mapping</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./raycast_mapping</span> <span class="at">--width</span> 1024 <span class="at">--height</span> 1024 <span class="at">--scans</span> 1500 <span class="at">--beams</span> 720 <span class="at">--max-range</span> 220 <span class="at">--obstacles</span> 140 <span class="at">--path-radius</span> 300</span></code></pre></div>
+<p>Tested preset on Miyabi (serial baseline):</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%%sub</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">./raycast_mapping</span> <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--seed</span> 42 <span class="dt">\</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--width</span> 2040 <span class="dt">\</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--height</span> 2040 <span class="dt">\</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--scans</span> 80000 <span class="dt">\</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">--beams</span> 4320 <span class="dt">\</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">--max-range</span> 600 <span class="dt">\</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">--obstacles</span> 600 <span class="dt">\</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">--path-radius</span> 700 <span class="dt">\</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">--out-ppm</span> map.ppm <span class="dt">\</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">--out-gt-ppm</span> map_gt.ppm</span></code></pre></div>
+<p>Observed runtime for this preset: about <strong>168
+seconds</strong>.</p>
+<p>Main size knobs:</p>
+<ul>
+<li><code>--width</code>, <code>--height</code> (grid size)</li>
+<li><code>--scans</code> (number of robot poses)</li>
+<li><code>--beams</code> (beams per scan)</li>
+<li><code>--max-range</code> (ray length)</li>
+<li><code>--obstacles</code> (map complexity)</li>
+<li><code>--path-radius</code> (trajectory size)</li>
+</ul>
+<p>Output images from the above run:</p>
+<ul>
+<li>Estimated occupancy map: <code>map.ppm</code> (converted preview:
+<code>map.png</code>)</li>
+<li>Ground-truth occupancy map: <code>map_gt.ppm</code> (converted
+preview: <code>map_gt.png</code>)</li>
+</ul>
+<p><img src="map.png" alt="Estimated occupancy map" /> <img
+src="map_gt.png" alt="Ground-truth occupancy map" /></p>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<p>The workload has large data parallel structure.</p>
+<ul>
+<li><strong>Across beams (within one scan):</strong> each beam can be
+ray-cast independently.</li>
+<li><strong>Across scans/poses:</strong> each pose has a similar
+per-beam workload.</li>
+<li><strong>Across cells (for post-processing/metrics):</strong>
+thresholding and comparisons are independent per cell.</li>
+</ul>
+<p>Possible mappings:</p>
+<ul>
+<li><strong>Multicore CPU:</strong> parallel for over beams (and/or
+scans).</li>
+<li><strong>GPU:</strong> one thread per beam for ray casting and map
+updates.</li>
+</ul>
+<p>Main expected limits to speedup:</p>
+<ul>
+<li>many beams may update nearby cells (write conflicts / atomics),</li>
+<li>memory bandwidth and irregular memory access in grid traversal,</li>
+<li>load imbalance because some rays terminate early and others run to
+max range.</li>
+</ul>

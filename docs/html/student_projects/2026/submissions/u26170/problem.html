@@ -1,0 +1,137 @@
+<h1 id="making-llm-inference-from-scratch">Making LLM Inference from
+Scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>I study text generation (inference) of a small large language model
+(LLM), implemented from scratch.</p>
+<p>The model is a tiny Llama-2 style transformer trained on TinyStories.
+I use the <code>stories110M</code> checkpoint, which has about 110
+million parameters. The task is: given a short prompt, generate the next
+tokens one by one to produce a story.</p>
+<p>This is a realistic application because LLM inference is widely used
+in real systems. It is also a good target for this course because:</p>
+<ul>
+<li>it does a lot of computation,</li>
+<li>it has multiple levels of parallelism,</li>
+<li>but it also has an important sequential dependency (next token
+depends on previous tokens).</li>
+</ul>
+<p>So it is a good baseline for later multicore/GPU/SIMD optimization
+and performance analysis.</p>
+<h1 id="how-the-baseline-code-works">How the baseline code works</h1>
+<p>The baseline program is <code>llama2_infer.cpp</code> in this
+directory.</p>
+<ul>
+<li>Single-file C++17, serial implementation.</li>
+<li>No external libraries.</li>
+<li>Command-line options control prompt, generation length, seed,
+temperature, and number of samples.</li>
+</ul>
+<p>Main steps:</p>
+<ol type="1">
+<li><strong>Load model checkpoint</strong>
+<ul>
+<li>Read the model configuration and all pretrained weights from
+<code>stories110M.bin</code>.</li>
+<li>Store weights as flat float arrays.</li>
+</ul></li>
+<li><strong>Load tokenizer</strong>
+<ul>
+<li>Read <code>tokenizer.bin</code>.</li>
+<li>Build token tables for encoding prompt text into token IDs and
+decoding token IDs back to text.</li>
+</ul></li>
+<li><strong>Run transformer forward pass token-by-token</strong>
+<ul>
+<li>For each generated position, run all transformer layers.</li>
+<li>Use a KV cache (saved keys/values from previous positions) so
+attention does not recompute old keys/values every step.</li>
+<li>Compute logits for the next token.</li>
+</ul></li>
+<li><strong>Sample next token</strong>
+<ul>
+<li><code>--temperature 0</code> uses greedy decoding (argmax),
+deterministic.</li>
+<li><code>--temperature &gt; 0</code> uses probabilistic sampling from
+softmax(logits / temperature).</li>
+</ul></li>
+<li><strong>Repeat until stop</strong>
+<ul>
+<li>Continue generating until max steps, EOS, or BOS appears again.</li>
+</ul></li>
+<li><strong>Multiple independent stories with
+<code>--samples N</code></strong>
+<ul>
+<li>Generate <code>N</code> independent stories in one run.</li>
+<li>Seeds are <code>seed, seed+1, ..., seed+N-1</code>.</li>
+<li>This is useful to scale serial runtime from seconds to minutes.</li>
+</ul></li>
+</ol>
+<h1 id="build-and-run">Build and run</h1>
+<p>Download files:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://huggingface.co/karpathy/tinyllamas/resolve/main/stories110M.bin</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/karpathy/llama2.c/raw/master/tokenizer.bin</span></code></pre></div>
+<p>Compile:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clang</span>++ <span class="at">-O3</span> <span class="at">-Wall</span> <span class="at">-std</span><span class="op">=</span>c++17 llama2_infer.cpp <span class="at">-o</span> llama2_infer</span></code></pre></div>
+<p>Run example:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./llama2_infer</span> <span class="at">--checkpoint</span> stories110M.bin <span class="at">--tokenizer</span> tokenizer.bin <span class="dt">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--prompt</span> <span class="st">&quot;Once upon a time&quot;</span> <span class="at">--steps</span> 1024 <span class="at">--samples</span> 20 <span class="at">--seed</span> 123 <span class="at">--temperature</span> 1.0</span></code></pre></div>
+<p>Observed serial baseline (one run):</p>
+<ul>
+<li><code>--samples 20</code></li>
+<li>generated 3931 tokens</li>
+<li>total time about 258 s</li>
+<li>throughput about 15 tokens/s</li>
+</ul>
+<p>Increasing <code>--samples</code> increases total runtime
+approximately proportionally, so <code>--samples</code> is a practical
+way to set serial runtime to a few minutes.</p>
+<h1 id="how-to-verify-results">How to verify results</h1>
+<p>I use two simple checks:</p>
+<ol type="1">
+<li><strong>Human readability check</strong>
+<ul>
+<li>Output should look like short, mostly coherent TinyStories-style
+text.</li>
+</ul></li>
+<li><strong>Deterministic check with
+<code>--temperature 0</code></strong>
+<ul>
+<li>Greedy decoding gives deterministic output for a fixed
+prompt/checkpoint.</li>
+<li>This can be used as a reference when comparing future optimized
+parallel versions.</li>
+</ul></li>
+</ol>
+<h1 id="where-time-is-spent-and-where-parallelism-exists">Where time is
+spent and where parallelism exists</h1>
+<p>Most time is spent in the transformer compute for each token,
+especially:</p>
+<ul>
+<li>matrix multiplications in attention and feed-forward layers,</li>
+<li>repeated reading of large weight matrices from memory for every
+token.</li>
+</ul>
+<p>Parallelization opportunities:</p>
+<ul>
+<li><strong>Matmul rows</strong>: output rows can be computed
+independently (multicore).</li>
+<li><strong>Attention heads</strong>: heads are independent inside one
+layer.</li>
+<li><strong>Independent samples</strong>: each story in
+<code>--samples N</code> can run independently.</li>
+<li><strong>SIMD/vectorization</strong>: inner dot products and
+elementwise operations.</li>
+<li><strong>GPU mapping</strong>: matrix multiplies and attention are
+natural GPU kernels.</li>
+</ul>
+<p>What is hard to parallelize:</p>
+<ul>
+<li><strong>Token-to-token dependency</strong>: next token generation
+depends on previous tokens, so positions in one story cannot be fully
+parallelized over time.</li>
+</ul>
+<p>This mix (large inner parallel work + outer sequential dependency) is
+exactly why this problem is interesting for performance analysis.</p>

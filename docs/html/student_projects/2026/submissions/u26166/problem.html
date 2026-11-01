@@ -1,0 +1,51 @@
+<h1
+id="屋内の受信電力マップをレイトレーシングで作る下書き">屋内の受信電力マップをレイトレーシングで作る（下書き）</h1>
+<h2 id="問題">問題</h2>
+<p>無線通信では、送信機からの電波が壁で遮られたり反射したりするため、
+屋内の場所によって受信電力が変わる。部屋の各地点で電波がどの程度届くかを
+レイトレーシングで計算し、色のマップとして見えるようにする。</p>
+<p>部屋は2次元、送受信アンテナは等方性、周波数は2.4 GHzとする。
+直達波と壁での1回だけの鏡面反射を扱う。回折、透過、複数回反射、
+アンテナ指向性や材質別の反射係数は扱わない簡易モデルである。</p>
+<h2 id="逐次版の計算方法">逐次版の計算方法</h2>
+<p><code>app.cc</code> は24 m × 16
+mの部屋の外壁と、固定シードで生成した内部の壁を使う。
+送信機は部屋の左寄りに置き、受信地点を格子状に動かす。直線が壁に遮られなければ
+直達経路を採用する。反射経路は、送信機を壁の向こう側に鏡映する「鏡像法」で
+求める。反射点が壁の線分上にあり、往路と復路が他の壁に遮られないときだけ採用する。</p>
+<p>経路長
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>d</mi><mi>p</mi></msub><annotation encoding="application/x-tex">d_p</annotation></semantics></math>、周波数
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>f</mi><annotation encoding="application/x-tex">f</annotation></semantics></math>、光速
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>、波長
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>λ</mi><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>
+を使い、 直達波と反射波の複素振幅を足して受信電力比を求める。</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><msub><mi>P</mi><mi>r</mi></msub><msub><mi>P</mi><mi>t</mi></msub></mfrac><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">|</mo><munder><mo>∑</mo><mi>p</mi></munder><msub><mi>γ</mi><mi>p</mi></msub><mfrac><mi>λ</mi><mrow><mn>4</mn><mi>π</mi><msub><mi>d</mi><mi>p</mi></msub></mrow></mfrac><mi mathvariant="normal">exp</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>−</mi><mi>j</mi><mn>2</mn><mi>π</mi><mi>f</mi><mfrac><msub><mi>d</mi><mi>p</mi></msub><mi>c</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">|</mo></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\frac{P_r}{P_t}=\left|\sum_p \gamma_p\frac{\lambda}{4\pi d_p}
+\exp\left(-j2\pi f\frac{d_p}{c}\right)\right|^2</annotation></semantics></math></p>
+<p>直達波は
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>γ</mi><mi>p</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\gamma_p=1</annotation></semantics></math>、反射波は一律
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>γ</mi><mi>p</mi></msub><mo>=</mo><mi>−</mi><mn>0.65</mn></mrow><annotation encoding="application/x-tex">\gamma_p=-0.65</annotation></semantics></math>
+とする。 送信機のごく近くでは発散を避けるため経路長を最小0.05
+mに制限する。 出力のPPM画像では青が弱い電力（-100
+dB以下）、赤が強い電力（-40 dB以上）、
+白線は壁、黒い十字は送信機の位置を表す。
+計算時間、見通し地点の割合、平均受信電力比、電力範囲も表示する。</p>
+<p>実行例（Miyabi上で <code>code/</code> に移動後）:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clang</span>++ <span class="at">-O3</span> <span class="at">-Wall</span> <span class="at">-std</span><span class="op">=</span>c++17 app.cc <span class="at">-o</span> app</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./app</span> 384 256 32 1 1 coverage.ppm</span></code></pre></div>
+<p>引数は順に画像の横・縦の画素数、内部壁の数、乱数シード、反射の有無（0/1）、
+出力先。実行時間が短ければ
+<code>./app 1024 768 96 1 1 coverage.ppm</code> のように
+規模を上げる。表示される <code>compute_seconds</code>
+を見てMiyabiで調整する。 <code>./app 64 48 0 1 0 free_space.ppm</code>
+は内部壁・反射なしの検証用。
+すべての地点が見通しになり、距離に応じた自由空間の式
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>λ</mi><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mn>4</mn><mi>π</mi><mi>d</mi><mo stretchy="false" form="postfix">)</mo><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">(\lambda/(4\pi d))^2</annotation></semantics></math>
+とほぼ一致する。 プログラムの実行後、<code>code/</code> 内で
+<code>convert coverage.ppm coverage.png</code> とすれば、
+ノートブックから <code>display(Image("code/coverage.png"))</code>
+で画像を表示できる。</p>
+<h2 id="並列化できる部分">並列化できる部分</h2>
+<p>各受信地点の計算は独立なので、CPUでは画像の行や領域を分担でき、
+GPUでは多数の画素を同時に計算できる。壁との交差判定や三角関数が
+計算時間を占める可能性があり、地点によって有効な反射経路の数が違うことが
+負荷の偏りになりそうである。</p>

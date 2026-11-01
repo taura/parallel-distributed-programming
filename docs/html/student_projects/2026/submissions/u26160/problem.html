@@ -1,0 +1,45 @@
+<h1 id="making-2d-acoustic-wave-simulation-from-scratch">Making 2D
+Acoustic Wave Simulation from Scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>We simulate acoustic wave propagation on a 2D square grid using the
+finite difference method. A Ricker wavelet source at the center of the
+domain generates wavefields with both positive and negative amplitudes,
+forming concentric wavefronts spreading outward.</p>
+<p>The program solves the 2D acoustic wave equation:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><msup><mi>∂</mi><mn>2</mn></msup><mi>u</mi></mrow><mrow><mi>∂</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></mfrac><mo>=</mo><msup><mi>c</mi><mn>2</mn></msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><msup><mi>∂</mi><mn>2</mn></msup><mi>u</mi></mrow><mrow><mi>∂</mi><msup><mi>x</mi><mn>2</mn></msup></mrow></mfrac><mo>+</mo><mfrac><mrow><msup><mi>∂</mi><mn>2</mn></msup><mi>u</mi></mrow><mrow><mi>∂</mi><msup><mi>y</mi><mn>2</mn></msup></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex"> \frac{\partial^2 u}{\partial t^2} = c^2 \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} \right) </annotation></semantics></math></p>
+<p>where: - u(x,y,t) is the wave displacement at position (x,y) and time
+t - c is the constant wave speed</p>
+<p>The grid size N (N × N points) and the number of time steps Nt are
+passed from the command line, so we can easily adjust the total
+computation time.</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p>This is a single-threaded serial baseline implementation written in
+C++.</p>
+<p>We use three arrays to store the wave field at three consecutive time
+steps: - u_prev: wave field at time t-1 - u_curr: wave field at time t -
+u_next: wave field at time t+1 (to be computed)</p>
+<p>For each time step, we inject a Ricker wavelet source at the center,
+then use the second-order finite difference scheme: 1. Compute the
+Laplacian (second spatial derivative) of u_curr for every inner grid
+point. 2. Update u_next using the time-stepping formula:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mrow><mi>n</mi><mi>e</mi><mi>x</mi><mi>t</mi></mrow></msub><mo stretchy="false" form="prefix">[</mo><mi>j</mi><mo stretchy="false" form="postfix">]</mo><mo stretchy="false" form="prefix">[</mo><mi>i</mi><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mn>2</mn><mo>⋅</mo><msub><mi>u</mi><mrow><mi>c</mi><mi>u</mi><mi>r</mi><mi>r</mi></mrow></msub><mo stretchy="false" form="prefix">[</mo><mi>j</mi><mo stretchy="false" form="postfix">]</mo><mo stretchy="false" form="prefix">[</mo><mi>i</mi><mo stretchy="false" form="postfix">]</mo><mo>−</mo><msub><mi>u</mi><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mi>v</mi></mrow></msub><mo stretchy="false" form="prefix">[</mo><mi>j</mi><mo stretchy="false" form="postfix">]</mo><mo stretchy="false" form="prefix">[</mo><mi>i</mi><mo stretchy="false" form="postfix">]</mo><mo>+</mo><msup><mi>c</mi><mn>2</mn></msup><mfrac><mrow><mi mathvariant="normal">Δ</mi><msup><mi>t</mi><mn>2</mn></msup></mrow><mrow><mi mathvariant="normal">Δ</mi><msup><mi>x</mi><mn>2</mn></msup></mrow></mfrac><msup><mi>∇</mi><mn>2</mn></msup><msub><mi>u</mi><mrow><mi>c</mi><mi>u</mi><mi>r</mi><mi>r</mi></mrow></msub><mo stretchy="false" form="prefix">[</mo><mi>j</mi><mo stretchy="false" form="postfix">]</mo><mo stretchy="false" form="prefix">[</mo><mi>i</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex"> u_{next}[j][i] = 2 \cdot u_{curr}[j][i] - u_{prev}[j][i] + c^2 \frac{\Delta t^2}{\Delta x^2} \nabla^2 u_{curr}[j][i] </annotation></semantics></math>
+3. Swap the three arrays to prepare for the next iteration. 4. After all
+time steps, write a snapshot of the final wave field to a PPM image
+file. The visualization uses a gray background, red for positive
+amplitudes and blue for negative amplitudes, which is a common style for
+seismic wavefield plots.</p>
+<p>The CFL condition (Δt ≤ Δx / (c·√2)) is respected to ensure numerical
+stability.</p>
+<p>This serial implementation supports adjustable grid size N and time
+steps Nt via command-line arguments. Small settings such as N=256,
+Nt=300 are used for fast testing and visualization. Larger settings
+(e.g., N=1024, Nt=2000) increase computation cost and will run for
+several minutes, satisfying the requirement of this assignment.</p>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<p>The computation has abundant parallelism: - At each time step, the
+update of every inner grid point (j,i) is <strong>independent</strong>
+of all other grid points in the same time step. - Each point only reads
+values from u_curr and u_prev (read-only), and writes to its own
+position in u_next. - There is no data dependency between different grid
+points within the same time step.</p>

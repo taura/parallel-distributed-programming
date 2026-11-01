@@ -1,0 +1,430 @@
+<h1 id="making-a-ray-tracer-from-scratch">Making a Ray Tracer from
+Scratch</h1>
+<blockquote>
+<p>Draft for student review: read, check, and rewrite this description
+in your own words before submission. Classmates will read it. Miyabi
+compilation, execution, and performance measurements are <strong>not yet
+verified</strong>.</p>
+</blockquote>
+<h2 id="problem-and-motivation">Problem and motivation</h2>
+<p>A ray tracer turns a three-dimensional scene into a two-dimensional
+image by following rays from a camera. This is useful in computer
+graphics, product visualization, and film rendering. Each pixel asks
+which surface is visible and how that surface is lit.</p>
+<p>This project generates its own scene: colored spheres, a large mirror
+sphere, an infinite ground plane, a pinhole camera, and one point light.
+It outputs a binary RGB PPM image. The program supports ambient light,
+Lambert diffuse light, hard shadows, ideal mirror reflections, and grid
+supersampling to reduce jagged edges. It is a fully serial C++17
+baseline using only the standard library, with no downloaded inputs or
+dependencies.</p>
+<h2 id="how-the-baseline-code-works">How the baseline code works</h2>
+<p>For each pixel, the program traces a regular <code>s</code> by
+<code>s</code> grid of camera rays, sampling the centers of the grid
+cells. Each ray tests every sphere and the plane to find the nearest
+positive intersection. Missing rays see a sky gradient. For a surface
+hit, ambient light contributes 0.13 times the material color. Diffuse
+light contributes
+<code>0.87 * max(0, dot(normal, direction_to_light))</code> times the
+color, unless another object blocks the segment from the hit to the
+light. The point light has constant strength; distance attenuation is
+not modeled.</p>
+<p>A reflective surface traces one mirror ray. With reflectivity
+<code>r</code>, its color is
+<code>(1-r) * local_color + r * reflected_color</code>.
+<code>--max-depth d</code> allows at most <code>d</code> mirror bounces
+after the camera ray. At depth zero, the terminal color is the full
+local lighting, including shadows; no mirror ray is spawned. This cutoff
+is a visual approximation. Secondary origins are offset by
+<code>1e-5</code> scene units to avoid self-intersection. Shadow
+intersections are bounded by the distance to the light, so objects
+behind the light cannot block it.</p>
+<p>Samples are averaged in linear color space. Each averaged channel is
+clamped to <code>[0,1]</code>, converted with gamma 2.0
+(<code>sqrt</code>), rounded to an 8-bit value, and stored in a flat RGB
+buffer. The buffer is written as PPM P6.</p>
+<p>The first three spheres have fixed positions and materials.
+Additional spheres occupy a fixed background rectangle. Their radii
+shrink as their count grows, keeping the scene within the camera view.
+Some can still occlude others, and very small spheres need more pixels
+or samples to remain visible. The camera moves back for portrait images.
+Scene variation uses <code>std::mt19937</code> and an explicit mapping
+of its integers to real numbers; pixel sampling uses no random state.
+The seed affects background spheres, so it has no effect with 1–3
+spheres.</p>
+<p>All implementation and self-tests are in
+<code>raytrace.cpp</code>:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Data or function</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Vec3</code>, <code>Ray</code>, <code>Material</code>,
+<code>Hit</code></td>
+<td>Vector arithmetic, rays, surface color/reflectivity, and
+intersection data</td>
+</tr>
+<tr>
+<td><code>Sphere</code>, <code>Plane</code>, <code>Scene</code></td>
+<td>A contiguous vector of spheres, a ground plane, and the light
+position</td>
+</tr>
+<tr>
+<td><code>Camera</code>, <code>make_camera</code></td>
+<td>Set position, target, up direction, and field of view; generate
+pinhole rays</td>
+</tr>
+<tr>
+<td><code>make_scene</code></td>
+<td>Generate a deterministic scene outside the render timer</td>
+</tr>
+<tr>
+<td><code>hit_sphere</code>, <code>hit_plane</code>,
+<code>closest_hit</code></td>
+<td>Solve intersections and select the nearest valid surface</td>
+</tr>
+<tr>
+<td><code>shadowed</code>, <code>trace</code></td>
+<td>Check visibility to the light, shade the surface, and recursively
+reflect</td>
+</tr>
+<tr>
+<td><code>render</code>, <code>encode</code></td>
+<td>Sample pixels, average linear colors, check finiteness, and encode
+RGB bytes</td>
+</tr>
+<tr>
+<td><code>write_ppm</code>, <code>self_test</code></td>
+<td>Serialize the image and run lightweight automated checks</td>
+</tr>
+</tbody>
+</table>
+<p>For width <code>W</code>, height <code>H</code>, grid size
+<code>s</code>, sphere count <code>N</code>, and maximum depth
+<code>d</code>, the worst-case work is
+<code>O(W * H * s^2 * (d+1) * (N+1))</code>. Each bounce performs a full
+intersection scan and at most one shadow scan. There is only one mirror
+child per hit, so ray count is not exponential in depth. Many rays stop
+earlier. Memory is <code>O(N + W*H + d)</code>, including 3 bytes per
+output pixel and the reflection call stack. No acceleration structure is
+used.</p>
+<h2 id="build-and-run">Build and run</h2>
+<p>Use the notebook’s <strong>Python (Miyabi G)</strong> kernel. The
+compile cell keeps the course environment line and checks the compiler
+on Miyabi before compilation. Its availability and version are still
+pending verification there.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%%bash</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-e</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="kw">&amp;&amp;</span> <span class="ex">module</span> load nvidia/25.9 cuda/12.9 <span class="kw">&amp;&amp;</span> <span class="va">PATH</span><span class="op">=</span>/work/gt81/share/env/llvm/bin:<span class="va">$PATH</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> clang++</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">clang</span>++ <span class="at">--version</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">clang</span>++ <span class="at">-O3</span> <span class="at">-Wall</span> <span class="at">-Wextra</span> <span class="at">-pedantic</span> <span class="at">-std</span><span class="op">=</span>c++17 raytrace.cpp <span class="at">-o</span> raytrace</span></code></pre></div>
+<p>Run <code>%load_ext miyabi</code> once per kernel in its separate
+cell. The run cell uses the existing course job configuration without
+adding scheduler options:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%%sub</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-e</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">./raytrace</span> <span class="at">--self-test</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./raytrace</span> <span class="at">--width</span> 320 <span class="at">--height</span> 180 <span class="at">--samples-per-axis</span> 1 <span class="at">--spheres</span> 16 <span class="at">--max-depth</span> 2 <span class="at">--seed</span> 42 <span class="at">--output</span> quick.ppm</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">./raytrace</span> <span class="at">--width</span> 960 <span class="at">--height</span> 540 <span class="at">--samples-per-axis</span> 2 <span class="at">--spheres</span> 128 <span class="at">--max-depth</span> 3 <span class="at">--seed</span> 42 <span class="at">--output</span> result.ppm</span></code></pre></div>
+<p>The second render starts calibration; it is not a promised runtime.
+Read its actual timing on Miyabi, then increase resolution, sampling, or
+object count gradually if needed. Doubling both dimensions or doubling
+<code>s</code> roughly quadruples primary rays; doubling <code>N</code>
+roughly doubles intersection work. Aim for seconds to a few minutes,
+within the 15-minute job limit. Do not extend runs with empty work or
+repeated renders.</p>
+<p>Wait for the job to finish successfully before conversion and
+display:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%%bash</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-e</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">convert</span> code/result.ppm code/result.png</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image, display</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>display(Image(<span class="st">&quot;code/result.png&quot;</span>))</span></code></pre></div>
+<p>Conversion is postprocessing, not a C++ dependency. If the Miyabi
+environment check fails, retain the exact error and ask the instructor.
+The local AI environment cannot submit Miyabi jobs.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Meaning and accepted values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--width</code></td>
+<td>320</td>
+<td>Width in pixels, 1–16384</td>
+</tr>
+<tr>
+<td><code>--height</code></td>
+<td>180</td>
+<td>Height in pixels, 1–16384</td>
+</tr>
+<tr>
+<td><code>--samples-per-axis</code></td>
+<td>1</td>
+<td>Grid side <code>s</code>, 1–32; <code>s*s</code> samples per
+pixel</td>
+</tr>
+<tr>
+<td><code>--spheres</code></td>
+<td>16</td>
+<td>Total spheres including foreground objects, 1–100000</td>
+</tr>
+<tr>
+<td><code>--max-depth</code></td>
+<td>2</td>
+<td>Maximum mirror bounces, 0–32; zero uses local shading only</td>
+</tr>
+<tr>
+<td><code>--seed</code></td>
+<td>42</td>
+<td>Scene seed, 0–4294967295</td>
+</tr>
+<tr>
+<td><code>--output</code></td>
+<td><code>result.ppm</code></td>
+<td>Nonempty PPM path; parent directory must exist; existing file is
+overwritten</td>
+</tr>
+<tr>
+<td><code>--self-test</code></td>
+<td>off</td>
+<td>Run tests and exit without rendering a file</td>
+</tr>
+<tr>
+<td><code>--help</code></td>
+<td>off</td>
+<td>Print usage and exit</td>
+</tr>
+</tbody>
+</table>
+<p>Total image size is limited to 67,108,864 pixels to bound buffer
+memory. These limits do not guarantee short runtimes for combined large
+settings. Malformed arguments, out-of-range values, and output errors
+print an English error and return nonzero status.</p>
+<h2 id="correctness-checks">Correctness checks</h2>
+<p>Local validation on 2026-10-29: <strong>29/29 self-tests
+passed</strong>. They cover:</p>
+<ul>
+<li>Sphere distance 4 for the specified ray and sphere; misses, inside
+origins, negative intersections, tangents, non-unit directions, and
+nearest-hit ordering.</li>
+<li>Plane distance 2, parallel rays, and intersections behind the
+origin.</li>
+<li>Shadow blockers before the light, blockers beyond it, and ground
+self-shadow prevention.</li>
+<li>Reflection direction, depth-zero lighting, one bounce to the sky,
+exact local/mirror mixing, and a ray enclosed in a mirror sphere
+terminating after 32 bounces. Sampled colors at several depths contain
+no NaN or infinity.</li>
+<li>Camera orientation, gamma/clamping, linear grid averaging, PPM
+header and binary payload size, and deterministic repeated scene
+generation/rendering.</li>
+<li>Seed variation, correct sphere counts, and camera bounds for 1, 3,
+16, 128, and 1000 spheres in landscape and portrait images.</li>
+</ul>
+<p>Additional local checks passed for 16 invalid-input/output-failure
+cases and help text. Successful tiny runs included a 1x1 image with one
+sphere, depth zero and seed zero, and a portrait image with seed
+4294967295. Two separate processes produced identical complete preview
+PPM files. A depth-zero image differed from the reflected version, as
+expected.</p>
+<p>The preview below was visually inspected. It shows round colored
+spheres, foreground occlusion, shadows extending away from the light, a
+sky/ground split and a red neighbor reflected in the large mirror
+sphere, and faint ground reflections. A 128-sphere small render was also
+inspected: the background grid stays in view. The depth-zero comparison
+removes mirror and ground reflections. These checks support the analytic
+tests but do not prove physical accuracy.</p>
+<figure>
+<img src="result.png"
+alt="Local preview: 640x360, 2x2 samples, 16 spheres, depth 2, seed 42" />
+<figcaption aria-hidden="true">Local preview: 640x360, 2x2 samples, 16
+spheres, depth 2, seed 42</figcaption>
+</figure>
+<p><strong>This PNG is a local preview, not a Miyabi result.</strong>
+Its PPM payload size was checked; PNG conversion passed a lossless pixel
+round trip. ImageMagick is absent locally, so temporary Python
+standard-library postprocessing converted this preview. The renderer
+needs no Python code. The notebook retains the course’s
+<code>convert</code> command for Miyabi.</p>
+<p>Within the same executable/environment, repeated parameters and seeds
+should produce identical bytes. The printed FNV-1a pixel checksum helps
+compare runs; it is not a correctness proof. Future CPU/GPU comparisons
+should allow floating-point and pixel tolerances, especially at edges
+and shadow boundaries. Cross-platform byte identity is not assumed.</p>
+<h2 id="measurement">Measurement</h2>
+<p><code>std::chrono::steady_clock</code> measures two intervals. The
+render timer encloses only <code>render</code>: ray generation,
+intersections, shading, reflections, averaging, finite-color checks,
+gamma conversion, and buffer writes. Scene generation, camera setup,
+buffer allocation/initialization, parameter printing, and checksums are
+outside it. The write timer includes open, PPM header and byte writes,
+and close; it measures writes through the operating system cache, not
+guaranteed durable storage. PNG conversion is outside both
+intervals.</p>
+<p>Every render prints effective parameters, render/write seconds, a
+pixel checksum, mean RGB byte value, and <code>nonfinite_pixels=0</code>
+on success. Nonfinite color is an error rather than silently encoded as
+a pixel.</p>
+<p>Actual local environment: aarch64 Linux AI execution host, GCC
+<code>g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0</code>. This compile
+completed without warnings:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="at">-O2</span> <span class="at">-Wall</span> <span class="at">-Wextra</span> <span class="at">-pedantic</span> <span class="at">-std</span><span class="op">=</span>c++17 code/raytrace.cpp <span class="at">-o</span> /tmp/pd02-raytrace.baGXTq/raytrace</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/tmp/pd02-raytrace.baGXTq/raytrace</span> <span class="at">--self-test</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/tmp/pd02-raytrace.baGXTq/raytrace</span> <span class="at">--width</span> 320 <span class="at">--height</span> 180 <span class="at">--samples-per-axis</span> 1 <span class="at">--spheres</span> 16 <span class="at">--max-depth</span> 2 <span class="at">--seed</span> 42 <span class="at">--output</span> /tmp/pd02-raytrace.baGXTq/quick.ppm</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/tmp/pd02-raytrace.baGXTq/raytrace</span> <span class="at">--width</span> 640 <span class="at">--height</span> 360 <span class="at">--samples-per-axis</span> 2 <span class="at">--spheres</span> 16 <span class="at">--max-depth</span> 2 <span class="at">--seed</span> 42 <span class="at">--output</span> /tmp/pd02-raytrace.baGXTq/preview.ppm</span></code></pre></div>
+<p>These are short functional checks, not Miyabi benchmarks. All use
+seed 42; local PPM writes went to temporary storage. Each row is one
+observed run:</p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr>
+<th>Environment / image</th>
+<th>W x H</th>
+<th>s</th>
+<th>N</th>
+<th>d</th>
+<th>Render seconds</th>
+<th>PPM write seconds</th>
+<th>Pixel checksum (hex)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Local quick</td>
+<td>320 x 180</td>
+<td>1</td>
+<td>16</td>
+<td>2</td>
+<td>0.016788</td>
+<td>0.000160</td>
+<td><code>247645d9d5441b47</code></td>
+</tr>
+<tr>
+<td>Local retained preview</td>
+<td>640 x 360</td>
+<td>2</td>
+<td>16</td>
+<td>2</td>
+<td>0.258597</td>
+<td>0.000511</td>
+<td><code>56e15c2ce09e645c</code></td>
+</tr>
+<tr>
+<td>Local determinism repeat</td>
+<td>640 x 360</td>
+<td>2</td>
+<td>16</td>
+<td>2</td>
+<td>0.258587</td>
+<td>0.000417</td>
+<td><code>56e15c2ce09e645c</code></td>
+</tr>
+<tr>
+<td>Local dense scene</td>
+<td>320 x 180</td>
+<td>1</td>
+<td>128</td>
+<td>2</td>
+<td>0.082134</td>
+<td>0.000184</td>
+<td><code>c30c9979d2cea2f2</code></td>
+</tr>
+<tr>
+<td>Miyabi calibration start</td>
+<td>960 x 540</td>
+<td>2</td>
+<td>128</td>
+<td>3</td>
+<td><strong>Pending</strong></td>
+<td><strong>Pending</strong></td>
+<td><strong>Pending</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Notebook commands are filled in but have not run in a Miyabi kernel.
+Shell file checks were executed locally. No notebook execution output
+has been fabricated. After your Miyabi run, record its compiler version,
+parameters, render/write times, checksum, and visual observations here.
+Update the preview description when the Miyabi output replaces
+<code>result.png</code>.</p>
+<h2 id="where-is-parallelism">Where is parallelism?</h2>
+<ul>
+<li><strong>Multicore CPU:</strong> assign independent pixels or tiles
+to workers. Each worker writes a disjoint buffer region and uses a
+private accumulator. The scene is read-only. Small dynamically scheduled
+tiles can balance pixels with different reflection depths; scheduling
+overhead and memory bandwidth may limit scaling.</li>
+<li><strong>SIMD:</strong> test several spheres against the same ray in
+vector lanes. A future structure-of-arrays layout for centers/radii can
+support contiguous loads; nearest-hit reduction and irregular branches
+require care.</li>
+<li><strong>GPU:</strong> start with one thread per pixel and contiguous
+RGB output. Put scene data in flat arrays without host pointers;
+consider separate coordinate arrays for memory access. Replace recursion
+with a bounded bounce loop. Different ray paths, shadow outcomes, and
+bounce counts cause divergent work. Geometry reads, register pressure,
+and transfers can also limit speedup.</li>
+<li><strong>BVH:</strong> a bounding volume hierarchy can skip distant
+groups of spheres. This is a later algorithmic improvement. Measure
+serial brute force, parallel brute force, and accelerated variants
+separately to distinguish reduced work from parallel execution. Account
+for BVH construction where relevant.</li>
+</ul>
+<p>Keep scenes, sampling, depth, compiler options, image quality, and
+timing boundaries comparable. No speedup is claimed before
+measurement.</p>
+<h2 id="limitations-and-submission">Limitations and submission</h2>
+<p>Only spheres and one two-sided ground plane are supported. Lighting
+is one white point source plus ambient light. Mirrors are ideal; shadows
+are hard. There is no refraction, texture, soft shadow, indirect
+illumination, model loader, GUI, multithreading, GPU code, or
+acceleration structure. Full scans grow linearly with object count.
+Finite depth, fixed ray offsets, clamping, gamma 2.0 (not the exact sRGB
+curve), and finite sampling introduce visual/numerical approximations.
+High sphere counts can require more resolution to resolve.</p>
+<p>Before submission, personally compile/run on Miyabi, tune the
+workload, inspect the image, fill pending measurements, and
+review/rewrite this draft. Keep <code>raytrace.cpp</code>,
+<code>problem.md</code>, and the reviewed <code>result.png</code> in
+<code>code/</code>. After converting and verifying the final PNG, remove
+only generated executables and PPM intermediates
+(<code>code/raytrace</code>, <code>code/quick.ppm</code>,
+<code>code/result.ppm</code>). Keep the course notebook and required
+course files; inspect the whole directory for unrelated files before
+submitting manually through Jupyter.</p>

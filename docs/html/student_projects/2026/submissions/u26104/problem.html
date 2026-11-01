@@ -1,0 +1,195 @@
+<h2
+id="graphslamバックエンドの2次元姿勢グラフ最適化">GraphSLAMバックエンドの2次元姿勢グラフ最適化</h2>
+<h1 id="problem">Problem</h1>
+<p>移動するロボットの「位置と向き」を、複数の移動観測から推定する。
+2次元の姿勢（pose）は、x座標・y座標・向きの3つの値で表す。
+姿勢グラフの頂点は各時刻のロボットの姿勢、辺は2つの姿勢間で観測された
+相対的な移動と回転である。頂点はLiDARが測定した物体表面の点ではない。</p>
+<p>隣接時刻の移動観測を積み上げるだけでは、観測ノイズが蓄積して軌跡がずれる。
+以前いた場所を再訪したことによる観測（ループ閉合）も使って、軌跡全体の
+観測との矛盾を小さくする。この処理を姿勢グラフ最適化（PGO）と呼ぶ。</p>
+<p>本プログラムは、SLAMのうちこのバックエンド処理を対象にする。
+点群処理やICP、ループ検出の代わりに、正解の軌跡とノイズ付き相対姿勢観測を
+プログラム内で生成する。大規模な疎連立一次方程式の求解には、疎コレスキー分解を使う。</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<h2 id="入力と初期推定">1. 入力と初期推定</h2>
+<p>滑らかな8の字の軌跡を複数周する。軌跡のパラメータtに対して、回転前の位置は
+<code>x = scale * sin(t)</code>、<code>y = 0.65 * scale * sin(2*t)</code>
+とし、接線方向を向きとする。
+全姿勢を同じ座標変換で移し、最初の姿勢を原点・向き0にそろえる。</p>
+<ul>
+<li>姿勢数は <code>poses-per-lap * laps + 1</code>。</li>
+<li>隣接する姿勢間に移動観測の辺を作る。</li>
+<li>空間的に近く、時刻が十分離れた姿勢間にループ閉合の辺を作る。</li>
+<li>空間の格子で過去の姿勢を整理し、距離条件を満たす候補から近い順に選ぶ。
+1つの新しい姿勢から追加する辺数には上限がある。混雑した格子では候補数は増える。</li>
+<li>相対移動は辺の始点のローカル座標系で表し、並進と角度に独立な正規ノイズを加える。</li>
+<li>隣接移動の標準偏差は並進各成分0.02 m、角度0.005 rad。
+ループ閉合では並進各成分0.03 m、角度0.01 rad。</li>
+<li>重みはこれらの公称分散の逆数とする。<code>noise-scale</code>は生成するノイズに共通の倍率を
+掛けるが、重みは変えない。0ならノイズなしの観測を生成できる。</li>
+<li>ループ閉合の対応は正しいものとし、外れ値は生成しない。</li>
+</ul>
+<p>初期推定は、隣接移動の観測を順に積み上げて作る。
+正解軌跡は観測生成と評価に使い、最適化の残差はノイズ付き観測と現在の推定値だけから作る。
+固定シードを使う。同じ実行環境・設定で再現可能だが、標準ライブラリが異なる場合には
+正規乱数の列が一致するとは限らない。</p>
+<h2 id="最小二乗問題と行列の組み立て">2.
+最小二乗問題と行列の組み立て</h2>
+<p>各辺について、現在の推定から予測する相対姿勢と観測値との差を計算する。
+残差は、ローカル座標系の並進2成分と角度差1成分の計3成分である。 角度は約
+-pi から pi の範囲に折り返す。目的関数は、重み付き残差二乗の総和の半分。
+この実装は、この座標表現による残差を用い、SE(2)の対数写像による残差は用いない。</p>
+<p>解析的なヤコビアンを使い、Gauss–Newton法の近似行列Hと右辺bを組み立てる。
+全体を平行移動・回転できる不定性をなくすため、最初の姿勢は未知数から除く。
+姿勢数Nに対し、未知数は <code>3*(N-1)</code> 個になる。</p>
+<p>1本の辺は2つの姿勢に依存するため、最大4個の3×3ブロックに寄与する。
+Hを上下両側を持つブロックCSRで保存し、各辺が加算する場所は初期化時に求めておく。
+毎反復では数値配列をゼロにし、辺を順に処理してHとbを組み立てる。</p>
+<h2 id="疎コレスキー分解">3. 疎コレスキー分解</h2>
+<p>組み立て用のブロックCSRから、下三角部分をスカラーCSCの格納領域へ反映する。
+各3×3ブロックの中も、個々のスカラー要素として分解する。</p>
+<p>初版の消去順序は、時刻順・各姿勢内でx,y,角度の自然順序である。
+記号解析では、変数の消去に伴って残りの隣接変数を互いに接続し、fill-inを求める。
+集合を使った単純な実装なので、fill-inが多いと記号解析自体も重くなる。
+因子Lの非ゼロ構造と、各列が参照する以前の列の一覧を作る。</p>
+<p>グラフ構造は固定なので、記号解析と格納位置の対応付けは最初の1回だけ行う。
+数値分解は列単位のleft-looking型で、既に計算した列の寄与を引き、
+対角の平方根とその下の値を求める。密な全体行列には変換しない。
+分解後は、前進・後退代入で修正量を求める。</p>
+<h2 id="減衰付き非線形反復">4. 減衰付き非線形反復</h2>
+<p>行列の各対角に <code>lambda * max(Hの対角値, 1e-12)</code>
+を加えて求解する。
+修正後の目的関数が減ればステップを受理してlambdaを3分の1にする。
+減らない場合や分解に失敗した場合はlambdaを10倍にし、同じ線形化を使って再求解する。
+これは単純な減衰付きGauss–Newton法で、完全な信頼領域法の実装ではない。</p>
+<p>停止条件は次のいずれかである。</p>
+<ul>
+<li>対角でスケーリングした勾配の最大絶対値が1e-8未満。</li>
+<li>受理されたステップで、各姿勢の並進修正量が最大1e-7
+m未満、角度修正量が最大1e-8 rad未満。</li>
+<li>受理されたステップで、目的関数の減少量を
+<code>max(1, 更新前の目的関数)</code> で割った値が1e-10未満。</li>
+<li>非線形反復の上限に到達。</li>
+</ul>
+<p>修正量・目的関数による停止はlambdaが1e-3以下のときだけ使う。
+再試行の上限まで改善できなければ <code>no_acceptable_step</code>
+として終了し、終了コード2を返す。 反復上限は
+<code>iteration_limit</code> と表示し、収束した場合と区別する。</p>
+<h2 id="結果の確認">5. 結果の確認</h2>
+<ul>
+<li>観測に対する目的関数の最適化前後の変化。</li>
+<li>正解に対する位置RMSE（2次元の位置誤差の二乗平均平方根）と角度RMSE。
+座標系は最初の姿勢で固定しているので、評価時の追加の位置合わせは行わない。</li>
+<li>実際に解いた減衰付き方程式について、残差ノルムを右辺ノルムで割った相対残差。
+1e-6を超える場合、または有限値でない場合はエラーとする。</li>
+<li>画像：緑が正解、赤が初期推定、青が最適化後、黒い十字が固定した姿勢。</li>
+</ul>
+<p>ノイズがあるため、観測誤差の減少が毎回の真値RMSEの減少を保証するわけではない。
+また、軌跡が重なる部分では画像の線も重なる。</p>
+<p><code>--self-test</code>では、ヤコビアンの数値微分との比較、fill-inを持つ小さな行列での
+既知の解・密行列解法との比較、因子からの行列再構成、数値分解の再利用、
+非正定値の検出、PGOの組み立て・格納対応、ノイズなしの軌跡復元、
+固定シードのノイズあり問題の改善を検証する。
+密行列を使うのはこの小規模な検証だけである。</p>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>処理</th>
+<th>将来のCPU/GPU並列化</th>
+<th>制限や検討事項</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>残差・ヤコビアン評価</td>
+<td>辺ごとに分担</td>
+<td>不規則な姿勢参照</td>
+</tr>
+<tr>
+<td>Hとbの組み立て</td>
+<td>辺ごとの寄与の計算と集約</td>
+<td>同じ格納位置への加算競合</td>
+</tr>
+<tr>
+<td>数値分解</td>
+<td>依存関係上独立な列や部分木、列をまとめたブロック更新</td>
+<td>逐次依存、fill-in、仕事量の偏り</td>
+</tr>
+<tr>
+<td>三角求解</td>
+<td>依存しない行群の同時処理</td>
+<td>同期と長い依存関係</td>
+</tr>
+<tr>
+<td>線形残差の確認</td>
+<td>ブロック行ごとの疎行列ベクトル積</td>
+<td>メモリ帯域</td>
+</tr>
+<tr>
+<td>疎コレスキー分解</td>
+<td>ピボット要素確定後の各列更新</td>
+<td>　並列化可能量の動的な変化　</td>
+</tr>
+</tbody>
+</table>
+<h2 id="性能測定">性能測定</h2>
+<p><code>std::chrono::steady_clock</code>で、入力生成、ブロック構造、記号解析と対応付け、
+行列組み立て、数値反映と減衰、数値分解、三角求解、線形残差確認、候補評価、
+最適化全体をそれぞれ測る。残差・ヤコビアン評価は組み立てと同じ辺ループで行う。</p>
+<ul>
+<li><code>optimization_total</code>は非線形反復全体（初期コスト評価、検証、反復ログ出力等を含む）。</li>
+<li><code>backend_with_setup</code>はそれにブロック構造・記号解析の時間を加えたもの。</li>
+<li>入力生成と画像・CSVの書き出しはバックエンド時間の外。</li>
+<li>各内訳は総時間に含まれるため、総時間と内訳を重複して加算しない。</li>
+<li>分解回数、受理・棄却回数も出力する。時間の変化と反復回数の変化を区別する。</li>
+<li><code>A_lower_nnz</code>と<code>L_nnz</code>は下三角の構造上の非ゼロ数で、対角とブロック内の明示的ゼロを含む。
+<code>fill_ratio</code>は <code>L_nnz / A_lower_nnz</code>。</li>
+</ul>
+<p>まず小さい問題で動作を確認し、Miyabiの計算ノードで姿勢数とグラフ構造を変えながら、
+数秒から数分程度の問題サイズを探す。自然順序ではfill-inが急増することがあるので、
+姿勢数だけから所要時間を決めつけない。<code>--max-factor-nnz</code>は因子の構造サイズの上限であり、
+バイト単位のメモリ制限ではない。</p>
+<h1 id="build-and-run">Build and run</h1>
+<p>ファイルは <code>pgo.cc</code>（PGO本体）と
+<code>sparse_cholesky.h</code>（疎直接法）。
+コマンドラインの一覧と既定値は <code>./pgo --help</code>
+で表示できる。</p>
+<h2 id="小規模検証と実行">小規模検証と実行</h2>
+<p>カーネルごとに一度 <code>%load_ext miyabi</code>
+を実行し、実行セルには例えば次を書く。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%%sub</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">./pgo</span> <span class="at">--self-test</span> <span class="kw">&amp;&amp;</span> <span class="ex">./pgo</span> <span class="at">--poses-per-lap</span> 64 <span class="at">--laps</span> 2 <span class="at">--iterations</span> 20 <span class="at">--seed</span> 1 <span class="at">--image</span> trajectory.ppm</span></code></pre></div>
+<p>既定サイズの例（901姿勢、実行時間はMiyabiで測定する）：</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%%sub</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">./pgo</span> <span class="at">--poses-per-lap</span> 300 <span class="at">--laps</span> 3 <span class="at">--loop-neighbors</span> 2 <span class="at">--iterations</span> 20 <span class="at">--seed</span> 1 <span class="at">--image</span> trajectory.ppm <span class="at">--csv</span> trajectory.csv</span></code></pre></div>
+<p>画像変換セル：</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%%bash</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">convert</span> trajectory.ppm trajectory.png</span></code></pre></div>
+<p>画像表示セル：</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image, display</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>display(Image(<span class="st">&quot;code/trajectory.png&quot;</span>))</span></code></pre></div>
+<p><code>--loop-neighbors 0</code>でループ閉合なしの比較ができる。
+この場合、初期軌跡は隣接観測を積み上げているため、初めから目的関数がほぼゼロでも、
+正解に対するずれは残る。<code>--noise-scale 0</code>も初期軌跡がほぼ正解になる。
+ノイズなしで非線形更新を実際に試す検証は、初期姿勢に摂動を加える<code>--self-test</code>で行う。</p>
+<h2 id="ローカル検証と提出">ローカル検証と提出</h2>
+<p>小規模なローカル確認は
+<code>g++ -O2 -Wall -Wextra -std=c++17 pgo.cc -o pgo</code>
+でビルドできる。 大きな計算や性能測定はMiyabiの計算ノードで行う。
+ノートブックのコンパイル・実行セルは自分で記入し、そのまま実行できることを確認する。
+提出前に実行ファイル<code>pgo</code>や不要な大きい出力・一時ファイルを取り除き、必要なファイルだけにする。</p>

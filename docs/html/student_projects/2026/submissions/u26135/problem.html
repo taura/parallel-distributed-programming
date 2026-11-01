@@ -1,0 +1,207 @@
+<h1 id="training-a-small-llm-from-scratch">Training a small LLM from
+scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>Large language models (LLMs) are often decoder-only Transformer
+networks trained to predict the next word. This project trains a very
+small character-level version from random weights using Tiny
+Shakespeare, a roughly 1.1-million-character collection of Shakespeare
+dialogues in <code>tinyshakespeare.txt</code>(taken from karpathy’s
+github <a
+href="https://github.com/karpathy/char-rnn/tree/master/data/tinyshakespeare"
+target="_blank" rel="noopener">karpathy/char-rnn</a>).</p>
+<ul>
+<li>Input: raw text, with each distinct byte (a character in this ASCII
+corpus) mapped to one token. Case, spaces, punctuation and newlines are
+retained. This file has
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>=</mo><mn>65</mn></mrow><annotation encoding="application/x-tex">V = 65</annotation></semantics></math>
+characters.</li>
+<li>Task: given characters
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>x</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">x_1, \dots, x_t</annotation></semantics></math>,
+predict the probability of the next character
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">x_{t+1}</annotation></semantics></math>.</li>
+<li>Training minimizes average cross entropy over a batch of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+windows of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>
+input characters:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mi>−</mi><mfrac><mn>1</mn><mrow><mi>B</mi><mi>T</mi></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>b</mi><mo>=</mo><mn>1</mn></mrow><mi>B</mi></munderover><munderover><mo>∑</mo><mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow><mi>T</mi></munderover><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><msub><mi>p</mi><mi>θ</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>x</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow><mrow><mo stretchy="false" form="prefix">(</mo><mi>b</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo>∣</mo><msubsup><mi>x</mi><mn>1</mn><mrow><mo stretchy="false" form="prefix">(</mo><mi>b</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo>,</mo><mi>…</mi><mo>,</mo><msubsup><mi>x</mi><mi>t</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>b</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex"> L = -\frac{1}{BT} \sum_{b=1}^{B} \sum_{t=1}^{T} \log p_\theta\left(x^{(b)}_{t+1} \mid x^{(b)}_1, \dots, x^{(b)}_t\right) </annotation></semantics></math></p>
+<ul>
+<li>Output: estimated training and held-out loss before and after
+training, generated text before and after training, and the
+training-loop time.</li>
+</ul>
+<p>This is an end-to-end language-model training problem: preparing
+text, building a vocabulary, training, evaluating on held-out text, and
+generating text. The transformer block is one part of it. The goal is to
+learn basic letter patterns, spaces, common words and some dialogue-like
+structure, not to generate fluent Shakespeare. The computation has the
+same broad structure as LLM training, only much smaller.</p>
+<p>How to check the results are correct:</p>
+<ul>
+<li>Before training the model guesses almost uniformly, so loss should
+be near
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">ln</mi><mo>&#8289;</mo></mrow><mn>65</mn><mo>≈</mo><mn>4.17</mn></mrow><annotation encoding="application/x-tex">\ln 65 \approx 4.17</annotation></semantics></math>.</li>
+<li>Training and held-out loss should both fall. A quick local check
+with <code>./small_llm 200 4 24 24 42</code> changed held-out loss from
+about 4.22 to 2.70. Actual results depend on size and steps.</li>
+<li>Generated text should shift from random characters to more frequent
+letter combinations, fragments of words and eventually more recognizable
+dialogue-like text; short training runs will still produce
+nonsense.</li>
+<li>The held-out section is from the same collection, so a low held-out
+loss does not measure general English understanding.</li>
+</ul>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p><code>small_llm.cc</code> is a single C++17 file using only the
+standard library. ALl code for layers, backward pass, optimizer etc.
+will be written by hand as plain serial loops.</p>
+<h2 id="data-preparation">Data preparation</h2>
+<ol type="1">
+<li>Read <code>tinyshakespeare.txt</code> as raw bytes and map each
+distinct byte to an integer id in byte order; do not discard line breaks
+or punctuation.</li>
+<li>Use the first 90% of the text for training and the last 10% for
+validation. Windows from the two parts never cross the boundary.</li>
+<li>Sample random contiguous windows from the training part. The
+vocabulary contains the characters in the file, but model weights are
+learned only from training windows.</li>
+</ol>
+<h2 id="model">Model</h2>
+<p>For a window of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>
+characters (default 32) with model width
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>:</p>
+<ol type="1">
+<li>Embedding: each character becomes a learned vector of size
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>,
+plus a learned vector for its position.</li>
+<li>One causal self attention layer (single head):</li>
+</ol>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">A</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>Q</mi><mo>,</mo><mi>K</mi><mo>,</mo><mi>V</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>Q</mi><msup><mi>K</mi><mi>T</mi></msup></mrow><msqrt><mi>d</mi></msqrt></mfrac><mo>+</mo><mi>M</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>V</mi></mrow><annotation encoding="application/x-tex"> \mathrm{Attention}(Q, K, V) = \mathrm{softmax}\left( \frac{Q K^T}{\sqrt{d}} + M \right) V </annotation></semantics></math></p>
+<p>where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>
+are linear projections of the input and the mask
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+sets future positions to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">-\infty</annotation></semantics></math>,
+so position
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+only uses positions
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">0, \dots, t</annotation></semantics></math>.
+The result goes through an output projection and is added to the input
+(residual connection). 3. Feed forward layer: a linear layer to size
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>d</mi></mrow><annotation encoding="application/x-tex">2d</annotation></semantics></math>,
+tanh, a linear layer back to size
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>,
+added to its input (residual connection). 4. Output layer: a linear
+layer to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>
+scores, then softmax gives next-character probabilities.</p>
+<p>There is no layer norm and only one block, which keeps the backward
+pass short enough to read.</p>
+<h2 id="training-loop">Training loop</h2>
+<pre><code>for step = 1 .. steps:
+    for b = 1 .. batch:
+        pick a random start position in the training text
+        take T input characters and their T next-character targets
+        forward pass: compute and cache every layer&#39;s activations
+        backward pass: add dL/dw for every parameter w into its gradient
+    Adam update of every parameter (learning rate 0.003), then zero the gradients
+estimate training and held-out loss on 32 evenly spaced windows in each section
+generate 240 characters: prompt with &quot;ROMEO:\n&quot; and repeatedly sample the next character</code></pre>
+<h2 id="building-and-running">Building and running</h2>
+<p>Build on Miyabi from <code>code/</code> after loading the course
+compiler environment:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clang</span>++ <span class="at">-O3</span> <span class="at">-Wall</span> <span class="at">-std</span><span class="op">=</span>c++17 small_llm.cc <span class="at">-o</span> small_llm</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./small_llm</span> 1200 8 32 32 42</span></code></pre></div>
+<p>Run on a compute node. The program reads the corpus at run time.</p>
+<h2 id="problem-size">Problem size</h2>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Meaning</th>
+<th>Default</th>
+<th>Allowed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>training steps</td>
+<td>1200</td>
+<td>at least 1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>windows per batch
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math></td>
+<td>8</td>
+<td>1 to 1024</td>
+</tr>
+<tr>
+<td>3</td>
+<td>model width
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math></td>
+<td>32</td>
+<td>4 to 256</td>
+</tr>
+<tr>
+<td>4</td>
+<td>context length
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math></td>
+<td>32</td>
+<td>4 to 128</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>With the defaults the model has about 14,000 parameters. So, I will
+need to adjust steps, batch size, width or context to keep the serial
+run within a few minutes on Miyabi.</li>
+<li>The linear-layer work per training step grows roughly with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>⋅</mo><mi>T</mi><mo>⋅</mo><mo stretchy="false" form="prefix">(</mo><msup><mi>d</mi><mn>2</mn></msup><mo>+</mo><mi>V</mi><mi>d</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">B \cdot T \cdot (d^2 + Vd)</annotation></semantics></math>,
+while attention grows with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>⋅</mo><msup><mi>T</mi><mn>2</mn></msup><mo>⋅</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">B \cdot T^2 \cdot d</annotation></semantics></math>.
+This gives several independent parameters with which to scale the
+computation.</li>
+<li>Compare both training and held-out loss when changing parameters,
+not only the time. The losses are estimates from fixed windows and need
+not fall monotonically from one experiment to another.</li>
+</ul>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<ul>
+<li>Windows in a batch: the forward and backward pass of each window are
+independent. This is the most direct source of parallelism and maps to
+CPU threads (for example one OpenMP thread per window).</li>
+<li>Linear layers: every one of the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>
+character vectors is multiplied by the same weight matrix, and every
+output element is an independent dot product. Stacking all windows of a
+batch gives one larger matrix multiply with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">BT</annotation></semantics></math>
+rows, which suits SIMD, GPUs, and tensor cores much better than many
+tiny ones.</li>
+<li>Attention: independent for every window and every query position;
+each score is a dot product.</li>
+<li>Softmax: independent for every row, but each row needs a reduction
+(maximum and sum).</li>
+<li>Elementwise operations (tanh, residual adds, Adam update): fully
+independent per element.</li>
+<li>Evaluation (<code>estimate_loss</code>): independent per sampled
+window, combined with a sum reduction.</li>
+</ul>
+<p>What cannot be parallelized directly:</p>
+<ul>
+<li>Training steps depend on each other, since each step uses the
+parameters updated by the previous one.</li>
+<li>Layers run in order within a window and each layer needs the
+previous layer’s output.</li>
+<li>Text generation is sequential, so each new character depends on the
+previous characters.</li>
+</ul>

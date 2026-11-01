@@ -1,0 +1,23 @@
+<ul>
+<li><em>this is an example file you should finish</em></li>
+<li>write problem description, how the algorithm/baseline code works,
+and where you think you can apply parallel computing</li>
+<li>if you are looking at this file from Jupyter, you can see the
+preview by right-clicking on the cell and “Show Markdown Preview”</li>
+</ul>
+<h1 id="making-xxxxxx-from-scratch">Making XXXXXX from scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>[remove this]</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mo accent="false">∞</mo></munderover><mfrac><mn>1</mn><msup><mi>n</mi><mn>2</mn></msup></mfrac></mrow><annotation encoding="application/x-tex"> s = \sum_{n=0}^{\infty} \frac{1}{n^2} </annotation></semantics></math></p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<pre><code>double s = 0.0;
+for (n = 1000000; n &gt;= 1; n--) {
+  s += 1 / ((double)n * (double)n);
+}</code></pre>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<ul>
+<li>all
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">1/n^2</annotation></semantics></math>
+tems can be done in parallel</li>
+</ul>

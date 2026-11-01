@@ -1,0 +1,88 @@
+<h1 id="making-a-pure-path-tracer-from-scratch">Making a Pure Path
+Tracer from Scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>In this assignment, I implement <strong>path tracing</strong>, a core
+algorithm in computer graphics, from scratch in C++ without external
+libraries. The target scene is a Cornell box (a box-shaped interior)
+with:</p>
+<ul>
+<li>sphere objects (one mirror, one diffuse)</li>
+<li>a small triangle mesh object</li>
+<li>an area light (an emissive patch on the ceiling)</li>
+</ul>
+<p>The renderer outputs a PPM image, and image noise decreases as the
+number of samples per pixel (spp) increases.</p>
+<p>This is a realistic application and is a good baseline for later
+parallelization (multicore CPU and GPU), where performance improvements
+can be measured clearly.</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p>The implementation is in <code>code/pathtracer.cc</code>. The main
+steps are:</p>
+<ol type="1">
+<li><strong>Scene construction</strong>
+<ul>
+<li>The Cornell box is built from triangles (2 triangles x 5 faces; the
+front side is open for the camera).</li>
+<li>A ceiling emissive patch is added as an area light.</li>
+<li>Two spheres and several triangles are added as scene objects.</li>
+</ul></li>
+<li><strong>Intersection tests</strong>
+<ul>
+<li>Spheres: analytic ray-sphere intersection</li>
+<li>Triangles: Moller-Trumbore ray-triangle intersection</li>
+<li>The nearest valid hit is selected</li>
+</ul></li>
+<li><strong>Path tracing (pure path tracing)</strong>
+<ul>
+<li>For each pixel, the code traces <code>spp</code> camera rays with
+jittered sampling.</li>
+<li>At each hit, the next direction is chosen based on the material:
+<ul>
+<li>diffuse: cosine-weighted hemisphere sampling</li>
+<li>mirror: perfect specular reflection</li>
+<li>light: add emitted radiance and terminate the path</li>
+</ul></li>
+<li>The path is traced across multiple bounces while updating
+throughput.</li>
+<li>Russian roulette is applied at deeper bounces.</li>
+</ul></li>
+<li><strong>Output and verification metrics</strong>
+<ul>
+<li>Linear RGB is gamma-corrected (2.2) and written as PPM (P6).</li>
+<li><code>render_ms</code> (computation time) is printed.</li>
+<li><code>checksum</code> (sum over all pixel channels) is printed for
+reproducibility checks.</li>
+</ul></li>
+</ol>
+<p>Execution parameters are configurable from the command line:</p>
+<ul>
+<li><code>--width</code>, <code>--height</code>: image resolution</li>
+<li><code>--spp</code>: samples per pixel</li>
+<li><code>--max-depth</code>: maximum path depth (bounces)</li>
+<li><code>--seed</code>: random seed (fixed seed gives deterministic
+behavior)</li>
+<li><code>--output</code>: output PPM filename</li>
+</ul>
+<p>By changing these parameters, runtime can be scaled from seconds to a
+few minutes.</p>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<p>This baseline has abundant data parallelism:</p>
+<ul>
+<li><strong>Pixel parallelism</strong>
+<ul>
+<li>Final pixel colors are independent.</li>
+<li>On CPU, work can be split by rows or tiles.</li>
+</ul></li>
+<li><strong>Sample parallelism</strong>
+<ul>
+<li>Samples within the same pixel are also independent.</li>
+<li>They can be combined by reduction (averaging).</li>
+</ul></li>
+<li><strong>Intersection-level parallelism (future extension)</strong>
+<ul>
+<li>Intersection checks against many objects can be parallelized.</li>
+<li>Adding a BVH can reduce computation and improve memory
+behavior.</li>
+</ul></li>
+</ul>

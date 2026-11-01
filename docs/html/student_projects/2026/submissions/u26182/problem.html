@@ -1,0 +1,113 @@
+<h1 id="making-transformer-inference-from-scratch">Making Transformer
+inference from scratch</h1>
+<blockquote>
+<p>Draft prepared with AI assistance. Read, verify, and rewrite this in
+your own words before submission. Add your own Miyabi measurements and
+interpretation.</p>
+</blockquote>
+<h1 id="problem">Problem</h1>
+<p>The project benchmarks a small decoder-only Transformer, the
+architecture used for autoregressive language generation. Given a
+sequence of token IDs, the model computes probabilities for the next
+token. It selects the most probable token, appends it, and repeats.
+Tokens are integers from a small vocabulary.</p>
+<p>The goal is to reduce inference time while preserving the computed
+probabilities. The baseline uses fixed, randomly initialized weights and
+synthetic input tokens. It is a benchmark of the Transformer
+computation, not a trained language model: generated IDs have no
+linguistic meaning, and entropy is not a measure of language quality.
+This allows the entire program to be self-contained without downloading
+weights or data. Correctness is assessed numerically and through
+mathematical properties of causal attention.</p>
+<p>The main questions are how context length and model width affect
+runtime, and how later KV caching, multicore execution and GPU execution
+improve performance. The first pass over the input prompt is called
+prefill. Subsequent steps are called decode. They have different
+opportunities for parallel execution.</p>
+<h1 id="how-the-baseline-code-works">How the baseline code works</h1>
+<p><code>transformer.cc</code> uses C++17 and only the standard library.
+Weights and activations are flat arrays accessed through ordinary serial
+loops. There is one sequence per request; repeated requests use the same
+prompt and model.</p>
+<ol type="1">
+<li>Look up a vector for each token and add a fixed sinusoidal position
+vector.</li>
+<li>In each decoder block, apply LayerNorm, then project the vectors
+into queries Q, keys K and values V.</li>
+<li>Split the features into attention heads. For each position t and
+head, compute
+<code>softmax(Q[t] * K[0..t]^T / sqrt(head_width)) * V[0..t]</code>.
+Only positions up to t are visible; this is the causal mask.</li>
+<li>Concatenate the heads, apply an output projection and add the
+block’s input (a residual connection).</li>
+<li>Apply LayerNorm and a two-layer feed-forward network with GELU
+activation, then another residual connection.</li>
+<li>After all blocks, apply final LayerNorm. Project the last position
+to vocabulary scores and apply softmax. Select the highest-probability
+token.</li>
+</ol>
+<p>This is a pre-LayerNorm decoder with bias-free projections, fixed
+normalization gain 1 and bias 0, and no dropout. Attention scores use
+one reusable row buffer; the implementation still performs every causal
+query-key dot product.</p>
+<p>Defaults are model width D=256, feed-forward width F=1024, 4 heads,
+L=2 blocks, vocabulary size V=64, prompt length 128 and 8 generated
+tokens. There are <code>2*V*D + L*(4*D*D + 2*D*F)</code> randomly
+initialized weight values. For prefix length S, one forward pass costs
+approximately <code>O(L*(S*D*D + S*D*F + S*S*D) + V*D)</code>.</p>
+<p>The simple baseline recomputes the full prefix for each generated
+token. The prefill pass produces the first generated token; G generated
+tokens therefore require one prefill and G-1 further passes. This is a
+useful reference for later KV caching, which stores old keys and values
+instead of recomputing old positions.</p>
+<p>The program times the forward computation and greedy token selection
+with <code>std::chrono::steady_clock</code>, separately for prefill and
+decode. Initialization, allocation, one warm-up request, output
+validation, checks and printing are excluded. It reports time, token
+throughput, mean probability entropy, a checksum over every generation
+step’s distribution, and generated IDs.</p>
+<p>Every request checks finite, nonnegative probabilities summing to
+one. <code>--check</code> also compares attention to an independently
+materialized double-precision attention matrix and verifies the known
+uniform-attention case (Q=K=0). A short prefix of the configured model
+is evaluated in float and double using the same forward equations.
+Finally, altering or removing future tokens must leave earlier hidden
+states unchanged. The latter checks test causal masking. These numerical
+tests do not assert that randomly initialized weights solve a language
+task.</p>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<ul>
+<li><strong>Multicore CPU:</strong> projection and feed-forward output
+elements are independent; attention query positions and heads are also
+independent after Q, K and V are available. Each worker needs its own
+attention-score scratch space.</li>
+<li><strong>GPU:</strong> projections and feed-forward layers are matrix
+multiplications, while attention combines dot products, softmax
+reductions and weighted sums. Tiled kernels can reuse weights and
+activations.</li>
+<li><strong>SIMD and locality:</strong> dot products can be vectorized;
+changing loop order and tiling can improve reuse of weights across
+prompt positions.</li>
+<li><strong>KV cache:</strong> this is an algorithmic reuse
+optimization, separate from parallel execution. Cached decode works on
+one new position per block and attends to all cached keys and values. It
+must match full-prefix recomputation numerically.</li>
+</ul>
+<p>Limits include dependencies between blocks and generated tokens,
+reduction costs, cache capacity, memory bandwidth and thread/GPU launch
+overhead. Long-context attention has quadratic arithmetic cost. Cached
+single-sequence decode has less parallelism and may be limited by weight
+and KV-cache memory traffic. Small-model results do not directly predict
+production LLM performance.</p>
+<p>Measure speedup at identical model parameters, input, seed and
+generation length. Distinguish the effect of KV caching from
+multicore/GPU acceleration by comparing both cached and uncached serial
+versions when those are implemented. Check full probability vectors:
+identical greedy token IDs alone can conceal numerical bugs.</p>
+<h1 id="measurements-to-add-after-running-on-miyabi">Measurements to add
+after running on Miyabi</h1>
+<p>Record compiler/options, node/queue, command-line parameters, prefill
+and decode times, token throughput and correctness errors. Explain the
+effect of context length or model width and identify a plausible
+bottleneck. See <code>TRANSFORMER.md</code> for build/run commands and
+an experiment table.</p>

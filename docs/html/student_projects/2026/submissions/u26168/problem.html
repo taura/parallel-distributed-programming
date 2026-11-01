@@ -1,0 +1,35 @@
+<h1 id="making-a-2d-navierstokes-solver-from-scratch">Making a 2D
+Navier–Stokes Solver from scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>The goal of this project is to develop a program that numerically
+solves the two-dimensional incompressible Navier–Stokes equations using
+the finite difference method.</p>
+<p>The Navier–Stokes equations describe how the velocity and pressure of
+a fluid change over time. In this project, I will simulate the
+Taylor–Green vortex, which is a flow consisting of regularly arranged
+vortices. Since an analytical solution is available, I can compare the
+numerical results with the exact solution to check their accuracy.</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p>First, the advection and diffusion terms of the Navier–Stokes
+equations are calculated using the finite difference method to obtain a
+temporary velocity field.</p>
+<p>However, this temporary velocity field does not necessarily satisfy
+the incompressibility condition. Therefore, the pressure Poisson
+equation is solved, and the velocity is corrected using the pressure
+gradient.</p>
+<p>The pressure Poisson equation is converted into a system of linear
+equations using the finite difference method and solved using the
+Conjugate Gradient (CG) method.</p>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<p>Many calculations in the program can be performed independently at
+each grid point, so they can be parallelized using a GPU.</p>
+<ul>
+<li><p>Temporary velocity calculation: Each grid point uses the
+velocities of neighboring points, so the calculations can be performed
+in parallel.</p></li>
+<li><p>Divergence and Laplacian calculations: These calculations can be
+performed independently at each grid point.</p></li>
+<li><p>Velocity correction: The velocity at each grid point can be
+updated in parallel using the calculated pressure.</p></li>
+</ul>

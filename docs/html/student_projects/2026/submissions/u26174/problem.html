@@ -1,0 +1,46 @@
+<h1 id="making-a-sha-256-proof-of-work-solver-from-scratch">Making a
+SHA-256 Proof of Work solver from scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>セキュリティ競技CTFの問題サーバーでは、接続者に計算問題を解かせることによって大量のリクエストを抑制する
+Proof of Work（PoW）というものが使われることがある。
+解を探すには多くの計算が必要だが、サーバーは解を少ない計算で検証できる。</p>
+<p>ここでは、与えられた文字列 <code>prefix</code> に非負整数
+<code>nonce</code> の十進表記を連結し、SHA-256 ハッシュ値の先頭が
+<code>bits</code> ビット以上連続して 0 となる nonce を探す。 SHA-256
+は入力から 256
+ビットの値を計算するハッシュ関数であり、出力から入力を逆算する方法が知られていない。
+例えば prefix が <code>ctf-demo:</code>、nonce が 123 なら、入力は
+<code>ctf-demo:123</code>。</p>
+<p>ハッシュ値を一様なランダム値とみなすと、1 回の試行が成功する確率は約
+<code>2^(-bits)</code>、解までの平均試行回数は約 <code>2^bits</code>
+になる。 ただし、指定した範囲内に解が存在する保証はない。</p>
+<h1 id="how-the-baseline-code-works">How the baseline code works</h1>
+<ol type="1">
+<li>既知の SHA-256
+テストベクトルと先頭ゼロビット数の判定を検査する。</li>
+<li>nonce を 0 から <code>limit - 1</code> まで順に試す。</li>
+<li>各候補で入力文字列を作り、SHA-256 を計算する。
+<ul>
+<li>入力をパディングして512ビット境界にパディングし、512ビット単位のブロックにする。</li>
+<li>32ビット整数の加算、回転、論理演算を繰り返す。各ラウンドは前ラウンドの結果に依存する。</li>
+</ul></li>
+<li>ハッシュ値の先頭ゼロビット数を数えて条件と比較する。</li>
+<li>試行回数、発見数、計算時間、1 秒当たりのハッシュ数を表示する。
+解があれば最初の nonce
+とハッシュ値を出力し、再計算で条件を確認する。</li>
+</ol>
+<p><code>solve</code> モードは最初の解で停止する。<code>bench</code>
+モードは解を見つけても全候補を調べ、発見数を数える。 性能比較では同じ
+prefix, bits, limit の <code>bench</code>
+を使い、早期終了による実行時間の違いを避ける。</p>
+<p><code>bench</code> の 10 億候補の時間が約5分、約325万hash/sec。</p>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<ul>
+<li>マルチコア CPU: nonce
+の探索範囲を分割し、各コアで独立にハッシュを計算する。<code>bench</code>
+の発見数は最後に合計し、最小 nonce を集約すれば逐次版と比較できる。</li>
+<li>GPU: 多数のスレッドにそれぞれ異なる nonce
+を割り当てる。入出力は小さく、候補間の通信も少ない。</li>
+<li>SIMD / ILP:
+一つのハッシュの連続するラウンドには依存関係があるが、異なる候補の演算は独立なので、候補をまとめて処理できる可能性がある。</li>
+</ul>

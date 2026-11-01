@@ -78,3 +78,17 @@ pre {
   margin      : 20pt;
 }
 
+
+table {
+  margin          : 10pt;
+  border-collapse : collapse;
+}
+
+th, td {
+  padding : 2pt 8pt;
+  border  : 1pt solid #99A1AA;
+}
+
+th {
+  background-color : #DDFFDD;
+}

@@ -1,0 +1,369 @@
+<h1 id="making-mandelbrot-fractal-images-from-scratch">Making Mandelbrot
+Fractal Images from Scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>This project renders the Mandelbrot fractal. For each point in the
+complex plane,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><msub><mi>c</mi><mi>r</mi></msub><mo>+</mo><mi>i</mi><msub><mi>c</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">c=c_r+i c_i</annotation></semantics></math>,
+start with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>z</mi><mn>0</mn></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">z_0=0</annotation></semantics></math>
+and repeatedly compute</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>z</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msubsup><mi>z</mi><mi>n</mi><mn>2</mn></msubsup><mo>+</mo><mi>c</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">z_{n+1}=z_n^2+c.</annotation></semantics></math></p>
+<p>If this sequence remains bounded, then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>
+belongs to the Mandelbrot set. Each image pixel represents a complex
+point, and its color indicates how quickly the sequence escapes. This
+visualization of a complex dynamical system is also useful for studying
+parallelization with uneven computational workloads.</p>
+<p>The program can perform only a finite number of iterations. If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><msub><mi>z</mi><mi>n</mi></msub><msup><mo stretchy="false" form="prefix">|</mo><mn>2</mn></msup><mo>&gt;</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">|z_n|^2&gt;4</annotation></semantics></math>
+at any step, the sequence will diverge. Points that have not escaped by
+the iteration limit are drawn in black. <strong>Black means only that no
+escape was observed within the specified limit; it does not prove that
+the point belongs to the set.</strong></p>
+<p>The inputs are the image width, height, maximum iteration count, and
+output filename. The outputs are a P6 PPM image, the main computation
+time, and correctness metrics. No external data or random numbers are
+required.</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p><code>mandelbrot.cc</code> is a serial implementation using only the
+C++17 standard library.</p>
+<ol type="1">
+<li>Map the real-axis interval
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mi>−</mi><mn>2.5</mn><mo>,</mo><mn>1.0</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[-2.5,1.0]</annotation></semantics></math>
+to the image width, sampling pixel centers. The imaginary-axis interval
+is centered at zero and spans
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3.5</mn><mo>×</mo><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mi>/</mi><mi>w</mi><mi>i</mi><mi>d</mi><mi>t</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">3.5\times height/width</annotation></semantics></math>,
+giving equal horizontal and vertical pixel scales. Changing the aspect
+ratio changes the visible imaginary-axis range.</li>
+<li>Visit every pixel row by row and column by column using two nested
+loops.</li>
+<li>For each pixel, evaluate the complex recurrence using real
+arithmetic:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msubsup><mi>x</mi><mi>n</mi><mn>2</mn></msubsup><mo>−</mo><msubsup><mi>y</mi><mi>n</mi><mn>2</mn></msubsup><mo>+</mo><msub><mi>c</mi><mi>r</mi></msub><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>y</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>2</mn><msub><mi>x</mi><mi>n</mi></msub><msub><mi>y</mi><mi>n</mi></msub><mo>+</mo><msub><mi>c</mi><mi>i</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">x_{n+1}=x_n^2-y_n^2+c_r,\qquad y_{n+1}=2x_ny_n+c_i.</annotation></semantics></math>
+Compute both new values from the old values, then test for escape.</li>
+<li>Store the first escape iteration in a flat array; zero means that no
+escape was observed. Escape on the final allowed iteration is
+distinguished from no escape. For escaped points, perform two additional
+iterations and store the resulting squared magnitude in another array to
+improve the smooth-coloring approximation.</li>
+<li>After the main computation, collect statistics, compute smooth
+colors, and write the image. <code>compute_seconds</code> includes
+per-pixel computation and the two post-escape iterations, but excludes
+array allocation, statistics, logarithm/palette calculations, and file
+writing. <code>postprocess_seconds</code> includes statistics, symmetry
+checks, coloring, and file writing.</li>
+</ol>
+<p>The worst-case time complexity is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false" form="prefix">(</mo><mi>w</mi><mi>i</mi><mi>d</mi><mi>t</mi><mi>h</mi><mo>×</mo><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mo>×</mo><mi>m</mi><mi>a</mi><mi>x</mi><mi>_</mi><mi>i</mi><mi>t</mi><mi>e</mi><mi>r</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">O(width\times height\times max\_iter)</annotation></semantics></math>,
+and storing the results requires
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false" form="prefix">(</mo><mi>w</mi><mi>i</mi><mi>d</mi><mi>t</mi><mi>h</mi><mo>×</mo><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">O(width\times height)</annotation></semantics></math>
+space. The actual workload depends on how quickly each point escapes.
+The baseline uses no multithreading, GPU computation, or analytical
+shortcuts for identifying points inside the set.</p>
+<h2 id="smooth-coloring">Smooth coloring</h2>
+<p>Coloring by integer escape counts assigns the same color to pixels
+escaping on the same iteration, producing visible bands. The current
+version uses a continuous value for escaped points:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>n</mi><mo>+</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>1</mn><mo>−</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">ln</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">|</mo><msub><mi>z</mi><mrow><mi>n</mi><mo>+</mo><mn>2</mn></mrow></msub><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">\mu=(n+2)+1-\log_2(\ln|z_{n+2}|).</annotation></semantics></math></p>
+<p>Here,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
+is the first escape iteration. The two extra iterations improve the
+approximation of post-escape growth by repeated squaring, reducing seams
+between bands. The value
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mrow><mi mathvariant="normal">ln</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mrow><mi mathvariant="normal">max</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>μ</mi><mo>,</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">t=\ln(1+\max(\mu,0))</annotation></semantics></math>
+is fed into a continuous cosine palette. Points with no observed escape
+remain black. Smooth coloring improves color transitions but is not edge
+antialiasing.</p>
+<p><code>total_iterations</code> retains its original definition,
+counting only up to the first escape or the iteration limit, so that
+versions can be compared with identical parameters.
+<code>coloring_extra_iterations</code> separately counts the additional
+iterations used for coloring; their sum is the actual number of orbit
+iterations performed. At the default size, the two result arrays occupy
+approximately 104 MB, assuming the usual 4-byte int and 8-byte
+double.</p>
+<h2 id="correctness-checks">Correctness checks</h2>
+<ul>
+<li><code>./mandelbrot --self-test</code> checks known points and
+iteration-limit cases. For example, the orbits for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mn>0</mn><mo>,</mo><mi>−</mi><mn>1</mn><mo>,</mo><mi>−</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">c=0,-1,-2</annotation></semantics></math>
+are bounded; for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">c=1</annotation></semantics></math>,
+the sequence is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>5</mn><mo>,</mo><mi>…</mi></mrow><annotation encoding="application/x-tex">0,1,2,5,\ldots</annotation></semantics></math>,
+so it should escape on the third iteration.</li>
+<li>Conjugate points
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>r</mi></msub><mo>+</mo><mi>i</mi><msub><mi>c</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">c_r+i c_i</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>r</mi></msub><mo>−</mo><mi>i</mi><msub><mi>c</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">c_r-i c_i</annotation></semantics></math>
+should have identical escape counts. The program checks vertically
+mirrored pixels, and <code>symmetry_mismatches</code> should be
+zero.</li>
+<li><code>smooth_symmetry_mismatches</code> checks vertical symmetry of
+the stored squared magnitudes and should also be zero. The self-test
+additionally verifies a known post-escape orbit, finiteness of smooth
+values, and the iteration-offset correction.</li>
+<li>The image should show a central cardioid and a circular region to
+its left, symmetric about the real axis, with intricate boundary
+details.</li>
+<li><code>total_iterations</code> and <code>nonescaped_pixels</code> can
+be compared across repeated runs with identical parameters. These
+metrics and symmetry checks provide supporting evidence, not a complete
+mathematical proof of correctness.</li>
+</ul>
+<h2 id="building-and-running-on-miyabi">Building and running on
+Miyabi</h2>
+<p>The assignment notebook uses the following compilation cell:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%%bash</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="kw">&amp;&amp;</span> <span class="ex">module</span> load nvidia/25.9 cuda/12.9 <span class="kw">&amp;&amp;</span> <span class="va">PATH</span><span class="op">=</span>/work/gt81/share/env/llvm/bin:<span class="va">$PATH</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">clang</span>++ <span class="at">-O3</span> <span class="at">-Wall</span> <span class="at">-std</span><span class="op">=</span>c++17 mandelbrot.cc <span class="at">-o</span> mandelbrot</span></code></pre></div>
+<p>After each kernel restart, run <code>%load_ext miyabi</code> in a
+Python cell, then submit the computation with the following cell:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%%sub</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">./mandelbrot</span> <span class="at">--self-test</span> <span class="kw">&amp;&amp;</span> <span class="ex">./mandelbrot</span> 3600 2400 77000 mandelbrot.ppm</span></code></pre></div>
+<p>The command syntax is
+<code>./mandelbrot [width] [height] [max_iter] [output]</code>, with
+defaults of <code>3600 2400 77000 mandelbrot.ppm</code>, targeting
+approximately five minutes on Miyabi. Explicit command-line arguments
+override the defaults; the current notebook command uses these
+parameters. Dimensions must be between 1 and 16384, and the iteration
+limit between 1 and 1000000. These are input bounds, not a guarantee
+that the largest settings finish in a reasonable time.</p>
+<p>The following sizes range from a small correctness check to the
+selected serial benchmark:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Purpose</th>
+<th>Width × height</th>
+<th>Iteration limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small image check</td>
+<td>300 × 200</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Initial benchmark</td>
+<td>1200 × 800</td>
+<td>500</td>
+</tr>
+<tr>
+<td>Larger benchmark for the original version</td>
+<td>3600 × 2400</td>
+<td>3000</td>
+</tr>
+<tr>
+<td>Five-minute smooth-coloring benchmark (measured: 296.90 s)</td>
+<td>3600 × 2400</td>
+<td>77000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="miyabi-records-for-the-original-integer-coloring-version">Miyabi
+records for the original integer-coloring version</h3>
+<p>The following measurements are from the original integer-coloring
+version, as recorded in the student’s run outputs in
+<code>pd02_app.chat</code>:</p>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr>
+<th>Width × height</th>
+<th style="text-align: right;">Iteration limit</th>
+<th style="text-align: right;">Main computation (s)</th>
+<th style="text-align: right;">Total iterations</th>
+<th style="text-align: right;">Nonescaped pixels</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1200 × 800</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0.224865</td>
+<td style="text-align: right;">93439722</td>
+<td style="text-align: right;">177950</td>
+</tr>
+<tr>
+<td>3600 × 2400</td>
+<td style="text-align: right;">3000</td>
+<td style="text-align: right;">11.804647</td>
+<td style="text-align: right;">4832613712</td>
+<td style="text-align: right;">1595104</td>
+</tr>
+</tbody>
+</table>
+<p>Both runs passed the self-test and reported zero
+<code>symmetry_mismatches</code>. In the second run, nonescaped pixels
+accounted for approximately 18.46% of all pixels but approximately
+99.02% of the iterations.</p>
+<p>At the same resolution, increasing the limit to 77000 gave an
+estimated main computation time of roughly 300 seconds based on these
+pixels’ iteration workload. The smooth-coloring version subsequently
+measured 296.899866 seconds, meeting the approximately five-minute
+target. Increasing the iteration limit mainly extends the search for
+slowly escaping points and increases the workload; it does not guarantee
+a large visual change across the image. Improved color transitions come
+from smooth coloring itself.</p>
+<h3 id="latest-results-for-the-smooth-coloring-version">Latest results
+for the smooth-coloring version</h3>
+<p>The run command was
+<code>./mandelbrot 3600 2400 77000 mandelbrot.ppm</code>. The values
+below come from the saved execution output in
+<code>pd02_app.ipynb</code>. The run took place on Miyabi using the
+compilation command above, and the generated <code>mandelbrot.png</code>
+was visually inspected.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th style="text-align: right;">Measured result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Resolution</td>
+<td style="text-align: right;">3600 × 2400 (8640000 pixels)</td>
+</tr>
+<tr>
+<td>Iteration limit</td>
+<td style="text-align: right;">77000</td>
+</tr>
+<tr>
+<td><code>compute_seconds</code></td>
+<td style="text-align: right;">296.899866 s</td>
+</tr>
+<tr>
+<td><code>postprocess_seconds</code></td>
+<td style="text-align: right;">0.581852 s</td>
+</tr>
+<tr>
+<td><code>total_iterations</code></td>
+<td style="text-align: right;">122790349356</td>
+</tr>
+<tr>
+<td><code>coloring_extra_iterations</code></td>
+<td style="text-align: right;">14092140</td>
+</tr>
+<tr>
+<td><code>nonescaped_pixels</code></td>
+<td style="text-align: right;">1593930 / 8640000</td>
+</tr>
+<tr>
+<td><code>symmetry_mismatches</code></td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td><code>smooth_symmetry_mismatches</code></td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>Coloring mode</td>
+<td style="text-align: right;">smooth</td>
+</tr>
+<tr>
+<td>Self-test</td>
+<td style="text-align: right;">PASS</td>
+</tr>
+</tbody>
+</table>
+<p>The two measured times sum to <strong>297.481718 seconds</strong>, or
+approximately 4 minutes 57.5 seconds. This covers the main computation
+and postprocessing, excluding job queueing, process startup, array
+allocation before timing, the self-test, and PNG conversion in the
+notebook. The main computation takes approximately 4 minutes 56.9
+seconds, about 1.03% below the 300-second target, so the current
+parameters are retained for subsequent serial benchmarking.</p>
+<ul>
+<li><strong>Image structure</strong>: The image shows the Mandelbrot
+cardioid, the circular region to its left, and fine branches near the
+boundary, with visual symmetry about the real axis.</li>
+<li><strong>Color transitions</strong>: Large exterior regions show
+continuous gradients, while rich colored details remain near the
+boundary. This matches the expected behavior of smooth escape-time
+coloring.</li>
+<li><strong>Check results</strong>: All 8 known-point/iteration-limit
+tests, 1200 conjugate-symmetry tests, and smooth-coloring tests passed.
+The full image has zero symmetry mismatches for both escape counts and
+smooth-coloring data.</li>
+<li><strong>Iteration depth</strong>: At the same resolution, the
+nonescaped count decreased from 1595104 with a limit of 3000 to 1593930,
+meaning that an additional 1174 pixels were identified as escaping
+within the higher limit. This also illustrates why failure to escape
+within a finite limit does not prove set membership.</li>
+<li><strong>Workload distribution</strong>: Nonescaped pixels account
+for approximately 18.45% of pixels, but their
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1593930</mn><mo>×</mo><mn>77000</mn></mrow><annotation encoding="application/x-tex">1593930\times77000</annotation></semantics></math>
+iterations contribute approximately 99.953% of
+<code>total_iterations</code>. Equal pixel counts therefore do not imply
+equal workloads, motivating subsequent load-balancing experiments.</li>
+<li><strong>Timing analysis</strong>: Postprocessing accounts for
+approximately 0.196% of the two measured times combined, so orbit
+iteration dominates at this size. Including the additional
+smooth-coloring steps, the actual total is 122804441496 orbit
+iterations. The relative contribution of postprocessing may increase
+after parallelizing the main computation.</li>
+</ul>
+<p>Both the coloring method and the iteration limit changed between the
+old and new runs, so these runs cannot isolate the performance overhead
+of smooth coloring. Measuring that overhead requires comparing versions
+at the same resolution and iteration limit.</p>
+<p>These are single-run records. Subsequent speedup measurements should
+use repeated runs with identical parameters and clearly defined timing
+boundaries to obtain a more stable serial reference.</p>
+<p>Increasing the resolution or iteration limit lengthens the run;
+decreasing them shortens it. The target serial runtime ranges from
+seconds to a few minutes, and each job is limited to 15 minutes.</p>
+<p>Image conversion cell:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%%bash</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">convert</span> code/mandelbrot.ppm code/mandelbrot.png</span></code></pre></div>
+<p>Image display cell:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image, display</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>display(Image(<span class="st">&quot;code/mandelbrot.png&quot;</span>))</span></code></pre></div>
+<p>The notebook contains the saved numerical output and displayed image
+from this run.</p>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<ul>
+<li><strong>Independent pixels</strong>: Each pixel reads fixed
+parameters and writes to its own array entries, allowing multiple pixels
+to be computed concurrently.</li>
+<li><strong>Multicore CPU</strong>: Rows, pixel blocks, or individual
+pixels can be assigned to multiple threads. Interior points and points
+near the boundary usually require more work, so static assignment of
+equal numbers of rows may cause load imbalance. Different scheduling
+strategies can be compared in later work.</li>
+<li><strong>GPU</strong>: Each thread can handle one pixel. Pixels
+within the same execution group may escape at different times, causing
+branch divergence and waiting that limit speedup.</li>
+<li><strong>Dependencies within a pixel</strong>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>z</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">z_{n+1}</annotation></semantics></math>
+depends on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>z</mi><mi>n</mi></msub><annotation encoding="application/x-tex">z_n</annotation></semantics></math>,
+so all iterations for one pixel cannot simply run simultaneously.
+Techniques such as SIMD are mainly suitable for advancing multiple
+pixels together.</li>
+<li><strong>Performance analysis</strong>: Compare computation time and
+speedup across resolutions, iteration limits, and scheduling strategies,
+and study how load imbalance, serial sections, and output overhead
+affect overall performance.</li>
+</ul>

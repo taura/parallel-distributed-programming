@@ -1,0 +1,63 @@
+<ul>
+<li><em>this is an example file you should finish</em></li>
+<li>write problem description, how the algorithm/baseline code works,
+and where you think you can apply parallel computing</li>
+<li>if you are looking at this file from Jupyter, you can see the
+preview by right-clicking on the cell and “Show Markdown Preview”</li>
+</ul>
+<h1 id="making-scaled-dot-product-attention-from-scratch">Making Scaled
+Dot-Product Attention from scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>Calculate Scaled Dot-Product Attention
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow><mo minsize="180%" maxsize="180%" stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>Q</mi><mo>⋅</mo><msup><mi>K</mi><mi>T</mi></msup></mrow><msqrt><msub><mi>d</mi><mi>k</mi></msub></msqrt></mfrac><mo minsize="180%" maxsize="180%" stretchy="true" form="postfix">)</mo><mi>V</mi></mrow><annotation encoding="application/x-tex"> A = \mathrm{softmax}\Big(\frac{Q\cdot K^T}{\sqrt{d_k}}\Big)V </annotation></semantics></math>
+* Queries <code>Q</code> (shape <code>N × D</code>)<br />
+* Keys  <code>K</code> (shape <code>N × D</code>)<br />
+* Values <code>V</code> (shape <code>N × D</code>)</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<pre><code>// 1) Q * K / sqrt(d_k)
+    vector&lt;vector&lt;float&gt;&gt; scores(N, vector&lt;float&gt;(N, 0));
+    const float inv_sqrt_d = 1.f / sqrt(D);
+    for (long long i = 0; i &lt; N; ++i)
+        for (long long j = 0; j &lt; N; ++j) {
+            float sum = 0;
+            for (int k = 0; k &lt; D; ++k) sum += Q[i][k] * K[j][k];
+            scores[i][j] = sum * inv_sqrt_d;
+        }
+
+    // 2) Row‑wise softmax
+    vector&lt;vector&lt;float&gt;&gt; attn(N, vector&lt;float&gt;(N, 0));
+    for (long long i = 0; i &lt; N; ++i) {
+        float maxv = *max_element(scores[i].begin(), scores[i].end());
+        vector&lt;float&gt; expv(N);
+        for (long long j = 0; j &lt; N; ++j)
+            expv[j] = exp(scores[i][j] - maxv);
+        float sum = 0;
+        for (long long j = 0; j &lt; N; ++j) sum += expv[j];
+        for (long long j = 0; j &lt; N; ++j) attn[i][j] = expv[j] / sum;
+    }
+
+    // 3) attn · V
+    vector&lt;vector&lt;float&gt;&gt; out(N, vector&lt;float&gt;(D, 0));
+    for (long long i = 0; i &lt; N; ++i)
+        for (long long j = 0; j &lt; N; ++j)
+            for (int k = 0; k &lt; D; ++k)
+                out[i][k] += attn[i][j] * V[j][k];</code></pre>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<ul>
+<li>Score matrix (Q * K^T), : matrix-matrix multiplication (GEMM
+operation)
+<ul>
+<li>Each row can be calculated in parallel (OpenMP, SIMD, GPU
+kernel)</li>
+</ul></li>
+<li>Row-wise softmax
+<ul>
+<li>Each row can be processed, and reduction tree or OpenMP
+<code>reduction(+:sum)</code> are available</li>
+</ul></li>
+<li>Some famous methodologies such as FlashAttention might be
+available</li>
+</ul>
+<p>I don’t have enough time, so this problem is straightforward. I want
+to try entire LLM inference.</p>

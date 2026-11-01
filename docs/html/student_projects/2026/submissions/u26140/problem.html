@@ -1,0 +1,194 @@
+<h1 id="trajectory-analysis-from-scratch-msd-and-diffusion">Trajectory
+analysis from scratch: MSD and diffusion</h1>
+<h2 id="problem">Problem</h2>
+<p>I chose <strong>trajectory analysis</strong> for 3D particle motion.
+The baseline computes the <strong>mean-squared displacement
+(MSD)</strong> as a function of lag time and estimates the diffusion
+coefficient from the linear MSD regime.</p>
+<p>Given unwrapped trajectories (_p(t)) (particle index (p), frame index
+(t)), the MSD at lag () is</p>
+<p>[ ()= _{p=0}<sup>{N-1}_{t_0=0}</sup>{T-} _p(t_0+)-_p(t_0)^2, ]</p>
+<p>where (N) is number of particles and (T) is number of frames.</p>
+<p>For ideal 3D Brownian motion, ((t)=6Dt), so if we fit ((t)a t+b) on a
+user-chosen interval, (D = a/6).</p>
+<h3 id="units-and-assumptions">Units and assumptions</h3>
+<ul>
+<li>Positions are in arbitrary length units.</li>
+<li>Frame spacing <code>dt</code> is in arbitrary time units.</li>
+<li>MSD is in length(^2) units.</li>
+<li>Estimated diffusion <code>D</code> is length(^2)/time.</li>
+<li>Input trajectories are <strong>unwrapped</strong> (no periodic jump
+correction is done).</li>
+</ul>
+<h3 id="why-this-is-a-good-baseline-for-this-course">Why this is a good
+baseline for this course</h3>
+<ul>
+<li>Real analysis workflow used in molecular and particle
+simulations.</li>
+<li>Naturally scalable: particles, frames, and max lag can make serial
+time from seconds to minutes.</li>
+<li>Has easy correctness checks (known synthetic motions and Brownian
+expectation).</li>
+<li>Clear data-parallel structure for future multicore/GPU work.</li>
+</ul>
+<h2 id="how-the-baseline-code-works">How the baseline code works</h2>
+<p>File: <code>code/msd_diffusion.cc</code> (self-contained C++17,
+standard library only).</p>
+<ol type="1">
+<li>Parse command-line parameters:
+<ul>
+<li><code>--particles</code>, <code>--frames</code>,
+<code>--max-lag</code>, <code>--dt</code>, <code>--diffusion</code>,
+<code>--seed</code></li>
+<li><code>--fit-start</code>, <code>--fit-end</code>,
+<code>--csv</code>, <code>--run-checks</code></li>
+</ul></li>
+<li>Validate input:
+<ul>
+<li>positive sizes, <code>max_lag &lt; frames</code>, valid fit
+interval, nonnegative diffusion</li>
+</ul></li>
+<li>Generate synthetic unwrapped 3D Brownian trajectories:
+<ul>
+<li>independent Gaussian increments per axis with (=)</li>
+</ul></li>
+<li>Compute time-origin/particle-averaged MSD for lags
+<code>1..max_lag</code>:
+<ul>
+<li>direct triple-loop accumulation over lag, particle, and time
+origin</li>
+</ul></li>
+<li>Fit MSD vs time in <code>[fit_start, fit_end]</code> by ordinary
+least squares:
+<ul>
+<li>report slope/intercept and <code>D_est = slope/6</code></li>
+</ul></li>
+<li>Write reproducible CSV:
+<ul>
+<li>columns: <code>lag,time,msd,count,expected_brownian_msd</code></li>
+<li>deterministic for a fixed seed on the same
+executable/standard-library implementation (the exact normal RNG stream
+can differ across implementations)</li>
+</ul></li>
+<li>Print timing:
+<ul>
+<li>trajectory generation time</li>
+<li>MSD main computation time</li>
+<li>CSV+fit time and total time</li>
+</ul></li>
+</ol>
+<h3 id="numerical-checks-included">Numerical checks included</h3>
+<p>The program can run built-in checks (<code>--run-checks 1</code>,
+default):</p>
+<ol type="1">
+<li><strong>Stationary motion</strong> (<code>r(t)=const</code>): MSD
+should be zero.</li>
+<li><strong>Constant velocity</strong> (<code>r(t)=v t</code>): MSD
+should equal (|v|^2(dt)^2).</li>
+<li><strong>Brownian expectation</strong>: mean relative error vs (6Dt)
+over lags should be within a tolerance (finite-sample variability is
+expected).</li>
+</ol>
+<p>These checks are deterministic (fixed seeds and fixed
+parameters).</p>
+<h3 id="complexity">Complexity</h3>
+<ul>
+<li>Trajectory generation: (O(NT))</li>
+<li>MSD accumulation: (O(NTL_{})) (dominant)</li>
+<li>Memory for trajectory array: (O(NT))</li>
+</ul>
+<p>This intentionally plain serial implementation is useful as a
+baseline before parallel optimization.</p>
+<h2 id="build-and-run">Build and run</h2>
+<p>In this course notebook workflow:</p>
+<ul>
+<li>compile with <code>%%bash</code> (runs on a login node; keep this
+short),</li>
+<li>initialize scheduler magic once with
+<code>%load_ext miyabi</code>,</li>
+<li>run measurements with <code>%%sub</code> (batch job on a compute
+node).</li>
+</ul>
+<p>Example cells (<code>cd code</code> first):</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compile cell</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">%%bash</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="kw">&amp;&amp;</span> <span class="ex">module</span> load nvidia/25.9 cuda/12.9 <span class="kw">&amp;&amp;</span> <span class="va">PATH</span><span class="op">=</span>/work/gt81/share/env/llvm/bin:<span class="va">$PATH</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">clang</span>++ <span class="at">-O3</span> <span class="at">-Wall</span> <span class="at">-std</span><span class="op">=</span>c++17 msd_diffusion.cc <span class="at">-o</span> msd_diffusion</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one-time initialization cell</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">%load_ext</span> miyabi</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run cell (compute node)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">%%sub</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">./msd_diffusion</span> <span class="at">--particles</span> 2000 <span class="at">--frames</span> 2000 <span class="at">--max-lag</span> 400 <span class="at">--dt</span> 0.01 <span class="at">--diffusion</span> 1.0 <span class="at">--seed</span> 12345 <span class="at">--fit-start</span> 50 <span class="at">--fit-end</span> 200 <span class="at">--csv</span> msd.csv <span class="at">--run-checks</span> 1</span></code></pre></div>
+<p>For quick tests, reduce particles/frames/lags. For heavier serial
+runs, increase them but keep total runtime within assignment limits.</p>
+<h2 id="verified-run-on-miyabi">Verified run on Miyabi</h2>
+<p>The following numbers are from an actual notebook <code>%%sub</code>
+run on compute node <code>mg1098</code> (<code>lecture-mig</code>, job
+<code>3750947</code>) with:</p>
+<ul>
+<li><code>--particles 2000 --frames 2000 --max-lag 400 --dt 0.01</code></li>
+<li><code>--diffusion 1 --seed 12345 --fit-start 50 --fit-end 200</code></li>
+</ul>
+<p>Observed checks and outputs:</p>
+<ul>
+<li>stationary check: <code>max_abs_msd = 0</code>, PASS</li>
+<li>constant-velocity check:
+<code>max_relative_error = 1.981250e-13</code>, PASS
+(<code>tol 1e-12</code>)</li>
+<li>Brownian expectation check:
+<code>mean_abs_relative_error = 0.009419749</code>, PASS
+(<code>tol 0.12</code>)</li>
+<li>timing (s): generation <code>2.698377</code>, MSD
+<code>1.988603</code>, CSV+fit <code>0.001778412</code>, total
+<code>4.688758</code></li>
+<li>fit results: slope <code>5.960500</code>, intercept
+<code>0.02969518</code>, <code>D_est = 0.9934167</code>, relative error
+<code>0.006583311</code></li>
+<li>CSV output: <code>msd.csv</code> has <code>402</code> lines (header
++ lag <code>0..400</code>)</li>
+</ul>
+<p>The estimated diffusion is statistically consistent with the Brownian
+target in this finite-sample run: <code>D_est</code> is close to
+<code>D_true = 1</code>, and MSD-vs-time remains near the expected
+linear trend.</p>
+<h2 id="limitations">Limitations</h2>
+<ul>
+<li>Synthetic data only in this baseline (no external trajectory parser
+yet).</li>
+<li>Assumes unwrapped trajectories; wrapped periodic trajectories
+require separate unwrapping logic.</li>
+<li>Brownian MSD is linear only in expectation; finite trajectories and
+finite particles produce noisy MSD and fit uncertainty.</li>
+<li>Diffusion estimate depends on fit interval choice.</li>
+</ul>
+<h2 id="where-parallelism-is">Where parallelism is</h2>
+<p>Major parallel opportunities:</p>
+<ol type="1">
+<li><strong>Across particles</strong>: MSD contributions are independent
+per particle.</li>
+<li><strong>Across time origins</strong> for each lag: independent
+squared-displacement terms.</li>
+<li><strong>Across lags</strong>: each lag can be computed
+independently.</li>
+</ol>
+<p>Likely future mappings:</p>
+<ul>
+<li>Multicore CPU: OpenMP over particles/lags with reduction.</li>
+<li>GPU: map displacement calculations to many threads; reduction per
+lag.</li>
+</ul>
+<p>Potential speedup limits:</p>
+<ul>
+<li>Memory bandwidth and cache behavior for trajectory reads.</li>
+<li>Reduction overhead and load imbalance for large lag values.</li>
+<li>Host-device transfer overhead (for GPU variants).</li>
+</ul>
+<hr />
+<p>I should proofread and rewrite this in my own words before
+submission, because classmates will read it and I am responsible for the
+final text.</p>

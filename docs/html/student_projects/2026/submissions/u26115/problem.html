@@ -1,0 +1,157 @@
+<ul>
+<li><em>this is an example file you should finish</em></li>
+<li>write problem description, how the algorithm/baseline code works,
+and where you think you can apply parallel computing</li>
+<li>if you are looking at this file from Jupyter, you can see the
+preview by right-clicking on the cell and “Show Markdown Preview”</li>
+</ul>
+<h1 id="making-fluid-simulation-using-sph-method-from-scratch">Making
+fluid simulation using SPH method from scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>Simulate a 2D fluid dynamics, where a block of water collapses under
+gravity inside a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mspace width="0.167em"></mspace><mi mathvariant="normal">m</mi><mo>×</mo><mn>1</mn><mspace width="0.167em"></mspace><mi mathvariant="normal">m</mi></mrow><annotation encoding="application/x-tex">1\,\mathrm{m}\times1\,\mathrm{m}</annotation></semantics></math>
+box, using the SPH (Smoothed Particle Hydrodynamics) method.</p>
+<p>For each particle, the density, pressure, and acceleration are
+computed as follows:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ρ</mi><mi>i</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>j</mi></munder><mi>m</mi><mspace width="0.167em"></mspace><mi>W</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>r</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>P</mi><mi>i</mi></msub><mo>=</mo><msup><mi>c</mi><mn>2</mn></msup><mrow><mi mathvariant="normal">max</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mspace width="0.222em"></mspace><msub><mi>ρ</mi><mi>i</mi></msub><mo>−</mo><msub><mi>ρ</mi><mn>0</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
+\rho_i = \sum_j m\,W(r_{ij}),\qquad
+P_i = c^2 \max(0,\ \rho_i - \rho_0)
+</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>d</mi><msub><mi mathvariant="bold-italic">𝒗</mi><mi>i</mi></msub></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mi>−</mi><munder><mo>∑</mo><mrow><mi>j</mi><mo>≠</mo><mi>i</mi></mrow></munder><mi>m</mi><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msub><mi>P</mi><mi>i</mi></msub><msubsup><mi>ρ</mi><mi>i</mi><mn>2</mn></msubsup></mfrac><mo>+</mo><mfrac><msub><mi>P</mi><mi>j</mi></msub><msubsup><mi>ρ</mi><mi>j</mi><mn>2</mn></msubsup></mfrac><mo>+</mo><msub><mi mathvariant="normal">Π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>∇</mi><mi>W</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>r</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mi mathvariant="bold-italic">𝒈</mi></mrow><annotation encoding="application/x-tex">
+\frac{d\mathbf v_i}{dt} = -\sum_{j\neq i} m\left(\frac{P_i}{\rho_i^2} + \frac{P_j}{\rho_j^2} + \Pi_{ij}\right)\nabla W(r_{ij}) + \mathbf g
+</annotation></semantics></math></p>
+<p>The density uses the 2D poly6 kernel, and the force uses the gradient
+of the 2D spiky kernel:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mn>4</mn><mrow><mi>π</mi><msup><mi>h</mi><mn>8</mn></msup></mrow></mfrac><msup><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>h</mi><mn>2</mn></msup><mo>−</mo><msup><mi>r</mi><mn>2</mn></msup><mo stretchy="true" form="postfix">)</mo></mrow><mn>3</mn></msup><mo>,</mo><mspace width="2.0em"></mspace><mi>∇</mi><mi>W</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>r</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mfrac><mn>30</mn><mrow><mi>π</mi><msup><mi>h</mi><mn>5</mn></msup></mrow></mfrac><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><mi>h</mi><mo>−</mo><mi>r</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mspace width="0.167em"></mspace><mfrac><msub><mi mathvariant="bold-italic">𝒓</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mi>r</mi></mfrac><mspace width="2.0em"></mspace><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo>&lt;</mo><mi>h</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
+W(r) = \frac{4}{\pi h^8}\left(h^2 - r^2\right)^3,\qquad
+\nabla W(r_{ij}) = -\frac{30}{\pi h^5}\,(h - r)^2\,\frac{\mathbf r_{ij}}{r}\qquad (r &lt; h)
+</annotation></semantics></math></p>
+<p>where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ρ</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\rho_i</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>P</mi><mi>i</mi></msub><annotation encoding="application/x-tex">P_i</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝒗</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\mathbf v_i</annotation></semantics></math>
+are the density, pressure, and velocity of particle
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>;
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝒓</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><msub><mi mathvariant="bold-italic">𝒓</mi><mi>i</mi></msub><mo>−</mo><msub><mi mathvariant="bold-italic">𝒓</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf r_{ij} = \mathbf r_i - \mathbf r_j</annotation></semantics></math>
+is the relative position and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mo stretchy="false" form="prefix">|</mo><msub><mi mathvariant="bold-italic">𝒓</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="false" form="prefix">|</mo></mrow><annotation encoding="application/x-tex">r = |\mathbf r_{ij}|</annotation></semantics></math>;
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>
+is the particle mass;
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ρ</mi><mn>0</mn></msub><mo>=</mo><mn>1000</mn><mspace width="0.167em"></mspace><mrow><mi mathvariant="normal">k</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">/</mi><msup><mi mathvariant="normal">m</mi><mn mathvariant="normal">3</mn></msup></mrow></mrow><annotation encoding="application/x-tex">\rho_0 = 1000\,\mathrm{kg/m^3}</annotation></semantics></math>
+is the reference density of water;
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mn>35</mn><mspace width="0.167em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">c = 35\,\mathrm{m/s}</annotation></semantics></math>
+is the numerical sound speed;
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="normal">Π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><annotation encoding="application/x-tex">\Pi_{ij}</annotation></semantics></math>
+is the artificial viscosity;
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝒈</mi><annotation encoding="application/x-tex">\mathbf g</annotation></semantics></math>
+is gravity; and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>h</mi><annotation encoding="application/x-tex">h</annotation></semantics></math>
+is the kernel support radius
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">W = 0</annotation></semantics></math>
+for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>≥</mo><mi>h</mi></mrow><annotation encoding="application/x-tex">r \ge h</annotation></semantics></math>).
+Here
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>=</mo><mn>2</mn><mi mathvariant="normal">Δ</mi><mo>=</mo><mn>0.0175</mn><mspace width="0.167em"></mspace><mi mathvariant="normal">m</mi></mrow><annotation encoding="application/x-tex">h = 2\Delta = 0.0175\,\mathrm{m}</annotation></semantics></math>,
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">Δ</mi><annotation encoding="application/x-tex">\Delta</annotation></semantics></math>
+is the initial particle spacing, so each particle interacts with about
+12 neighbors.
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">\Delta t</annotation></semantics></math>
+is chosen to satisfy the CFL condition
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>t</mi><mo>≤</mo><mn>0.25</mn><mspace width="0.167em"></mspace><mi>h</mi><mi>/</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">\Delta t \le 0.25\,h/c</annotation></semantics></math>.</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p>Each time step calls three functions:</p>
+<pre><code>for (int step = 0; step &lt; steps; ++step) {
+    compute_density(p, h, mass);
+    compute_acceleration(p, h, mass);
+    integrate(p, dt);
+    ...
+}</code></pre>
+<h2 id="density-and-pressure">1. Density and pressure:</h2>
+<pre><code>void compute_density(std::vector&lt;Particle&gt;&amp; p, double h, double mass) {
+    const double h2 = h * h;
+    const double coefficient = 4.0 / (pi * h2 * h2 * h2 * h2);
+    for (std::size_t i = 0; i &lt; p.size(); ++i) {
+        double rho = 0.0;
+        for (std::size_t j = 0; j &lt; p.size(); ++j) {
+            const double dx = p[i].x - p[j].x;
+            const double dy = p[i].y - p[j].y;
+            rho += mass * density_kernel(dx * dx + dy * dy, h2, coefficient);
+        }
+        p[i].rho = rho;
+        // No tensile (negative) pressure near the free surface.
+        p[i].pressure = sound_speed * sound_speed * std::max(0.0, rho - rho0);
+    }
+}</code></pre>
+<h2 id="acceleration">2. Acceleration:</h2>
+<pre><code>void compute_acceleration(std::vector&lt;Particle&gt;&amp; p, double h, double mass) {
+    const double h2 = h * h;
+    const double grad_coefficient = -30.0 / (pi * h2 * h2 * h);
+    for (std::size_t i = 0; i &lt; p.size(); ++i) {
+        double ax = 0.0, ay = -gravity;
+        for (std::size_t j = 0; j &lt; p.size(); ++j) {
+            if (i == j) continue;
+            double dx = p[i].x - p[j].x;
+            double dy = p[i].y - p[j].y;
+            double r2 = dx * dx + dy * dy;
+            if (r2 &gt;= h2) continue;
+            if (r2 == 0.0) {
+                // Give distinct coincident particles opposite finite directions.
+                dx = i &lt; j ? 0.125 * h : -0.125 * h;
+                dy = 0.0;
+                r2 = dx * dx;
+            }
+
+            const double r = std::sqrt(r2);
+            // Gradient of the 2D spiky kernel points towards particle j.
+            const double grad_factor = grad_coefficient * (h - r) * (h - r) / r;
+            const double dv_dot_dr = (p[i].vx - p[j].vx) * dx
+                                   + (p[i].vy - p[j].vy) * dy;
+            double viscosity = 0.0;
+            if (dv_dot_dr &lt; 0.0) {
+                const double rho_avg = 0.5 * (p[i].rho + p[j].rho);
+                viscosity = -alpha * sound_speed * h * dv_dot_dr
+                          / (rho_avg * (r2 + 0.01 * h2));
+            }
+            const double pair = -mass * (p[i].pressure / (p[i].rho * p[i].rho)
+                                       + p[j].pressure / (p[j].rho * p[j].rho)
+                                       + viscosity) * grad_factor;
+            ax += pair * dx;
+            ay += pair * dy;
+        }
+        p[i].ax = ax;
+        p[i].ay = ay;
+    }
+}</code></pre>
+<h2 id="update-and-wall-reflection">3. Update and wall reflection:</h2>
+<pre><code>void integrate(std::vector&lt;Particle&gt;&amp; p, double dt) {
+    for (Particle&amp; q : p) {
+        // Symplectic Euler; all accelerations were computed from the old state.
+        q.vx += dt * q.ax;
+        q.vy += dt * q.ay;
+        q.x += dt * q.vx;
+        q.y += dt * q.vy;
+        if (q.x &lt; wall) { q.x = 2.0 * wall - q.x; if (q.vx &lt; 0) q.vx *= -wall_damping; }
+        if (q.x &gt; 1.0 - wall) { q.x = 2.0 * (1.0 - wall) - q.x; if (q.vx &gt; 0) q.vx *= -wall_damping; }
+        if (q.y &lt; wall) { q.y = 2.0 * wall - q.y; if (q.vy &lt; 0) q.vy *= -wall_damping; }
+        if (q.y &gt; 1.0 - wall) { q.y = 2.0 * (1.0 - wall) - q.y; if (q.vy &gt; 0) q.vy *= -wall_damping; }
+        q.x = std::clamp(q.x, wall, 1.0 - wall);
+        q.y = std::clamp(q.y, wall, 1.0 - wall);
+    }
+}</code></pre>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<ul>
+<li>The baseline is serial. compute_density and compute_acceleration
+check every pair of particles, so each time step costs
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math>.</li>
+<li>The outer loops over i in compute_density and compute_acceleration,
+integrate are independent, and each i writes only to p[i], so they can
+be parallelized.</li>
+<li>Particles farther than
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>h</mi><annotation encoding="application/x-tex">h</annotation></semantics></math>
+do not interact, so a cell list that searches only nearby particles
+reduces the cost.</li>
+</ul>

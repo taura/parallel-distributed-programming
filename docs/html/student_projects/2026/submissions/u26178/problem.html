@@ -1,0 +1,208 @@
+<ul>
+<li><em>this is an example file you should finish</em></li>
+<li>write problem description, how the algorithm/baseline code works,
+and where you think you can apply parallel computing</li>
+<li>if you are looking at this file from Jupyter, you can see the
+preview by right-clicking on the cell and “Show Markdown Preview”</li>
+</ul>
+<h1 id="making-a-mini-vector-database-ivf-index-from-scratch">Making a
+Mini Vector Database (IVF Index) from Scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>A <em>vector database</em> stores a large number of vectors (e.g.,
+embeddings of text, images or audio produced by a neural network) and
+answers <strong>nearest-neighbor queries</strong>: given a query vector,
+return the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>
+stored vectors closest to it. This is the core of semantic search and of
+retrieval-augmented generation (RAG) for LLMs; systems such as FAISS and
+Milvus are built around it.</p>
+<p>Formally, given
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
+database vectors
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>x</mi><mi>N</mi></msub><mo>∈</mo><msup><mi mathvariant="double-struck">ℝ</mi><mi>d</mi></msup></mrow><annotation encoding="application/x-tex">x_1, \dots, x_N \in \mathbb{R}^d</annotation></semantics></math>
+and a query
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>∈</mo><msup><mi mathvariant="double-struck">ℝ</mi><mi>d</mi></msup></mrow><annotation encoding="application/x-tex">q \in \mathbb{R}^d</annotation></semantics></math>,
+find the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>
+indices
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>
+with the smallest squared Euclidean distance</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="postfix">∥</mo><mi>q</mi><mo>−</mo><msub><mi>x</mi><mi>i</mi></msub><msup><mo stretchy="false" form="postfix">∥</mo><mn>2</mn></msup><mo>=</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>d</mi></munderover><mo stretchy="false" form="prefix">(</mo><msub><mi>q</mi><mi>j</mi></msub><mo>−</mo><msub><mi>x</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mi>.</mi></mrow><annotation encoding="application/x-tex"> \|q - x_i\|^2 = \sum_{j=1}^{d} (q_j - x_{ij})^2 . </annotation></semantics></math></p>
+<p>Scanning all
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
+vectors for every query (brute force) costs
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false" form="prefix">(</mo><mi>N</mi><mi>d</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">O(Nd)</annotation></semantics></math>
+per query, which is too slow for millions of vectors and many queries.
+Real systems therefore build an <strong>index</strong> and do
+<em>approximate</em> search: they look at only a small part of the data,
+and accept missing a few true neighbors.</p>
+<p>This program implements the classic <strong>IVF (inverted file)
+index</strong>:</p>
+<ol type="1">
+<li><strong>Build</strong>: cluster the vectors with k-means into
+<code>nlist</code> clusters. Each cluster has a centroid and an
+<em>inverted list</em> holding the vectors closest to that
+centroid.</li>
+<li><strong>Search</strong>: for a query, find the <code>nprobe</code>
+nearest centroids, then compute the distance only to the vectors in
+those <code>nprobe</code> lists, and keep the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>
+best.</li>
+</ol>
+<p>With <code>nlist = 1024</code> and <code>nprobe = 16</code>, a query
+would scan
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn><mi>/</mi><mn>1024</mn><mo>≈</mo><mn>1.6</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">16/1024 \approx 1.6\%</annotation></semantics></math>
+of the data if all lists had the same length; in our runs it scans about
+5% (see the results below), because the lists are uneven and queries
+tend to fall into the large ones. <code>nprobe</code> trades speed
+against accuracy.</p>
+<p><strong>How good is the answer?</strong> We measure
+<strong>recall@k</strong>: for some queries, we also compute the exact
+answer by brute force, and count what fraction of the true
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>
+nearest neighbors the index returned (1.0 = perfect).</p>
+<p>The input is synthetic, generated inside the program from a fixed
+seed: vectors are drawn from a mixture of Gaussian “blobs” in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>
+dimensions (default
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><msup><mn>10</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">N = 10^6</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>128</mn></mrow><annotation encoding="application/x-tex">d = 128</annotation></semantics></math>,
+10,000 queries, similar in size to the standard SIFT1M benchmark).</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p>The code is C++17, uses only the standard library, and is serial:</p>
+<ul>
+<li><code>ivf.h</code>: the API (data generation, k-means, index build,
+search, recall), with comments</li>
+<li><code>ivf.cc</code>: the implementation of the algorithm</li>
+<li><code>main.cc</code>: command-line options, timing and output</li>
+<li><code>run.sh</code>: builds and runs the program on Miyabi</li>
+</ul>
+<p>All vectors are stored in flat <code>float</code> arrays (vector
+<code>i</code> is <code>X[i*d .. i*d+d)</code>).</p>
+<ul>
+<li><strong>Data generation</strong>: <code>nblob</code> random centers
+in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><msup><mo stretchy="false" form="postfix">]</mo><mi>d</mi></msup></mrow><annotation encoding="application/x-tex">[0,1]^d</annotation></semantics></math>;
+each vector is a random center plus Gaussian noise with standard
+deviation <code>sigma</code> (default 0.25) in every dimension. Queries
+are generated the same way. A larger <code>sigma</code> makes the
+clusters overlap, so the search gets harder.</li>
+<li><strong>k-means (<code>train_kmeans</code>)</strong>: Lloyd’s
+algorithm on a training sample of <code>ntrain</code> vectors, for
+<code>iters</code> iterations:
+<ul>
+<li><em>assignment step</em>: for every training vector, compute the
+distance to all <code>nlist</code> centroids and pick the nearest;</li>
+<li><em>update step</em>: each centroid becomes the mean of the vectors
+assigned to it.</li>
+</ul>
+The program prints the mean squared distance to the nearest centroid at
+each iteration; it should decrease.</li>
+<li><strong>Building the lists (<code>build_lists</code>)</strong>:
+every one of the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
+vectors is assigned to its nearest centroid. The vectors are then copied
+so that each list is stored contiguously (a CSR-like layout: list
+<code>c</code> is <code>offsets[c] .. offsets[c+1]</code>).</li>
+<li><strong>Search (<code>search</code>)</strong>, for each query:
+<ol type="1">
+<li>compute the distance to all <code>nlist</code> centroids and keep
+the <code>nprobe</code> smallest;</li>
+<li>scan the vectors in those lists, keeping the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>
+smallest distances in a small sorted array (<code>TopK</code>).</li>
+</ol></li>
+<li><strong>Check (<code>brute_force</code>)</strong>: the exact
+top-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>
+for the first <code>ngt</code> queries, used to compute recall@k.</li>
+</ul>
+<p>The main computation (k-means + list building + search) is timed with
+<code>std::chrono</code>. The program also reports queries/s and
+GFLOP/s.</p>
+<p>The inner loop of every step is the same distance kernel:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> sum <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span>j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> d<span class="op">;</span> j<span class="op">++)</span> <span class="op">{</span> <span class="dt">float</span> diff <span class="op">=</span> a<span class="op">[</span>j<span class="op">]</span> <span class="op">-</span> b<span class="op">[</span>j<span class="op">];</span> sum <span class="op">+=</span> diff <span class="op">*</span> diff<span class="op">;</span> <span class="op">}</span></span></code></pre></div>
+<p>Command line options:
+<code>-n N -d D -q Q -l NLIST -p NPROBE -k K -t NTRAIN -i ITERS -g NGT -b NBLOB -r SIGMA -s SEED</code>
+(<code>-r</code> is the noise around each blob: larger values make the
+clusters overlap and the search harder).</p>
+<p>Example:
+<code>./ivf -n 1000000 -d 128 -q 10000 -l 1024 -p 16</code></p>
+<h2 id="results-of-the-baseline-on-miyabi">Results of the baseline on
+Miyabi</h2>
+<p>One Grace (Neoverse-V2) core, <code>clang++ -O3</code>, default
+parameters
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><msup><mn>10</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">N = 10^6</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>128</mn></mrow><annotation encoding="application/x-tex">d = 128</annotation></semantics></math>,
+10,000 queries, <code>nlist = 1024</code>, <code>nprobe = 16</code>,
+<code>sigma = 0.25</code>):</p>
+<table>
+<thead>
+<tr>
+<th>step</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>k-means training (50,000 vectors, 10 iterations)</td>
+<td>27.5 s</td>
+</tr>
+<tr>
+<td>building the lists (assigning all
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>10</mn><mn>6</mn></msup><annotation encoding="application/x-tex">10^6</annotation></semantics></math>
+vectors)</td>
+<td>55.6 s</td>
+</tr>
+<tr>
+<td>search (10,000 queries)</td>
+<td>28.3 s (353 queries/s)</td>
+</tr>
+<tr>
+<td><strong>main computation in total</strong></td>
+<td><strong>111.4 s</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>recall@10 = 0.994 (checked against brute force for 100 queries)</li>
+<li>the k-means objective decreases at every iteration (21.28 →
+12.21)</li>
+<li>list lengths range from 1 to 6366 (average 977); a query scans about
+50,900 vectors on average</li>
+<li>the search runs at only about 7 GFLOP/s, a small fraction of what
+one core can do, so there is a lot of room for optimization</li>
+</ul>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<ul>
+<li><strong>Between queries</strong>: all queries are independent, so
+they can be split among CPU cores or GPU thread blocks.</li>
+<li><strong>Inside k-means and list building</strong>: the nearest
+centroid of each vector is computed independently (data-parallel over
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>).
+The update step is a reduction (sums per cluster), which needs
+per-thread partial sums or atomics.</li>
+<li><strong>The distance kernel</strong>: computing many distances at
+once is essentially a matrix multiplication, since
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="postfix">∥</mo><mi>q</mi><mo>−</mo><mi>x</mi><msup><mo stretchy="false" form="postfix">∥</mo><mn>2</mn></msup><mo>=</mo><mo stretchy="false" form="postfix">∥</mo><mi>q</mi><msup><mo stretchy="false" form="postfix">∥</mo><mn>2</mn></msup><mo>−</mo><mn>2</mn><mspace width="0.167em"></mspace><mi>q</mi><mo>⋅</mo><mi>x</mi><mi>+</mi><mo stretchy="false" form="postfix">∥</mo><mi>x</mi><msup><mo stretchy="false" form="postfix">∥</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\|q-x\|^2 = \|q\|^2 - 2\,q\cdot x + \|x\|^2</annotation></semantics></math>.
+So it suits SIMD instructions, cache blocking, and GPU (even tensor
+cores).</li>
+<li><strong>Inside a query</strong>: the lists (and the vectors within a
+list) can be scanned in parallel, each thread keeping its own
+top-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>,
+merged at the end.</li>
+</ul>
+<p>What may limit the speedup:</p>
+<ul>
+<li>Scanning the lists reads a lot of memory per query with little
+reuse, so search may be <strong>memory-bandwidth bound</strong>.
+Centroid distances and k-means are more <strong>compute bound</strong>
+(good for a roofline analysis).</li>
+<li>List lengths are uneven, which causes load imbalance.</li>
+<li>The
+top-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>
+selection has branches, which hurt on SIMD and GPU.</li>
+<li>The k-means update needs reductions or atomics.</li>
+</ul>

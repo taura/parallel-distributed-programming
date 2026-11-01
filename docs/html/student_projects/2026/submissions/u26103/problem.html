@@ -1,0 +1,53 @@
+<h1
+id="窓からの日差しを描く室内パストレーシング">窓からの日差しを描く室内パストレーシング</h1>
+<h2 id="problem">Problem</h2>
+<p>二つの窓がある部屋を画像に描く。室内にはソファ、テーブル、本棚、
+敷物、花瓶などがある。窓枠を通る太陽光による床や家具の影、
+窓からの青みがかった柔らかい光、壁や家具で反射する間接光を表現する。
+小さな鏡面の球には周囲が映り込む。
+カメラから光線を飛ばすのは「各画素に見える光」を探すためであり、
+カメラ自体が光源なのではない。</p>
+<h2 id="how-the-baseline-code-works">How the baseline code works</h2>
+<p><code>path_tracer.cc</code> は標準ライブラリだけを使うシリアル C++17
+プログラム。
+シーンの球、直方体、タイル状の床、窓の開口はコード中に定義している。
+各画素で複数の光線をカメラから飛ばし、最も近い物体との交点を調べる。
+窓を空からの光を放つ面として近似する。拡散面では窓上のランダムな点と、
+遠くの太陽の方向に光線を飛ばして遮蔽を調べ、直接光を推定する。
+太陽の方向はわずかに変化させ、影の境界を柔らかくする。さらに別の
+方向へ光線を飛ばして反射を数回たどり、間接光を加える。鏡面では反射方向に
+進む。画素ごとにサンプルの平均を取り、画像を PPM (P6)
+形式で保存する。</p>
+<p>実行時に
+<code>render_seconds</code>（画像の計算時間）、平均輝度、中央画素の輝度、
+光が届いた画素数を表示する。窓枠の影や、家具への光の当たり方を
+画像で確認できる。同じ条件で太陽光の強さを 0 と 1 に変えると
+直射日光の違いを、最大反射回数を 1 から 4 に変えると間接光の違いを
+比較できる。
+少数のサンプルで見える白い斑点には確率的なサンプリングのノイズが含まれ、
+明るい窓が鏡に映った部分はサンプルを増やしても明るいまま残る。</p>
+<p>コンパイル例（Miyabi のノートブックの <code>%%bash</code>
+セルで、用意された <code>module</code> の行に続けて実行）：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clang</span>++ <span class="at">-O3</span> <span class="at">-Wall</span> <span class="at">-std</span><span class="op">=</span>c++17 path_tracer.cc <span class="at">-o</span> path_tracer</span></code></pre></div>
+<p>実行例（<code>%%sub</code> セルで実行）：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./path_tracer</span> 256 256 32 4 42 image.ppm 1</span></code></pre></div>
+<p>引数は順に、画像の幅、高さ、画素当たりのサンプル数、最大反射回数、
+乱数種、出力ファイル名、太陽光の強さ。省略時は順に
+<code>512 512 64 4 42 image.ppm 1</code> が使われる。最初は
+<code>./path_tracer 128 128 16 4 42 image.ppm</code>
+のように小さく試し、 Miyabi
+で測った時間に応じて解像度とサンプル数を上げる。 太陽光の強さを 0
+にすれば窓からの柔らかい光だけになる。
+サンプルを増やすと影や間接光の粒状ノイズが減るが、時間も増える。
+画像を見るときは <code>convert code/image.ppm code/image.png</code>
+で変換できる。</p>
+<h2 id="where-is-parallelism">Where is parallelism</h2>
+<p>画素ごと、および同じ画素の各サンプルの光路ごとに計算を分けられる。
+マルチコア CPU では画素の行や範囲を分担し、GPU では多数の光路を
+同時に処理することが考えられる。画素ごとに異なる乱数列を使っている。
+一方、反射による次の光線は前の交点が決まるまで計算できない。
+光路によって反射回数や遮蔽の判定が異なるため、GPU では処理の分岐が
+性能上の制約になりうる。現在は各光線についてすべての球と直方体を
+順番に調べており、交点判定の計算量も大きい。物体を増やした場合は
+高速な探索方法の検討や、計算とメモリアクセスの性能分析もできる。</p>

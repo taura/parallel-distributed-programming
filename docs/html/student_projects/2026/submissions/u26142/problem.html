@@ -1,0 +1,63 @@
+<h1 id="proximal-policy-optimization-ppo-from-scratch">Proximal Policy
+Optimization (PPO) from scratch</h1>
+<h2 id="problem">Problem</h2>
+<p>In reinforcement learning, a <em>policy</em> chooses actions from
+observations to earn rewards. PPO trains a policy from batches of
+experience while limiting how much its action probabilities change per
+update. While PPO can be applied to robot control, games, language-model
+post-training, as well as various other problems, this program uses
+navigation as an example for demonstrating PPO.</p>
+<p>One robot navigates a randomly generated square grid. It observes its
+position, the goal’s absolute position, and the full obstacle map. It
+moves in four directions. Reaching the goal gives +1, each step costs
+0.01, and hitting a wall costs another 0.02. There is no reward for
+getting closer. <code>--size</code> sets the grid width (default 5),
+<code>--obstacles</code> defaults to 30% of its area, and
+<code>--horizon</code> defaults to <code>size*size</code> steps. Each
+start and goal are distinct and connected by a route within that limit.
+A shortest-path search checks reachability when generating maps but does
+not guide the robot.</p>
+<h2 id="how-the-serial-baseline-code-works">How the serial baseline code
+works</h2>
+<p><code>ppo.cc</code> uses only the C++17 standard library. It runs
+<code>--envs</code> independent environments
+<strong>sequentially</strong>, collecting <code>--rollout</code> steps
+per environment with a fixed policy. Each step records the observation,
+action, reward, and the policy’s action probability and value prediction
+(expected future reward). One rollout may cross an episode boundary.</p>
+<p>The program uses generalized advantage estimation (GAE) to estimate
+whether actions did better than predicted; it stops the calculation at
+episode ends and uses a value prediction if a rollout ends mid-episode.
+It then shuffles the batch and trains for <code>--epochs</code> passes
+in groups of <code>--minibatch</code> steps. PPO clips its training
+objective when an action’s probability ratio moves too far from the
+probability recorded during collection. The shared model has ReLU hidden
+layers (<code>--num-layers</code> layers of <code>--hidden</code> units)
+and separate action-probability and value outputs. Gradients and Adam
+updates are implemented directly, without a machine-learning
+library.</p>
+<p>Every <code>--log-every</code> updates, the program prints and
+flushes <code>training_s</code> (cumulative rollout and learning time,
+excluding evaluation), <code>train_return</code> (mean reward of
+recently finished training episodes), <code>eval_return</code> (mean
+reward on separate fixed-seed maps), and <code>eval_success</code>
+(fraction reaching the goal). Evaluation uses the most probable action
+and does not train the model.</p>
+<p>In the notebook’s compilation cell, after <code>cd code</code> and
+module setup:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clang</span>++ <span class="at">-O3</span> <span class="at">-Wall</span> <span class="at">-std</span><span class="op">=</span>c++17 ppo.cc <span class="at">-o</span> ppo</span></code></pre></div>
+<p>In its <code>%%sub</code> run cell, after <code>cd code</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./ppo</span> <span class="at">--size</span> 5 <span class="at">--updates</span> 20000 <span class="at">--envs</span> 16 <span class="at">--rollout</span> 16 <span class="at">--epochs</span> 3 <span class="at">--minibatch</span> 128 <span class="at">--hidden</span> 64 <span class="at">--num-layers</span> 2 <span class="at">--log-every</span> 1000</span></code></pre></div>
+<p>An additional <code>--seed</code> parameter sets the random seed for
+reproducibility.</p>
+<h2 id="where-is-parallelism">Where is parallelism?</h2>
+<p>In addition to the usual GPU acceleration of neural-network matrix
+operations,</p>
+<ul>
+<li>Independent environments can generate experience on different CPU
+cores.</li>
+<li>Some environments could be implemented entirely as vectorized
+operations, allowing many instances to run in parallel on a GPU.</li>
+<li>GAE can also run independently across rollouts, though steps within
+each rollout have a backward-in-time dependency.</li>
+</ul>

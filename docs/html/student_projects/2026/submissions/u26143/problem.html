@@ -1,0 +1,93 @@
+<ul>
+<li><em>this is an example file you should finish</em></li>
+<li>write problem description, how the algorithm/baseline code works,
+and where you think you can apply parallel computing</li>
+<li>if you are looking at this file from Jupyter, you can see the
+preview by right-clicking on the cell and “Show Markdown Preview”</li>
+</ul>
+<h1 id="making-xxxxxx-from-scratch">Making XXXXXX from scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>The core objective of ray tracing is to synthesize a 2D image of a 3D
+virtual scene by simulating the physics of light transport. Rather than
+solving the full recursive Kajiya Rendering Equation via stochastic
+Monte Carlo integration, the <strong>Whitted-Style Ray Tracing
+model</strong> evaluates an analytical approximation focusing on direct
+illumination, sharp specular reflection, and specular refraction:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mi>o</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>p</mi><mo>,</mo><msub><mi>ω</mi><mi>o</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>L</mi><mi>e</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>p</mi><mo>,</mo><msub><mi>ω</mi><mi>o</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mi>L</mi><mtext mathvariant="normal">local</mtext></msub><mo stretchy="false" form="prefix">(</mo><mi>p</mi><mo>,</mo><msub><mi>ω</mi><mi>o</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mi>k</mi><mi>r</mi></msub><mspace width="0.167em"></mspace><msub><mi>L</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>p</mi><mo>,</mo><msub><mi>ω</mi><mi>r</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mi>k</mi><mi>t</mi></msub><mspace width="0.167em"></mspace><msub><mi>L</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>p</mi><mo>,</mo><msub><mi>ω</mi><mi>t</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
+L_o(p, \omega_o) = L_e(p, \omega_o) + L_{\text{local}}(p, \omega_o) + k_r \, L_i(p, \omega_r) + k_t \, L_i(p, \omega_t)
+</annotation></semantics></math></p>
+<p>The problem is computationally bounded by recursive ray-primitive
+intersection queries and geometric visibility evaluations across
+millions of primary and secondary rays.</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p>The baseline algorithm executes serially over the frame buffer.
+Primary rays are generated through a pinhole camera, tested for
+intersection against scene primitives, and recursively shaded up to a
+fixed tree depth.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Renderer<span class="op">::</span>render_tile<span class="op">(</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    Framebuffer<span class="op">&amp;</span> fb<span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> Camera<span class="op">&amp;</span> cam<span class="op">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> start_x<span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> start_y<span class="op">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> end_x<span class="op">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> end_y</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="at">const</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> w <span class="op">=</span> fb<span class="op">.</span>width<span class="op">();</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> h <span class="op">=</span> fb<span class="op">.</span>height<span class="op">();</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> y <span class="op">=</span> start_y<span class="op">;</span> y <span class="op">&lt;</span> end_y<span class="op">;</span> <span class="op">++</span>y<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> x <span class="op">=</span> start_x<span class="op">;</span> x <span class="op">&lt;</span> end_x<span class="op">;</span> <span class="op">++</span>x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            Vec3 accum<span class="op">(</span><span class="fl">0.0</span><span class="op">,</span> <span class="fl">0.0</span><span class="op">,</span> <span class="fl">0.0</span><span class="op">);</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Per-pixel deterministic RNG state (parallel-safe by design).</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            <span class="dt">uint64_t</span> rng <span class="op">=</span> <span class="bn">0x9e3779b97f4a7c15</span><span class="bu">ULL</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                         <span class="op">^</span> <span class="op">(</span><span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">uint64_t</span><span class="op">&gt;(</span>x<span class="op">)</span> <span class="op">*</span> <span class="bn">0xbf58476d1ce4e5b9</span><span class="bu">ULL</span><span class="op">)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                         <span class="op">^</span> <span class="op">(</span><span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">uint64_t</span><span class="op">&gt;(</span>y<span class="op">)</span> <span class="op">*</span> <span class="bn">0x94d049bb133111eb</span><span class="bu">ULL</span><span class="op">);</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> s <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> s <span class="op">&lt;</span> <span class="va">render_params_</span><span class="op">.</span>samples_per_pixel<span class="op">;</span> <span class="op">++</span>s<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                <span class="at">const</span> <span class="dt">double</span> jx <span class="op">=</span> math<span class="op">::</span>rand01<span class="op">(</span>rng<span class="op">);</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                <span class="at">const</span> <span class="dt">double</span> jy <span class="op">=</span> math<span class="op">::</span>rand01<span class="op">(</span>rng<span class="op">);</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                <span class="at">const</span> <span class="dt">double</span> u <span class="op">=</span> <span class="op">(</span><span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;(</span>x<span class="op">)</span> <span class="op">+</span> jx<span class="op">)</span> <span class="op">/</span> <span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;(</span>w<span class="op">);</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                <span class="at">const</span> <span class="dt">double</span> v <span class="op">=</span> <span class="op">(</span><span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;(</span>h <span class="op">-</span> <span class="dv">1</span> <span class="op">-</span> y<span class="op">)</span> <span class="op">+</span> jy<span class="op">)</span> <span class="op">/</span> <span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;(</span>h<span class="op">);</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                <span class="at">const</span> Ray primary <span class="op">=</span> cam<span class="op">.</span>generate_ray<span class="op">(</span>u<span class="op">,</span> v<span class="op">);</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                accum <span class="op">+=</span> trace_ray<span class="op">(</span>primary<span class="op">,</span> <span class="va">render_params_</span><span class="op">.</span>max_depth<span class="op">);</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            accum <span class="op">/=</span> <span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;(</span><span class="va">render_params_</span><span class="op">.</span>samples_per_pixel<span class="op">);</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>            fb<span class="op">.</span>set_pixel<span class="op">(</span>x<span class="op">,</span> y<span class="op">,</span> accum<span class="op">);</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<ul>
+<li><strong>Location in Code</strong>:
+<code>src/renderer/renderer.cpp</code>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>
+<code>render_frame()</code> / <code>render_tile()</code></li>
+<li><strong>Mechanism</strong>:
+<ul>
+<li>The outer two loops over image coordinates <code>(x, y)</code> have
+zero cross-iteration data dependencies.</li>
+<li>The destination buffer <code>fb.set_pixel(x, y, ...)</code> writes
+to disjoint memory addresses in
+<code>src/renderer/framebuffer.h</code>.</li>
+</ul></li>
+<li><strong>Parallel Strategy</strong>:
+<ul>
+<li><strong>OpenMP</strong>: Add
+<code>#pragma omp parallel for collapse(2) schedule(dynamic, 16)</code>
+over the <code>y</code> and <code>x</code> loops.</li>
+<li><strong>Tile / Job System</strong>: Divide the image into
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn><mo>×</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">16 \times 16</annotation></semantics></math>
+or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>32</mn><mo>×</mo><mn>32</mn></mrow><annotation encoding="application/x-tex">32 \times 32</annotation></semantics></math>
+tiles. Push tile jobs to a multi-threaded worker pool executing
+<code>render_tile(tile_x0, tile_y0, tile_x1, tile_y1)</code>. Dynamic
+scheduling ensures high load balancing despite varying ray recursion
+depths per pixel.</li>
+</ul></li>
+</ul>

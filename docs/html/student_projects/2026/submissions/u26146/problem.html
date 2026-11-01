@@ -1,0 +1,322 @@
+<h1 id="a-tiny-transformer-for-router-command-generation">A tiny
+Transformer for router command generation</h1>
+<h2 id="problem">Problem</h2>
+<p>A router has settings such as a Wi-Fi channel, a DNS server, and a
+guest network. This program learns to turn a short, fixed-format English
+request into a sequence of configuration commands. For example:</p>
+<pre class="text"><code>Request: set guest wifi on, set channel 11, set dns 1.1.1.1,
+         firewall strict, tx power 70, max clients 16
+
+Target:  set wifi.guest=1; set wifi.channel=11; set wan.dns=1.1.1.1;
+         set firewall.mode=strict; set wifi.tx_power=70;
+         set wifi.max_clients=16; commit;</code></pre>
+<p>These commands are a synthetic teaching format which looks similar to
+the real FRR/vtysh commands but cannot operate on the real routers. The
+goal is to study the computation and performance of a small language
+model.</p>
+<h2 id="data-and-task-size">Data and task size</h2>
+<p>The program creates its own training and test data. It does not use
+an external dataset.</p>
+<p>Each example contains a request and its expected command. The program
+chooses one value for each setting:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Possible values</th>
+<th>Command rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Guest Wi-Fi</td>
+<td>on, off</td>
+<td>Convert on to <code>1</code> and off to <code>0</code></td>
+</tr>
+<tr>
+<td>Wi-Fi channel</td>
+<td>1, 6, 11</td>
+<td>Copy the selected number</td>
+</tr>
+<tr>
+<td>DNS server</td>
+<td>1.1.1.1, 8.8.8.8, 9.9.9.9, 8.8.4.4</td>
+<td>Copy the selected address</td>
+</tr>
+<tr>
+<td>Firewall mode</td>
+<td>normal, strict</td>
+<td>Copy the selected mode</td>
+</tr>
+<tr>
+<td>Transmit power</td>
+<td>40, 70, 100</td>
+<td>Copy the selected number</td>
+</tr>
+<tr>
+<td>Maximum clients</td>
+<td>8, 16, 32, 64</td>
+<td>Copy the selected number</td>
+</tr>
+</tbody>
+</table>
+<p>The commands always appear in the same order and end with
+<code>commit;</code>. These are made-up commands for this experiment,
+not verified commands for a real router.</p>
+<h2 id="example">Example</h2>
+<p><strong>Request:</strong></p>
+<pre class="text"><code>set guest wifi on, set channel 6, set dns 1.1.1.1, firewall strict, tx power 70, max clients 16</code></pre>
+<p><strong>Expected command:</strong></p>
+<pre class="text"><code>set wifi.guest=1; set wifi.channel=6; set wan.dns=1.1.1.1; set firewall.mode=strict; set wifi.tx_power=70; set wifi.max_clients=16; commit;</code></pre>
+<p>The complete example is stored in this format:</p>
+<pre class="text"><code>[INTENT] request [CMD] expected command</code></pre>
+<p>The code creates the expected command using the rules above. The
+model then tries to learn this conversion by predicting one command
+character at a time.</p>
+<h2 id="training-and-test-split">Training and test split</h2>
+<p>There are <strong>576 possible combinations</strong>:</p>
+<pre class="text"><code>2 × 3 × 4 × 2 × 3 × 4 = 576</code></pre>
+<p>The program separates these into <strong>460 training
+combinations</strong> and <strong>116 test combinations</strong>. The
+same combination cannot belong to both groups.</p>
+<p>Samples are randomly drawn from each group, and repetitions are
+allowed. Therefore, <code>train_samples=12000</code> means 12,000
+samples drawn from the training group, not 12,000 different
+configurations.</p>
+<p>Each example is stored as <code>[INTENT] request [CMD] command</code>
+followed by a newline. A character is one token. The default context
+window contains 256 characters, enough for the longest complete example
+in this task. A shorter window can remove a requested setting before the
+model has generated it.</p>
+<h2 id="model-and-algorithm">Model and algorithm</h2>
+<p>The C++17 program uses only the standard library. It has one
+attention head, one block, and a small feed-forward network (FFN). Model
+width is 48, FFN width is 96, and vocabulary size is 45 including
+padding. There are 35,229 parameters at context 256, or 24,477 at
+context 32.</p>
+<p>The main calculation steps are:</p>
+<ol type="1">
+<li>Turn characters and their positions into learned number
+vectors.</li>
+<li>Calculate keys and values at each position and a query at the last
+position.</li>
+<li>Compare the query with keys. Softmax turns scores into attention
+weights; use these weights to combine the values. Padding is
+ignored.</li>
+<li>Add the result to the last input vector, apply the FFN with ReLU,
+and add another residual connection. Then predict the next character’s
+probabilities.</li>
+</ol>
+<p>Only earlier characters are inputs. This model calculates only the
+last query’s attention, not a full square attention matrix, and has no
+LayerNorm.</p>
+<p>Training supplies the correct earlier characters (teacher forcing).
+Loss is calculated on the command and final newline. Backpropagation
+finds gradients, gradient clipping limits large changes, and serial SGD
+updates the weights. Invalid numerical values in gradients or output
+normalization cause an error. One step selects one sample and updates
+weights for each command character; it is not an epoch.</p>
+<h2 id="serial-baseline-result-miyabi-run">Serial baseline result
+(Miyabi run)</h2>
+<p>The following result is from a serial run on Miyabi. The settings
+were:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Training samples</td>
+<td style="text-align: right;">12,000</td>
+</tr>
+<tr>
+<td>Test samples</td>
+<td style="text-align: right;">116</td>
+</tr>
+<tr>
+<td>Training steps</td>
+<td style="text-align: right;">1,000</td>
+</tr>
+<tr>
+<td>Context length</td>
+<td style="text-align: right;">256</td>
+</tr>
+<tr>
+<td>Model width / FFN width</td>
+<td style="text-align: right;">48 / 96</td>
+</tr>
+<tr>
+<td>Learning rate</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr>
+<td>Gradient clipping limit (<code>clip_norm</code>)</td>
+<td style="text-align: right;">5.0</td>
+</tr>
+<tr>
+<td>Random seed</td>
+<td style="text-align: right;">42</td>
+</tr>
+<tr>
+<td>Maximum samples for exact command evaluation</td>
+<td style="text-align: right;">116</td>
+</tr>
+</tbody>
+</table>
+<p>All reported measurements from this run are listed below.</p>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th style="text-align: right;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Training time (<code>training_time_ms</code>)</td>
+<td style="text-align: right;">166,173.283 ms (166.173283 s)</td>
+</tr>
+<tr>
+<td>Character-level weight updates</td>
+<td style="text-align: right;">140,431</td>
+</tr>
+<tr>
+<td>Updates with gradient clipping</td>
+<td style="text-align: right;">77,629</td>
+</tr>
+<tr>
+<td>Training character updates per second</td>
+<td style="text-align: right;">845.088</td>
+</tr>
+<tr>
+<td>Test command teacher-forced loss</td>
+<td style="text-align: right;">1.286</td>
+</tr>
+<tr>
+<td>Test command next-character accuracy</td>
+<td style="text-align: right;">0.506 (50.6%)</td>
+</tr>
+<tr>
+<td>Exact command match rate</td>
+<td style="text-align: right;">0.000 (0/116)</td>
+</tr>
+<tr>
+<td>Teacher-forced evaluation time</td>
+<td style="text-align: right;">7,247.528 ms</td>
+</tr>
+<tr>
+<td>Generation time</td>
+<td style="text-align: right;">11,332.144 ms</td>
+</tr>
+</tbody>
+</table>
+<p>Training time includes context construction, forward/backward
+calculations, clipping, updates, and logging; it excludes compilation,
+data creation, testing, and generation. Three printed request/answer
+examples allowed manual checking. Generated commands repeated
+<code>set set set ...</code>.</p>
+<h3 id="what-the-result-means">What the result means</h3>
+<p>Training loss fell from about 2.81 for the first 100 steps to 1.38
+for the last 100 steps. Some character patterns appear to be learned,
+but 50.6% accuracy uses the correct previous characters. During
+generation, the model uses its own outputs, so errors may vary from time
+to time.</p>
+<p>I do not yet know whether model structure, training settings, or an
+implementation issue is responsible. Testing whether it can learn one
+example would help. The model generated some character patterns when
+given the correct preceding characters, but it failed to generate
+complete commands on its own.</p>
+<h2 id="build-and-run">Build and run</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">c++</span> <span class="at">-O3</span> <span class="at">-std</span><span class="op">=</span>c++17 app.cc <span class="at">-o</span> app</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./app</span> <span class="at">--train-samples</span> 12000 <span class="at">--test-samples</span> 116 <span class="at">--steps</span> 1000 <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--ctx</span> 256 <span class="at">--d-model</span> 48 <span class="at">--d-ff</span> 96 <span class="at">--lr</span> 0.005 <span class="at">--clip-norm</span> 5 <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--seed</span> 42 <span class="at">--print-every</span> 100 <span class="at">--eval-exact-n</span> 116</span></code></pre></div>
+<h3 id="command-line-options">Command-line options</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--train-samples</code></td>
+<td>Number of training samples</td>
+</tr>
+<tr>
+<td><code>--test-samples</code></td>
+<td>Number of test samples</td>
+</tr>
+<tr>
+<td><code>--steps</code></td>
+<td>Number of training sample selections</td>
+</tr>
+<tr>
+<td><code>--ctx</code></td>
+<td>Context length</td>
+</tr>
+<tr>
+<td><code>--d-model</code></td>
+<td>Model dimension</td>
+</tr>
+<tr>
+<td><code>--d-ff</code></td>
+<td>Feed-forward hidden dimension</td>
+</tr>
+<tr>
+<td><code>--lr</code></td>
+<td>Learning rate</td>
+</tr>
+<tr>
+<td><code>--clip-norm</code></td>
+<td>Maximum global gradient norm</td>
+</tr>
+<tr>
+<td><code>--seed</code></td>
+<td>Random seed</td>
+</tr>
+<tr>
+<td><code>--print-every</code></td>
+<td>Logging interval in training steps</td>
+</tr>
+<tr>
+<td><code>--eval-exact-n</code></td>
+<td>Maximum number of samples for exact-match evaluation</td>
+</tr>
+</tbody>
+</table>
+<p>Increasing <code>--steps</code> gives more training. Increasing model
+widths or context length changes the model and usually increases
+computation. For a speed comparison, keep these settings fixed.</p>
+<h2 id="opportunities-for-later-parallelization">Opportunities for later
+parallelization</h2>
+<p>Parallelism opportunities (the baseline is fully serial)</p>
+<ul>
+<li>Key/value projections across context positions</li>
+<li>Independent output rows of projections</li>
+<li>Attention score calculations</li>
+<li>Dot products and softmax need reductions</li>
+</ul>
+<p>Training samples are not independent: each character changes weights
+used by the next character. Mini-batches could provide more parallel
+work but would change the update method. Generated characters also
+depend on earlier outputs.</p>
+<p>Key/value calculations grow with context length and the square of
+model width. The program also recalculates overlapping contexts. These
+may be costly, but profiling is needed. SIMD and better memory access
+may help; tiny parallel tasks may add overhead instead.</p>
+<p>Parallelization will not automatically fix command generation
+though.</p>

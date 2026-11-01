@@ -1,0 +1,53 @@
+<ul>
+<li><em>this is an example file you should finish</em></li>
+<li>write problem description, how the algorithm/baseline code works,
+and where you think you can apply parallel computing</li>
+<li>if you are looking at this file from Jupyter, you can see the
+preview by right-clicking on the cell and “Show Markdown Preview”</li>
+</ul>
+<h1 id="making-ray-tracer-from-scratch">Making ray tracer from
+scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>This code draw the picture of a virtual scene by ray tracing
+algorithm.</p>
+<p>For each pixel of image, ray tracer shoot rays to the scene and
+calculate the pixel color. Ray can reflect or refract when it intersect
+with objects. This algorithm is the basis for CG animation.</p>
+<p>I read Ray Tracing in One Weekend<a href="#id_01" target="_blank"
+rel="noopener"><sup>1</sup></a>. This is an e-book which I’ve wanted to
+read for a long time.</p>
+<p>I implemented the code following the book; I implemented the most of
+code with copy &amp; paste. I only modified the code to set parameters
+as arguments.</p>
+<p>The code produce image as below. <img src="image.png"
+alt="image" /></p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p>I show the render function in <code>camera</code> class in
+<code>camera.h</code> below. For each pixel of an image, we shoot rays
+<code>samples_per_pixel</code> times and calculates the average of it.
+This is called Monte Carlo Integration.</p>
+<p>Since this code has 3 nesting loop, it could be very slow if we use
+large parameters.</p>
+<pre><code>for (int j = 0; j &lt; image_height; j++) {
+    // ...
+    for (int i = 0; i &lt; image_width; i++) {
+        color pixel_color(0,0,0);
+        for (int sample = 0; sample &lt; samples_per_pixel; sample++) {
+            ray r = get_ray(i, j);
+            pixel_color += ray_color(r, max_depth, world);
+        }
+        write_color(std::cout, pixel_samples_scale * pixel_color);
+    }
+}</code></pre>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<ul>
+<li>All of three loop (y axis, x axis, and multiple sampling for single
+pixel color) above can be executed in parallel, since each ray shooting
+and calculation of color is independent from another.</li>
+</ul>
+<h1 id="references">References</h1>
+<p><span id="id_01">Peter Shirley, Trevor David Black, Steve Hollasch.
+Ray Tracing in One Weekend.
+raytracing.github.io/books/RayTracingInOneWeekend.html Accessed 30 10.
+2026.</span></p>

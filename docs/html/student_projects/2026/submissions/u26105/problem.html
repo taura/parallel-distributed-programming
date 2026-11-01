@@ -1,0 +1,52 @@
+<ul>
+<li><em>this is an example file you should finish</em></li>
+<li>write problem description, how the algorithm/baseline code works,
+and where you think you can apply parallel computing</li>
+<li>if you are looking at this file from Jupyter, you can see the
+preview by right-clicking on the cell and “Show Markdown Preview”</li>
+</ul>
+<h1 id="making-wavelet-matrix-from-scratch">Making Wavelet Matrix from
+scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>A Wavelet Matrix is a succinct data structure for storing a sequence
+of integers. It supports efficient queries such as access, rank, and
+select.</p>
+<p>Given an array of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
+non-negative integers, the goal is to construct a Wavelet Matrix
+efficiently.</p>
+<p>The construction processes the integers bit by bit, from the most
+significant bit to the least significant bit.</p>
+<p>For each bit position, it builds a bit vector and performs a stable
+partition of the array.</p>
+<p>The sequential construction takes
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false" form="prefix">(</mo><mi>n</mi><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>σ</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">O(n \log \sigma)</annotation></semantics></math>
+time, where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>σ</mi><annotation encoding="application/x-tex">\sigma</annotation></semantics></math>
+is the size of the value domain.</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p>The baseline is implemented in C++20 without external libraries.</p>
+<p>For each bit level, the algorithm:</p>
+<ol type="1">
+<li>Extracts the corresponding bit from every integer and stores it in a
+bit vector.</li>
+<li>Builds a rank data structure for the bit vector.</li>
+<li>Counts the number of zeros.</li>
+<li>Performs a stable partition, placing elements with bit 0 before
+elements with bit 1 while preserving their relative order.</li>
+</ol>
+<p>Repeats the process for the next bit level.</p>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<p>Several parts of the construction can be parallelized:</p>
+<ul>
+<li>Bit extraction: Each element’s bit can be extracted
+independently.</li>
+<li>Zero counting: The number of zero bits can be calculated using
+reduction.</li>
+<li>Prefix sum / rank construction: Parallel prefix sum can compute the
+rank information and destination indices for each element.</li>
+<li>Stable partition: After destination indices being computed, elements
+can be written to their new positions in parallel without
+conflicts.</li>
+</ul>

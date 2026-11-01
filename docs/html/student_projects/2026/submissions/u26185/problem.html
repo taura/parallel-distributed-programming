@@ -1,0 +1,296 @@
+<ul>
+<li><em>this is an example file you should finish</em></li>
+<li>write problem description, how the algorithm/baseline code works,
+and where you think you can apply parallel computing</li>
+<li>if you are looking at this file from Jupyter, you can see the
+preview by right-clicking on the cell and “Show Markdown Preview”</li>
+</ul>
+<h1
+id="training-a-small-decoder-only-transformer-on-mqar-from-scratch.">Training
+a Small Decoder-Only Transformer on MQAR from Scratch.</h1>
+<h2 id="the-task-remembering-facts-given-in-the-input">The task:
+remembering facts given in the input</h2>
+<p>Large language models (LLMs) can answer questions about information
+that appears earlier in their input (“in-context recall”). Asked “What
+is Alice’s phone number?” after a list of phone numbers, an LLM finds
+the matching entry and copies the number. We study this ability in a
+minimal, fully synthetic form called <strong>Multi-Query Associative
+Recall (MQAR)</strong>.</p>
+<p>Each input is a sequence of tokens with two parts:</p>
+<ol type="1">
+<li><strong>Context</strong>: <code>N</code> key-value pairs. Keys are
+distinct within a sequence, and each key is assigned a random
+value.</li>
+<li><strong>Queries</strong>: <code>Q</code> keys drawn from the
+context. After each query key, the model must output the value that was
+paired with it in the context.</li>
+</ol>
+<p>Example with <code>N = 4</code>, <code>Q = 3</code> (<code>k*</code>
+are key tokens, <code>v*</code> are value tokens):</p>
+<pre><code>context:  k12 v3  k5 v40  k33 v3  k7 v18
+queries:  k5 [v40]  k7 [v18]  k12 [v3]</code></pre>
+<p>The bracketed tokens are the answers the model must predict. The
+key-value assignment is regenerated randomly for every sequence. A model
+therefore cannot memorize the answers; it has to learn a general
+<em>procedure</em>: find the earlier occurrence of the query key and
+copy the token after it. In real Transformers this procedure is
+implemented by attention (so-called “induction heads”), so MQAR is a
+small but genuine Transformer workload.</p>
+<h2 id="what-we-build">What we build</h2>
+<p>We train a small decoder-only Transformer (the architecture behind
+GPT-style LLMs) <strong>from scratch</strong> on MQAR:</p>
+<ul>
+<li>Random initial weights, deterministic from a seed.</li>
+<li>Training data generated on the fly by a seeded random generator; no
+dataset download.</li>
+<li>Forward pass, backpropagation and the Adam optimizer, all written by
+hand in C++17 with only the standard library.</li>
+</ul>
+<h2 id="how-we-know-the-result-is-correct">How we know the result is
+correct</h2>
+<ul>
+<li><strong>Accuracy vs. chance.</strong> With <code>Vv</code> possible
+values, random guessing gets about <code>1/Vv</code> of the answers
+right (about 1.6 % for <code>Vv = 64</code>). A model that learned
+recall gets far above this on held-out sequences that were never used
+for training.</li>
+<li><strong>Gradient check.</strong> On a tiny model, the gradients
+computed by backpropagation are compared against finite differences
+<code>(f(w+ε) − f(w−ε)) / 2ε</code>. Their relative error must be
+small.</li>
+<li><strong>Overfit test.</strong> The model must be able to drive the
+loss of one fixed small batch close to zero.</li>
+<li><strong>Reproducibility.</strong> The same seed and parameters give
+the same output.</li>
+</ul>
+<h2 id="problem-size-and-difficulty">Problem size and difficulty</h2>
+<p>Everything is set by command-line parameters:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--pairs N</code>, <code>--queries Q</code></td>
+<td>facts in context and questions; sequence length
+<code>T = 2N + 2Q</code></td>
+</tr>
+<tr>
+<td><code>--keys K</code>, <code>--values Vv</code></td>
+<td>key/value vocabulary sizes; vocabulary <code>V = K + Vv</code></td>
+</tr>
+<tr>
+<td><code>--layers L</code>, <code>--dim d</code>,
+<code>--heads H</code></td>
+<td>model depth, width and attention heads</td>
+</tr>
+<tr>
+<td><code>--batch B</code>, <code>--steps S</code>,
+<code>--lr</code></td>
+<td>sequences per step, training steps, learning rate</td>
+</tr>
+<tr>
+<td><code>--seed</code></td>
+<td>random seed for data and weights</td>
+</tr>
+<tr>
+<td><code>--shift 0\|1</code></td>
+<td>token shift on/off (see “Model” below; default on)</td>
+</tr>
+<tr>
+<td><code>--gradcheck 1</code>, <code>--overfit 1</code></td>
+<td>correctness checks (see above)</td>
+</tr>
+</tbody>
+</table>
+<p>More pairs make the task harder and the sequences longer. A larger
+<code>d</code> and <code>L</code> make the model more capable and each
+step more expensive.</p>
+<p>We use the same program at three scales:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Purpose</th>
+<th>Example setting</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Correctness</td>
+<td><code>--dim 16 --heads 2 --pairs 4 --queries 4 --keys 8 --values 8 --batch 2 --gradcheck 1 --steps 0</code></td>
+<td>gradient check; well under a second</td>
+</tr>
+<tr>
+<td>Overfit test</td>
+<td><code>--dim 32 --heads 2 --pairs 4 --queries 4 --keys 8 --values 8 --batch 4 --overfit 1 --steps 300</code></td>
+<td>training loss of one fixed batch goes to about 0</td>
+</tr>
+<tr>
+<td>Serial learning run (defaults)</td>
+<td><code>L=2 d=64 H=4 N=Q=8</code> (<code>T</code> = 32),
+<code>K=Vv=64</code>, <code>B=32</code>, 300 steps; 0.13 M
+parameters</td>
+<td>held-out accuracy rises from chance (1.6 %) to about 100 %</td>
+</tr>
+<tr>
+<td>Performance benchmark</td>
+<td><code>--layers 4 --dim 256 --heads 8 --pairs 32 --queries 32 --batch 16 --steps 10</code>;
+3.3 M parameters, <code>T</code> = 128</td>
+<td>about 40 GFLOP per step; a fixed number of timed steps, the same
+workload for serial and parallel versions</td>
+</tr>
+</tbody>
+</table>
+<p>The serial baseline must finish within the 15-minute job limit, so
+the benchmark scale runs only a few steps. The training <em>speed</em>
+of each step is what we compare. A faster (parallel) version can
+afterwards train the benchmark-size model to high accuracy. The quantity
+“time to reach X % accuracy” then shows the gain much more clearly than
+any single number.</p>
+<p>Measured on a Miyabi compute node (one NVIDIA Grace CPU core), the
+default run trained for 300 steps in 21.9 s: 0.073 s per step, about
+14,000 tokens/s and an estimated 8.8 GFLOP/s. The whole program,
+including evaluation, took 23.5 s, and held-out accuracy reached 100 %
+(chance: 1.6 %). The benchmark scale has not been timed on Miyabi yet.
+At the same FLOP rate, one benchmark step (about 40 GFLOP) would take
+about 4.6 s, so 10 steps would take about 46 s.</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<h2 id="data-generation">Data generation</h2>
+<p>For each sequence:</p>
+<ol type="1">
+<li>Choose <code>N</code> distinct keys from the <code>K</code> key
+tokens.</li>
+<li>Give each one a random value from the <code>Vv</code> value
+tokens.</li>
+<li>Write the pairs as the context, then pick <code>Q</code> of the
+stored keys (uniformly, with repetition) and write each query key
+followed by its value.</li>
+</ol>
+<p>Training sequences and evaluation sequences come from different
+random streams, so evaluation always uses unseen sequences.</p>
+<h2 id="model">Model</h2>
+<p>A standard pre-normalization decoder-only Transformer. All tensors
+are flat <code>std::vector&lt;float&gt;</code> arrays in row-major
+order.</p>
+<ol type="1">
+<li><strong>Embedding.</strong> Each token becomes a
+<code>d</code>-dimensional vector: a token embedding plus a learned
+position embedding, plus a second learned embedding of the
+<em>previous</em> token (“token shift”).</li>
+<li><strong><code>L</code> Transformer blocks</strong>, each consisting
+of:
+<ul>
+<li>LayerNorm, then <strong>causal multi-head self-attention</strong>.
+For every position the model computes query, key and value vectors
+(<code>Q = xW_q</code>, <code>K = xW_k</code>, <code>V = xW_v</code>),
+the scores <code>QKᵀ / √(d/H)</code>, and a softmax over earlier
+positions only (the causal mask). The output is the weighted sum of
+<code>V</code>, projected by <code>W_o</code>. The result is added back
+to the input (residual connection).</li>
+<li>LayerNorm, then an <strong>MLP</strong>
+<code>W_2 · GELU(W_1 · x)</code> with hidden width <code>4d</code>,
+again added back as a residual.</li>
+</ul></li>
+<li><strong>Output.</strong> A final LayerNorm and a projection to
+<code>V</code> scores (logits). Only the <code>Q</code> query positions
+per sequence are scored, so the projection is computed only there.</li>
+</ol>
+<p>The number of parameters is about
+<code>P ≈ 12·L·d² + 3·V·d + T·d</code>.</p>
+<p><strong>Why the token shift.</strong> Without it, the model must
+first learn to copy each key into the position of the value that follows
+it (one attention layer), and only then can a second layer match the
+query against it. Neither layer gets a useful learning signal until the
+other works. In our runs the plain model stayed at about
+<code>1/N</code> accuracy (it only learned “answer with some value from
+the context”) even after 160,000 training sequences. With the token
+shift, every value position already knows its key, and the model learns
+the task in about 200 steps. Similar short “shift” or convolution layers
+are used in research models designed for this kind of recall.
+<code>--shift 0</code> reproduces the plateau.</p>
+<h2 id="training">Training</h2>
+<ul>
+<li><strong>Loss.</strong> Softmax cross-entropy, computed only at the
+query positions where an answer must be predicted. The other positions
+are not scored.</li>
+<li><strong>Backward pass.</strong> Every layer has a hand-written
+backward function that computes gradients for its inputs and weights, in
+reverse layer order.</li>
+<li><strong>Optimizer.</strong> Adam updates every parameter. A fresh
+batch of <code>B</code> sequences is generated for each step.</li>
+<li><strong>Evaluation.</strong> Every few steps, and at the end, the
+program reports the training loss and the accuracy on held-out
+sequences.</li>
+</ul>
+<h2 id="timing-and-output">Timing and output</h2>
+<p>The main computation (the training loop) is timed with
+<code>std::chrono</code> separately from setup, gradient checking and
+evaluation. The program prints:</p>
+<ul>
+<li>all parameters</li>
+<li>loss and accuracy over time, together with the chance level</li>
+<li>the training time and tokens processed per second</li>
+<li>an estimated FLOP rate</li>
+</ul>
+<p>The estimate counts only matrix products and attention, with backward
+taken as twice the forward cost:
+<code>FLOPs/step ≈ 3 · B · ( L·(24·d²·T + 2·d·T·(T+1)) + 2·d·V·Q )</code>.</p>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<p>Training time is dominated by matrix products and attention, and both
+have a lot of independent work.</p>
+<ul>
+<li><strong>Across sequences in a batch.</strong> The <code>B</code>
+sequences are processed independently in the forward and backward
+passes. Only the weight gradients are summed over the batch, a reduction
+that each thread can perform into its own buffer and combine at the
+end.</li>
+<li><strong>Matrix multiplications.</strong> The projections
+(<code>W_q</code>, <code>W_k</code>, <code>W_v</code>, <code>W_o</code>)
+and the MLP layers are matrix products of shape
+<code>(B·T × d) · (d × d)</code> or <code>(d × 4d)</code>. They account
+for most of the FLOPs. Every output element is independent. This is
+where multicore parallelization, cache blocking (tiling), SIMD
+instructions and the GPU should give the largest gains.</li>
+<li><strong>Attention.</strong> Each (sequence, head) pair is
+independent, and so is each row of the <code>T × T</code> score matrix.
+The causal mask makes the work triangular, which causes load imbalance
+if rows are split naively. The scores grow as <code>T²</code>, so for
+long sequences a fused attention computation that never stores the whole
+score matrix saves memory traffic.</li>
+<li><strong>Element-wise operations.</strong> GELU, residual additions
+and the Adam update touch every element independently. They are
+trivially parallel but limited by memory bandwidth rather than
+arithmetic.</li>
+<li><strong>Reductions.</strong> LayerNorm (mean and variance), softmax
+(maximum and sum) and the loss need parallel reductions across a
+row.</li>
+<li><strong>Data generation and evaluation.</strong> Each sequence can
+be generated and evaluated independently, using a separate random stream
+per sequence so that results stay deterministic.</li>
+</ul>
+<p><strong>What is not parallel.</strong> Layers depend on each other in
+order, and each training step depends on the weights produced by the
+previous one. Parallelism therefore comes from <em>within</em> a step,
+not across steps.</p>
+<p><strong>Expected performance questions.</strong> At small
+<code>d</code> the weights fit in cache and the GPU is underused, so
+speedups should grow with <code>d</code>, <code>T</code> and
+<code>B</code>. Comparing the measured FLOP rate against the hardware’s
+peak tells us whether each part is limited by computation or by memory
+bandwidth. Parallel versions may sum floating-point numbers in a
+different order than the serial version, so results are compared with a
+tolerance rather than bit-for-bit.</p>

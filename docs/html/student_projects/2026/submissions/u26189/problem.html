@@ -1,0 +1,99 @@
+<h1 id="fir-decimation-and-energy-detection-on-iq-samples">FIR
+Decimation and Energy Detection on IQ Samples</h1>
+<h2 id="problem">Problem</h2>
+<p>I chose a signal-processing task that works on IQ data. IQ data has
+two values per sample: I (in-phase) and Q (quadrature).</p>
+<p>The program does three common steps used in SDR:</p>
+<ol type="1">
+<li>low-pass FIR filtering,</li>
+<li>decimation (keep one sample every D samples),</li>
+<li>block-wise energy detection.</li>
+</ol>
+<p>This is a realistic workflow in communication/radar/remote-sensing
+pipelines and is a good target for later multicore, SIMD, and GPU
+optimization.</p>
+<p>The program supports two input modes:</p>
+<ul>
+<li>real IQ file (<code>ci16</code> or <code>cf32</code>, interleaved
+I/Q), or</li>
+<li>deterministic synthetic QPSK + noise.</li>
+</ul>
+<p>The workload is controlled by command-line options
+(<code>--samples</code>, <code>--taps</code>, <code>--decim</code>,
+<code>--repeats</code>, …), so runtime can be tuned from seconds to
+minutes.</p>
+<p>For real-data experiments, I use the HMAP SigMF dataset (Zenodo
+record 7416081). Its IQ payload (<code>*.sigmf-data</code>) has 8
+files:</p>
+<ul>
+<li>4 files around 4.596 GB each,</li>
+<li>4 files around 3.116 GB each,</li>
+<li>about 30.85 GB total (about 28.7 GiB), plus small metadata files
+(<code>*.sigmf-meta</code>).</li>
+</ul>
+<h2 id="how-the-baseline-code-works">How the baseline code works</h2>
+<p>The baseline implementation is <code>iq_baseline.cc</code> (C++17,
+standard library only).</p>
+<p>Main steps:</p>
+<ol type="1">
+<li><strong>Input preparation</strong>
+<ul>
+<li>If <code>--input</code> is given, load file data into two float
+arrays (<code>I[]</code>, <code>Q[]</code>).</li>
+<li>Otherwise, generate synthetic signal with a fixed random seed.</li>
+</ul></li>
+<li><strong>Filter design</strong>
+<ul>
+<li>Build low-pass FIR coefficients (windowed-sinc + Hamming window) and
+normalize them.</li>
+</ul></li>
+<li><strong>Main computation (timed)</strong>
+<ul>
+<li>Repeat <code>--repeats</code> times:
+<ul>
+<li>FIR + decimation: [ y[m] = _{k=0}^{T-1} h[k] x[mD + k] ] where
+<code>T</code> is taps and <code>D</code> is decimation factor.</li>
+<li>Compute energy (|y_I|^2 + |y_Q|^2), total energy, checksum, and
+block-hit count.</li>
+</ul></li>
+</ul></li>
+<li><strong>Result check</strong>
+<ul>
+<li>Recompute the first <code>--check-outputs</code> results with double
+precision, then report max absolute error and root-mean-square
+error.</li>
+</ul></li>
+</ol>
+<p>Printed outputs include main compute time, approximate FIR throughput
+(GFLOP/s), energy, checksum, and error metrics.</p>
+<h2 id="baseline-and-improved-versions">Baseline and improved
+versions</h2>
+<p>I implemented two versions of the same algorithm:</p>
+<ul>
+<li><code>iq_baseline.cc</code>: serial baseline (plain loops, no
+OpenMP).</li>
+<li><code>iq_improved.cc</code>: OpenMP-parallel version for multicore
+experiments.</li>
+</ul>
+<h2 id="where-is-parallelism">Where is parallelism</h2>
+<p>The most expensive part is FIR + decimation. Each output index is
+mostly independent, so it maps well to parallel hardware.</p>
+<ul>
+<li><strong>Multicore CPU</strong>: split output indices across
+threads.</li>
+<li><strong>SIMD</strong>: vectorize multiply-add operations in FIR
+loops.</li>
+<li><strong>GPU</strong>: map outputs to many threads and reuse
+input/tap data efficiently.</li>
+</ul>
+<h2 id="data">Data</h2>
+<p>Download the data used from the following command lines in
+code/data:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Small Zenodo SigMF set</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="st">&quot;https://zenodo.org/api/records/13143544/files/crab-giantpulse.sigmf-data/content&quot;</span> <span class="at">-o</span> code/data/crab-giantpulse.sigmf-data</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="st">&quot;https://zenodo.org/api/records/13143544/files/crab-giantpulse.sigmf-meta/content&quot;</span> <span class="at">-o</span> code/data/crab-giantpulse.sigmf-meta</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Medium size</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="st">&quot;https://zenodo.org/api/records/7416081/files/HMAP_2022-11-16T15:16:06_1ax.sigmf-data/content&quot;</span> <span class="at">-o</span> code/data/HMAP_2022-11-16T15:16:06_1ax.sigmf-data</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="st">&quot;https://zenodo.org/api/records/7416081/files/HMAP_2022-11-16T15:16:06_1ax.sigmf-meta/content&quot;</span> <span class="at">-o</span> code/data/HMAP_2022-11-16T15:16:06_1ax.sigmf-meta</span></code></pre></div>

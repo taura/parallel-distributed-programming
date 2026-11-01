@@ -1,0 +1,158 @@
+<h1 id="training-a-small-gpt-to-sort-digits-in-c">Training a small GPT
+to sort digits in C++</h1>
+<h2 id="problem">Problem</h2>
+<p>The task is to train a small GPT to sort digit sequences: for
+example, to turn <code>0 0 2 1 0 1</code> into <code>0 0 0 1 1 2</code>.
+This project uses the sorting task from Karpathy’s minGPT demo to study
+the cost of training and running a GPT model. The code is a serial C++
+port of minGPT, an educational implementation of GPT. Later assignments
+will parallelize this code and compare its runtime with the serial
+version.</p>
+<p>GPT predicts the next token from the tokens it has already read. In a
+text model, a token might be a word fragment. Here, each digit is one
+token. The model assigns a probability to each possible next digit,
+chooses one, and appends it to the input. Repeating this process
+produces the answer.</p>
+<p>A conventional sort supplies the training answers. GPT learns weights
+that let it predict those answers one digit at a time. This makes it
+possible to exercise GPT’s matrix operations on a task with easily
+checked results. The program generates its own examples and needs no
+text dataset or pretrained weights.</p>
+<h2 id="how-the-baseline-code-works">How the baseline code works</h2>
+<h3 id="training-and-checking-the-answers">Training and checking the
+answers</h3>
+<p>The data generator uses a fixed random seed to create digit
+sequences. It sorts a copy of each sequence, joins the problem and
+answer, and forms an input and a target shifted by one position:</p>
+<pre class="text"><code>Problem:  0 0 2 1 0 1
+Answer:   0 0 0 1 1 2
+Input:    0 0 2 1 0 1 0 0 0 1 1
+Targets: -1 -1 -1 -1 -1 0 0 0 1 1 2</code></pre>
+<p>Each input position predicts the token in the corresponding target
+position. A target of <code>-1</code> means that the prediction is not
+scored. The first scored prediction comes after the model has read the
+whole problem. For a problem of length
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>,
+this gives
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2n-1</annotation></semantics></math>
+input tokens and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
+scored predictions.</p>
+<p>Several examples are processed together as a batch. The cross-entropy
+loss penalizes low probabilities for the correct digits. Lower loss
+means better predictions on the scored positions. Backpropagation
+computes how each weight affects this loss. The trainer clips large
+gradients, then uses the AdamW optimizer to update the weights.</p>
+<p>Training and test-loss calculation use the correct earlier answer
+digits as input. To check generation, the model starts with only the
+problem and produces its own answer. The program counts how many
+generated answers match the sorted sequence in every position. A fixed
+hash assigns each problem to either the training or test set, so the
+same problem cannot appear in both.</p>
+<h3 id="model-and-implementation">Model and implementation</h3>
+<p>The model first looks up a numerical vector for each digit and adds a
+vector for its position. These vectors pass through a series of
+Transformer blocks. Within each block, self-attention mixes information
+from the current and earlier positions. A mask hides later positions so
+the model cannot read the digit it is supposed to predict. A small
+feed-forward network then transforms each position’s vector. It uses
+GELU, a nonlinear function, between two fully connected layers; the
+intermediate vector is four times as wide as the input.</p>
+<p>LayerNorm adjusts the scale of the features before each of these two
+operations. Residual connections add the result of each operation to its
+input. After the last block, another LayerNorm and an output layer
+produce a score for each possible digit.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>File</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>model.h/.cpp</code></td>
+<td>GPT layers, initialization, forward pass, and autoregressive
+generation</td>
+</tr>
+<tr>
+<td><code>trainer.h/.cpp</code></td>
+<td>Training loop, gradient clipping, and AdamW</td>
+</tr>
+<tr>
+<td><code>tensor.h/.cpp</code></td>
+<td>Matrix multiplication, elementwise operations, normalization, and
+automatic differentiation</td>
+</tr>
+<tr>
+<td><code>code.cpp</code></td>
+<td>Data generation, argument parsing, evaluation, self-tests, and
+output</td>
+</tr>
+</tbody>
+</table>
+<p>All numerical operations use serial loops over flat arrays of
+<code>double</code> values. The code also implements automatic
+differentiation, which records the calculations and propagates gradients
+through them. It requires only the C++17 standard library and uses no
+OpenMP, threads, GPU kernels, or SIMD intrinsics.</p>
+<h2 id="where-is-parallelism">Where is parallelism</h2>
+<p>Matrix multiplication is a starting point: each output entry is a dot
+product that can be computed independently. These products appear in the
+fully connected layers, attention, and backpropagation. The original
+minGPT calls PyTorch’s <code>nn.Linear</code> and matrix multiplication
+operations, which can use CPU threads, SIMD, or GPU kernels. In this
+port, the corresponding loops are in <code>Tensor::matmul()</code>.</p>
+<p>On a multicore CPU, output rows or rectangular tiles of a matrix can
+be assigned to different threads. On a GPU, many threads can cooperate
+on each tile and reuse its input data. Separate examples in a batch
+provide more work to distribute. Normalization and softmax, which turns
+scores into probabilities, can also run on separate rows, with a
+reduction inside each row.</p>
+<p>Backward computation needs care because many predictions contribute
+to the same weight’s gradient. The current <code>add_grad()</code>
+performs <code>+=</code>; two threads updating the same entry would
+race. One approach is to accumulate gradients in per-thread buffers and
+combine them afterward. Repeated digits create the same issue when
+gradients are added to their shared embedding vector.</p>
+<p>The amount of work depends on the batch size
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>,
+input length
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>,
+and vector width
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>.
+Each block has roughly
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false" form="prefix">(</mo><mi>B</mi><mi>T</mi><msup><mi>C</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">O(BTC^2)</annotation></semantics></math>
+work in its linear transformations and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false" form="prefix">(</mo><mi>B</mi><msup><mi>T</mi><mn>2</mn></msup><mi>C</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">O(BT^2C)</annotation></semantics></math>
+in attention. With other sizes fixed, doubling the input length roughly
+quadruples the attention work. Doubling the vector width roughly
+quadruples the linear-transformation work. For a small model, thread and
+kernel launch overhead may outweigh the savings. For larger inputs,
+storing attention matrices and moving intermediate arrays can become
+expensive. The C++ <code>transpose</code> copies data, whereas PyTorch
+usually changes only the array’s metadata, so data movement also matters
+in a comparison.</p>
+<p>There are sequential dependencies across layers and training updates.
+Within a training layer, all positions can be computed together because
+the correct input sequence is already available. Generation must wait
+for each new digit before predicting the next one. Parallelism is still
+available inside that prediction and across separate problems. Runtime
+comparisons need the same inputs, model dimensions, update count,
+measurement scope, and numerical precision.</p>
+<h2 id="reference-implementation">Reference implementation</h2>
+<ul>
+<li><a
+href="https://github.com/karpathy/minGPT/tree/37baab71b9abea1b76ab957409a1cc2fbfba8a26"
+target="_blank" rel="noopener">karpathy/minGPT</a>:
+<code>mingpt/model.py</code>, <code>mingpt/trainer.py</code>, and
+<code>demo.ipynb</code></li>
+<li>Source commit:
+<code>37baab71b9abea1b76ab957409a1cc2fbfba8a26</code></li>
+<li>Original implementation license: MIT (included in
+<code>LICENSE.minGPT</code>)</li>
+</ul>

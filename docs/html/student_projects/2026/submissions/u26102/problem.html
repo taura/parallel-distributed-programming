@@ -1,0 +1,30 @@
+<ul>
+<li><em>this is an example file you should finish</em></li>
+<li>write problem description, how the algorithm/baseline code works,
+and where you think you can apply parallel computing</li>
+<li>if you are looking at this file from Jupyter, you can see the
+preview by right-clicking on the cell and “Show Markdown Preview”</li>
+</ul>
+<h1 id="making-xxxxxx-from-scratch">Making XXXXXX from scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>サイン波を小規模なMLPで回帰する．</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<pre><code>// ミニバッチ SGD
+for(size_t pos=0;pos&lt;idx.size();pos+=batch){
+    std::vector&lt;double&gt; dw1,db1,dw2,db2; dw1.assign(w1.size(),0);
+    // 先頭バッチ分だけ初期化
+    // 勾配集計
+    //   ŷ = forward(...);
+    //   error = ŷ - y;
+    //   dL/dw2 = error * h;
+    //   ... (全勾配計算)
+    //   w2 -= lr * dw2; b2 -= lr * db2;
+    //   w1 += lr * dw1; b1 += lr * db1;
+}</code></pre>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<ul>
+<li>ミニバッチごとの勾配集計を
+<code>#pragma omp prallel for</code>でデータ並列化</li>
+<li>ベクトル積を<code>#pragma omp simd</code>で</li>
+</ul>

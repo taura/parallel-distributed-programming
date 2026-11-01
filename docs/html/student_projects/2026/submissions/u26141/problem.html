@@ -1,0 +1,67 @@
+<p>Pseudo code of the main loop:</p>
+<pre><code>for each pixel (x, y):
+  c = (cr, ci) = position of the pixel center in the complex plane
+  z = (0, 0); k = 0
+  while (k &lt; max_iter and |z|^2 &lt;= 4):
+    z = z*z + c      // written with real and imaginary parts
+    k = k + 1
+  iters[y][x] = k</code></pre>
+<p>Everything else (area estimation, image output) is done after this
+loop, from the array <code>iters</code>.</p>
+<p>How the result is verified: - The area of the Mandelbrot set is known
+to be about 1.5066. The program estimates it as (area of the region) x
+(number of pixels with k == max_iter) / (number of all pixels). With
+finite <code>max_iter</code> and resolution, the estimate is slightly
+larger than the true value (pixels that diverge late are counted as
+inside), and it approaches 1.5066 as <code>max_iter</code> and the
+resolution increase. - The image should show the well-known shape (a
+main cardioid with circular bulbs). - <code>total_iters</code> (the sum
+of the iteration counts of all pixels) is printed. A parallel version
+must give exactly the same value as the serial version.</p>
+<p>Result of the serial baseline on Miyabi (1 thread,
+<code>./mandelbrot 1024 1024 1000</code>):</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>inside (pixels in the set)</td>
+<td>176006</td>
+</tr>
+<tr>
+<td>total_iters</td>
+<td>181039268</td>
+</tr>
+<tr>
+<td>estimated_area</td>
+<td>1.5107 (known: about 1.5066)</td>
+</tr>
+<tr>
+<td>time</td>
+<td>0.549 sec</td>
+</tr>
+</tbody>
+</table>
+<p>This is about 3.3 x 10^8 iterations per second. About 97% of
+<code>total_iters</code> comes from the pixels inside the set, each of
+which costs <code>max_iter</code> iterations, so the cost is dominated
+by the inside of the set and its boundary.</p>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<ul>
+<li>Every pixel is computed independently from the others (no data
+dependency), so all W x H pixels can be computed in parallel. Each
+iteration of the outer loops can be given to a different thread
+(e.g. <code>#pragma omp parallel for</code>, possibly with
+<code>collapse(2)</code>), and the same structure fits a GPU well.</li>
+<li>The cost per pixel varies a lot: pixels far outside the set finish
+after a few iterations, while pixels inside the set take
+<code>max_iter</code> iterations. Therefore a plain static partition
+causes load imbalance, and the scheduling policy (static / dynamic /
+chunked / tasks) will matter.</li>
+<li>Computing the statistics (<code>inside</code>,
+<code>total_iters</code>) is a reduction.</li>
+</ul>

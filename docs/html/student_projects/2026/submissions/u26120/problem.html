@@ -1,0 +1,82 @@
+<ul>
+<li><em>this is an example file you should finish</em></li>
+<li>write problem description, how the algorithm/baseline code works,
+and where you think you can apply parallel computing</li>
+<li>if you are looking at this file from Jupyter, you can see the
+preview by right-clicking on the cell and “Show Markdown Preview”</li>
+</ul>
+<h1 id="making-2d-mos-electrostatic-simulation-from-scratch">Making 2D
+MOS electrostatic simulation from scratch</h1>
+<h1 id="problem">Problem</h1>
+<figure>
+<img src="img/1.png" alt="MOS" />
+<figcaption aria-hidden="true">MOS</figcaption>
+</figure>
+<p>MOS (Metal-Oxide-Semiconductor) is an important structure in the
+field of semiconductors. The problem is to calculate electrostatic
+potential of this structure.</p>
+<figure>
+<img src="img/2.png" alt="Simulation" />
+<figcaption aria-hidden="true">Simulation</figcaption>
+</figure>
+<p>The simulation condition is shown above.</p>
+<p>The basic poisson equation of electrostatics
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>∇</mi><mo>⋅</mo><mo stretchy="false" form="prefix">(</mo><mi>ε</mi><mi>∇</mi><mi>ψ</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mi>ρ</mi></mrow><annotation encoding="application/x-tex">\nabla\cdot(\varepsilon\nabla\psi) = -\rho</annotation></semantics></math>
+should be true in all points, where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ψ</mi><annotation encoding="application/x-tex">\psi</annotation></semantics></math>
+is electrostatic potential (voltage),
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>
+is charge density and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ε</mi><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math>
+is permittivity.</p>
+<p>There is no free charge in oxide:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\rho=0</annotation></semantics></math>
+in oxide.</p>
+<p>In semiconductor, the charge density depends on the potential:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>=</mo><mi>−</mi><mi>q</mi><mo stretchy="false" form="prefix">[</mo><msub><mi>p</mi><mn>0</mn></msub><msup><mi>e</mi><mrow><mi>−</mi><mi>ψ</mi><mi>/</mi><msub><mi>V</mi><mi>T</mi></msub></mrow></msup><mo>−</mo><msub><mi>n</mi><mn>0</mn></msub><msup><mi>e</mi><mrow><mi>ψ</mi><mi>/</mi><msub><mi>V</mi><mi>T</mi></msub></mrow></msup><mo>+</mo><msub><mi>N</mi><mi>D</mi></msub><mo>−</mo><msub><mi>N</mi><mi>A</mi></msub><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">\rho=-q[p_0 e^{-\psi/V_T} - n_0 e^{\psi/V_T} + N_D - N_A]</annotation></semantics></math>
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>n</mi><mn>0</mn></msub><annotation encoding="application/x-tex">n_0</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>p</mi><mn>0</mn></msub><annotation encoding="application/x-tex">p_0</annotation></semantics></math>
+are thermal equilibrium concentration of electron and hole,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mi>D</mi></msub><annotation encoding="application/x-tex">N_D</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mi>A</mi></msub><annotation encoding="application/x-tex">N_A</annotation></semantics></math>
+are doner and acceptor concentration and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mi>T</mi></msub><mo>=</mo><msub><mi>k</mi><mi>b</mi></msub><mi>T</mi><mi>/</mi><mi>q</mi></mrow><annotation encoding="application/x-tex">V_T=k_bT/q</annotation></semantics></math>
+is thermal voltage.</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p>This algorithm updates
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ψ</mi><annotation encoding="application/x-tex">\psi</annotation></semantics></math>
+until convergence.</p>
+<pre><code>for (iter = 1; iter &lt;= max_iters; ++iter) {
+  for (sweep = 0; sweep &lt; inner_jacobi; ++sweep) {
+    update_psi();
+  }
+  if (converged) break;
+}</code></pre>
+<p>I actually have no idea why there are double loops.</p>
+<p>Inside <code>update_psi()</code></p>
+<pre><code>for (j = 1; j &lt; ny - 1; ++j) {
+  for (i = 1; i &lt; nx - 1; ++i) {
+    rho = calculate_rho_from_psi();
+    g = calculate_residual(rho);
+    psi_new[j][i] = calculate_update_amount(psi[j][i], g);
+  }
+}
+copy_psi_new_to_psi();</code></pre>
+<p>Residual
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math>
+is an error of the poisson equation, which should be zero ideally. We
+can calculate how much to update
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ψ</mi><annotation encoding="application/x-tex">\psi</annotation></semantics></math>
+by using
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>g</mi><mi>/</mi><mi>d</mi><mi>ψ</mi></mrow><annotation encoding="application/x-tex">dg/d\psi</annotation></semantics></math>.</p>
+<p>I manually added comments for better understanding and TODOs.</p>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<ul>
+<li>The entire grid can be updated in parallel.</li>
+</ul>

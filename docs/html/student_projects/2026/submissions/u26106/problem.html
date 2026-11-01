@@ -1,0 +1,78 @@
+<h1 id="making-a-cornell-box-path-tracer-from-scratch">Making a Cornell
+Box Path Tracer from Scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>I implement a small serial Monte Carlo path tracer in C++17. The
+target scene is the classic Cornell Box:</p>
+<ul>
+<li>red wall, green wall, white walls/floor/ceiling,</li>
+<li>one rectangular ceiling area light,</li>
+<li>two interior white boxes.</li>
+</ul>
+<p>The renderer outputs a PPM image. The goal is to build a clean serial
+baseline that can be parallelized later.</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<h2 id="rendering-equation-and-lambertian-brdf">1) Rendering equation
+and Lambertian BRDF</h2>
+<p>For outgoing radiance
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mi>o</mi></msub><annotation encoding="application/x-tex">L_o</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mi>o</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><msub><mi>ω</mi><mi>o</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>L</mi><mi>e</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><msub><mi>ω</mi><mi>o</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mo>∫</mo><msup><mi mathvariant="script">ℋ</mi><mn>2</mn></msup></msub><msub><mi>f</mi><mi>r</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><msub><mi>ω</mi><mi>i</mi></msub><mo>,</mo><msub><mi>ω</mi><mi>o</mi></msub><mo stretchy="false" form="postfix">)</mo><mspace width="0.167em"></mspace><msub><mi>L</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><msub><mi>ω</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><mi>n</mi><mo>⋅</mo><msub><mi>ω</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mspace width="0.167em"></mspace><mi>d</mi><msub><mi>ω</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">
+L_o(x, \omega_o)
+= L_e(x, \omega_o)
++ \int_{\mathcal{H}^2} f_r(x, \omega_i, \omega_o)\,L_i(x, \omega_i)\,(n\cdot \omega_i)\,d\omega_i
+</annotation></semantics></math></p>
+<p>For Lambertian surfaces:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>r</mi></msub><mo>=</mo><mfrac><mi>ρ</mi><mi>π</mi></mfrac></mrow><annotation encoding="application/x-tex">
+f_r = \frac{\rho}{\pi}
+</annotation></semantics></math></p>
+<p>where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>
+is albedo.</p>
+<h2 id="direct-lighting-next-event-estimation">2) Direct lighting (Next
+Event Estimation)</h2>
+<p>At each diffuse hit point, I sample one random point on the
+rectangular area light. If the sampled point is visible (shadow ray is
+not blocked), direct light is added using area-domain Monte Carlo:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mtext mathvariant="normal">direct</mtext></msub><mo>≈</mo><mfrac><mrow><msub><mi>f</mi><mi>r</mi></msub><mspace width="0.167em"></mspace><msub><mi>L</mi><mi>e</mi></msub><mspace width="0.167em"></mspace><mi>G</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><msub><mi>x</mi><mi>l</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><mrow><msub><mi>p</mi><mi>A</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>x</mi><mi>l</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>,</mo><mspace width="1.0em"></mspace><mi>G</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><msub><mi>x</mi><mi>l</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><mrow><mi mathvariant="normal">max</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mi>n</mi><mo>⋅</mo><msub><mi>ω</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mspace width="0.167em"></mspace><mrow><mi mathvariant="normal">max</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><msub><mi>n</mi><mi>l</mi></msub><mo>⋅</mo><mo stretchy="false" form="prefix">(</mo><mi>−</mi><msub><mi>ω</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mo stretchy="false" form="postfix">∥</mo><msub><mi>x</mi><mi>l</mi></msub><mo>−</mo><mi>x</mi><msup><mo stretchy="false" form="postfix">∥</mo><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+L_{\text{direct}} \approx
+\frac{f_r\,L_e\,G(x,x_l)}{p_A(x_l)},
+\quad
+G(x,x_l)=\frac{\max(0,n\cdot \omega_i)\,\max(0,n_l\cdot (-\omega_i))}{\|x_l-x\|^2}
+</annotation></semantics></math></p>
+<p>For uniform sampling on the light,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>A</mi></msub><mo>=</mo><mn>1</mn><mi>/</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">p_A = 1/A</annotation></semantics></math>
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+is light area.</p>
+<h2 id="indirect-lighting-recursive-path-tracing">3) Indirect lighting
+(recursive path tracing)</h2>
+<p>Indirect bounce directions are sampled with cosine-weighted
+hemisphere sampling:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>ω</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><mrow><mi mathvariant="normal">cos</mi><mo>&#8289;</mo></mrow><mi>θ</mi></mrow><mi>π</mi></mfrac></mrow><annotation encoding="application/x-tex">
+p(\omega_i)=\frac{\cos\theta}{\pi}
+</annotation></semantics></math></p>
+<p>The recursive Monte Carlo contribution for one sample is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mtext mathvariant="normal">indirect</mtext></msub><mo>∼</mo><mfrac><mrow><msub><mi>f</mi><mi>r</mi></msub><mspace width="0.167em"></mspace><msub><mi>L</mi><mi>i</mi></msub><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><mi>n</mi><mo>⋅</mo><msub><mi>ω</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>ω</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+L_{\text{indirect}} \sim
+\frac{f_r\,L_i\,(n\cdot \omega_i)}{p(\omega_i)}
+</annotation></semantics></math></p>
+<p>Russian Roulette terminates long paths probabilistically after a
+minimum depth.</p>
+<ul>
+<li>Final output applies gamma correction (gamma
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mn>2.2</mn></mrow><annotation encoding="application/x-tex">=2.2</annotation></semantics></math>)
+and writes a PPM file.</li>
+</ul>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<p>This baseline has many independent computations:</p>
+<ul>
+<li><strong>Across pixels:</strong> each pixel can be rendered
+independently.</li>
+<li><strong>Across samples:</strong> per-pixel Monte Carlo samples are
+independent before reduction.</li>
+<li><strong>Across light/shadow tests:</strong> each path step and
+visibility test is independent.</li>
+</ul>
+<p>So the main parallel decomposition is data parallelism over image
+pixels (CPU threads or GPU threads), with reductions for sample
+accumulation.</p>

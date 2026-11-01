@@ -1,0 +1,67 @@
+<h1 id="making-a-2d-waterdrop-simulator-from-scratch">Making a 2D
+waterdrop simulator from scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>I chose a 2D incompressible fluid simulation where the liquid is
+restricted to an initial waterdrop region. The simulation tracks
+velocity fields (<code>u</code>, <code>v</code>) and a liquid fraction
+field (<code>liq</code> in <code>[0,1]</code>) on a regular grid.</p>
+<p>The drop falls by gravity and deforms while staying as a compact
+liquid blob. The program renders a series of PPM images
+(<code>drop_0000.ppm</code>, <code>drop_0001.ppm</code>, …) so I can see
+time evolution, plus one final image.</p>
+<p>This is interesting because it is a realistic PDE-based application,
+it gives visually meaningful output, and it has enough computation to
+study performance.</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p>The code is in <code>fluid2d.cc</code> and is fully serial C++17 with
+no external libraries.</p>
+<p>Main loop per time step is:</p>
+<ol type="1">
+<li>Add body force from gravity mainly inside liquid cells.</li>
+<li>Advect velocity with a semi-Lagrangian method (bilinear
+sampling).</li>
+<li>Apply viscosity diffusion by Jacobi iterations (implicit
+diffusion).</li>
+<li>Projection step for incompressibility:
+<ul>
+<li>compute velocity divergence,</li>
+<li>solve Poisson equation for pressure using Jacobi iterations,</li>
+<li>subtract pressure gradient from velocity.</li>
+</ul></li>
+<li>Advect liquid fraction (<code>liq</code>) using the projected
+velocity.</li>
+<li>Sharpen the liquid-air interface and damp velocity outside the
+drop.</li>
+<li>Run a short second projection to keep divergence small after
+damping.</li>
+<li>Periodically render a frame as a PPM image.</li>
+</ol>
+<p>The code prints:</p>
+<ul>
+<li>simulation parameters,</li>
+<li>compute time of the main loop,</li>
+<li>maximum absolute divergence (correctness indicator),</li>
+<li>liquid volume and max speed,</li>
+<li>number of rendered frames and final image name.</li>
+</ul>
+<p>All key parameters are configurable from command line
+(<code>nx</code>, <code>ny</code>, <code>steps</code>, <code>dt</code>,
+<code>visc</code>, <code>jacobi</code>, <code>gravity</code>,
+<code>frame-every</code>, output names), so runtime can be scaled from
+seconds to minutes.</p>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<p>Most heavy loops are per-cell stencil updates and are
+data-parallel:</p>
+<ul>
+<li>velocity advection,</li>
+<li>liquid fraction advection,</li>
+<li>divergence calculation,</li>
+<li>pressure Jacobi iteration,</li>
+<li>gradient subtraction,</li>
+<li>frame rendering loop.</li>
+</ul>
+<p>These loops can later be parallelized with multicore CPU threads and
+GPU kernels. Likely speedup limits are memory bandwidth and the
+iterative pressure solve (many sweeps over the whole grid each
+step).</p>

@@ -1,0 +1,55 @@
+<h1 id="making-ckks-encryption-from-scratch">Making CKKS Encryption from
+Scratch</h1>
+<h2 id="problem">Problem</h2>
+<p>CKKS is a homomorphic encryption scheme that supports approximate
+computations on encrypted real and complex numbers. It relies on
+polynomial arithmetic in the ring</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mi>q</mi></msub><mo>=</mo><msub><mi mathvariant="double-struck">ℤ</mi><mi>q</mi></msub><mo stretchy="false" form="prefix">[</mo><mi>X</mi><mo stretchy="false" form="postfix">]</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>X</mi><mi>N</mi></msup><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">
+R_q = \mathbb{Z}_q[X]/(X^N+1).
+</annotation></semantics></math></p>
+<p>Polynomial multiplication is one of the main computational operations
+in CKKS. A naive implementation requires
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math>
+operations, while the Number Theoretic Transform (NTT) reduces the
+complexity to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false" form="prefix">(</mo><mi>N</mi><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>N</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">O(N\log N)</annotation></semantics></math>.</p>
+<h2 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h2>
+<p>The baseline is a serial C++ implementation consisting of three main
+components:</p>
+<ol type="1">
+<li>NTT: Implements the forward and inverse NTT using an iterative
+Cooley–Tukey algorithm.</li>
+<li>Polynomial multiplication: Performs negacyclic convolution using
+NTT, pointwise multiplication, and inverse NTT.</li>
+<li>CKKS: Implements approximate encoding/decoding and RLWE-based key
+generation, encryption, and decryption.</li>
+</ol>
+<p>For polynomial multiplication, the baseline performs the following
+steps:</p>
+<ol type="1">
+<li>Multiply polynomial coefficients by powers of a primitive
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>N</mi></mrow><annotation encoding="application/x-tex">2N</annotation></semantics></math>-th
+root of unity (twisting).</li>
+<li>Apply the forward NTT to both polynomials.</li>
+<li>Multiply the transformed coefficients elementwise.</li>
+<li>Apply the inverse NTT.</li>
+<li>Remove the twisting factors.</li>
+</ol>
+<p>Basically, the NTT transforms polynomial multiplication into
+pointwise multiplication in the NTT domain, making the computation more
+efficient. I also added some tests to check the correctness of NTT
+inversion, polynomial multiplication, and approximate recovery of
+encrypted plaintexts.</p>
+<h2 id="where-is-parallelism">Where is parallelism</h2>
+<p>The main target for parallelization is the NTT.</p>
+<ul>
+<li>Butterfly operations: Within each NTT stage, butterfly operations
+are independent and can be executed in parallel.</li>
+<li>Pointwise multiplication: Each coefficient multiplication is
+independent.</li>
+<li>Polynomial multiplication: The forward NTTs of the two input
+polynomials can be executed independently.</li>
+</ul>
+<p>The main challenge is that NTT stages have data dependencies,
+requiring synchronization between stages.</p>

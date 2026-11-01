@@ -1,0 +1,150 @@
+<h1 id="making-a-particle-hydrodynamics-solver-from-scratch">Making a
+particle hydrodynamics solver from scratch</h1>
+<h1 id="problem">Problem</h1>
+<p>When a small particle moves through a viscous liquid, it disturbs the
+surrounding fluid and can move nearby particles, even if those particles
+are not directly pushed. These hydrodynamic interactions matter in
+suspensions such as paints, battery slurries, and catalyst inks.</p>
+<p>The problem is to calculate the instantaneous velocities of N
+spherical particles, given their positions and applied forces. I use the
+Rotne-Prager-Yamakawa (RPY) approximation, which estimates how forces
+are transmitted through the liquid without solving a fluid velocity
+field on a grid:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝑼</mi><mi>i</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi mathvariant="bold-italic">𝑴</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><msub><mi mathvariant="bold-italic">𝑭</mi><mi>j</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\mathbf{U}_i = \sum_{j=1}^{N} \mathbf{M}_{ij}\mathbf{F}_j.
+</annotation></semantics></math></p>
+<p>Here,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝑭</mi><mi>j</mi></msub><annotation encoding="application/x-tex">\mathbf{F}_j</annotation></semantics></math>
+is the non-hydrodynamic force on particle
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝑼</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\mathbf{U}_i</annotation></semantics></math>
+is the velocity of particle
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>,
+and the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>×</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">3\times3</annotation></semantics></math>
+matrix
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝑴</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><annotation encoding="application/x-tex">\mathbf{M}_{ij}</annotation></semantics></math>
+describes the response of particle
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>
+to a force on particle
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>.</p>
+<p>The baseline uses equal-sized, non-overlapping spheres in an
+unbounded liquid at low Reynolds number, where viscous effects dominate
+fluid inertia. Particle inertia is also neglected. It calculates one
+instantaneous response per load case; it does not yet simulate
+trajectories, Brownian motion, walls, or drying. RPY also omits the
+strong near-contact lubrication resistance included in more detailed
+models.</p>
+<h1 id="how-the-algorithmbaseline-code-works">How the algorithm/baseline
+code works</h1>
+<p>The program generates a slightly perturbed cubic lattice of
+particles. The first load case applies the same force to every particle.
+Additional cases apply different random forces to the same positions.
+These cases are not time steps.</p>
+<p>For a sphere of radius
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>
+in a liquid of viscosity
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>η</mi><annotation encoding="application/x-tex">\eta</annotation></semantics></math>,
+the self-response is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝑴</mi><mrow><mi>i</mi><mi>i</mi></mrow></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mn>6</mn><mi>π</mi><mi>η</mi><mi>a</mi></mrow></mfrac><mi mathvariant="bold-italic">𝑰</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\mathbf{M}_{ii} = \frac{1}{6\pi\eta a}\mathbf{I}.
+</annotation></semantics></math></p>
+<p>For distinct particles, let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math>
+be their center-to-center distance and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold-italic">𝒆</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><msub><mi mathvariant="bold-italic">𝒙</mi><mi>i</mi></msub><mo>−</mo><msub><mi mathvariant="bold-italic">𝒙</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">\mathbf{e}=(\mathbf{x}_i-\mathbf{x}_j)/r</annotation></semantics></math>
+the unit vector along their separation. For
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>≥</mo><mn>2</mn><mi>a</mi></mrow><annotation encoding="application/x-tex">r\geq2a</annotation></semantics></math>,
+the RPY formula can be applied directly to a force:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝑴</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><msub><mi mathvariant="bold-italic">𝑭</mi><mi>j</mi></msub><mo>=</mo><mi>A</mi><msub><mi mathvariant="bold-italic">𝑭</mi><mi>j</mi></msub><mo>+</mo><mi>B</mi><mi mathvariant="bold-italic">𝒆</mi><mo stretchy="false" form="prefix">(</mo><mi mathvariant="bold-italic">𝒆</mi><mo>⋅</mo><msub><mi mathvariant="bold-italic">𝑭</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">
+\mathbf{M}_{ij}\mathbf{F}_j
+= A\mathbf{F}_j+B\mathbf{e}(\mathbf{e}\cdot\mathbf{F}_j),
+</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mn>8</mn><mi>π</mi><mi>η</mi><mi>r</mi></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mn>2</mn><msup><mi>a</mi><mn>2</mn></msup></mrow><mrow><mn>3</mn><msup><mi>r</mi><mn>2</mn></msup></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><mi>B</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mn>8</mn><mi>π</mi><mi>η</mi><mi>r</mi></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mfrac><mrow><mn>2</mn><msup><mi>a</mi><mn>2</mn></msup></mrow><msup><mi>r</mi><mn>2</mn></msup></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+A=\frac{1}{8\pi\eta r}\left(1+\frac{2a^2}{3r^2}\right),
+\qquad
+B=\frac{1}{8\pi\eta r}\left(1-\frac{2a^2}{r^2}\right).
+</annotation></semantics></math></p>
+<p>The code uses
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a=1</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\eta=1</annotation></semantics></math>
+in consistent dimensionless units. It checks that particles do not
+overlap before evaluating the velocities. The main computation is the
+following direct summation (pseudocode):</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span>i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    U<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> F<span class="op">[</span>i<span class="op">]</span> <span class="op">/</span> <span class="op">(</span><span class="dv">6</span> <span class="op">*</span> pi <span class="op">*</span> eta <span class="op">*</span> a<span class="op">);</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> N<span class="op">;</span> <span class="op">++</span>j<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>i <span class="op">==</span> j<span class="op">)</span> <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        r_vector <span class="op">=</span> x<span class="op">[</span>i<span class="op">]</span> <span class="op">-</span> x<span class="op">[</span>j<span class="op">];</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> length<span class="op">(</span>r_vector<span class="op">);</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        e <span class="op">=</span> r_vector <span class="op">/</span> r<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> <span class="op">(</span><span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>a<span class="op">*</span>a<span class="op">/(</span><span class="dv">3</span><span class="op">*</span>r<span class="op">*</span>r<span class="op">))</span> <span class="op">/</span> <span class="op">(</span><span class="dv">8</span><span class="op">*</span>pi<span class="op">*</span>eta<span class="op">*</span>r<span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        B <span class="op">=</span> <span class="op">(</span><span class="dv">1</span> <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>a<span class="op">*</span>a<span class="op">/(</span>r<span class="op">*</span>r<span class="op">))</span> <span class="op">/</span> <span class="op">(</span><span class="dv">8</span><span class="op">*</span>pi<span class="op">*</span>eta<span class="op">*</span>r<span class="op">);</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        U<span class="op">[</span>i<span class="op">]</span> <span class="op">+=</span> A<span class="op">*</span>F<span class="op">[</span>j<span class="op">]</span> <span class="op">+</span> B<span class="op">*</span>e<span class="op">*</span>dot<span class="op">(</span>e<span class="op">,</span> F<span class="op">[</span>j<span class="op">]);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>All particle pairs are included. The algorithm takes
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math>
+time per load case and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false" form="prefix">(</mo><mi>N</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math>
+working memory because it does not store the full mobility matrix.
+<code>main.cpp</code> handles inputs, case generation, timing, and
+output; <code>rpy.cpp</code> implements the computation and analytical
+checks; <code>ppm.cpp</code> draws optional images. Their headers
+provide the shared interfaces. Only C++17 and the standard library are
+required.</p>
+<p>Compile and run from the source directory:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">c++</span> <span class="at">-O3</span> <span class="at">-std</span><span class="op">=</span>c++17 main.cpp rpy.cpp ppm.cpp <span class="at">-o</span> /tmp/RPYSolver</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/tmp/RPYSolver</span> <span class="at">--check</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/tmp/RPYSolver</span> <span class="at">--n</span> 1000 <span class="at">--cases</span> 1 <span class="at">--seed</span> 42 <span class="at">--output</span> /tmp/result.csv</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/tmp/RPYSolver</span> <span class="at">--n</span> 4000 <span class="at">--cases</span> 10</span></code></pre></div>
+<p><code>--n</code> controls the particle count and <code>--cases</code>
+controls the number of load cases. These allow the workload to be
+adjusted to the available machine. The commands above are example sizes,
+not a claim about runtime on Miyabi.</p>
+<p><code>--check</code> compares results with single-sphere and
+two-sphere analytical predictions, checks a rotated configuration and
+viscosity scaling, and verifies overlap rejection. CSV output contains
+positions, forces, and velocities for the last case.</p>
+<p>A small visualization example places 49 particles in a plane and
+applies a force only to the central particle. The calculation still uses
+the three-dimensional RPY formula. Orange dots mark directly forced
+particles; blue dots have no applied force. Arrows show the XY
+components of velocity on a common linear scale:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/tmp/RPYSolver</span> <span class="at">--demo</span> <span class="at">--image</span> /tmp/velocity.ppm <span class="at">--output</span> /tmp/demo.csv</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">convert</span> /tmp/velocity.ppm /tmp/velocity.png</span></code></pre></div>
+<p>PPM output needs no graphics library; the optional conversion command
+uses ImageMagick. The arrows represent instantaneous velocities, not
+trajectories.</p>
+<p>The program reports kernel time separately from geometry validation
+and image output, as well as total execution time. Geometry validation
+is currently also
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math>,
+so it may become significant after the main kernel is accelerated.</p>
+<p>Formula reference: Wajnryb et al. (2013), <a
+href="https://doi.org/10.1017/jfm.2013.402" target="_blank"
+rel="noopener">Generalization of the Rotne-Prager-Yamakawa mobility and
+shear disturbance tensors</a>, Eq. 3.12.</p>
+<h1 id="where-is-parallelism">Where is parallelism</h1>
+<ul>
+<li><strong>Across target particles:</strong> each outer-loop iteration
+computes a different <code>U[i]</code>. Positions and forces are
+read-only, so different threads can calculate different target particles
+without conflicting writes.</li>
+<li><strong>Inside each sum:</strong> source-particle contributions can
+be evaluated with SIMD instructions or GPU threads, followed by a
+reduction. Changing the summation order may introduce small
+floating-point differences.</li>
+<li><strong>Data reuse:</strong> all target particles read the same
+source arrays. CPU cache blocking and GPU shared-memory tiling may
+reduce repeated memory access. Separate coordinate arrays may also
+improve vectorization and GPU access.</li>
+</ul>
+<p>I plan to compare serial, multicore, and GPU implementations at the
+same particle count and accuracy. The performance study will examine
+scaling with N and thread count, data layout, and the cost of reductions
+and data transfers. Both kernel speedup and total runtime matter.
+Parallel results will be compared against the serial velocities using
+numerical error measures, not just a checksum.</p>

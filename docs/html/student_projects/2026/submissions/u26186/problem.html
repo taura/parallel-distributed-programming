@@ -1,0 +1,63 @@
+<h1 id="running-a-trained-small-language-model-from-scratch">Running a
+trained small language model from scratch</h1>
+<h2 id="problem">Problem</h2>
+<p>Generate a continuation of an English prompt with the pretrained
+TinyStories 260K model (a 5-layer Llama 2-style Transformer), one token
+at a time, in a standalone serial C++17 program. This is the baseline
+for the cost of model loading, prompt processing (prefill) and token
+generation (decode) before parallelization.</p>
+<h2 id="how-the-baseline-works">How the baseline works</h2>
+<p><code>chibi_inference.cc</code> loads the weights and tokenizer from
+local binary files and encodes the prompt with byte-pair merges. Each
+step embeds the current token, runs five layers of RMSNorm,
+grouped-query causal attention with rotary position encoding and a KV
+cache, and a SwiGLU feed-forward network, then projects to the
+vocabulary and picks the highest-scoring token (greedy, deterministic).
+No external libraries or network access are used.</p>
+<pre><code>clang++ -std=c++17 -O3 -Wall -Wextra -pedantic chibi_inference.cc -o chibi_inference
+./chibi_inference --prompt &#39;Once upon a time&#39; --tokens 128 --repeat 1</code></pre>
+<ul>
+<li><code>--repeat N</code> runs N independent serial requests; only the
+first one’s text is printed, while counts and timings cover all of
+them.</li>
+<li>The prompt plus the generated tokens must fit the 512-token
+context.</li>
+<li>Sanity check: <code>./chibi_inference --prompt '' --tokens 8</code>
+prints <code>Once upon a time, there was a</code>.</li>
+<li><code>--trace</code> writes token IDs and all logits for every step
+to stderr, for numerical comparison with a reference implementation. Do
+not time with it.</li>
+</ul>
+<p>Reported times are setup, and cumulative forward time for prefill
+(prompt steps, including the one that yields the first generated token)
+and decode. They exclude token selection and output.</p>
+<h2 id="where-is-parallelism">Where is parallelism</h2>
+<ul>
+<li><strong>Within a step:</strong> the rows of every matrix-vector
+product, and the attention heads.</li>
+<li><strong>Across requests:</strong> independent prompts (or the sweep
+cases below) can run in parallel or be batched, each with its own KV
+cache.</li>
+<li><strong>Not across the tokens of one prompt:</strong> each token
+depends on the previous one.</li>
+</ul>
+<p>Candidates to compare are CPU threads, SIMD, GPU execution and memory
+layout, using the same model, inputs and precision.</p>
+<h2 id="optional-single-neuron-interventions">Optional: single-neuron
+interventions</h2>
+<pre><code>./chibi_inference --sweep --layer 2 --start 0 --neurons 4 --dose 1 --prompt &#39;Once upon a time&#39; --tokens 32</code></pre>
+<p>This runs a control case. Then, for each neuron in
+<code>[start, start+neurons)</code> of <code>layer</code> (layers 0–4,
+172 neurons each), it runs a <code>+dose</code> case and a
+<code>-dose</code> case. The offset is added to that SwiGLU activation
+at every position, before the down projection.</p>
+<p>Each <code>CASE</code> line reports two measures for the first
+next-token distribution: <code>kl_from_control</code> = KL(control ‖
+intervention), and <code>control_token_logp_delta</code>. It also shows
+the generated <code>TEXT</code>. <code>--dose 0</code> must reproduce
+the control. A shifted distribution alone does not establish what a
+neuron means.</p>
+<p>The idea comes from <a
+href="https://github.com/lyramakesmusic/neuron-explorer" target="_blank"
+rel="noopener">neuron-explorer</a>, which works on much larger models;
+this is not a reproduction of it.</p>
