@@ -4,9 +4,13 @@
 
 # What's new (in the newest-first order)
 
-
-https://taura.github.io/parallel-distributed-programming/html/student_projects/2026/submissions/
-
+* <font color=blue>(Posted: Nov. 02, 2026)</font> Today's plan
+  * [CUDA](slides/cuda.pdf)
+  * Share [submissions to `pd02_app` (Making YOUR\_APP from scratch)](https://taura.github.io/parallel-distributed-programming/html/student_projects/2026/submissions/)
+	* answer to the survey on this page by 2026/11/07 (Sat) -> Assignment 3
+  * [OpenMP for GPU](slides/openmp_gpu.pdf)
+  * Jupyter `pd05_omp_gpu`
+  * Jupyter `pd06_visualize`
 
 * <font color=blue>(Posted: Oct. 26, 2026)</font> Today's plan
   * [CUDA](slides/cuda.pdf)
