@@ -141,8 +141,8 @@ by <code>N</code> … <code>E</code></td>
 <td><code>branch(float, float*, float, int)</code></td>
 </tr>
 <tr>
-<td><code>_Z8iter_funddlllP8record_tPl</code></td>
-<td><code>iter_fun(double, double, long, long, long, record_t*, long*)</code></td>
+<td><code>_Z8iter_funfflllP8record_tPl</code></td>
+<td><code>iter_fun(float, float, long, long, long, record_t*, long*)</code></td>
 </tr>
 <tr>
 <td><code>_Z1ffff</code></td>
@@ -720,12 +720,17 @@ first; you will see pairs like</li>
 class="sourceCode asm"><code class="sourceCode fasm"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">mov</span>   v7<span class="op">.</span><span class="dv">16</span><span class="er">b</span><span class="op">,</span> v2<span class="op">.</span><span class="dv">16</span><span class="er">b</span>          <span class="op">//</span> v7 <span class="op">=</span> b <span class="op">(</span>all <span class="dv">128</span> bits<span class="op">)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fmla  v7<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v3<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v0<span class="op">.</span>s<span class="op">[</span><span class="dv">0</span><span class="op">]</span>   <span class="op">//</span> v7 <span class="op">+=</span> x <span class="op">*</span> a</span></code></pre></div>
 <ul>
-<li>the <code>mov</code> is not free: it apparently occupies the same
-SIMD execution units as <code>fmla</code> (measured), so a loop of such
-pairs runs at most 2 <code>fmla</code>s per cycle instead of 4; SVE’s
-<code>fmad</code> (which overwrites the multiplicand) needs no copy (see
-<a href="#neon-or-sve" target="_blank" rel="noopener">NEON or
-SVE?</a>)</li>
+<li>the <code>mov</code> is not free: <code>mov v.16b</code> alone runs
+at 4/cycle with latency 2 (it is executed, not eliminated), and a 1:1
+mix of independent <code>mov</code>s and <code>fmla</code>s runs at only
+2 + 2 per cycle (a mix of <code>mov</code>s and integer
+<code>add</code>s reaches ~3.5 + 3.5), i.e., <code>mov</code> and
+<code>fmla</code> share the four SIMD execution units; so a loop of such
+pairs runs at most 2 <code>fmla</code>s per cycle instead of 4</li>
+<li>SVE’s <code>fmad</code> (which overwrites the multiplicand) needs no
+copy; <code>movprfx z16, z0</code> + <code>fmla z16.s, ...</code> also
+runs at 4 pairs/cycle, as the pair is fused (see <a href="#neon-or-sve"
+target="_blank" rel="noopener">NEON or SVE?</a>)</li>
 </ul>
 <h2 id="moving-data-around">Moving data around</h2>
 <div class="sourceCode" id="cb7"><pre
@@ -1164,10 +1169,20 @@ NEON, SVE)</td>
 <td>4</td>
 </tr>
 <tr>
+<td>NEON <code>mov v.16b</code></td>
+<td>2</td>
+<td>4 (shares the units with <code>fmla</code>)</td>
+</tr>
+<tr>
 <td>NEON <code>mov</code> + <code>fmla</code> pairs
 (<code>x = a * x + b</code>)</td>
 <td>4</td>
 <td>2 (<code>fmla</code>s)</td>
+</tr>
+<tr>
+<td>SVE <code>movprfx</code> + <code>fmla</code> pairs</td>
+<td></td>
+<td>4 (pairs; fused)</td>
 </tr>
 <tr>
 <td><code>fadd</code> / <code>fmul</code></td>

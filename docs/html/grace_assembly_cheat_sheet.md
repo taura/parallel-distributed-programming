@@ -42,7 +42,7 @@
 | Label                                | Function                                                       |
 |--------------------------------------|----------------------------------------------------------------|
 | `_Z6branchfPffi`                     | `branch(float, float*, float, int)`                            |
-| `_Z8iter_funddlllP8record_tPl`       | `iter_fun(double, double, long, long, long, record_t*, long*)` |
+| `_Z8iter_funfflllP8record_tPl`       | `iter_fun(float, float, long, long, long, record_t*, long*)`   |
 | `_Z1ffff`                            | `f(float, float, float)`                                       |
 | `_ZGVnN4uvu__Z1ffff`                 | a vector version of `f` generated for `#pragma omp declare simd` (see below) |
 </div>
@@ -274,7 +274,8 @@ mov   v7.16b, v2.16b          // v7 = b (all 128 bits)
 fmla  v7.4s, v3.4s, v0.s[0]   // v7 += x * a
 ```
 
-* the `mov` is not free: it apparently occupies the same SIMD execution units as `fmla` (measured), so a loop of such pairs runs at most 2 `fmla`s per cycle instead of 4; SVE's `fmad` (which overwrites the multiplicand) needs no copy (see [NEON or SVE?](#neon-or-sve))
+* the `mov` is not free: `mov v.16b` alone runs at 4/cycle with latency 2 (it is executed, not eliminated), and a 1:1 mix of independent `mov`s and `fmla`s runs at only 2 + 2 per cycle (a mix of `mov`s and integer `add`s reaches ~3.5 + 3.5), i.e., `mov` and `fmla` share the four SIMD execution units; so a loop of such pairs runs at most 2 `fmla`s per cycle instead of 4
+* SVE's `fmad` (which overwrites the multiplicand) needs no copy; `movprfx z16, z0` + `fmla z16.s, ...` also runs at 4 pairs/cycle, as the pair is fused (see [NEON or SVE?](#neon-or-sve))
 
 ## Moving data around
 
@@ -541,7 +542,9 @@ x[c] = a * (svfloat32_t)x[c] + b;    // -> fmad z.s, p0/m, ...   (needs -msve-ve
 | Instruction                               | Latency (cycles)                      | Throughput (/cycle)                       |
 |-------------------------------------------|---------------------------------------|-------------------------------------------|
 | `fmla`/`fmad`/`fmadd` (scalar, NEON, SVE) | 4 (2 when chained through the addend) | 4                                         |
+| NEON `mov v.16b`                           | 2                                     | 4 (shares the units with `fmla`)          |
 | NEON `mov` + `fmla` pairs (`x = a * x + b`) | 4                                   | 2 (`fmla`s)                               |
+| SVE `movprfx` + `fmla` pairs              |                                       | 4 (pairs; fused)                          |
 | `fadd` / `fmul`                           | 2 / 3                                 | 4                                         |
 | `fdiv` / `fsqrt` (vector)                 | ~10                                   | ~0.2                                      |
 | `ldr x` / `ldr s` / `ldr q`               | 4 / ~6 / ~6                           | ~3                                        |
