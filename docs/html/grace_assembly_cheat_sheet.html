@@ -1,0 +1,1232 @@
+<p><link rel="stylesheet" href="../scripts/style.css"></p>
+<h1 class="unnumbered"
+id="grace-neoverse-v2-assembly-cheat-sheet-scalar-neon-and-sve">Grace
+(Neoverse V2) Assembly Cheat Sheet: Scalar, NEON and SVE</h1>
+<ul>
+<li>This extends the AArch64 (ARM64) cheat sheet of the programming
+languages course with the vector instructions (NEON and SVE) you see in
+the assembly produced by
+<code>clang++ -O3 -mcpu=neoverse-v2 -S</code></li>
+<li>Grace = 72 Neoverse V2 cores; it supports NEON (128 bit) and
+SVE/SVE2 with <strong>vector length (VL) = 128 bits</strong></li>
+<li>Authoritative sources
+<ul>
+<li><a href="https://developer.arm.com/documentation/ddi0602/latest/"
+target="_blank" rel="noopener">Arm A64 Instruction Set Architecture</a>
+(every instruction)</li>
+<li><a
+href="https://developer.arm.com/architectures/instruction-sets/intrinsics/"
+target="_blank" rel="noopener">Arm Intrinsics (NEON and SVE)</a> (C
+functions corresponding to instructions)</li>
+<li><a
+href="https://developer.arm.com/documentation/PJDOC-466751330-593177/latest/"
+target="_blank" rel="noopener">Arm Neoverse V2 Software Optimization
+Guide</a> (latency/throughput of each instruction)</li>
+</ul></li>
+</ul>
+<h1 id="basics">Basics</h1>
+<ul>
+<li>A C/C++ function is translated into a series of assembly
+instructions, which begins with a label similar to function name</li>
+<li>In the case of C, the label is exactly the same as the function name
+(e.g., <code>hoge()</code> begins with a label <code>hoge:</code>)</li>
+<li>In C++, function names are <em>mangled</em> to encode parameter
+types (e.g., <code>int hoge(int x, double y)</code> begins with a label
+<code>_Z4hogeid</code>), so that overloaded functions (same name,
+different parameter types) get different labels
+<ul>
+<li>the return type is <em>not</em> encoded (except for function
+templates)</li>
+<li><code>extern "C"</code> before a function definition turns mangling
+off (<code>extern "C" int hoge(int x, double y)</code> begins with
+<code>hoge:</code>)</li>
+<li><code>c++filt</code> demangles a name:
+<code>echo _Z4hogeid | c++filt</code> prints
+<code>hoge(int, double)</code>; <code>c++filt &lt; a.s</code> demangles
+an entire assembly file</li>
+</ul></li>
+<li>How to read a mangled name (Itanium C++ ABI, used by clang, gcc and
+nvc++ on Linux)</li>
+</ul>
+<div>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 73%" />
+</colgroup>
+<thead>
+<tr>
+<th>Part</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_Z</code></td>
+<td>“this is a mangled name”</td>
+</tr>
+<tr>
+<td><code>4hoge</code></td>
+<td>the function name, preceded by its length</td>
+</tr>
+<tr>
+<td><code>N2ns3barE</code></td>
+<td>a qualified name <code>ns::bar</code> (namespace or class), enclosed
+by <code>N</code> … <code>E</code></td>
+</tr>
+<tr>
+<td><code>v</code></td>
+<td>no parameters (<code>void</code>)</td>
+</tr>
+<tr>
+<td><code>c</code> <code>s</code> <code>i</code> <code>l</code>
+<code>x</code></td>
+<td><code>char</code> <code>short</code> <code>int</code>
+<code>long</code> <code>long long</code></td>
+</tr>
+<tr>
+<td><code>h</code> <code>t</code> <code>j</code> <code>m</code>
+<code>y</code></td>
+<td><code>unsigned char</code> <code>unsigned short</code>
+<code>unsigned int</code> <code>unsigned long</code>
+<code>unsigned long long</code></td>
+</tr>
+<tr>
+<td><code>f</code> <code>d</code> <code>b</code></td>
+<td><code>float</code> <code>double</code> <code>bool</code></td>
+</tr>
+<tr>
+<td><code>P</code> <code>R</code> <code>K</code></td>
+<td>pointer, reference, <code>const</code> (prefix of a type:
+<code>PKf</code> = <code>const float *</code>)</td>
+</tr>
+<tr>
+<td><code>8record_t</code></td>
+<td>a user-defined type, preceded by the length of its name</td>
+</tr>
+<tr>
+<td><code>Dv4_f</code></td>
+<td>a GNU vector type of 4 floats
+(<code>float __attribute__((vector_size(16)))</code>)</td>
+</tr>
+<tr>
+<td><code>13__Float32x4_t</code></td>
+<td>the NEON type <code>float32x4_t</code></td>
+</tr>
+<tr>
+<td><code>u13__SVFloat32_t</code></td>
+<td>the SVE type <code>svfloat32_t</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Examples you will see in the course</li>
+</ul>
+<div>
+<table>
+<colgroup>
+<col style="width: 37%" />
+<col style="width: 62%" />
+</colgroup>
+<thead>
+<tr>
+<th>Label</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_Z6branchfPffi</code></td>
+<td><code>branch(float, float*, float, int)</code></td>
+</tr>
+<tr>
+<td><code>_Z8iter_funddlllP8record_tPl</code></td>
+<td><code>iter_fun(double, double, long, long, long, record_t*, long*)</code></td>
+</tr>
+<tr>
+<td><code>_Z1ffff</code></td>
+<td><code>f(float, float, float)</code></td>
+</tr>
+<tr>
+<td><code>_ZGVnN4uvu__Z1ffff</code></td>
+<td>a vector version of <code>f</code> generated for
+<code>#pragma omp declare simd</code> (see below)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><code>_ZGV</code> names are vector versions of a function (the
+AArch64 vector function ABI): <code>_ZGVnN4uvu_</code> + the scalar name
+means “NEON (<code>n</code>), not masked (<code>N</code>), 4 lanes, and
+the 1st/2nd/3rd parameters are uniform/vector/uniform
+(<code>uvu</code>)”</li>
+<li>Labels starting with <code>.L</code> (e.g., <code>.LBB0_4</code>)
+are local labels inside a function (see <a
+href="#things-in-compiler-output-that-are-not-instructions"
+target="_blank" rel="noopener">Things in Compiler Output That Are Not
+Instructions</a>)</li>
+</ul>
+<h1 id="registers">Registers</h1>
+<h2 id="overview">Overview</h2>
+<div>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 19%" />
+<col style="width: 47%" />
+<col style="width: 9%" />
+</colgroup>
+<thead>
+<tr>
+<th>Name</th>
+<th>Width</th>
+<th>What</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x0</code>–<code>x30</code></td>
+<td>64 bit</td>
+<td>general purpose (integers, pointers)</td>
+<td>31</td>
+</tr>
+<tr>
+<td><code>w0</code>–<code>w30</code></td>
+<td>32 bit</td>
+<td>lower half of <code>xN</code></td>
+<td>(alias)</td>
+</tr>
+<tr>
+<td><code>sp</code></td>
+<td>64 bit</td>
+<td>stack pointer</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>xzr</code> / <code>wzr</code></td>
+<td>64 / 32 bit</td>
+<td>zero register (reads as 0, writes are discarded)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>v0</code>–<code>v31</code></td>
+<td>128 bit</td>
+<td>FP / NEON (SIMD) registers</td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>q</code>/<code>d</code>/<code>s</code>/<code>h</code>/<code>b</code>
+<code>0</code>–<code>31</code></td>
+<td>128/64/32/16/8 bit</td>
+<td>lower part of <code>vN</code> used as a scalar</td>
+<td>(alias)</td>
+</tr>
+<tr>
+<td><code>z0</code>–<code>z31</code></td>
+<td>VL bit (128 on Grace)</td>
+<td>SVE vector registers; lower 128 bits = <code>vN</code></td>
+<td>32 (alias)</td>
+</tr>
+<tr>
+<td><code>p0</code>–<code>p15</code></td>
+<td>VL/8 bit (16 on Grace)</td>
+<td>SVE predicate (mask) registers, 1 bit per byte of a vector</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>nzcv</code></td>
+<td>4 bit</td>
+<td>condition flags set by <code>cmp</code>, <code>subs</code>,
+<code>whilelt</code>, …</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="how-the-fpsimdsve-registers-alias-each-other">How the
+FP/SIMD/SVE registers alias each other</h2>
+<ul>
+<li><code>bN</code>, <code>hN</code>, <code>sN</code>, <code>dN</code>,
+<code>qN</code>, <code>vN</code> and <code>zN</code> are all names for
+(parts of) <strong>the same physical register N</strong></li>
+</ul>
+<pre><code>bit:  VL-1 ...  128 127          64 63      32 31  16 15  8 7   0
+     +-------------+---------------+----------+------+-----+-----+
+ zN  |  (SVE only) |                                             |   VL bits (= 128 on Grace)
+     +-------------+---------------+----------+------+-----+-----+
+ vN/qN             |                                             |   128 bits
+                   +---------------+----------+------+-----+-----+
+ dN                                |                             |   64 bits  (double)
+                                   +----------+------+-----+-----+
+ sN                                           |                  |   32 bits  (float)
+                                              +------+-----+-----+
+ hN                                                  |           |   16 bits  (half)
+                                                     +-----+-----+
+ bN                                                        |     |    8 bits
+                                                           +-----+</code></pre>
+<ul>
+<li>scalar floating point arithmetic uses <code>sN</code> (float) /
+<code>dN</code> (double), i.e., the lowest element of <code>vN</code>
+<ul>
+<li>so there are no separate “floating point registers”; <code>s0</code>
+<em>is</em> the lowest 32 bits of <code>v0</code></li>
+</ul></li>
+<li>writing to a narrower name (e.g., <code>s0</code>, or
+<code>v0</code> in an SVE machine) <strong>zeroes the upper
+bits</strong> of the register</li>
+<li>the same goes for general purpose registers: <code>w0</code> is the
+lower half of <code>x0</code>; writing <code>w0</code> zeroes the upper
+32 bits of <code>x0</code></li>
+<li>on Grace VL = 128, so <code>zN</code> and <code>vN</code> are
+exactly the same 128 bits; on a machine with longer vectors (e.g.,
+A64FX, VL = 512) <code>zN</code> is longer than <code>vN</code></li>
+</ul>
+<h2 id="vector-arrangements-how-a-register-is-viewed-as-a-vector">Vector
+arrangements (how a register is viewed as a vector)</h2>
+<ul>
+<li>NEON: <code>vN.&lt;count&gt;&lt;size&gt;</code> — the count is part
+of the name, because the length (128 or 64 bits) is fixed</li>
+</ul>
+<div>
+<table>
+<colgroup>
+<col style="width: 48%" />
+<col style="width: 25%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr>
+<th>Suffix</th>
+<th>Elements</th>
+<th>Typical C type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>v0.16b</code></td>
+<td>16 × 8 bit</td>
+<td><code>char</code></td>
+</tr>
+<tr>
+<td><code>v0.8h</code></td>
+<td>8 × 16 bit</td>
+<td><code>short</code>, <code>_Float16</code></td>
+</tr>
+<tr>
+<td><code>v0.4s</code></td>
+<td>4 × 32 bit</td>
+<td><code>float</code>, <code>int</code></td>
+</tr>
+<tr>
+<td><code>v0.2d</code></td>
+<td>2 × 64 bit</td>
+<td><code>double</code>, <code>long</code></td>
+</tr>
+<tr>
+<td><code>v0.8b</code> / <code>v0.4h</code> / <code>v0.2s</code> /
+<code>v0.1d</code></td>
+<td>lower 64 bits only</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><code>b</code> = byte (8), <code>h</code> = halfword (16),
+<code>s</code> = single word (32), <code>d</code> = doubleword (64),
+<code>q</code> = quadword (128)</li>
+<li>note that “s” and “d” do <em>not</em> mean single/double precision
+here; <code>v0.4s</code> can hold 4 floats or 4 ints</li>
+<li><code>mov v0.16b, v1.16b</code> copies all 128 bits; it is written
+with <code>.16b</code> just because a copy does not care about element
+boundaries</li>
+<li>a single element: <code>v0.s[1]</code> = element 1 of
+<code>v0</code> viewed as 32-bit elements (elements are numbered from
+the lowest bits)</li>
+<li>SVE: <code>zN.&lt;size&gt;</code> — <strong>no count</strong>,
+because the number of elements depends on VL (VL/32 for <code>.s</code>;
+4 on Grace)</li>
+</ul>
+<div>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 61%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Suffix</th>
+<th>Elements (Grace)</th>
+<th>Elements (general)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>z0.b</code></td>
+<td>16 × 8 bit</td>
+<td>VL/8</td>
+</tr>
+<tr>
+<td><code>z0.h</code></td>
+<td>8 × 16 bit</td>
+<td>VL/16</td>
+</tr>
+<tr>
+<td><code>z0.s</code></td>
+<td>4 × 32 bit</td>
+<td>VL/32</td>
+</tr>
+<tr>
+<td><code>z0.d</code></td>
+<td>2 × 64 bit</td>
+<td>VL/64</td>
+</tr>
+<tr>
+<td><code>z0.q</code></td>
+<td>1 × 128 bit</td>
+<td>VL/128</td>
+</tr>
+<tr>
+<td><code>z0</code> (no suffix)</td>
+<td>the whole register (e.g., <code>ldr z0, [x0]</code>,
+<code>movprfx z7, z3</code>)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="sve-predicate-registers">SVE predicate registers</h2>
+<ul>
+<li><code>p0</code>–<code>p15</code> hold one bit per <em>byte</em> of a
+vector register; for 32-bit elements (<code>p0.s</code>) every 4th bit
+is the one that matters
+<ul>
+<li>think of <code>p0.s</code> as “a mask with one true/false per 32-bit
+element”</li>
+</ul></li>
+<li>most predicated instructions (loads, stores, arithmetic) can only
+use <code>p0</code>–<code>p7</code> as the governing predicate;
+<code>p8</code>–<code>p15</code> are mostly for holding and combining
+masks</li>
+<li>the predicate is written after the destination; its
+<em>qualifier</em> says what happens to inactive (false) elements</li>
+</ul>
+<div>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr>
+<th>Notation</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p0/z</code></td>
+<td><strong>zeroing</strong>: inactive elements of the result become 0
+(loads always use <code>/z</code>)</td>
+</tr>
+<tr>
+<td><code>p0/m</code></td>
+<td><strong>merging</strong>: inactive elements of the result keep the
+old value of the destination</td>
+</tr>
+<tr>
+<td><code>p0</code> (no qualifier)</td>
+<td>stores: only active elements are written; reductions: only active
+elements are reduced</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>“predicate” = “mask” in other SIMD terminology; NEON has no
+predicate registers</li>
+</ul>
+<h2 id="calling-convention-aapcs64-for-these-registers">Calling
+convention (AAPCS64) for these registers</h2>
+<div>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr>
+<th>Registers</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x0</code>–<code>x7</code></td>
+<td>integer/pointer arguments and return value</td>
+</tr>
+<tr>
+<td><code>v0</code>–<code>v7</code> (<code>s0</code>, <code>d0</code>,
+…)</td>
+<td>floating point / vector arguments and return value</td>
+</tr>
+<tr>
+<td><code>x19</code>–<code>x28</code></td>
+<td>callee-saved</td>
+</tr>
+<tr>
+<td><code>v8</code>–<code>v15</code></td>
+<td>callee-saved, <strong>only the lower 64 bits</strong>
+(<code>d8</code>–<code>d15</code>)</td>
+</tr>
+<tr>
+<td><code>x9</code>–<code>x15</code>,
+<code>v16</code>–<code>v31</code></td>
+<td>temporaries (caller-saved)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>e.g., <code>void axpb(float a, float * x, float b, int n)</code>
+receives <code>a</code> in <code>s0</code>, <code>x</code> in
+<code>x0</code>, <code>b</code> in <code>s1</code>, <code>n</code> in
+<code>w1</code> (integer and FP arguments are numbered independently; a
+32-bit <code>int</code> uses the <code>w</code> name)</li>
+<li>so a function that keeps a <code>double</code> live across a call
+saves <code>d8</code>/<code>d9</code> in its prologue
+(<code>stp d9, d8, [sp, #-32]!</code>) — you often see it in loops
+calling functions</li>
+<li><code>.variant_pcs foo</code> in GCC output marks a function using a
+different convention (e.g., a vector function variant generated by
+<code>declare simd</code>)</li>
+</ul>
+<h1 id="reading-operands">Reading Operands</h1>
+<div>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 74%" />
+</colgroup>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>#16</code>, <code>#0x1</code>, <code>#3.0</code></td>
+<td>immediate value</td>
+</tr>
+<tr>
+<td><code>x1, lsl #2</code></td>
+<td><code>x1 &lt;&lt; 2</code> (used to scale an index by
+<code>sizeof(float)</code> = 4)</td>
+</tr>
+<tr>
+<td><code>[x0]</code></td>
+<td>memory at address <code>x0</code></td>
+</tr>
+<tr>
+<td><code>[x0, #16]</code></td>
+<td>memory at <code>x0 + 16</code></td>
+</tr>
+<tr>
+<td><code>[x0, x8, lsl #2]</code></td>
+<td>memory at <code>x0 + x8 * 4</code> (i.e., <code>&amp;x[i]</code> for
+a <code>float</code> array)</td>
+</tr>
+<tr>
+<td><code>[x0, #16]!</code></td>
+<td><strong>pre-index</strong>: <code>x0 += 16</code>, then access
+<code>[x0]</code></td>
+</tr>
+<tr>
+<td><code>[x0], #16</code></td>
+<td><strong>post-index</strong>: access <code>[x0]</code>, then
+<code>x0 += 16</code></td>
+</tr>
+<tr>
+<td><code>[x0, #1, mul vl]</code></td>
+<td>(SVE) memory at <code>x0 + 1 × (vector length in bytes)</code> — the
+offset counts in <em>vectors</em></td>
+</tr>
+<tr>
+<td><code>[x0, z1.s, sxtw #2]</code></td>
+<td>(SVE gather/scatter) a vector of addresses
+<code>x0 + sign_extend(z1.s[j]) * 4</code></td>
+</tr>
+<tr>
+<td><code>[x0, z1.d, lsl #2]</code></td>
+<td>(SVE gather/scatter) a vector of addresses
+<code>x0 + z1.d[j] * 4</code></td>
+</tr>
+<tr>
+<td><code>{ v0.4s, v1.4s }</code></td>
+<td>a list of registers (for <code>ld2</code>, <code>st2</code>, …);
+<code>{ z7.s }</code> is a list of one register</td>
+</tr>
+<tr>
+<td><code>v0.s[0]</code></td>
+<td>element 0 of <code>v0</code> (32-bit elements)</td>
+</tr>
+<tr>
+<td><code>p0/z</code>, <code>p0/m</code></td>
+<td>governing predicate (zeroing / merging), see above</td>
+</tr>
+<tr>
+<td><code>sxtw</code> / <code>uxtw</code></td>
+<td>sign- / zero-extend a 32-bit word to 64 bits</td>
+</tr>
+<tr>
+<td><code>adrp x8, sym</code> + <code>:lo12:sym</code></td>
+<td>address of a global symbol: 4KB page address + offset within the
+page</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="scalar-integer-instructions">Scalar Integer Instructions</h1>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">mov</span>   x0<span class="op">,</span> x1              <span class="op">//</span> x0 <span class="op">=</span> x1          <span class="op">(</span>also<span class="op">:</span> mov x0<span class="op">,</span> <span class="op">#</span><span class="dv">5</span><span class="co">; mov x0, xzr)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>movk  w8<span class="op">,</span> <span class="op">#</span><span class="dv">16285</span><span class="op">,</span> lsl <span class="op">#</span><span class="dv">16</span> <span class="op">//</span> insert a <span class="dv">16</span><span class="op">-</span>bit immediate into bits <span class="dv">16</span><span class="op">-</span><span class="dv">31</span> <span class="op">(</span>build large constants<span class="op">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">add</span>   x0<span class="op">,</span> x1<span class="op">,</span> x2          <span class="op">//</span> x0 <span class="op">=</span> x1 <span class="op">+</span> x2</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">add</span>   x0<span class="op">,</span> x1<span class="op">,</span> x2<span class="op">,</span> lsl <span class="op">#</span><span class="dv">2</span>  <span class="op">//</span> x0 <span class="op">=</span> x1 <span class="op">+</span> <span class="op">(</span>x2 <span class="op">&lt;&lt;</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">sub</span>   x0<span class="op">,</span> x1<span class="op">,</span> <span class="op">#</span><span class="dv">4</span>          <span class="op">//</span> x0 <span class="op">=</span> x1 <span class="op">-</span> <span class="dv">4</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">neg</span>   x0<span class="op">,</span> x1              <span class="op">//</span> x0 <span class="op">=</span> <span class="op">-</span>x1</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">mul</span>   x0<span class="op">,</span> x1<span class="op">,</span> x2          <span class="op">//</span> x0 <span class="op">=</span> x1 <span class="op">*</span> x2</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>madd  x0<span class="op">,</span> x1<span class="op">,</span> x2<span class="op">,</span> x3      <span class="op">//</span> x0 <span class="op">=</span> x3 <span class="op">+</span> x1 <span class="op">*</span> x2</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>msub  x0<span class="op">,</span> x1<span class="op">,</span> x2<span class="op">,</span> x3      <span class="op">//</span> x0 <span class="op">=</span> x3 <span class="op">-</span> x1 <span class="op">*</span> x2   <span class="op">(used</span> to compute a <span class="op">%</span> b <span class="op">=</span> a <span class="op">-</span> <span class="op">(</span>a<span class="op">/</span>b<span class="op">)*</span>b<span class="op">)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>sdiv  x0<span class="op">,</span> x1<span class="op">,</span> x2          <span class="op">//</span> signed divide   <span class="op">(</span>udiv<span class="op">:</span> unsigned<span class="op">)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">and</span>   x0<span class="op">,</span> x1<span class="op">,</span> <span class="op">#</span><span class="bn">0x7ffffffffffffff0</span>  <span class="op">//</span> bitwise <span class="op">AND</span> <span class="op">(</span>also orr<span class="op">,</span> eor<span class="op">,</span> bic <span class="op">=</span> <span class="op">and</span> <span class="op">not)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">lsl</span>   x0<span class="op">,</span> x1<span class="op">,</span> <span class="op">#</span><span class="dv">4</span>          <span class="op">//</span> shift left   <span class="op">(</span>lsr<span class="op">:</span> logical right<span class="op">,</span> asr<span class="op">:</span> arithmetic right<span class="op">)</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>bfi   x8<span class="op">,</span> x0<span class="op">,</span> <span class="op">#</span><span class="dv">2</span><span class="op">,</span> <span class="op">#</span><span class="dv">3</span>      <span class="op">//</span> take the lowest <span class="dv">3</span> bits of x0 <span class="op">and</span> insert them into bits <span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span> of x8 <span class="op">(</span>i<span class="op">.</span>e<span class="op">.,</span> x8<span class="op">[</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> x0<span class="op">[</span><span class="dv">0</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">])</span><span class="co">; other bits of x8 unchanged</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>csel  x0<span class="op">,</span> x1<span class="op">,</span> x2<span class="op">,</span> lt      <span class="op">//</span> x0 <span class="op">=</span> <span class="op">(</span>flags say <span class="st">&quot;lt&quot;</span><span class="op">)</span> <span class="op">?</span> x1 <span class="op">:</span> x2</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>csinc x0<span class="op">,</span> x1<span class="op">,</span> x2<span class="op">,</span> ne      <span class="op">//</span> x0 <span class="op">=</span> <span class="op">(</span>ne<span class="op">)</span> <span class="op">?</span> x1 <span class="op">:</span> x2 <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>adrp  x8<span class="op">,</span> <span class="op">.</span>LCPI0_0        <span class="op">//</span> address of the <span class="dv">4</span><span class="er">KB</span> page containing a symbol</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>mrs   x8<span class="op">,</span> TPIDR_EL0       <span class="op">//</span> read a system register <span class="op">(</span>here<span class="op">:</span> thread pointer<span class="op">,</span> for thread<span class="op">-</span>local variables<span class="op">)</span></span></code></pre></div>
+<ul>
+<li><code>sub</code> and <code>add</code> with <code>s</code>
+(<code>subs</code>, <code>adds</code>) also set the condition flags;
+loop counters are often decremented by <code>subs x8, x8, #16</code>
+followed by <code>b.ne</code></li>
+</ul>
+<h1 id="compare-and-branch">Compare and Branch</h1>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cmp</span>   x0<span class="op">,</span> x1              <span class="op">//</span> set flags by x0 <span class="op">-</span> x1 <span class="op">(</span>result discarded<span class="op">)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cmn   x0<span class="op">,</span> <span class="op">#</span><span class="dv">1</span>              <span class="op">//</span> set flags by x0 <span class="op">+</span> <span class="dv">1</span>  <span class="op">(</span><span class="st">&quot;compare negative&quot;</span><span class="op">)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ccmp  x0<span class="op">,</span> x1<span class="op">,</span> <span class="op">#</span><span class="dv">0</span><span class="op">,</span> ne      <span class="op">//</span> conditional compare<span class="op">:</span> if ne then cmp x0<span class="op">,</span> x1 else flags <span class="op">=</span> <span class="op">#</span><span class="dv">0</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>b     label               <span class="op">//</span> unconditional branch</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>b<span class="op">.</span>ne  label               <span class="op">//</span> branch if the condition holds <span class="op">(</span>see the table below<span class="op">)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>cbz   x0<span class="op">,</span> label           <span class="op">//</span> branch if x0 <span class="op">==</span> <span class="dv">0</span>     <span class="op">(</span>cbnz<span class="op">:</span> if x0 <span class="op">!=</span> <span class="dv">0</span><span class="op">)</span> — no flags involved</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>tbz   w9<span class="op">,</span> <span class="op">#</span><span class="dv">0</span><span class="op">,</span> label       <span class="op">//</span> branch if bit <span class="dv">0</span> of w9 is <span class="dv">0</span>   <span class="op">(</span>tbnz<span class="op">:</span> if it is <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>bl    func                <span class="op">//</span> call<span class="op">:</span> x30 <span class="op">=</span> return address<span class="co">; jump to func</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="cf">ret</span>                       <span class="op">//</span> return<span class="op">:</span> jump to x30</span></code></pre></div>
+<div>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 29%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr>
+<th>Condition</th>
+<th>After <code>cmp a, b</code></th>
+<th>After SVE <code>whilelt</code> / <code>ptest</code> (alias)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eq</code> / <code>ne</code></td>
+<td>a == b / a != b</td>
+<td><code>none</code> / <code>any</code> (no / some element active)</td>
+</tr>
+<tr>
+<td><code>lt</code> / <code>le</code> / <code>gt</code> /
+<code>ge</code></td>
+<td>signed &lt;, ≤, &gt;, ≥</td>
+<td></td>
+</tr>
+<tr>
+<td><code>lo</code> (= <code>cc</code>) / <code>ls</code> /
+<code>hi</code> / <code>hs</code> (= <code>cs</code>)</td>
+<td>unsigned &lt;, ≤, &gt;, ≥</td>
+<td><code>last</code> / … / … / <code>nlast</code></td>
+</tr>
+<tr>
+<td><code>mi</code> / <code>pl</code></td>
+<td>negative / non-negative</td>
+<td><code>first</code> / <code>nfrst</code> (first element active /
+inactive)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>GCC writes conditional branches without the dot (<code>bne</code>,
+<code>ble</code>, <code>bls</code>, …); they are the same as
+<code>b.ne</code>, <code>b.le</code>, <code>b.ls</code></li>
+</ul>
+<h1 id="scalar-floating-point-instructions">Scalar Floating Point
+Instructions</h1>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fmov   s0<span class="op">,</span> s1             <span class="op">//</span> copy <span class="op">(</span>also fmov s0<span class="op">,</span> <span class="op">#</span><span class="fl">1.0</span><span class="co">; fmov x9, d0 copies the bits to an integer register)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">fadd</span>   s0<span class="op">,</span> s1<span class="op">,</span> s2         <span class="op">//</span> float add   <span class="op">(</span>d0<span class="op">,</span> d1<span class="op">,</span> d2 for double<span class="op">)</span><span class="co">; also fsub, fmul, fdiv</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fmadd  s0<span class="op">,</span> s1<span class="op">,</span> s2<span class="op">,</span> s3     <span class="op">//</span> s0 <span class="op">=</span> s3 <span class="op">+</span> s1 <span class="op">*</span> s2   <span class="op">(</span>FMA<span class="co">; note the order: the addend comes LAST)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fmsub  s0<span class="op">,</span> s1<span class="op">,</span> s2<span class="op">,</span> s3     <span class="op">//</span> s0 <span class="op">=</span> s3 <span class="op">-</span> s1 <span class="op">*</span> s2</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>fnmadd s0<span class="op">,</span> s1<span class="op">,</span> s2<span class="op">,</span> s3     <span class="op">//</span> s0 <span class="op">=</span> <span class="op">-(</span>s3 <span class="op">+</span> s1 <span class="op">*</span> s2<span class="op">)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">fsqrt</span>  s0<span class="op">,</span> s1             <span class="op">//</span> square root</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">fabs</span>   s0<span class="op">,</span> s1             <span class="op">//</span> also fneg<span class="op">,</span> fmax<span class="op">,</span> fmin<span class="op">,</span> fmaxnm <span class="op">(</span>max ignoring NaN<span class="op">)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>fcmp   s0<span class="op">,</span> s1             <span class="op">//</span> compare <span class="op">and</span> set flags <span class="op">(</span>then b<span class="op">.</span>gt etc<span class="op">.)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>fcsel  s0<span class="op">,</span> s1<span class="op">,</span> s2<span class="op">,</span> gt     <span class="op">//</span> s0 <span class="op">=</span> <span class="op">(</span>gt<span class="op">)</span> <span class="op">?</span> s1 <span class="op">:</span> s2</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>scvtf  s0<span class="op">,</span> w0             <span class="op">//</span> signed int <span class="op">-&gt;</span> float   <span class="op">(</span>ucvtf<span class="op">:</span> unsigned<span class="op">)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>fcvtzs w0<span class="op">,</span> s0             <span class="op">//</span> float <span class="op">-&gt;</span> signed int<span class="op">,</span> rounding toward zero</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>fcvt   d0<span class="op">,</span> s0             <span class="op">//</span> float <span class="op">-&gt;</span> double</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ldr    s0<span class="op">,</span> <span class="op">[</span>x0<span class="op">]</span>           <span class="op">//</span> load a float  <span class="op">(</span>str s0<span class="op">,</span> <span class="op">[</span>x0<span class="op">]:</span> store<span class="op">)</span></span></code></pre></div>
+<h1 id="neon-advanced-simd-instructions">NEON (Advanced SIMD)
+Instructions</h1>
+<ul>
+<li>NEON instructions are mostly <strong>the scalar mnemonic applied to
+<code>vN.&lt;arrangement&gt;</code></strong>; they operate element-wise
+<ul>
+<li><code>fadd s0, s1, s2</code> (1 float)
+vs. <code>fadd v0.4s, v1.4s, v2.4s</code> (4 floats)</li>
+</ul></li>
+<li>NEON has no predicates; every instruction processes all elements
+(all 128 or 64 bits)</li>
+<li>NEON has no gather/scatter and no vector integer division</li>
+</ul>
+<h2 id="arithmetic">Arithmetic</h2>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">fadd</span>  v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v2<span class="op">.</span><span class="dv">4</span><span class="er">s</span>     <span class="op">//</span> v0<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> v1<span class="op">[</span>j<span class="op">]</span> <span class="op">+</span> v2<span class="op">[</span>j<span class="op">]</span>  for j <span class="op">=</span> <span class="fl">0.</span><span class="op">.</span><span class="dv">3</span> <span class="op">(</span>also fsub<span class="op">,</span> fmul<span class="op">,</span> fdiv<span class="op">)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fmla  v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v2<span class="op">.</span><span class="dv">4</span><span class="er">s</span>     <span class="op">//</span> v0<span class="op">[</span>j<span class="op">]</span> <span class="op">+=</span> v1<span class="op">[</span>j<span class="op">]</span> <span class="op">*</span> v2<span class="op">[</span>j<span class="op">]</span>  <span class="op">(</span>FMA<span class="co">; the destination is also the addend)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>fmla  v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v2<span class="op">.</span>s<span class="op">[</span><span class="dv">0</span><span class="op">]</span>   <span class="op">//</span> v0<span class="op">[</span>j<span class="op">]</span> <span class="op">+=</span> v1<span class="op">[</span>j<span class="op">]</span> <span class="op">*</span> v2<span class="op">[</span><span class="dv">0</span><span class="op">]</span>  <span class="op">(</span><span class="st">&quot;by element&quot;</span><span class="op">:</span> multiply by one element<span class="op">,</span> e<span class="op">.</span>g<span class="op">.,</span> a scalar a<span class="op">)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>fmls  v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v2<span class="op">.</span><span class="dv">4</span><span class="er">s</span>     <span class="op">//</span> v0<span class="op">[</span>j<span class="op">]</span> <span class="op">-=</span> v1<span class="op">[</span>j<span class="op">]</span> <span class="op">*</span> v2<span class="op">[</span>j<span class="op">]</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">fsqrt</span> v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">4</span><span class="er">s</span>            <span class="op">//</span> also fabs<span class="op">,</span> fneg<span class="op">,</span> fmax<span class="op">,</span> fmin<span class="op">,</span> fmaxnm<span class="op">,</span> frintz <span class="op">(</span>round toward <span class="dv">0</span><span class="op">),</span> <span class="op">...</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">add</span>   v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v2<span class="op">.</span><span class="dv">4</span><span class="er">s</span>     <span class="op">//</span> integer add <span class="op">(</span>also sub<span class="op">,</span> mul<span class="op">,</span> mla<span class="op">,</span> <span class="op">and,</span> orr<span class="op">,</span> eor<span class="op">,</span> bic<span class="op">)</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">shl</span>   v0<span class="op">.</span><span class="dv">2</span><span class="bn">d</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">2</span><span class="bn">d</span><span class="op">,</span> <span class="op">#</span><span class="dv">2</span>        <span class="op">//</span> shift each element left <span class="op">(</span>ushr <span class="op">/</span> sshr<span class="op">:</span> right<span class="op">)</span></span></code></pre></div>
+<ul>
+<li>because <code>fmla</code> overwrites the addend, computing
+<code>a * x + b</code> with <code>b</code> in a register needs a copy
+first; you will see pairs like</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">mov</span>   v7<span class="op">.</span><span class="dv">16</span><span class="er">b</span><span class="op">,</span> v2<span class="op">.</span><span class="dv">16</span><span class="er">b</span>          <span class="op">//</span> v7 <span class="op">=</span> b <span class="op">(</span>all <span class="dv">128</span> bits<span class="op">)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fmla  v7<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v3<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v0<span class="op">.</span>s<span class="op">[</span><span class="dv">0</span><span class="op">]</span>   <span class="op">//</span> v7 <span class="op">+=</span> x <span class="op">*</span> a</span></code></pre></div>
+<ul>
+<li>the <code>mov</code> is not free: it apparently occupies the same
+SIMD execution units as <code>fmla</code> (measured), so a loop of such
+pairs runs at most 2 <code>fmla</code>s per cycle instead of 4; SVE’s
+<code>fmad</code> (which overwrites the multiplicand) needs no copy (see
+<a href="#neon-or-sve" target="_blank" rel="noopener">NEON or
+SVE?</a>)</li>
+</ul>
+<h2 id="moving-data-around">Moving data around</h2>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">mov</span>   v0<span class="op">.</span><span class="dv">16</span><span class="er">b</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">16</span><span class="er">b</span>          <span class="op">//</span> copy the whole register <span class="op">(</span>an alias of orr v0<span class="op">.</span><span class="dv">16</span><span class="er">b</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">16</span><span class="er">b</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">16</span><span class="er">b</span><span class="op">)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dup   v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v1<span class="op">.</span>s<span class="op">[</span><span class="dv">0</span><span class="op">]</span>          <span class="op">//</span> broadcast element <span class="dv">0</span> of v1 to all <span class="dv">4</span> elements</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>dup   v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> w0               <span class="op">//</span> broadcast a general purpose register</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>movi  v0<span class="op">.</span><span class="dv">2</span><span class="bn">d</span><span class="op">,</span> <span class="op">#</span><span class="dv">0</span>               <span class="op">//</span> v0 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>movi  v1<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> <span class="op">#</span><span class="dv">128</span><span class="op">,</span> lsl <span class="op">#</span><span class="dv">24</span>    <span class="op">//</span> every element <span class="op">=</span> <span class="bn">0x80000000</span> <span class="op">(</span>the sign bit<span class="co">; used to negate floats with eor)</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>fmov  v1<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> <span class="op">#</span><span class="fl">3.0</span>             <span class="op">//</span> every element <span class="op">=</span> <span class="fl">3.0</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">mov</span>   v0<span class="op">.</span>s<span class="op">[</span><span class="dv">1</span><span class="op">],</span> w0             <span class="op">//</span> insert w0 into element <span class="dv">1</span> <span class="op">(</span>an alias of ins<span class="op">)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">mov</span>   v0<span class="op">.</span>s<span class="op">[</span><span class="dv">1</span><span class="op">],</span> v2<span class="op">.</span>s<span class="op">[</span><span class="dv">0</span><span class="op">]</span>        <span class="op">//</span> copy one element into another</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">umov</span>  w0<span class="op">,</span> v0<span class="op">.</span>s<span class="op">[</span><span class="dv">1</span><span class="op">]</span>             <span class="op">//</span> extract element <span class="dv">1</span> into a general purpose register <span class="op">(</span>also fmov s0 <span class="op">/</span> mov s0<span class="op">,</span> v0<span class="op">.</span>s<span class="op">[</span><span class="dv">1</span><span class="op">])</span></span></code></pre></div>
+<h2 id="load-and-store">Load and store</h2>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ldr   q0<span class="op">,</span> <span class="op">[</span>x0<span class="op">]</span>                <span class="op">//</span> load <span class="dv">128</span> bits <span class="op">(</span><span class="dv">4</span> floats<span class="op">)</span>       str q0<span class="op">,</span> <span class="op">[</span>x0<span class="op">]:</span> store</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ldp   q0<span class="op">,</span> q1<span class="op">,</span> <span class="op">[</span>x0<span class="op">,</span> <span class="op">#</span><span class="dv">32</span><span class="op">]</span>       <span class="op">//</span> load <span class="dv">2</span> × <span class="dv">128</span> bits from x0<span class="op">+</span><span class="dv">32</span>   stp q0<span class="op">,</span> q1<span class="op">,</span> <span class="op">[</span>x0<span class="op">]:</span> store</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ld1   <span class="op">{</span> v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span> <span class="op">},</span> <span class="op">[</span>x0<span class="op">]</span>         <span class="op">//</span> load <span class="dv">4</span> floats <span class="op">(</span>same as ldr q0 for our purpose<span class="op">)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>ld1   <span class="op">{</span> v0<span class="op">.</span>s <span class="op">}[</span><span class="dv">1</span><span class="op">],</span> <span class="op">[</span>x0<span class="op">]</span>       <span class="op">//</span> load ONE float into element <span class="dv">1</span> <span class="op">(</span>others unchanged<span class="op">)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>st1   <span class="op">{</span> v0<span class="op">.</span>s <span class="op">}[</span><span class="dv">1</span><span class="op">],</span> <span class="op">[</span>x0<span class="op">]</span>       <span class="op">//</span> store element <span class="dv">1</span> only <span class="op">(used</span> for strided stores<span class="op">)</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>ld1r  <span class="op">{</span> v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span> <span class="op">},</span> <span class="op">[</span>x0<span class="op">]</span>         <span class="op">//</span> load one float <span class="op">and</span> broadcast it</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>ld2   <span class="op">{</span> v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">4</span><span class="er">s</span> <span class="op">},</span> <span class="op">[</span>x0<span class="op">]</span>  <span class="op">//</span> load <span class="dv">8</span> floats <span class="op">and</span> de<span class="op">-</span>interleave<span class="op">:</span> v0 <span class="op">=</span> even elements<span class="op">,</span> v1 <span class="op">=</span> odd elements</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>ld3 <span class="op">/</span> ld4                     <span class="op">//</span> the same for <span class="dv">3</span> <span class="op">/</span> <span class="dv">4</span> interleaved components <span class="op">(</span>e<span class="op">.</span>g<span class="op">.,</span> struct <span class="op">{</span>float x<span class="op">,</span> y<span class="op">,</span> z<span class="co">;})</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>st2 <span class="op">/</span> <span class="kw">st3</span> <span class="op">/</span> <span class="kw">st4</span>               <span class="op">//</span> store with interleaving</span></code></pre></div>
+<ul>
+<li><code>ld2</code> is how the compiler vectorizes a stride-2 access
+<code>x[2*i]</code> (it uses <code>v0</code> and discards
+<code>v1</code>)</li>
+</ul>
+<h2 id="compare-and-select-branches-inside-vectorized-loops">Compare and
+select (branches inside vectorized loops)</h2>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fcmgt v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v2<span class="op">.</span><span class="dv">4</span><span class="er">s</span>     <span class="op">//</span> v0<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>v1<span class="op">[</span>j<span class="op">]</span> <span class="op">&gt;</span> v2<span class="op">[</span>j<span class="op">])</span> <span class="op">?</span> <span class="bn">0xffffffff</span> <span class="op">:</span> <span class="dv">0</span>   <span class="op">(</span>also fcmge<span class="op">,</span> fcmeq<span class="op">,</span> fcmlt <span class="op">#</span><span class="fl">0.0</span><span class="op">,</span> <span class="op">...)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>cmgt  v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v2<span class="op">.</span><span class="dv">4</span><span class="er">s</span>     <span class="op">//</span> the same for signed integers <span class="op">(</span>cmhi<span class="op">:</span> unsigned<span class="op">)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>bsl   v0<span class="op">.</span><span class="dv">16</span><span class="er">b</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">16</span><span class="er">b</span><span class="op">,</span> v2<span class="op">.</span><span class="dv">16</span><span class="er">b</span>  <span class="op">//</span> bitwise select<span class="op">:</span> v0 <span class="op">=</span> <span class="op">(</span>v0 <span class="op">&amp;</span> v1<span class="op">)</span> <span class="op">|</span> <span class="op">(~</span>v0 <span class="op">&amp;</span> v2<span class="op">),</span> v0 is the mask</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>bit <span class="op">/</span> bif                     <span class="op">//</span> the same with different operand roles <span class="op">(</span>insert if true <span class="op">/</span> if false<span class="op">)</span></span></code></pre></div>
+<ul>
+<li>the result of a comparison is a vector of all-ones / all-zeros
+elements, not flags; it is used as a mask for <code>bsl</code></li>
+</ul>
+<h2
+id="horizontal-operations-within-a-vector-and-permutations">Horizontal
+operations (within a vector) and permutations</h2>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">faddp</span> v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v2<span class="op">.</span><span class="dv">4</span><span class="er">s</span>     <span class="op">//</span> pairwise add<span class="op">:</span> v0 <span class="op">=</span> <span class="op">{</span>v1<span class="op">[</span><span class="dv">0</span><span class="op">]+</span>v1<span class="op">[</span><span class="dv">1</span><span class="op">],</span> v1<span class="op">[</span><span class="dv">2</span><span class="op">]+</span>v1<span class="op">[</span><span class="dv">3</span><span class="op">],</span> v2<span class="op">[</span><span class="dv">0</span><span class="op">]+</span>v2<span class="op">[</span><span class="dv">1</span><span class="op">],</span> v2<span class="op">[</span><span class="dv">2</span><span class="op">]+</span>v2<span class="op">[</span><span class="dv">3</span><span class="op">]}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">faddp</span> s0<span class="op">,</span> v0<span class="op">.</span><span class="dv">2</span><span class="er">s</span>               <span class="op">//</span> s0 <span class="op">=</span> v0<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">+</span> v0<span class="op">[</span><span class="dv">1</span><span class="op">]</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>addv  s0<span class="op">,</span> v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span>               <span class="op">//</span> s0 <span class="op">=</span> sum of <span class="dv">4</span> integer elements <span class="op">(</span>also fmaxv<span class="op">,</span> fminv<span class="op">,</span> fmaxnmv<span class="op">,</span> umaxv<span class="op">,</span> <span class="op">...)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>zip1 <span class="op">/</span> zip2                   <span class="op">//</span> interleave the lower <span class="op">/</span> upper halves of two vectors</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>uzp1 <span class="op">/</span> uzp2                   <span class="op">//</span> take even <span class="op">/</span> odd elements of two vectors <span class="op">(</span>the inverse of zip<span class="op">)</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ext   v0<span class="op">.</span><span class="dv">16</span><span class="er">b</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">16</span><span class="er">b</span><span class="op">,</span> v2<span class="op">.</span><span class="dv">16</span><span class="er">b</span><span class="op">,</span> <span class="op">#</span><span class="dv">4</span>   <span class="op">//</span> concatenate <span class="op">and</span> extract <span class="dv">16</span> bytes starting at <span class="dt">byte</span> <span class="dv">4</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>tbl   v0<span class="op">.</span><span class="dv">16</span><span class="er">b</span><span class="op">,</span> <span class="op">{</span> v1<span class="op">.</span><span class="dv">16</span><span class="er">b</span> <span class="op">},</span> v2<span class="op">.</span><span class="dv">16</span><span class="er">b</span>   <span class="op">//</span> arbitrary <span class="dt">byte</span> shuffle by an index vector</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>rev64 v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">4</span><span class="er">s</span>            <span class="op">//</span> reverse elements within each <span class="dv">64</span><span class="op">-</span>bit half</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>scvtf v0<span class="op">.</span><span class="dv">4</span><span class="er">s</span><span class="op">,</span> v1<span class="op">.</span><span class="dv">4</span><span class="er">s</span>            <span class="op">//</span> int <span class="op">-&gt;</span> float element<span class="op">-</span>wise <span class="op">(</span>fcvtzs<span class="op">:</span> float <span class="op">-&gt;</span> int<span class="co">; fcvtl/fcvtn: widen/narrow)</span></span></code></pre></div>
+<h1 id="sve-instructions">SVE Instructions</h1>
+<h2 id="key-ideas">Key ideas</h2>
+<ul>
+<li><strong>vector length agnostic (VLA)</strong>: the same machine code
+works for any VL (128 to 2048 bits); the code never assumes “4 floats
+per vector”; instead it asks the hardware (<code>cntw</code>,
+<code>incw</code>, <code>rdvl</code>) or uses <code>mul vl</code>
+offsets</li>
+<li><strong>predication</strong>: almost every instruction takes a
+predicate, so the last partial vector of a loop needs no special
+remainder loop</li>
+<li><strong>destructive encoding</strong>: most arithmetic instructions
+overwrite their first source (<code>fmad z7.s, p0/m, z6.s, z2.s</code>
+updates <code>z7</code>); <code>movprfx</code> is used to make a
+non-destructive version (see below)</li>
+<li>on Grace (VL = 128) an SVE vector holds the same 4 floats as a NEON
+vector; clang uses NEON for simple loops and SVE when it needs
+predicates, gathers, etc. (see <a href="#neon-or-sve" target="_blank"
+rel="noopener">NEON or SVE?</a>)</li>
+</ul>
+<h2 id="vector-length-counting-and-loop-control">Vector length, counting
+and loop control</h2>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cntw   x8                     <span class="op">//</span> x8 <span class="op">=</span> number of <span class="dv">32</span><span class="op">-</span>bit elements in a vector <span class="op">(</span><span class="dv">4</span> on Grace<span class="op">)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                              //   cntb <span class="op">/</span> cnth <span class="op">/</span> cntw <span class="op">/</span> cntd<span class="op">:</span> number of <span class="dv">8</span><span class="op">/</span><span class="dv">16</span><span class="op">/</span><span class="dv">32</span><span class="op">/</span><span class="dv">64</span><span class="op">-</span>bit elements</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>incw   x8                     <span class="op">//</span> x8 <span class="op">+=</span> cntw        <span class="op">(</span>decw<span class="op">:</span> <span class="op">-=)</span> — <span class="st">&quot;i += (elements per vector)&quot;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>incb   x10<span class="op">,</span> all<span class="op">,</span> mul <span class="op">#</span><span class="dv">4</span>       <span class="op">//</span> x10 <span class="op">+=</span> <span class="dv">4</span> × cntb   <span class="op">(</span>move a pointer by <span class="dv">4</span> vectors<span class="op">)</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>decb   x11                    <span class="op">//</span> x11 <span class="op">-=</span> cntb</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>incd   z4<span class="op">.</span>d                   <span class="op">//</span> every element of z4 <span class="op">+=</span> cntd  <span class="op">(</span>vector form<span class="op">)</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>rdvl   x9<span class="op">,</span> <span class="op">#</span><span class="dv">1</span>                 <span class="op">//</span> x9 <span class="op">=</span> VL in bytes <span class="op">(</span><span class="dv">16</span> on Grace<span class="op">)</span>  <span class="op">(</span>rdvl x9<span class="op">,</span> <span class="op">#-</span><span class="dv">1</span> gives <span class="op">-</span>VL<span class="op">)</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>addvl  <span class="kw">sp</span><span class="op">,</span> <span class="kw">sp</span><span class="op">,</span> <span class="op">#-</span><span class="dv">2</span>            <span class="op">//</span> <span class="kw">sp</span> <span class="op">-=</span> <span class="dv">2</span> × VL bytes <span class="op">(</span>stack space for <span class="dv">2</span> vectors<span class="op">)</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>whilelt p0<span class="op">.</span>s<span class="op">,</span> x8<span class="op">,</span> x1          <span class="op">//</span> p0<span class="op">.</span>s<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>x8 <span class="op">+</span> j <span class="op">&lt;</span> x1<span class="op">)</span>  for each element j<span class="co">; also sets flags</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                              //   whilelo<span class="op">:</span> unsigned version<span class="op">.</span> <span class="st">&quot;the elements i, i+1, ... that are still &lt; n&quot;</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>ptrue  p0<span class="op">.</span>s                   <span class="op">//</span> all elements true</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>pfalse p0<span class="op">.</span>b                   <span class="op">//</span> all false</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="bu">ptest</span>  p0<span class="op">,</span> p1<span class="op">.</span>b               <span class="op">//</span> set flags from p1 <span class="op">(</span>b<span class="op">.</span>none <span class="op">/</span> b<span class="op">.</span>any <span class="op">/</span> b<span class="op">.</span>first afterwards<span class="op">)</span></span></code></pre></div>
+<ul>
+<li>a typical VLA loop without a remainder loop (clang output for
+<code>y[i] = a * x[i] + b</code> written with SVE intrinsics;
+<code>p0</code> = all true)</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.LBB0_2:</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  whilelt p1<span class="op">.</span>s<span class="op">,</span> x8<span class="op">,</span> x2                        <span class="op">//</span> p1 <span class="op">=</span> mask of i<span class="op">,</span> i<span class="op">+</span><span class="dv">1</span><span class="op">,</span> <span class="op">...,</span> that are <span class="op">&lt;</span> n</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  ld1w    <span class="op">{</span> z2<span class="op">.</span>s <span class="op">},</span> p1<span class="op">/</span>z<span class="op">,</span> <span class="op">[</span>x0<span class="op">,</span> x8<span class="op">,</span> lsl <span class="op">#</span><span class="dv">2</span><span class="op">]</span>    <span class="op">//</span> z2 <span class="op">=</span> x<span class="op">[</span>i<span class="op">:</span>i<span class="op">+</span>VL<span class="op">/</span><span class="dv">32</span><span class="op">]</span> <span class="op">(</span>inactive elements <span class="op">=</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  fmad    z2<span class="op">.</span>s<span class="op">,</span> p0<span class="op">/</span>m<span class="op">,</span> z0<span class="op">.</span>s<span class="op">,</span> z1<span class="op">.</span>s              <span class="op">//</span> z2 <span class="op">=</span> z2 <span class="op">*</span> a <span class="op">+</span> b <span class="op">(</span>on all elements<span class="co">; garbage in inactive ones is harmless)</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  st1w    <span class="op">{</span> z2<span class="op">.</span>s <span class="op">},</span> p1<span class="op">,</span> <span class="op">[</span>x1<span class="op">,</span> x8<span class="op">,</span> lsl <span class="op">#</span><span class="dv">2</span><span class="op">]</span>      <span class="op">//</span> y<span class="op">[</span>i<span class="op">:...]</span> <span class="op">=</span> z2 <span class="op">(</span>only active elements<span class="op">)</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  incw    x8                                  <span class="op">//</span> i <span class="op">+=</span> VL<span class="op">/</span><span class="dv">32</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">cmp</span>     x8<span class="op">,</span> x2</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  b<span class="op">.</span>lt    <span class="op">.</span>LBB0_2</span></code></pre></div>
+<ul>
+<li>only the memory accesses need the <code>whilelt</code> mask;
+arithmetic on inactive elements does no harm</li>
+<li>compilers usually do <em>not</em> generate this form for ordinary
+loops; they generate a vector loop plus a scalar remainder loop
+instead</li>
+</ul>
+<h2 id="arithmetic-1">Arithmetic</h2>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">fadd</span>  z0<span class="op">.</span>s<span class="op">,</span> p0<span class="op">/</span>m<span class="op">,</span> z0<span class="op">.</span>s<span class="op">,</span> z1<span class="op">.</span>s  <span class="op">//</span> z0 <span class="op">=</span> z0 <span class="op">+</span> z1 on active elements <span class="op">(</span>also fsub<span class="op">,</span> fmul<span class="op">,</span> fdiv<span class="op">,</span> fmax<span class="op">,</span> fmin<span class="op">,</span> fmaxnm<span class="op">)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">fadd</span>  z0<span class="op">.</span>s<span class="op">,</span> z1<span class="op">.</span>s<span class="op">,</span> z2<span class="op">.</span>s        <span class="op">//</span> unpredicated form <span class="op">(</span>exists for a few common ops<span class="op">:</span> fadd<span class="op">,</span> fsub<span class="op">,</span> fmul<span class="op">,</span> add<span class="op">,</span> <span class="op">...)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">fdivr</span> z0<span class="op">.</span>s<span class="op">,</span> p0<span class="op">/</span>m<span class="op">,</span> z0<span class="op">.</span>s<span class="op">,</span> z1<span class="op">.</span>s  <span class="op">//</span> reversed<span class="op">:</span> z0 <span class="op">=</span> z1 <span class="op">/</span> z0  <span class="op">(</span>also fsubr<span class="op">)</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>fmla  z0<span class="op">.</span>s<span class="op">,</span> p0<span class="op">/</span>m<span class="op">,</span> z1<span class="op">.</span>s<span class="op">,</span> z2<span class="op">.</span>s  <span class="op">//</span> z0 <span class="op">=</span> z0 <span class="op">+</span> z1 <span class="op">*</span> z2   <span class="op">(</span>the destination is the ADDEND<span class="op">)</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>fmad  z0<span class="op">.</span>s<span class="op">,</span> p0<span class="op">/</span>m<span class="op">,</span> z1<span class="op">.</span>s<span class="op">,</span> z2<span class="op">.</span>s  <span class="op">//</span> z0 <span class="op">=</span> z0 <span class="op">*</span> z1 <span class="op">+</span> z2   <span class="op">(</span>the destination is a MULTIPLICAND<span class="op">)</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>fmls <span class="op">/</span> fmsb                   <span class="op">//</span> the same with subtraction <span class="op">(</span>z0 <span class="op">-</span> z1<span class="op">*</span>z2 <span class="op">/</span> z2 <span class="op">-</span> z0<span class="op">*</span>z1<span class="op">)</span><span class="co">; fnmla, fnmad: negated</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">fsqrt</span> z0<span class="op">.</span>s<span class="op">,</span> p0<span class="op">/</span>m<span class="op">,</span> z1<span class="op">.</span>s        <span class="op">//</span> also fabs<span class="op">,</span> fneg<span class="op">,</span> frintz<span class="op">,</span> scvtf <span class="op">(</span>int<span class="op">-&gt;</span>float<span class="op">),</span> fcvtzs <span class="op">(</span>float<span class="op">-&gt;</span>int<span class="op">),</span> <span class="op">...</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">add</span>   z3<span class="op">.</span>d<span class="op">,</span> z5<span class="op">.</span>d<span class="op">,</span> z3<span class="op">.</span>d        <span class="op">//</span> integer <span class="op">(</span>also sub<span class="op">,</span> mul<span class="op">,</span> <span class="op">and,</span> orr<span class="op">,</span> eor<span class="op">,</span> lsl<span class="op">,</span> lsr<span class="op">)</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="bu">and</span>   z7<span class="op">.</span>d<span class="op">,</span> z7<span class="op">.</span>d<span class="op">,</span> <span class="op">#</span><span class="bn">0x1</span>        <span class="op">//</span> with an immediate</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>udiv  z1<span class="op">.</span>d<span class="op">,</span> p0<span class="op">/</span>m<span class="op">,</span> z1<span class="op">.</span>d<span class="op">,</span> z2<span class="op">.</span>d  <span class="op">//</span> vector integer division <span class="op">(</span>sdiv<span class="op">:</span> signed<span class="op">)</span><span class="co">; 32/64-bit only; slow</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>mls   z0<span class="op">.</span>d<span class="op">,</span> p0<span class="op">/</span>m<span class="op">,</span> z1<span class="op">.</span>d<span class="op">,</span> z2<span class="op">.</span>d  <span class="op">//</span> z0 <span class="op">=</span> z0 <span class="op">-</span> z1 <span class="op">*</span> z2  <span class="op">(</span>with udiv<span class="op">,</span> computes a <span class="op">%</span> b<span class="op">)</span></span></code></pre></div>
+<ul>
+<li><code>fmla</code> vs <code>fmad</code>: both are FMAs; the compiler
+picks the one whose destination is the register it wants to
+overwrite</li>
+</ul>
+<h2 id="movprfx">movprfx</h2>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>movprfx z7<span class="op">,</span> z3                <span class="op">//</span> <span class="st">&quot;the next instruction&#39;s destination starts as a copy of z3&quot;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">and</span>     z7<span class="op">.</span>d<span class="op">,</span> z7<span class="op">.</span>d<span class="op">,</span> <span class="op">#</span><span class="bn">0x1</span>      <span class="op">//</span> together<span class="op">:</span> z7 <span class="op">=</span> z3 <span class="op">&amp;</span> <span class="dv">1</span>   <span class="op">(</span>z3 is preserved<span class="op">)</span></span></code></pre></div>
+<ul>
+<li><code>movprfx</code> must be immediately followed by a destructive
+instruction using the same destination; the hardware may fuse the pair
+into a single non-destructive operation</li>
+</ul>
+<h2 id="moving-data-around-1">Moving data around</h2>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">mov</span>   z2<span class="op">.</span>s<span class="op">,</span> s1                <span class="op">//</span> broadcast the float in s1 to all elements <span class="op">(</span>an alias of dup z2<span class="op">.</span>s<span class="op">,</span> z1<span class="op">.</span>s<span class="op">[</span><span class="dv">0</span><span class="op">])</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">mov</span>   z5<span class="op">.</span>d<span class="op">,</span> x10               <span class="op">//</span> broadcast a general purpose register <span class="op">(</span>alias of dup<span class="op">)</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">mov</span>   z0<span class="op">.</span>s<span class="op">,</span> <span class="op">#</span><span class="dv">0</span>                <span class="op">//</span> all elements <span class="op">=</span> <span class="dv">0</span>   <span class="op">(</span>fmov z0<span class="op">.</span>s<span class="op">,</span> <span class="op">#</span><span class="fl">1.0</span><span class="op">:</span> all <span class="op">=</span> <span class="fl">1.0</span><span class="op">)</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">mov</span>   z4<span class="op">.</span>d<span class="op">,</span> z3<span class="op">.</span>d              <span class="op">//</span> copy</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>index z3<span class="op">.</span>d<span class="op">,</span> <span class="op">#</span><span class="dv">0</span><span class="op">,</span> <span class="op">#</span><span class="dv">1</span>            <span class="op">//</span> z3 <span class="op">=</span> <span class="op">{</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="op">...}:</span> start <span class="dv">0</span><span class="op">,</span> step <span class="dv">1</span> — a vector of loop indices</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>sel   z0<span class="op">.</span>s<span class="op">,</span> p0<span class="op">,</span> z1<span class="op">.</span>s<span class="op">,</span> z2<span class="op">.</span>s    <span class="op">//</span> z0<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> p0<span class="op">[</span>j<span class="op">]</span> <span class="op">?</span> z1<span class="op">[</span>j<span class="op">]</span> <span class="op">:</span> z2<span class="op">[</span>j<span class="op">]</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="bu">mov</span>   z0<span class="op">.</span>s<span class="op">,</span> p0<span class="op">/</span>m<span class="op">,</span> z1<span class="op">.</span>s        <span class="op">//</span> z0<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> z1<span class="op">[</span>j<span class="op">]</span> where p0 is true <span class="op">(</span>merge<span class="op">)</span></span></code></pre></div>
+<h2 id="load-and-store-1">Load and store</h2>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ld1w  <span class="op">{</span> z0<span class="op">.</span>s <span class="op">},</span> p0<span class="op">/</span>z<span class="op">,</span> <span class="op">[</span>x0<span class="op">,</span> x8<span class="op">,</span> lsl <span class="op">#</span><span class="dv">2</span><span class="op">]</span>     <span class="op">//</span> load VL<span class="op">/</span><span class="dv">32</span> words from <span class="op">&amp;</span>x<span class="op">[</span>i<span class="op">]</span> <span class="op">(</span>w <span class="op">=</span> <span class="dv">32</span><span class="op">-</span>bit <span class="dt">word</span><span class="op">)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ld1w  <span class="op">{</span> z0<span class="op">.</span>s <span class="op">},</span> p0<span class="op">/</span>z<span class="op">,</span> <span class="op">[</span>x0<span class="op">,</span> <span class="op">#</span><span class="dv">1</span><span class="op">,</span> mul vl<span class="op">]</span>     <span class="op">//</span> from x0 <span class="op">+</span> <span class="dv">1</span> vector <span class="op">(</span>immediate in <span class="op">-</span><span class="fl">8.</span><span class="op">.</span><span class="dv">7</span> vectors<span class="op">)</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>ld1d  <span class="op">{</span> z0<span class="op">.</span>d <span class="op">},</span> p0<span class="op">/</span>z<span class="op">,</span> <span class="op">[</span>x0<span class="op">,</span> x8<span class="op">,</span> lsl <span class="op">#</span><span class="dv">3</span><span class="op">]</span>     <span class="op">//</span> <span class="dv">64</span><span class="op">-</span>bit elements <span class="op">(</span>ld1b <span class="op">/</span> ld1h <span class="op">/</span> ld1w <span class="op">/</span> ld1d by element size<span class="op">)</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>ld1w  <span class="op">{</span> z0<span class="op">.</span>d <span class="op">},</span> p0<span class="op">/</span>z<span class="op">,</span> <span class="op">[</span>x0<span class="op">,</span> x8<span class="op">,</span> lsl <span class="op">#</span><span class="dv">2</span><span class="op">]</span>    <span class="op">//</span> load <span class="dv">32</span><span class="op">-</span>bit words into <span class="dv">64</span><span class="op">-</span>bit elements <span class="op">(</span>zero<span class="op">-</span>extended<span class="op">)</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>ld1rw <span class="op">{</span> z0<span class="op">.</span>s <span class="op">},</span> p0<span class="op">/</span>z<span class="op">,</span> <span class="op">[</span>x0<span class="op">]</span>                 <span class="op">//</span> load one <span class="dt">word</span> <span class="op">and</span> broadcast it</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>ld2w  <span class="op">{</span> z0<span class="op">.</span>s<span class="op">,</span> z1<span class="op">.</span>s <span class="op">},</span> p0<span class="op">/</span>z<span class="op">,</span> <span class="op">[</span>x0<span class="op">]</span>           <span class="op">//</span> de<span class="op">-</span>interleaving load <span class="op">(</span>like NEON ld2<span class="op">)</span><span class="co">; also ld3w, ld4w</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>ldr   z0<span class="op">,</span> <span class="op">[</span>x0<span class="op">,</span> <span class="op">#</span><span class="dv">1</span><span class="op">,</span> mul vl<span class="op">]</span>                 <span class="op">//</span> unpredicated load of a whole register</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>st1w  <span class="op">{</span> z0<span class="op">.</span>s <span class="op">},</span> p0<span class="op">,</span> <span class="op">[</span>x0<span class="op">,</span> x8<span class="op">,</span> lsl <span class="op">#</span><span class="dv">2</span><span class="op">]</span>       <span class="op">//</span> store only the active elements</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="bu">str</span>   z0<span class="op">,</span> <span class="op">[</span>x0<span class="op">]</span>                             <span class="op">//</span> unpredicated store</span></code></pre></div>
+<ul>
+<li>the name tells the element size in memory:
+<code>ld1b</code>/<code>ld1h</code>/<code>ld1w</code>/<code>ld1d</code>
+= 8/16/32/64 bits; <code>ld1sw</code> etc. sign-extend</li>
+<li>the <code>1</code> means “one register, contiguous”;
+<code>ld2</code>, <code>ld3</code>, <code>ld4</code> load 2-4 registers
+with de-interleaving</li>
+</ul>
+<h2 id="gather-and-scatter-sve-only">Gather and scatter (SVE only)</h2>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ld1w  <span class="op">{</span> z0<span class="op">.</span>s <span class="op">},</span> p0<span class="op">/</span>z<span class="op">,</span> <span class="op">[</span>x0<span class="op">,</span> z1<span class="op">.</span>s<span class="op">,</span> sxtw <span class="op">#</span><span class="dv">2</span><span class="op">]</span>  <span class="op">//</span> gather<span class="op">:</span> z0<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> <span class="op">*(</span>float<span class="op">*)(</span>x0 <span class="op">+</span> sext<span class="op">(</span>z1<span class="op">[</span>j<span class="op">])</span> <span class="op">*</span> <span class="dv">4</span><span class="op">)</span>  <span class="op">(</span>int indices<span class="op">)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ld1w  <span class="op">{</span> z0<span class="op">.</span>s <span class="op">},</span> p0<span class="op">/</span>z<span class="op">,</span> <span class="op">[</span>x0<span class="op">,</span> z1<span class="op">.</span>s<span class="op">,</span> uxtw <span class="op">#</span><span class="dv">2</span><span class="op">]</span>  <span class="op">//</span> the same with unsigned indices <span class="op">(</span>zero<span class="op">-</span>extended<span class="op">)</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>ld1w  <span class="op">{</span> z0<span class="op">.</span>d <span class="op">},</span> p0<span class="op">/</span>z<span class="op">,</span> <span class="op">[</span>x0<span class="op">,</span> z1<span class="op">.</span>d<span class="op">,</span> lsl <span class="op">#</span><span class="dv">2</span><span class="op">]</span>   <span class="op">//</span> the same with <span class="dv">64</span><span class="op">-</span>bit indices <span class="op">-&gt;</span> only VL<span class="op">/</span><span class="dv">64</span> <span class="op">(</span><span class="dv">2</span> on Grace<span class="op">)</span> elements</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>ld1d  <span class="op">{</span> z0<span class="op">.</span>d <span class="op">},</span> p0<span class="op">/</span>z<span class="op">,</span> <span class="op">[</span>x0<span class="op">,</span> z1<span class="op">.</span>d<span class="op">,</span> lsl <span class="op">#</span><span class="dv">3</span><span class="op">]</span>   <span class="op">//</span> gather of doubles</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>ld1w  <span class="op">{</span> z0<span class="op">.</span>s <span class="op">},</span> p0<span class="op">/</span>z<span class="op">,</span> <span class="op">[</span>z1<span class="op">.</span>s<span class="op">,</span> <span class="op">#</span><span class="dv">0</span><span class="op">]</span>           <span class="op">//</span> addresses taken directly from z1</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>st1w  <span class="op">{</span> z0<span class="op">.</span>s <span class="op">},</span> p0<span class="op">,</span> <span class="op">[</span>x0<span class="op">,</span> z1<span class="op">.</span>s<span class="op">,</span> sxtw <span class="op">#</span><span class="dv">2</span><span class="op">]</span>    <span class="op">//</span> scatter</span></code></pre></div>
+<ul>
+<li>if the index is 64-bit (e.g., <code>long i</code>, or an
+<code>int</code> index the compiler widened to 64 bits, as it does for
+an index computed from an <code>int</code> loop variable such as
+<code>x[i * i]</code>), a gather loads only 2 floats on Grace; the
+compiler then does 2 gathers and packs the results with
+<code>uzp1 z16.s, z16.s, z17.s</code>
+<ul>
+<li>computing such an index in <code>unsigned</code> (e.g.,
+<code>x[((unsigned)i * i) &amp; mask]</code>) keeps it 32-bit, giving
+one 4-element gather with <code>uxtw</code></li>
+<li>an index loaded from an <code>int</code> array
+(<code>x[idx[i]]</code>) stays 32-bit (<code>sxtw</code>)</li>
+</ul></li>
+</ul>
+<h2 id="compare-and-predicates">Compare and predicates</h2>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fcmgt p1<span class="op">.</span>s<span class="op">,</span> p0<span class="op">/</span>z<span class="op">,</span> z0<span class="op">.</span>s<span class="op">,</span> z1<span class="op">.</span>s  <span class="op">//</span> p1<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>z0<span class="op">[</span>j<span class="op">]</span> <span class="op">&gt;</span> z1<span class="op">[</span>j<span class="op">])</span> for active j  <span class="op">(</span>fcmge<span class="op">,</span> fcmeq<span class="op">,</span> fcmlt<span class="op">,</span> <span class="op">...</span> also <span class="op">#</span><span class="fl">0.0</span><span class="op">)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cmpeq</span> p1<span class="op">.</span>d<span class="op">,</span> p0<span class="op">/</span>z<span class="op">,</span> z7<span class="op">.</span>d<span class="op">,</span> <span class="op">#</span><span class="dv">0</span>    <span class="op">//</span> integer compare with an immediate <span class="op">(</span>cmpgt<span class="op">,</span> cmphi <span class="op">(</span>unsigned <span class="op">&gt;),</span> <span class="op">...)</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">and</span>   p2<span class="op">.</span>b<span class="op">,</span> p0<span class="op">/</span>z<span class="op">,</span> p1<span class="op">.</span>b<span class="op">,</span> p3<span class="op">.</span>b  <span class="op">//</span> predicate logic <span class="op">(</span>also orr<span class="op">,</span> eor<span class="op">,</span> bic<span class="op">,</span> <span class="op">not)</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>uzp1  p1<span class="op">.</span>s<span class="op">,</span> p1<span class="op">.</span>s<span class="op">,</span> p2<span class="op">.</span>s        <span class="op">//</span> permutation also works on predicates <span class="op">(</span>here<span class="op">:</span> two <span class="op">.</span>d masks <span class="op">-&gt;</span> one <span class="op">.</span>s mask<span class="op">)</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>brka <span class="op">/</span> brkb                   <span class="op">//</span> <span class="st">&quot;break after / before the first true&quot;</span><span class="op">:</span> for loops with early exit</span></code></pre></div>
+<ul>
+<li>a vectorized <code>if</code> typically: compare into a predicate,
+then compute everywhere and store with that predicate (clang output for
+<code>if (x[i] &gt; 0.0) x[i] = a * x[i] + b;</code>)</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ldr    z4<span class="op">,</span> <span class="op">[</span>x10<span class="op">]</span>                   <span class="op">//</span> z4 <span class="op">=</span> x<span class="op">[</span>i<span class="op">:</span>i<span class="op">+</span><span class="dv">4</span><span class="op">]</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>fcmgt  p1<span class="op">.</span>s<span class="op">,</span> p0<span class="op">/</span>z<span class="op">,</span> z4<span class="op">.</span>s<span class="op">,</span> <span class="op">#</span><span class="fl">0.0</span>      <span class="op">//</span> p1 <span class="op">=</span> <span class="op">(</span>x<span class="op">[</span>i<span class="op">:</span>i<span class="op">+</span><span class="dv">4</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">0.0</span><span class="op">)</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>fmad   z4<span class="op">.</span>s<span class="op">,</span> p0<span class="op">/</span>m<span class="op">,</span> z3<span class="op">.</span>s<span class="op">,</span> z2<span class="op">.</span>s      <span class="op">//</span> z4 <span class="op">=</span> z4 <span class="op">*</span> a <span class="op">+</span> b<span class="op">,</span> computed for ALL elements <span class="op">(</span>harmless<span class="op">)</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>st1w   <span class="op">{</span> z4<span class="op">.</span>s <span class="op">},</span> p1<span class="op">,</span> <span class="op">[</span>x10<span class="op">]</span>         <span class="op">//</span> store only where the condition holds</span></code></pre></div>
+<ul>
+<li>when a load in the then-part may be unsafe for elements whose
+condition is false (e.g., <code>if (c[i]) y[i] = x[idx[i]]</code>), the
+loads are predicated as well
+(<code>ld1w { z0.s }, p1/z, [x0, z0.s, sxtw #2]</code>)</li>
+</ul>
+<h2 id="reductions-and-permutations">Reductions and permutations</h2>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>faddv s0<span class="op">,</span> p0<span class="op">,</span> z0<span class="op">.</span>s            <span class="op">//</span> s0 <span class="op">=</span> sum of active elements <span class="op">(</span>tree order<span class="co">; needs -ffast-math or omp simd reduction)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>fadda s0<span class="op">,</span> p0<span class="op">,</span> s0<span class="op">,</span> z0<span class="op">.</span>s        <span class="op">//</span> s0 <span class="op">=</span> <span class="op">((</span>s0 <span class="op">+</span> z0<span class="op">[</span><span class="dv">0</span><span class="op">])</span> <span class="op">+</span> z0<span class="op">[</span><span class="dv">1</span><span class="op">])</span> <span class="op">+</span> <span class="op">...</span> strictly in order <span class="op">(</span>keeps the C semantics<span class="op">,</span> slow<span class="op">)</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>fmaxv <span class="op">/</span> fminv <span class="op">/</span> fmaxnmv       <span class="op">//</span> max <span class="op">/</span> min <span class="op">(</span>also uaddv<span class="op">,</span> smaxv<span class="op">,</span> <span class="op">...</span> for integers<span class="op">)</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>uzp1  z0<span class="op">.</span>s<span class="op">,</span> z1<span class="op">.</span>s<span class="op">,</span> z2<span class="op">.</span>s        <span class="op">//</span> even elements of z1 then z2 <span class="op">(</span>uzp2<span class="op">:</span> odd<span class="op">)</span><span class="co">; zip1/zip2: interleave</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>compact z0<span class="op">.</span>s<span class="op">,</span> p0<span class="op">,</span> z1<span class="op">.</span>s        <span class="op">//</span> pack the active elements to the front</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>splice  z0<span class="op">.</span>s<span class="op">,</span> p0<span class="op">,</span> z0<span class="op">.</span>s<span class="op">,</span> z1<span class="op">.</span>s  <span class="op">//</span> concatenate the active part of z0 with z1</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>tbl   z0<span class="op">.</span>s<span class="op">,</span> <span class="op">{</span> z1<span class="op">.</span>s <span class="op">},</span> z2<span class="op">.</span>s    <span class="op">//</span> arbitrary shuffle by an index vector</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>rev   z0<span class="op">.</span>s<span class="op">,</span> z1<span class="op">.</span>s              <span class="op">//</span> reverse elements</span></code></pre></div>
+<ul>
+<li><code>fadda</code> (in-order addition) appears in a sum loop
+compiled without permission to reorder additions; with
+<code>#pragma omp simd reduction(+:s)</code> or <code>-ffast-math</code>
+you get parallel partial sums instead</li>
+</ul>
+<h1 id="neon-or-sve">NEON or SVE?</h1>
+<ul>
+<li>on Grace both instruction sets have the same vector length (128
+bits), and the compiler chooses one for each operation; which one you
+get depends on how you write the code</li>
+</ul>
+<div>
+<table>
+<colgroup>
+<col style="width: 52%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr>
+<th>How the code is written</th>
+<th>What you get</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ordinary loop, simple (contiguous accesses, no <code>if</code>)</td>
+<td>NEON (<code>v</code> registers, remainder loop in scalar)</td>
+</tr>
+<tr>
+<td>ordinary loop that needs predicates (<code>if</code>) or gathers
+(<code>x[idx[i]]</code>)</td>
+<td>SVE (<code>z</code>/<code>p</code> registers;
+<code>vectorization width: vscale x 4</code> in the report)</td>
+</tr>
+<tr>
+<td>GNU vector type
+(<code>float __attribute__((vector_size(16)))</code>) or NEON type
+(<code>float32x4_t</code>) with operators</td>
+<td>NEON</td>
+</tr>
+<tr>
+<td>SVE intrinsics (<code>svmad_f32_x</code>, <code>svld1</code>,
+<code>svwhilelt_b32</code>, …)</td>
+<td>SVE, except that an operation also available in NEON may be turned
+into NEON (e.g., <code>svadd_x(svptrue_b32(), ...)</code> became
+<code>fadd v.4s</code>)</td>
+</tr>
+<tr>
+<td>sizeless SVE type (<code>svfloat32_t</code>) with operators
+(<code>a * v + b</code>)</td>
+<td>SVE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>both are usually equally fast, but NEON <code>fmla</code> overwrites
+the addend, so <code>x = a * x + b</code> needs a <code>mov</code> per
+<code>fmla</code> and reaches only half of the peak FMA throughput,
+whereas SVE <code>fmad</code> does it in one instruction</li>
+<li>to get SVE for code written with a GNU vector type, cast to the
+sizeless type in the expression and compile with
+<code>-msve-vector-bits=128</code></li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">float</span> floatv __attribute__<span class="op">((</span>vector_size<span class="op">(</span><span class="dv">16</span><span class="op">)));</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>floatv x<span class="op">[</span><span class="dv">8</span><span class="op">];</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>x<span class="op">[</span>c<span class="op">]</span> <span class="op">=</span> a <span class="op">*</span> <span class="op">(</span>svfloat32_t<span class="op">)</span>x<span class="op">[</span>c<span class="op">]</span> <span class="op">+</span> b<span class="op">;</span>    <span class="co">// -&gt; fmad z.s, p0/m, ...   (needs -msve-vector-bits=128)</span></span></code></pre></div>
+<ul>
+<li><code>-msve-vector-bits=128</code> tells the compiler that the SVE
+vector length is 128 bits (the binary then works correctly only on such
+processors, like Grace); without it the cast is an error</li>
+<li>the cast works only for GNU vector types (and
+<code>arm_sve_vector_bits</code> types), not for NEON types such as
+<code>float32x4_t</code>; for them, use
+<code>svset_neonq_f32(svundef_f32(), v)</code> /
+<code>svget_neonq_f32(z)</code> from
+<code>&lt;arm_neon_sve_bridge.h&gt;</code>, or cast through a GNU vector
+type</li>
+<li>alternatively, pass the GNU vector to the SVE intrinsic directly
+(<code>x[c] = svmad_f32_x(svptrue_b32(), x[c], svdup_f32(a), svdup_f32(b))</code>),
+again with <code>-msve-vector-bits=128</code></li>
+<li>the C types for vectors</li>
+</ul>
+<div>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 11%" />
+<col style="width: 8%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr>
+<th>Type</th>
+<th>Header</th>
+<th>Size</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>float __attribute__((vector_size(16)))</code></td>
+<td>(none)</td>
+<td>16 bytes</td>
+<td>GNU vector type; operators, arrays, structs all OK</td>
+</tr>
+<tr>
+<td><code>float32x4_t</code>, <code>float64x2_t</code>,
+<code>int64x2_t</code>, …</td>
+<td><code>&lt;arm_neon.h&gt;</code></td>
+<td>16 (or 8) bytes</td>
+<td>NEON types:
+<code>&lt;type&gt;&lt;bits&gt;x&lt;count&gt;_t</code></td>
+</tr>
+<tr>
+<td><code>svfloat32_t</code>, <code>svfloat64_t</code>,
+<code>svint64_t</code>, <code>svbool_t</code>, …</td>
+<td><code>&lt;arm_sve.h&gt;</code></td>
+<td>unknown (sizeless)</td>
+<td>SVE types: no count in the name; no <code>sizeof</code>, arrays,
+struct members or globals</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="things-in-compiler-output-that-are-not-instructions">Things in
+Compiler Output That Are Not Instructions</h1>
+<div>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 73%" />
+</colgroup>
+<thead>
+<tr>
+<th>What</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.LBB0_4:</code></td>
+<td>a label (basic block) inside function 0;
+<code>// =&gt;This Inner Loop Header: Depth=1</code> marks an innermost
+loop</td>
+</tr>
+<tr>
+<td><code>.Lfunc_end0</code>, <code>.LFE0</code></td>
+<td>end of a function</td>
+</tr>
+<tr>
+<td><code>.p2align 5, , 16</code></td>
+<td>pad with nops so the next instruction starts at a 32-byte boundary
+(if it costs ≤ 16 bytes)</td>
+</tr>
+<tr>
+<td><code>.cfi_*</code></td>
+<td>information for debuggers / exception handling (stack layout);
+ignore</td>
+</tr>
+<tr>
+<td><code>.type f,@function</code>, <code>.size</code>,
+<code>.globl</code></td>
+<td>symbol information; ignore</td>
+</tr>
+<tr>
+<td><code>// kill: def $s1 killed $s1 def $z1</code></td>
+<td>a note from the register allocator (“s1 is used as part of z1 from
+here”); not an instruction</td>
+</tr>
+<tr>
+<td><code>//APP</code> … <code>//NO_APP</code></td>
+<td>the text of an <code>asm volatile(...)</code> in the source (e.g.,
+our <code># ===== loop begins =====</code> markers)</td>
+</tr>
+<tr>
+<td><code>_Z6branchfPffi</code></td>
+<td>a C++ mangled name (=
+<code>branch(float, float*, float, int)</code>); see <a href="#basics"
+target="_blank" rel="noopener">Basics</a></td>
+</tr>
+<tr>
+<td><code>.LCPI0_0</code></td>
+<td>a constant (e.g., a vector of constants) placed in memory; loaded
+with <code>adrp</code> + <code>ldr q0, [x8, :lo12:.LCPI0_0]</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="performance-on-grace-rough-numbers">Performance on Grace (rough
+numbers)</h1>
+<ul>
+<li>measured with small benchmarks on a Miyabi login node (data in L1
+cache); throughput = instructions per cycle</li>
+</ul>
+<div>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 31%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Latency (cycles)</th>
+<th>Throughput (/cycle)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fmla</code>/<code>fmad</code>/<code>fmadd</code> (scalar,
+NEON, SVE)</td>
+<td>4 (2 when chained through the addend)</td>
+<td>4</td>
+</tr>
+<tr>
+<td>NEON <code>mov</code> + <code>fmla</code> pairs
+(<code>x = a * x + b</code>)</td>
+<td>4</td>
+<td>2 (<code>fmla</code>s)</td>
+</tr>
+<tr>
+<td><code>fadd</code> / <code>fmul</code></td>
+<td>2 / 3</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>fdiv</code> / <code>fsqrt</code> (vector)</td>
+<td>~10</td>
+<td>~0.2</td>
+</tr>
+<tr>
+<td><code>ldr x</code> / <code>ldr s</code> / <code>ldr q</code></td>
+<td>4 / ~6 / ~6</td>
+<td>~3</td>
+</tr>
+<tr>
+<td>SVE <code>ld1w</code> (contiguous)</td>
+<td>~6</td>
+<td>~2</td>
+</tr>
+<tr>
+<td><code>ldp q, q</code> / <code>ld2</code> / <code>ld4</code></td>
+<td></td>
+<td>1.5 / ~1.2 / 0.2</td>
+</tr>
+<tr>
+<td>SVE gather, 4 × 32 bit</td>
+<td>~9</td>
+<td>0.5–0.67 (= 2–2.7 floats/cycle)</td>
+</tr>
+<tr>
+<td>SVE gather, 2 × 64 bit</td>
+<td>~9</td>
+<td>~0.9</td>
+</tr>
+<tr>
+<td>stores (<code>str q</code>, <code>st1w</code>)</td>
+<td></td>
+<td>up to 2, typically ~0.7–1.3</td>
+</tr>
+<tr>
+<td><code>udiv z.d</code> / <code>udiv z.s</code></td>
+<td>20 / 12</td>
+<td>0.05 / 0.09 (from the optimization guide)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>a loop is limited by whichever resource saturates first: e.g.,
+<code>y[i] = a * x[i] + b</code> needs 1 FMA, 1 load and 1 store per
+element; with 4 FMAs, ~3 loads and ~1–2 stores per cycle, the
+loads/stores are the bottleneck, not the FMAs</li>
+<li>unaligned loads/stores are allowed; they cost nothing within a
+64-byte cache line, loads crossing a line count twice, and a store
+crossing a 4KB page is very slow (~11 cycles)</li>
+<li>the FMA throughput of 4 per cycle is reached only sometimes: a loop
+needing more than 3 independent FMAs per cycle runs at either ~4 or
+exactly 2 FMAs per cycle, chosen (apparently at random) each time the
+loop is entered; we do not know why</li>
+</ul>
