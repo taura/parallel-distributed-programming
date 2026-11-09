@@ -11,6 +11,7 @@ md_files :=
 # md_files += nb/source/pd06_visualize/pd06_visualize.md
 md_files += nb/source/pd07_simd/pd07_simd.md
 md_files += nb/source/pd08_ilp/pd08_ilp.md
+md_files += $(wildcard nb/source/pd09_arm_asm/pd??_**.md)
 # md_files += pd07_mem
 # md_files += pd08_mm
 # md_files += pd11_msort
