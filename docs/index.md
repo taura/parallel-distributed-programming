@@ -4,6 +4,12 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Nov. 09, 2026)</font> Today's plan
+  * [SIMD](slides/simd_arm.pdf)
+  * Jupyter `pd07_simd` and `pd09_arm_asm`
+  * Tentative grouping out; form teams based on the grouping
+  * Jupyter `pd08_ilp` ?
+  
 * <font color=blue>(Posted: Nov. 02, 2026)</font> Today's plan
   * [CUDA](slides/cuda.pdf)
   * Share [submissions to `pd02_app` (Making YOUR\_APP from scratch)](https://taura.github.io/parallel-distributed-programming/html/student_projects/2026/submissions/)
