@@ -7,7 +7,16 @@
 * <font color=blue>(Posted: Nov. 09, 2026)</font> Today's plan
   * [SIMD](slides/simd_arm.pdf)
   * Jupyter `pd07_simd` and `pd09_arm_asm`
-  * Tentative grouping out; form teams based on the grouping
+  * Tentative grouping out (check 教材 / Course Materials section of [UTOL course page](https://utol.ecc.u-tokyo.ac.jp/lms/course?idnumber=2026_4884_4840-1004_01)); the goal is to make teams
+	* Indicate where you are attending now (room or zoom) in the spreadsheet
+	* Greet other members and briefly explain what your project is (2-3 min / member)
+	* Exchange contact (email etc.) to discuss matters off class time
+    * Each team should have 2 or 3 members (3 is preferred for redundancy) working on the same project
+	* If your group has $>3$ participants today, you should split it into multiple teams each having 2 or 3 students (ignore those not present today)
+	* Discuss how to form teams based on interests
+	* If you make your team, write your team number (any unique ID) in the spreadsheet in the "team ID" column, so I can identify who are in the same team
+	* Do it no later than this weekend (Sat. Nov 14), but try to do it today
+	* If you make teams quickly (or your group is already the right size), start discussing the project 
   * Jupyter `pd08_ilp` ?
   
 * <font color=blue>(Posted: Nov. 02, 2026)</font> Today's plan
