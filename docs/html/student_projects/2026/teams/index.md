@@ -8,7 +8,7 @@
 - ■ = proposed, ● = checked in the survey / ■ = 提案者，● = アンケートでチェック
 - Teams may be adjusted (e.g., split) in class depending on who is present / 当日の出席状況によって調整 (分割など) することがあります
 
-## Team 1 {.nocount}
+## Group 1 {.nocount}
 
 4 members · Zoom · Japanese
 
@@ -27,7 +27,7 @@ Candidates / 候補:
 | u26134 | GUO Meng (no survey answer) | [u26134](../submissions/u26134/problem.html) Ray tracer |  |  |  | ■ |  |  |
 | u26155 | YAMASHITA Tomoya (no survey answer) | [u26155](../submissions/u26155/problem.html) Simple ray tracer |  |  | ■ |  |  |  |
 
-## Team 2 {.nocount}
+## Group 2 {.nocount}
 
 6 members · classroom · Japanese
 
@@ -48,7 +48,7 @@ Candidates / 候補:
 | u26166 | Kenji Tomita | [u26166](../submissions/u26166/problem.html) Indoor radio power map | ● | ● | ● | ● | ● | [u26133](../submissions/u26133/problem.html), [u26158](../submissions/u26158/problem.html), [u26153](../submissions/u26153/problem.html), [u26129](../submissions/u26129/problem.html), [u26134](../submissions/u26134/problem.html), [u26143](../submissions/u26143/problem.html), [u26155](../submissions/u26155/problem.html), [u26189](../submissions/u26189/problem.html) |
 | u26168 | Kohei Yasugi | [u26168](../submissions/u26168/problem.html) 2D Navier–Stokes | ● | ● | ● | ● | ● | [u26108](../submissions/u26108/problem.html), [u26154](../submissions/u26154/problem.html), [u26186](../submissions/u26186/problem.html), [u26182](../submissions/u26182/problem.html), [u26135](../submissions/u26135/problem.html), [u26109](../submissions/u26109/problem.html), [u26124](../submissions/u26124/problem.html), [u26183](../submissions/u26183/problem.html), [u26156](../submissions/u26156/problem.html) |
 
-## Team 3 {.nocount}
+## Group 3 {.nocount}
 
 5 members · classroom · English
 
@@ -68,7 +68,7 @@ Candidates / 候補:
 | u26147 | Li Chenyu | [u26147](../submissions/u26147/problem.html) Path tracer with BVH | ● | ■ | ● | ● |  | [u26136](../submissions/u26136/problem.html), [u26133](../submissions/u26133/problem.html), [u26158](../submissions/u26158/problem.html), [u26129](../submissions/u26129/problem.html), [u26134](../submissions/u26134/problem.html), [u26143](../submissions/u26143/problem.html), [u26155](../submissions/u26155/problem.html) |
 | u26177 | SHI YI | [u26177](../submissions/u26177/problem.html) Ray tracer with several scenes | ■ |  |  |  |  | [u26135](../submissions/u26135/problem.html) |
 
-## Team 4 {.nocount}
+## Group 4 {.nocount}
 
 3 members · flexible · Japanese
 
@@ -84,7 +84,7 @@ Candidates / 候補:
 | u26142 | WATANABE Shinjiro (no survey answer) | [u26142](../submissions/u26142/problem.html) PPO (reinforcement learning) |  |  | ■ |  |
 | u26152 | Taichi Kondo | [u26152](../submissions/u26152/problem.html) Attention | ● | ■ |  |  |
 
-## Team 5 {.nocount}
+## Group 5 {.nocount}
 
 6 members · classroom · Japanese
 
@@ -105,7 +105,7 @@ Candidates / 候補:
 | u26153 | 田中基暉 | [u26153](../submissions/u26153/problem.html) Ray tracing (metal sphere + terrain) | ● |  |  | ● |  | [u26166](../submissions/u26166/problem.html) |
 | u26154 | Hikaru Shimoyama | [u26154](../submissions/u26154/problem.html) Tiny LLM inference | ● | ■ | ● |  |  | [u26123](../submissions/u26123/problem.html) |
 
-## Team 6 {.nocount}
+## Group 6 {.nocount}
 
 6 members · Zoom · Japanese (pref)
 
@@ -126,7 +126,7 @@ Candidates / 候補:
 | u26186 | Michael Telloyan | [u26186](../submissions/u26186/problem.html) Small LM inference | ● | ■ | ● | ● | ● |  |
 | u26189 | 呉牧周 | [u26189](../submissions/u26189/problem.html) FIR decimation and energy detection | ● | ● | ● | ● | ● | [u26112](../submissions/u26112/problem.html) |
 
-## Team 7 {.nocount}
+## Group 7 {.nocount}
 
 3 members · classroom · English
 
@@ -144,7 +144,7 @@ Candidates / 候補:
 | u26178 | Junjie LI | [u26178](../submissions/u26178/problem.html) Mini vector database (IVF index) |  |  |  |  | ● | [u26182](../submissions/u26182/problem.html), [u26101](../submissions/u26101/problem.html) |
 | u26187 | Ziqiao WANG | — |  |  |  |  |  | [u26108](../submissions/u26108/problem.html) |
 
-## Team 8 {.nocount}
+## Group 8 {.nocount}
 
 6 members · Zoom · English
 
@@ -165,7 +165,7 @@ Candidates / 候補:
 | u26183 | Gong Jiachen | [u26183](../submissions/u26183/problem.html) Monte Carlo trajectory optimization | ● | ● | ● | ● |  | [u26108](../submissions/u26108/problem.html), [u26170](../submissions/u26170/problem.html), [u26123](../submissions/u26123/problem.html), [u26132](../submissions/u26132/problem.html), [u26142](../submissions/u26142/problem.html) |
 | u26190 | Yunfei Chen | — | ● | ● | ● | ● | ● | [u26108](../submissions/u26108/problem.html), [u26170](../submissions/u26170/problem.html), [u26182](../submissions/u26182/problem.html), [u26123](../submissions/u26123/problem.html), [u26149](../submissions/u26149/problem.html), [u26185](../submissions/u26185/problem.html), [u26132](../submissions/u26132/problem.html), [u26139](../submissions/u26139/problem.html), [u26152](../submissions/u26152/problem.html), [u26101](../submissions/u26101/problem.html) |
 
-## Team 9 {.nocount}
+## Group 9 {.nocount}
 
 4 members · Zoom · either
 
@@ -184,7 +184,7 @@ Candidates / 候補:
 | u26180 | WANG Sicheng | [u26180](../submissions/u26180/problem.html) problem.md is still the template | ● | ● | ● | ● | ● | [u26154](../submissions/u26154/problem.html), [u26170](../submissions/u26170/problem.html), [u26186](../submissions/u26186/problem.html), [u26142](../submissions/u26142/problem.html) |
 | u26185 | ZHAO XINRUI | [u26185](../submissions/u26185/problem.html) Small Transformer on MQAR | ● |  |  | ● |  |  |
 
-## Team 10 {.nocount}
+## Group 10 {.nocount}
 
 3 members · classroom · English
 
@@ -202,7 +202,7 @@ Candidates / 候補:
 | u26160 | Wang Zong | [u26160](../submissions/u26160/problem.html) 2D acoustic wave |  | ● | ● | ● |  | [u26140](../submissions/u26140/problem.html) |
 | u26171 | SIQI DAI | [u26171](../submissions/u26171/problem.html) Particle hydrodynamics | ● | ● | ● | ● | ● | [u26147](../submissions/u26147/problem.html), [u26178](../submissions/u26178/problem.html), [u26115](../submissions/u26115/problem.html) |
 
-## Team 11 {.nocount}
+## Group 11 {.nocount}
 
 4 members · classroom · either
 
@@ -221,7 +221,7 @@ Candidates / 候補:
 | u26140 | Hideto Tsubouchi | [u26140](../submissions/u26140/problem.html) Trajectory analysis (MSD) | ● | ● |  | ● |  | [u26158](../submissions/u26158/problem.html), [u26134](../submissions/u26134/problem.html), [u26160](../submissions/u26160/problem.html), [u26169](../submissions/u26169/problem.html), [u26130](../submissions/u26130/problem.html) |
 | u26169 | Yuki Haita | [u26169](../submissions/u26169/problem.html) Atomic DFT | ● | ● | ● |  |  | [u26120](../submissions/u26120/problem.html), [u26140](../submissions/u26140/problem.html) |
 
-## Team 12 {.nocount}
+## Group 12 {.nocount}
 
 5 members · Zoom · English
 
@@ -241,7 +241,7 @@ Candidates / 候補:
 | u26173 | Luna Sugiyama | [u26173](../submissions/u26173/problem.html) Tiny GPT-style character LM training | ● | ● |  | ● | ● | [u26112](../submissions/u26112/problem.html), [u26127](../submissions/u26127/problem.html), [u26146](../submissions/u26146/problem.html), [u26140](../submissions/u26140/problem.html) |
 | u26192 | WANG Ziheng | — | ● | ● | ● |  | ● | [u26154](../submissions/u26154/problem.html), [u26182](../submissions/u26182/problem.html), [u26132](../submissions/u26132/problem.html), [u26139](../submissions/u26139/problem.html), [u26152](../submissions/u26152/problem.html), [u26101](../submissions/u26101/problem.html), [u26142](../submissions/u26142/problem.html), [u26174](../submissions/u26174/problem.html), [u26156](../submissions/u26156/problem.html), [u26111](../submissions/u26111/problem.html), [u26189](../submissions/u26189/problem.html) |
 
-## Team 13 {.nocount}
+## Group 13 {.nocount}
 
 4 members · flexible · Japanese (pref)
 
@@ -260,7 +260,7 @@ Candidates / 候補:
 | u26163 | 小澤 秀真 (no survey answer) | [u26163](../submissions/u26163/problem.html) CKKS-style NTT polynomial multiplication | ■ |  |  |  |  |  |
 | u26174 | Shun Ota | [u26174](../submissions/u26174/problem.html) SHA-256 proof of work | ● |  | ■ |  | ● | [u26171](../submissions/u26171/problem.html) |
 
-## Team 14 {.nocount}
+## Group 14 {.nocount}
 
 3 members · Zoom · English (pref)
 
@@ -278,7 +278,7 @@ Candidates / 候補:
 | u26126 | FUKUDA RAKUTO | [u26126](../submissions/u26126/problem.html) Byte pattern scanner | ■ |  |  |  |  | [u26104](../submissions/u26104/problem.html) |
 | u26159 | WANG Huajin | — |  |  |  | ● | ● |  |
 
-## Team 15 {.nocount}
+## Group 15 {.nocount}
 
 3 members · Zoom · Japanese
 
