@@ -4,6 +4,20 @@
 
 # What's new (in the newest-first order)
 
+<a name="after_nov_09"> </a>
+
+* <font color=blue>(Posted: Nov. 10, 2026)</font> **Things to do after the class Nov 09.**
+  - Most of you decided on your teams quickly during the class yesterday. Thank you. Here are a few to-dos.
+  - [1] On my side, I am trying to set up a Slack workspace so that you can communicate easily. I have been waiting for the apparent system issue between UTOL and Slack to be fixed, but it has been taking forever, so I am now taking a different route.
+  - [2] If you didn't attend the class on Nov 9 (and intend to continue engaging), please open the Google spreadsheet and open the "Teams" tab to see the teams already formed. Try to join one that matches your interest. To do so, contact members of a team you are interested in (many of them have written their email on the sheet, and I believe and hope they are OK with being contacted), get approval to join, and write your team number in the sheet.
+  - [3] If you are already in a team, here are a few more things to do.
+	- I have renumbered teams to reflect discussion yesterday. Please confirm them.
+	- I hope you are OK with being contacted by those who didn't attend on Nov 9; please leave your email address on the sheet if you haven't done so.
+	- <font color="blue">**Decide where to work (classroom or Zoom):**</font> 
+	  - Open the Google spreadsheet again and see the "Teams" tab. (The tab you worked on yesterday has been protected to prevent accidental edits.) Please decide where your team will work in later weeks. The idea is to avoid, or at least minimize, teams split between the classroom and Zoom, since it is difficult to have many such teams in one classroom. For teams whose members were all in the classroom on Nov 9, I suggested "r"; for teams in the opposite situation (everybody was on Zoom), I suggested "z". Please feel free to overwrite them in case they are not what you intend.
+	  - For mixed teams, please discuss among members and decide either way. I wrote "r?" for such teams, mildly suggesting you work in the classroom, because I don't want to prevent anyone who wants to work in the classroom from doing so. In the original grouping I made, I never mixed those who prefer the classroom with those who prefer Zoom. Many of you said you are "flexible (do what other members do)," which I appreciate, so I hope many such teams will end up attending in person.
+	  - It is fine for teams to be split occasionally for good reasons (e.g., a conference trip or international study). I believe we can also use other empty classrooms nearby for group work, for both purely in-person teams and split teams.
+
 * <font color=blue>(Posted: Nov. 09, 2026)</font> Today's plan
   * [SIMD](slides/simd_arm.pdf)
   * Jupyter `pd07_simd` and `pd09_arm_asm`
