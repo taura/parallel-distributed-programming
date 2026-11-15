@@ -7,9 +7,9 @@
 * <font color=blue>(Posted: Nov. 16, 2026)</font> Today's plan
   - the class ends early at 18:00 today (sorry); you can use the classroom and zoom breakout rooms after that if you like
   - [SIMD](slides/simd_arm.pdf)
-  - decide where to work (classroom or Zoom); see the bullet below and do it before the class
   - join slack. I invited everybody who submitted assignment 0 to Slack workspace Parallel and Distributed Programming 2026; visit [UTokyo Slack top page](https://utokyo.enterprise.slack.com/) and find the workspace
 	* find and join your team's channel (`pd-2026-team-xx`)
+  - discuss decide where to work (classroom or Zoom) and what to work on ; see the bullet below (**Things to do after the class Nov 09.**) and do them before/during the class
 * <font color=blue>(Posted: Nov. 16, 2026)</font> Irregular schedules in coming weeks
   * Nov 23 (Mon): no class (holiday)
   * <font color=red>Nov 25 (Wed): we do have class</font>
