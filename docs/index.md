@@ -5,7 +5,7 @@
 # What's new (in the newest-first order)
 
 * <font color=blue>(Posted: Nov. 16, 2026)</font> Today's plan
-  - The class ends early at 18:00 today (sorry)
+  - The class ends early at 18:00 today (sorry); you can use the classroom and zoom breakout rooms after that if you like
   - [SIMD](slides/simd_arm.pdf)
   - Decide where to work (classroom or Zoom); see the bullet below and do it before the class
   - Join slack. I invited everybody who submitted assignment 0 to Slack workspace Parallel and Distributed Programming 2026; visit [UTokyo Slack top page](https://utokyo.enterprise.slack.com/) and find the workspace
