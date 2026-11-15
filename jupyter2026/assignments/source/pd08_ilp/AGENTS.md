@@ -52,19 +52,22 @@ General questions about parallel programming are welcome; answer them fully.
 # Common problems in this assignment
 
 - Compiling: the compile cells start with
-  `module purge && module load nvidia/25.9 cuda/12.9 && PATH=/work/gt81/share/env/llvm/bin:$PATH`;
+  `module purge && module load nvidia/25.9 && PATH=/work/gt81/share/env/llvm/bin:$PATH`;
   dropping it leaves `clang++`/`nvc++` not found.
 - The program is three files: `ilp.h`, `ilp_main.cc` (main, the cycle counter) and
-  one file with `iter_fun` (`no_ilp.cc`, `simd.cc`, `simd2.cc`, `simd_ilp.cc`,
-  `simd_ilp_sve.cc`, `ilp.cc`). Building needs both `.cc` files
-  (`clang++ ... simd.cc ilp_main.cc -o simd`); "undefined reference to `main`" or to
+  one file with `iter_fun`. In the order of the notebook: `fma_scalar.cc` (scalar),
+  `fma_neon.cc` (vector type, NEON), `fma_sve.cc`, `fma_sve2.cc`, `fma_sve_ilp.cc` (SVE with 1, 2 and
+  `C/4` vectors), `fma_neon_ilp.cc` (the NEON version of `fma_sve_ilp.cc`, a side note) and
+  `ilp.cc` (scalar with `C` variables, for the GPU). Building needs both `.cc` files
+  (`clang++ ... fma_neon.cc ilp_main.cc -o fma_neon`); "undefined reference to `main`" or to
   `iter_fun`/`get_clock` means one is missing. The `-S` cells compile only the
   `iter_fun` file, so that the assembly contains `iter_fun` alone.
 - `-DC=...` is required for the versions with `C`; for the vector versions `C` must
   be a multiple of 4 (a `static_assert` fails otherwise).
 - Running: the CPU measurements are short single-thread runs with
-  `OMP_NUM_TEAMS=1 OMP_NUM_THREADS=1 OMP_PROC_BIND=true`; they are run with
-  `%%bash` on purpose. The GPU runs use `%%sub`.
+  `OMP_PROC_BIND=true`; they are run with `%%bash` on purpose. The GPU runs use
+  `%%sub`. `ilp_main.cc` uses one team of one thread unless `OMP_NUM_TEAMS` /
+  `OMP_NUM_THREADS` are set, so the cells do not set them.
 - Output: `cycles_per_iter` is core cycles per iteration of the `k` loop, measured
   with the hardware cycle counter (`perf_event_open`), not time. The throughput in
   the graphs is `C / cycles_per_iter` FMAs on floats per cycle; a SIMD FMA on four
@@ -75,7 +78,7 @@ General questions about parallel programming are welcome; answer them fully.
   each `fmla` needs a `mov` (to copy `b`, the addend `fmla` overwrites), and `mov`
   uses the same four SIMD execution units. The SVE version uses `fmad`, which
   overwrites the multiplicand, and needs no `mov`.
-- The SVE version needs `-msve-vector-bits=128`; without it the cast to
+- The SVE versions (`fma_sve*.cc`) need `-msve-vector-bits=128`; without it the cast to
   `svfloat32_t` is an error ("C-style cast ... is not allowed").
 - With `C` large enough to (almost) reach the peak, the throughput
   of each interval is either the full 16 or exactly 8 FMAs per cycle, chosen

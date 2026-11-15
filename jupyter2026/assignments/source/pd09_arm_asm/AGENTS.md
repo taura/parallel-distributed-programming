@@ -37,7 +37,7 @@ Answer in the language the student uses (Japanese or English).
 
 - Programs are compiled (and occasionally run) with `%%bash` on the login node;
   `%%sub` is not needed. The compile cells start with
-  `module purge && module load nvidia/25.9 cuda/12.9 && PATH=/work/gt81/share/env/llvm/bin:$PATH`;
+  `module purge && module load nvidia/25.9 && PATH=/work/gt81/share/env/llvm/bin:$PATH`;
   dropping it leaves `clang`/`clang++` not found.
 - `-S` writes `xxx.s` next to `xxx.c`; `grep -vE '^\s+\.|^\s*//|^\.Lfunc' xxx.s` hides directives,
   comment-only lines and `.Lfunc_end` labels. The `vis_asm` cells read the `.s` file.

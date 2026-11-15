@@ -52,7 +52,7 @@ General questions about parallel programming are welcome; answer them fully.
 # Common problems in this assignment
 
 - Compiling: the compile cells start with
-  `module purge && module load nvidia/25.9 cuda/12.9 && PATH=/work/gt81/share/env/llvm/bin:$PATH`;
+  `module purge && module load nvidia/25.9 && PATH=/work/gt81/share/env/llvm/bin:$PATH`;
   dropping it leaves `clang++`/`nvc++` not found.
 - `-mcpu=neoverse-v2` (clang/gcc) or `-tp neoverse-v2` (nvc++) is needed for SVE;
   without it only NEON is used, and loops that need predicates or gathers are not

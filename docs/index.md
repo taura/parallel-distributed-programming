@@ -4,6 +4,29 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Nov. 16, 2026)</font> Today's plan
+  - The class ends early at 18:00 today (sorry)
+  - [SIMD](slides/simd_arm.pdf)
+  - Decide where to work (classroom or Zoom); see the bullet below and do it before the class
+  - Join slack. I invited everybody who submitted assignment 0 to Slack workspace Parallel and Distributed Programming 2026; visit [UTokyo Slack top page](https://utokyo.enterprise.slack.com/) and find the workspace
+	* find and join your team's channel (`pd-2026-team-xx`)
+* <font color=blue>(Posted: Nov. 16, 2026)</font> Irregular schedules in coming weeks
+  * Nov 23 (Mon): no class (holiday)
+  * <font color=red>Nov 25 (Wed): we do have class</font>
+  * Nov 30 (Mon): no class (reserved for mid-term exam, which we don't have)
+  * <font color=red>Dec 07 (Mon): team presentations</font>
+
+* <font color=blue>(Posted: Nov. 16, 2026)</font> Format of team presention on Dec 07 (Mon)
+  * all teams must prepare for presentations about the projects
+  * code and presentation materials must be submitted by that day and shared with everybody in the class (protocol details later)
+  * due to time limit, randomly selected <font color=red>six teams</font> present them in the class
+  * everybody must ask questions via sli.do (details later)
+  * presentations must be 10 minutes and must include 
+    * problem statement
+	* brief algorithm description
+	* a demo showing some meaningful results (graphics, texts, etc.); can be AI-generated serial code; can be video-recording to save time
+	* prospect and/or progress about parallelization and optimizations
+
 <a name="after_nov_09"> </a>
 
 * <font color=blue>(Posted: Nov. 10, 2026)</font> **Things to do after the class Nov 09.**
