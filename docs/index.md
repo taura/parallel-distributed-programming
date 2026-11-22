@@ -9,13 +9,14 @@
 
 <a name="first_team_presentation"> </a>
 
-* <font color=blue>(Posted: Nov. 23, 2026)</font> Detailed instruction for <font color=red>Assignment 4 (due Dec. 5th)</font>, to prepare for presentation session on Dec. 7th
+* <font color=blue>(Posted: Nov. 23, 2026)</font> Detailed instructions for <font color=red>Assignment 4 (due Dec. 5)</font>, to prepare for the presentation session on Dec. 7
   - Visit the teams spreadsheet in the shared Google folder (the link is in UTOL).
-  - **Github account:** I have made github organization `parallel-distributed-programming`; tell me your github account (make one if you don't have a github account yet) in the spreadsheet. I will invite you to the organization and github team `team-all`.
-  - **Code:** Make a repository of your code in this organization and make it readable by `team-all`. To do so, from the repository page, go "settings" (gear icon) &gt; "Collaborators and Teams" &gt; "Add teams" button. Write the URL of the repository in the teams spreadsheet. If you have already made a repository outside the organization, make it again in this organization. Sorry for duplicating work.
-  - **Presentation slide deck:** Make your team's folder named `team-xx` (if your team hasn't done so) under `scratch-space-for-info-sharing-among-team-members` in the shared Google folder. Upload your presentation in that folder (or make a Google presentation slide). Write URL of that slide deck in the teams spreadsheet.
-  - **In UTOL:** Each member must submit and say your team has done the above procedures. URLs can (should) be the same among all members of a team. Each member must say who in your team have actually participated in the discussion and collaboration.
-  - Remember that the assignment is due Dec. 5th (two days before the presentation) and every team must be ready for presentation.
+  - **GitHub account:** I have created a GitHub organization, `parallel-distributed-programming`. Enter your GitHub account name in the spreadsheet (create an account if you don't have one yet). I will invite you to the organization and to the GitHub team `team-all`.
+  - **Code:** Create a repository for your code in this organization and make it readable by `team-all`. To do so, go to the repository page, then "Settings" (gear icon) &gt; "Collaborators and teams" &gt; "Add teams". Write the URL of the repository in the teams spreadsheet. If you have already created a repository outside the organization, please create it again in this organization. Sorry for the duplicated work.
+  - **Presentation slide deck:** Create your team's folder, named `team-xx`, under `scratch-space-for-info-sharing-among-team-members` in the shared Google folder (if your team hasn't done so yet). Upload your presentation to that folder (or create it as a Google Slides file). Write the URL of the slide deck in the teams spreadsheet.
+  - **In UTOL:** Each member must submit a statement that your team has completed the above procedures. The URLs can (and should) be the same for all members of a team. Each member must also state who in your team actually participated in the discussion and collaboration.
+  - Fill in the teams spreadsheet and submit to UTOL only if you actually participated in the discussion and contributed to the work.
+  - Remember that the assignment is due Dec. 5 (two days before the presentation), and every team must be ready for the presentation, though not all teams can make a presentation due to time limitation.
 
 * <font color=blue>(Posted: Nov. 16, 2026)</font> Today's plan
   - the class ends early at 18:00 today (sorry); you can use the classroom and zoom breakout rooms after that if you like
