@@ -24,7 +24,8 @@
       (e.g., to locate a bug or explain a performance result; you should write the fix yourself)
     - OK to have AI summarize your experimental results and plot graphs
     - <font color=red>NOT OK</font> to have AI write parallelized/vectorized code, or optimize your code on your behalf
-    - <font color=red>NOT OK</font> to have AI generate your presentation (your presentation must be in your own words)
+	- OK to have AI draft the initial version of your presentation, as long as you review and rewrite it thoroughly, until every single word of the final presentation is completely in your own and reflects what you actually did
+    - <font color=red>NOT OK</font> to present AI-generated content as is, or with only minor edits, without thoroughly reviewing and understanding it (heavily AI-driven presentations are often easy to spot)
     - If unsure, ask yourself: is everything I say in my presentation something I witnessed myself, can explain, and can reproduce on my own, rather than just "what the AI said it did"? Do not ask AI to do too much for you to understand and explain to somebody else
 
 * <font color=blue>(Posted: Nov. 16, 2026)</font> Today's plan
