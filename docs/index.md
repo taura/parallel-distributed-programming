@@ -23,8 +23,8 @@
     - OK to ask AI to help you debug your code and reason about performance
       (e.g., to locate a bug or explain a performance result; you should write the fix yourself)
     - OK to have AI summarize your experimental results and plot graphs
-    - <font color=blue>NOT OK</font> to have AI write parallelized/vectorized code, or optimize your code on your behalf
-    - <font color=blue>NOT OK</font> to have AI generate your presentation (your presentation must be in your own words)
+    - <font color=red>NOT OK</font> to have AI write parallelized/vectorized code, or optimize your code on your behalf
+    - <font color=red>NOT OK</font> to have AI generate your presentation (your presentation must be in your own words)
     - If unsure, ask yourself: is everything I say in my presentation something I witnessed myself, can explain, and can reproduce on my own, rather than just "what the AI said it did"? Do not ask AI to do too much for you to understand and explain to somebody else
 
 * <font color=blue>(Posted: Nov. 16, 2026)</font> Today's plan
