@@ -4,6 +4,19 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Nov. 22, 2026)</font>
+  - please take a survey for [export control](https://forms.gle/sUQq4yDssxKi7PXXA)
+
+<a name="first_team_presentation"> </a>
+
+* <font color=blue>(Posted: Nov. 23, 2026)</font> Detailed instruction for <font color=red>Assignment 4 (due Dec. 5th)</font>, to prepare for presentation session on Dec. 7th
+  - Visit the teams spreadsheet in the shared Google folder (the link is in UTOL).
+  - **Github account:** I have made github organization `parallel-distributed-programming`; tell me your github account (make one if you don't have a github account yet) in the spreadsheet. I will invite you to the organization and github team `team-all`.
+  - **Code:** Make a repository of your code in this organization and make it readable by `team-all`. To do so, from the repository page, go "settings" (gear icon) &gt; "Collaborators and Teams" &gt; "Add teams" button. Write the URL of the repository in the teams spreadsheet. If you have already made a repository outside the organization, make it again in this organization. Sorry for duplicating work.
+  - **Presentation slide deck:** Make your team's folder named `team-xx` (if your team hasn't done so) under `scratch-space-for-info-sharing-among-team-members` in the shared Google folder. Upload your presentation in that folder (or make a Google presentation slide). Write URL of that slide deck in the teams spreadsheet.
+  - **In UTOL:** Each member must submit and say your team has done the above procedures. URLs can (should) be the same among all members of a team. Each member must say who in your team have actually participated in the discussion and collaboration.
+  - Remember that the assignment is due Dec. 5th (two days before the presentation) and every team must be ready for presentation.
+
 * <font color=blue>(Posted: Nov. 16, 2026)</font> Today's plan
   - the class ends early at 18:00 today (sorry); you can use the classroom and zoom breakout rooms after that if you like
   - [SIMD](slides/simd_arm.pdf)
