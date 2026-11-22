@@ -17,6 +17,15 @@
   - **In UTOL:** Each member must submit a statement that your team has completed the above procedures. The URLs can (and should) be the same for all members of a team. Each member must also state who in your team actually participated in the discussion and collaboration.
   - Fill in the teams spreadsheet and submit to UTOL only if you actually participated in the discussion and contributed to the work.
   - Remember that the assignment is due Dec. 5 (two days before the presentation), and every team must be ready for the presentation, though not all teams can make a presentation due to time limitation.
+  - AI use in this assignment:
+    - OK to have AI generate baseline serial code
+    - OK to ask AI about general strategies and methods for parallelization and optimization
+    - OK to ask AI to help you debug your code and reason about performance
+      (e.g., to locate a bug or explain a performance result; you should write the fix yourself)
+    - OK to have AI summarize your experimental results and plot graphs
+    - <font color=blue>NOT OK</font> to have AI write parallelized/vectorized code, or optimize your code on your behalf
+    - <font color=blue>NOT OK</font> to have AI generate your presentation (your presentation must be in your own words)
+    - If unsure, ask yourself: is everything I say in my presentation something I witnessed myself, can explain, and can reproduce on my own, rather than just "what the AI said it did"? Do not ask AI to do too much for you to understand and explain to somebody else
 
 * <font color=blue>(Posted: Nov. 16, 2026)</font> Today's plan
   - the class ends early at 18:00 today (sorry); you can use the classroom and zoom breakout rooms after that if you like
