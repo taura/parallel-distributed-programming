@@ -5,7 +5,7 @@
 # What's new (in the newest-first order)
 
 * <font color=blue>(Posted: Nov. 22, 2026)</font>
-  - please take a survey for [export control](https://forms.gle/sUQq4yDssxKi7PXXA)
+  - please send a form for export control. The link is in UTOL assignment "Please submit this form to use Miyabi"
 
 <a name="first_team_presentation"> </a>
 
