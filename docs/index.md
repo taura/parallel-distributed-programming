@@ -4,6 +4,13 @@
 
 # What's new (in the newest-first order)
 
+* <font color=blue>(Posted: Nov. 25, 2026)</font> Today's plan
+  - Miyabi is under maintenance until 22:00 (no Jupyter notebook today)
+  - tell me your github account (see below)
+  - [SIMD](slides/simd_arm.pdf)
+  - team discussion toward presentation (see below)
+  - [ILP](slides/ilp_arm.pdf)
+
 * <font color=blue>(Posted: Nov. 22, 2026)</font>
   - please send a form for export control. The link is in UTOL assignment "Please submit this form to use Miyabi"
 
