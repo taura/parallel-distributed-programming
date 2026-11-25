@@ -328,6 +328,7 @@ alt="overview" /></a></p>
 <p><a href="svg/fetch_assignment.svg" target="_blank"
 rel="noopener"><img src="svg/fetch_assignment.svg" style="width:400pt"
 alt="overview" /></a></p>
+<p><a name=directly> </a></p>
 <h2 id="optional-directly-ssh-miyabi-from-your-pc">(Optional) Directly
 SSH Miyabi from Your PC</h2>
 <ul>
@@ -354,3 +355,86 @@ target="_blank" rel="noopener">Miyabi User Portal</a></li>
 there</li>
 </ul></li>
 </ul>
+<p><a name="vscode"> </a></p>
+<h2 id="optional-using-vscode-to-edit-and-compile-programs">(Optional)
+Using VSCode to Edit and Compile Programs</h2>
+<ul>
+<li>If you usually use VSCode to edit programs or feel editing programs
+within Jupyer notebook is inefficient, this is how to use VSCode to
+directly edit files on Miyabi</li>
+</ul>
+<h3
+id="set-up-skip-them-if-you-have-already-done-so-and-edit-remote-files">Set
+up (skip them if you have already done so) and edit remote files</h3>
+<ul>
+<li>Register SSH public key of your PC to Miyabi following the previous
+section <a href="#directly" target="_blank" rel="noopener">“(Optional)
+Directly SSH Miyabi from Your PC”</a></li>
+<li>Put the following in <code>~/.ssh/config</code> of your PC, so you
+can <code>ssh miyabig</code> to login Miyabi from your PC</li>
+</ul>
+<pre><code>Host miyabig
+     HostName miyabi-g3.jcahpc.jp
+     User t81xxx  &lt;---------- replace this with your user name on Miyabi
+     ControlMaster auto
+     ControlPath ~/.ssh/cm_%r@%h:%p
+     ControlPersist 6h</code></pre>
+<ul>
+<li>Run VSCode on your PC and install “Remote - SSH” VSCode extension,
+following <a href="https://code.visualstudio.com/docs/remote/ssh"
+target="_blank" rel="noopener">Remote Development using SSH</a></li>
+<li>Connect to Miyabi; press <code>&gt;&lt;</code> icon (bottom left
+corner of VSCode window), choose “Connect to Host”, choose “miyabig”,
+and wait a while; input verification code if asked</li>
+<li>After connecting, open folder
+<code>/work/gt81/share/home/t81xxx/notebooks/pd/pdNN_yyyy</code>, which
+is the actual directory you usually see from Jupyter notebook (by
+<code>mount-miyabi</code> or <code>sshfs</code> underneath it)</li>
+<li>Click the file you want to edit from the folder menu on the left
+pane</li>
+</ul>
+<h3 id="compile">Compile</h3>
+<ul>
+<li>With a source file open, go “Terminal” &gt; “Configure Tasks” from
+the menu</li>
+<li>When asked to “select a task to configure”, choose “C/C++: clang++
+build active file”</li>
+<li>It generates and opens <code>.vscode/tasks.json</code> under the
+directory the source file is in, whose “command” and “args” fields
+specify the build command
+<ul>
+<li>Replace “command” : “/usr/bin/clang++” with the right path “command”
+: “/work/gt81/share/env/llvm/bin/clang++”</li>
+<li>Consider configuring “args” appropriately; for debug build, adding
+“-O0” and “-g” will be a good choice</li>
+</ul></li>
+<li>To build, open “Terminal” &gt; “Run Build Task”</li>
+<li>Here is a complete <code>task.json</code></li>
+</ul>
+<pre><code>{
+    &quot;version&quot;: &quot;2.0.0&quot;,
+    &quot;tasks&quot;: [
+    {
+        &quot;type&quot;: &quot;cppbuild&quot;,
+        &quot;label&quot;: &quot;C/C++: clang++ build active file&quot;,
+        &quot;command&quot;: &quot;/work/gt81/share/env/llvm/bin/clang++&quot;,
+        &quot;args&quot;: [
+        &quot;-fcolor-diagnostics&quot;,
+        &quot;-fansi-escape-codes&quot;,
+        &quot;-g&quot;,
+        &quot;-O0&quot;,
+        &quot;${file}&quot;,
+        &quot;-o&quot;,
+        &quot;${fileDirname}/${fileBasenameNoExtension}&quot;
+        ],
+        &quot;options&quot;: {
+        &quot;cwd&quot;: &quot;${fileDirname}&quot;
+        },
+        &quot;problemMatcher&quot;: [
+        &quot;$gcc&quot;
+        ],
+        &quot;group&quot;: &quot;build&quot;,
+        &quot;detail&quot;: &quot;compiler: clang++&quot;
+    }
+    ]
+}</code></pre>

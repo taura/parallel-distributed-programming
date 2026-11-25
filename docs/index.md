@@ -124,7 +124,7 @@
 1. [OpenMP](slides/openmp.pdf)
 1. [CUDA](slides/cuda.pdf)
 1. [OpenMP for GPU](slides/openmp_gpu.pdf)
-1. [SIMD](slides/simd.pdf)
+1. [SIMD](slides/simd_arm.pdf)
 1. [ILP (How to get nearly peak FLOPS)](slides/ilp_arm.pdf)
 1. [What You Must Know about Memory, Caches, and Shared Memory](slides/memory.pdf)
 1. [Analyzing Data Access of Algorithms and How to Make Them Cache-Friendly](slides/cache.pdf)

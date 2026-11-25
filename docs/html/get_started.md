@@ -204,6 +204,8 @@ taulec$ mount-miyabi -u   # unmount
 
 [![overview](svg/fetch_assignment.svg){width=400pt}](svg/fetch_assignment.svg) 
 
+<a name=directly> </a>
+
 ## (Optional) Directly SSH Miyabi from Your PC
 
 - In this course, the canonical way to access Miyabi is via Jupyter on taulec
@@ -216,3 +218,65 @@ taulec$ mount-miyabi -u   # unmount
   - Register your SSH public key corresponding to the private key on your local PC via [Miyabi User Portal](https://miyabi-www.jcahpc.jp/login)
   - Just remember that files you fetched in Jupyter are in `/work/gt81/share/home/$USER/notebooks/pd`; do your work there
 
+<a name="vscode"> </a>
+
+## (Optional) Using VSCode to Edit and Compile Programs
+
+* If you usually use VSCode to edit programs or feel editing programs within Jupyer notebook is inefficient, this is how to use VSCode to directly edit files on Miyabi
+
+### Set up (skip them if you have already done so) and edit remote files
+
+* Register SSH public key of your PC to Miyabi following the previous section ["(Optional) Directly SSH Miyabi from Your PC"](#directly)
+* Put the following in `~/.ssh/config` of your PC, so you can `ssh miyabig` to login Miyabi from your PC
+```
+Host miyabig
+     HostName miyabi-g3.jcahpc.jp
+     User t81xxx  <---------- replace this with your user name on Miyabi
+     ControlMaster auto
+     ControlPath ~/.ssh/cm_%r@%h:%p
+     ControlPersist 6h
+```
+* Run VSCode on your PC and install "Remote - SSH" VSCode extension, following [Remote Development using SSH](https://code.visualstudio.com/docs/remote/ssh)
+* Connect to Miyabi; press `><` icon (bottom left corner of VSCode window), choose "Connect to Host", choose "miyabig", and wait a while; input verification code if asked
+* After connecting, open folder `/work/gt81/share/home/t81xxx/notebooks/pd/pdNN_yyyy`, which is the actual directory you usually see from Jupyter notebook (by `mount-miyabi` or `sshfs` underneath it)
+* Click the file you want to edit from the folder menu on the left pane
+
+### Compile
+
+* With a source file open, go "Terminal" > "Configure Tasks" from the menu
+* When asked to "select a task to configure", choose "C/C++: clang++ build active file"
+* It generates and opens `.vscode/tasks.json` under the directory the source file is in, whose "command" and "args" fields specify the build command
+  * Replace "command" : "/usr/bin/clang++" with the right path "command" : "/work/gt81/share/env/llvm/bin/clang++"
+  * Consider configuring "args" appropriately; for debug build, adding "-O0" and "-g" will be a good choice
+* To build, open "Terminal" > "Run Build Task"
+* Here is a complete `task.json`
+
+```
+{
+    "version": "2.0.0",
+    "tasks": [
+	{
+	    "type": "cppbuild",
+	    "label": "C/C++: clang++ build active file",
+	    "command": "/work/gt81/share/env/llvm/bin/clang++",
+	    "args": [
+		"-fcolor-diagnostics",
+		"-fansi-escape-codes",
+		"-g",
+		"-O0",
+		"${file}",
+		"-o",
+		"${fileDirname}/${fileBasenameNoExtension}"
+	    ],
+	    "options": {
+		"cwd": "${fileDirname}"
+	    },
+	    "problemMatcher": [
+		"$gcc"
+	    ],
+	    "group": "build",
+	    "detail": "compiler: clang++"
+	}
+    ]
+}
+```
